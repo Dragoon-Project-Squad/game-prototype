@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lights1.jpg-28b31d7a7d8494ef31f3e54bfdfdca10.stex"
+path="res://.import/Lights2.png-6c7ddd1037911fb2b833d5bfe2f44b34.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lights1.jpg"
-dest_files=[ "res://.import/Lights1.jpg-28b31d7a7d8494ef31f3e54bfdfdca10.stex" ]
+source_file="res://Player/Art/Lights2.png"
+dest_files=[ "res://.import/Lights2.png-6c7ddd1037911fb2b833d5bfe2f44b34.stex" ]
 
 [params]
 

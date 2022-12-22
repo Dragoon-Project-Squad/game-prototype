@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://CustomLight/CustomLight.gd" type="Script" id=1]
+[ext_resource path="res://Player/Art/Lights2.png" type="Texture" id=2]
+[ext_resource path="res://FlickeringLightTest/FlickeringLightTest.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 256.0
+
+[node name="FlickeringLightTest" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Viewzone" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+shadow_enabled = true
+script = ExtResource( 1 )
+viewCheck = NodePath("ViewZoneCheck")
+viewCheckShape = NodePath("ViewZoneCheck/CollisionShape2D")
+
+[node name="ViewZoneCheck" type="Area2D" parent="Viewzone"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Viewzone/ViewZoneCheck"]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

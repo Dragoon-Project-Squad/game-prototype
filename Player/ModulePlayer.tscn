@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/Player_Main.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player_Aesthetics.gd" type="Script" id=2]
+[ext_resource path="res://Player/Player_Lights.gd" type="Script" id=3]
+[ext_resource path="res://Player/Player_Camera.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://Player/Art/Lights.png" type="Texture" id=6]
+[ext_resource path="res://Player/Art/Lights2.png" type="Texture" id=7]
+[ext_resource path="res://CustomLight/CustomLight.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 256.0
+
+[node name="ModulePlayer" type="Node"]
+
+[node name="PlayerKinematic" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
+aesthetics = NodePath("Aesthetics")
+camera = NodePath("Camera")
+lights = NodePath("Lights")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
+shape = SubResource( 1 )
+
+[node name="Camera" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 4 )
+camera = NodePath("Camera2D")
+PERCENT_REMAPPING_CURVE = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera"]
+current = true
+
+[node name="Lights" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 3 )
+viewZone = NodePath("Viewzone")
+viewCone = NodePath("Viewcone")
+viewConeCheck = NodePath("ViewConeCheck")
+viewConeCheckShape = NodePath("ViewConeCheck/CollisionShape2D")
+
+[node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeCheck"]
+polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
+
+[node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights"]
+texture = ExtResource( 6 )
+offset = Vector2( 256, 0 )
+shadow_enabled = true
+script = ExtResource( 8 )
+viewCheck = NodePath("../ViewConeCheck")
+viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [ NodePath("../..") ]
+
+[node name="Viewzone" type="Light2D" parent="PlayerKinematic/Lights"]
+texture = ExtResource( 7 )
+shadow_enabled = true
+script = ExtResource( 8 )
+viewCheck = NodePath("ViewZoneCheck")
+viewCheckShape = NodePath("ViewZoneCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [ NodePath("../..") ]
+
+[node name="ViewZoneCheck" type="Area2D" parent="PlayerKinematic/Lights/Viewzone"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic/Lights/Viewzone/ViewZoneCheck"]
+shape = SubResource( 3 )
+
+[node name="Aesthetics" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 2 )
+charSprite = NodePath("Sprite")
+
+[node name="Weapon" type="Node2D" parent="PlayerKinematic/Aesthetics"]
+
+[node name="Sprite" type="Sprite" parent="PlayerKinematic/Aesthetics/Weapon"]
+
+[node name="Sprite" type="Sprite" parent="PlayerKinematic/Aesthetics"]
+texture = ExtResource( 5 )
+
+[node name="PlayerUI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Selen.PNG-6085479838ff71dfba9d40d6efaf25b4.stex"
+path="res://.import/Lights.png-c29da32e537f8283e6c85504975c6ab5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Selen.PNG"
-dest_files=[ "res://.import/Selen.PNG-6085479838ff71dfba9d40d6efaf25b4.stex" ]
+source_file="res://Player/Art/Lights.png"
+dest_files=[ "res://.import/Lights.png-c29da32e537f8283e6c85504975c6ab5.stex" ]
 
 [params]
 
