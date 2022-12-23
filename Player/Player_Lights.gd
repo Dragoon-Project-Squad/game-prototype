@@ -1,13 +1,18 @@
 extends Node2D
 
+export (NodePath) onready var muzzleFlash = get_node(muzzleFlash)
+export (NodePath) onready var muzzleFlashCheckShape = get_node(muzzleFlashCheckShape)
 export (NodePath) onready var viewZone = get_node(viewZone)
 export (NodePath) onready var viewCone = get_node(viewCone)
-export (NodePath) onready var viewConeCheck = get_node(viewConeCheck)
 export (NodePath) onready var viewConeCheckShape = get_node(viewConeCheckShape)
+export (NodePath) onready var muzzleFlashRotate = get_node(muzzleFlashRotate)
+export (NodePath) onready var viewConeRotate = get_node(viewConeRotate)
 
 func _ready():
 	resizeViewCone()
 	resizeViewZone()
+	resizeMuzzleFlash()
+	setUpMuzzleFlash()
 
 func _process(delta):
 	pointLightToMouse()
@@ -18,8 +23,9 @@ export var LIGHT_ROTATE_LERP_CONSTANT := 0.1
 func pointLightToMouse():
 	var vectorToMouse = get_global_mouse_position() - global_position
 	
-	viewCone.rotation = lerp_angle(viewCone.rotation, vectorToMouse.angle(), LIGHT_ROTATE_LERP_CONSTANT)
-	viewConeCheck.rotation = viewCone.rotation
+	var angle = lerp_angle(viewConeRotate.rotation, vectorToMouse.angle(), LIGHT_ROTATE_LERP_CONSTANT)
+	viewConeRotate.rotation = angle
+	muzzleFlashRotate.rotation = angle
 
 #Size of View zone
 onready var VIEW_ZONE_TEXTURE_SIZE: Vector2 = viewZone.texture.get_size()
@@ -61,13 +67,9 @@ func resizeViewCone():
 	
 	viewCone.scale = targetViewConeTextureScale
 	
-	setupViewConeCheckShapePolygon()
+	updateViewConeCheckShapePolygon()
 
-#Light up Hidden Objects in View Cone and View Zone
-var hiddenObjectsInViewConeCheck: Array = []
-var hiddenObjectsInViewZoneCheck: Array = []
-
-func setupViewConeCheckShapePolygon():
+func updateViewConeCheckShapePolygon():
 	var points = []
 	
 	var radius = viewConeLength / cos(viewConeAngle/2)
@@ -77,3 +79,42 @@ func setupViewConeCheckShapePolygon():
 	points.append(radius * Vector2.RIGHT.rotated(-viewConeAngle/2))
 	
 	viewConeCheckShape.polygon = points
+
+#Size of MuzzleFlash
+onready var MUZZLE_FLASH_TEXTURE_SIZE: Vector2 = muzzleFlash.texture.get_size()
+
+var muzzleFlashLength := 50.0 setget setMuzzleFlashLength
+var muzzleFlashHeight := 200.0 setget setMuzzleFlashHeight
+
+func setMuzzleFlashLength(input):
+	muzzleFlashLength = input
+	resizeMuzzleFlash()
+
+func setMuzzleFlashHeight(input):
+	muzzleFlashHeight = input
+	resizeMuzzleFlash()
+
+func resizeMuzzleFlash():
+	var targetMuzzleFlashTextureScale = Vector2(muzzleFlashLength, muzzleFlashHeight) / VIEW_CONE_TEXTURE_SIZE
+	
+	muzzleFlash.scale = targetMuzzleFlashTextureScale
+	
+	setupMuzzleFlashCheckShapePolygon()
+
+func setupMuzzleFlashCheckShapePolygon():
+	var points = []
+	
+	points.append(Vector2.ZERO)
+	points.append(Vector2(muzzleFlashLength, muzzleFlashHeight/2))
+	points.append(Vector2(muzzleFlashLength, -muzzleFlashHeight/2))
+	
+	muzzleFlashCheckShape.polygon = points
+
+#MuzzleFlash
+func setUpMuzzleFlash():
+	muzzleFlash.switchLightOff()
+
+func triggerMuzzleFlash(duration: float):
+	muzzleFlash.switchLightOn()
+	yield(get_tree().create_timer(duration), "timeout")
+	muzzleFlash.switchLightOff()

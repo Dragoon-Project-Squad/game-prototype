@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player_Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player_Aesthetics.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Player/Art/Lights.png" type="Texture" id=6]
 [ext_resource path="res://Player/Art/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://CustomLight/CustomLight.gd" type="Script" id=8]
+[ext_resource path="res://Player/Player_Weapon.gd" type="Script" id=9]
+[ext_resource path="res://GenericBullet.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -21,11 +23,12 @@ radius = 256.0
 [node name="ModulePlayer" type="Node"]
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="."]
-collision_mask = 62
+collision_mask = 186
 script = ExtResource( 1 )
 aesthetics = NodePath("Aesthetics")
 camera = NodePath("Camera")
 lights = NodePath("Lights")
+weapon = NodePath("Weapon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
 shape = SubResource( 1 )
@@ -40,29 +43,17 @@ current = true
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 3 )
+muzzleFlash = NodePath("MuzzleFlashRotate/MuzzleFlash")
+muzzleFlashCheckShape = NodePath("MuzzleFlashRotate/MuzzleFlashCheck/CollisionShape2D")
 viewZone = NodePath("Viewzone")
-viewCone = NodePath("Viewcone")
-viewConeCheck = NodePath("ViewConeCheck")
-viewConeCheckShape = NodePath("ViewConeCheck/CollisionShape2D")
-
-[node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights"]
-collision_layer = 64
-collision_mask = 38
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeCheck"]
-polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
-
-[node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights"]
-texture = ExtResource( 6 )
-offset = Vector2( 256, 0 )
-shadow_enabled = true
-script = ExtResource( 8 )
-viewCheck = NodePath("../ViewConeCheck")
-viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
-nonHiddenObjectBodiesToIgnore = [ NodePath("../..") ]
+viewCone = NodePath("ViewConeRotate/Viewcone")
+viewConeCheckShape = NodePath("ViewConeRotate/ViewConeCheck/CollisionShape2D")
+muzzleFlashRotate = NodePath("MuzzleFlashRotate")
+viewConeRotate = NodePath("ViewConeRotate")
 
 [node name="Viewzone" type="Light2D" parent="PlayerKinematic/Lights"]
 texture = ExtResource( 7 )
+energy = 2.5
 shadow_enabled = true
 script = ExtResource( 8 )
 viewCheck = NodePath("ViewZoneCheck")
@@ -76,16 +67,66 @@ collision_mask = 38
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic/Lights/Viewzone/ViewZoneCheck"]
 shape = SubResource( 3 )
 
+[node name="MuzzleFlashRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+
+[node name="MuzzleFlashCheck" type="Area2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+position = Vector2( 30, 0 )
+collision_layer = 64
+collision_mask = 38
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate/MuzzleFlashCheck"]
+polygon = PoolVector2Array( 0, 0, 256, 128, 256, -128 )
+
+[node name="MuzzleFlash" type="Light2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.1, 0.6 )
+texture = ExtResource( 6 )
+offset = Vector2( 256, 0 )
+energy = 2.5
+shadow_enabled = true
+script = ExtResource( 8 )
+viewCheck = NodePath("../MuzzleFlashCheck")
+viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [ NodePath("../../..") ]
+
+[node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+
+[node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+collision_layer = 64
+collision_mask = 38
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeRotate/ViewConeCheck"]
+polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
+
+[node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+texture = ExtResource( 6 )
+offset = Vector2( 256, 0 )
+energy = 2.5
+shadow_enabled = true
+script = ExtResource( 8 )
+viewCheck = NodePath("../ViewConeCheck")
+viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [ NodePath("../../..") ]
+
 [node name="Aesthetics" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 2 )
 charSprite = NodePath("Sprite")
 
-[node name="Weapon" type="Node2D" parent="PlayerKinematic/Aesthetics"]
-
-[node name="Sprite" type="Sprite" parent="PlayerKinematic/Aesthetics/Weapon"]
-
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Aesthetics"]
 texture = ExtResource( 5 )
+
+[node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 9 )
+bulletSpawnNode = NodePath("SpawnNode")
+weaponSprite = NodePath("Sprite")
+bulletScene = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon"]
+modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
+scale = Vector2( 1.2, 0.4 )
+texture = ExtResource( 5 )
+
+[node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
 
 [node name="PlayerUI" type="Control" parent="."]
 margin_right = 40.0

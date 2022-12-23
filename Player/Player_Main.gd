@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (NodePath) onready var aesthetics = get_node(aesthetics)
 export (NodePath) onready var camera = get_node(camera)
 export (NodePath) onready var lights = get_node(lights)
+export (NodePath) onready var weapon = get_node(weapon)
 
 func _process(delta):
 	movement()
@@ -10,6 +11,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("DodgeRoll"):
 		dodgeRoll(getDirectionalInput())
+	
+	shootingBullet()
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -23,8 +26,8 @@ func getDirectionalInput() -> Vector2:
 
 #Movement
 export var MAX_MOVE_SPEED := 300.0
-export var MOVE_ACCEL := 1500.0
-export var MOVE_FRICT := 2000.0
+export var MOVE_ACCEL := 2000.0
+export var MOVE_FRICT := 2200.0
 
 var velocity: Vector2 = Vector2.ZERO
 
@@ -41,6 +44,12 @@ func movement():
 	aesthetics.spriteFlip(sign(direction.x))
 	
 	move_and_slide(velocity)
+
+func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
+	if velocity.dot(force.normalized()) > speedLimit:
+		return
+	
+	velocity += force
 
 #Dodging
 export var DODGE_ROLL_DISTANCE := 200.0
@@ -59,7 +68,7 @@ func dodgeRoll(direction: Vector2):
 	if isDodging: 
 		return
 	
-	velocity = direction * DODGE_ROLL_IMPULSE
+	addImpulse(direction * DODGE_ROLL_IMPULSE)
 	timeLastDodged = currentTime
 	isDodging = true
 
@@ -71,3 +80,15 @@ func dodgeAesthetics():
 		isDodging = false
 	
 	aesthetics.dodgeSquish()
+
+#Shooting
+func shootingBullet():
+	if Input.is_action_just_pressed("Shoot"):
+		weapon.isBulletBuffered = true
+	if Input.is_action_pressed("Shoot") or weapon.isBulletBuffered:
+		var isBulletShot = weapon.attemptShootBullet()
+		
+		if isBulletShot:
+			camera.addShake(weapon.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
+			addImpulse(weapon.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
+			lights.triggerMuzzleFlash(min(weapon.BULLET_CD_PERIOD / 2, weapon.BULLET_MUZZLE_FLASH_DUR))

@@ -48,8 +48,8 @@ func getCamOffsetInAimDirection() -> Vector2:
 
 #Cam Shake
 export var TRAUMA_DECAY_RATE := 1.2
-export var DISPLACEMENT_SHAKE_MAG := 200.0
-export var ROTATION_SHAKE_MAG := deg2rad(5)
+export var DISPLACEMENT_SHAKE_MAG := 20.0
+export var ROTATION_SHAKE_MAG := 5
 
 var trauma := 0.0
 var noise: OpenSimplexNoise
@@ -81,6 +81,6 @@ func getCamDisplacementShakeVector() -> Vector2:
 	return shakeVector
 
 func getCamRotationalShakeAngle() -> float:
-	var shakeAngle = noise.get_noise_2d(2, shakeTime) * pow(trauma, 2) * ROTATION_SHAKE_MAG
+	var shakeAngle = noise.get_noise_2d(2, shakeTime) * pow(trauma, 2) * deg2rad(ROTATION_SHAKE_MAG)
 	
 	return shakeAngle
