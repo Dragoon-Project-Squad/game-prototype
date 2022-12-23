@@ -21,6 +21,7 @@ radius = 256.0
 [node name="ModulePlayer" type="Node"]
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="."]
+collision_mask = 62
 script = ExtResource( 1 )
 aesthetics = NodePath("Aesthetics")
 camera = NodePath("Camera")
@@ -45,7 +46,8 @@ viewConeCheck = NodePath("ViewConeCheck")
 viewConeCheckShape = NodePath("ViewConeCheck/CollisionShape2D")
 
 [node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights"]
-monitorable = false
+collision_layer = 64
+collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeCheck"]
 polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
@@ -68,7 +70,8 @@ viewCheckShape = NodePath("ViewZoneCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [ NodePath("../..") ]
 
 [node name="ViewZoneCheck" type="Area2D" parent="PlayerKinematic/Lights/Viewzone"]
-monitorable = false
+collision_layer = 64
+collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic/Lights/Viewzone/ViewZoneCheck"]
 shape = SubResource( 3 )

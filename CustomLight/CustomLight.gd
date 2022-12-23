@@ -39,21 +39,62 @@ func onBodyExitedViewCheck(body: Node):
 		body.removeLightSource(self)
 
 #Raycasting to Objects found in Area2D for line of sight
+const LightViewCheckAreaLayer: int = 64
+
 func lightUpHiddenBodiesInViewCheck():
 	var space_state = get_world_2d().direct_space_state
 	
 	for i in range(hiddenObjectsInViewCheck.size()):
-		var exceptionArray = []
-		exceptionArray.append_array(hiddenObjectsInViewCheck)
-		exceptionArray.append_array(nonHiddenObjectBodiesToIgnore)
+		var currentHiddenObject: HiddenObject = hiddenObjectsInViewCheck[i]
+		var isInLineOfSight = isPointsWithinViewCheckInLineOfSight(space_state, currentHiddenObject)
 		
-		var result: Dictionary = space_state.intersect_ray(hiddenObjectsInViewCheck[i].global_position, global_position, exceptionArray)
-		
-		if not result.has("collider"):
+		if isInLineOfSight:
 			hiddenObjectsInViewCheck[i].addLightSource(self)
 			continue
 		
 		hiddenObjectsInViewCheck[i].removeLightSource(self)
+
+func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObject) -> bool:
+	var exceptionArray = []
+	exceptionArray.append_array(hiddenObjectsInViewCheck)
+	exceptionArray.append_array(nonHiddenObjectBodiesToIgnore)
+	
+	var visibilityVertices: PoolVector2Array = hiddenObject.visibilityVertices
+	
+	var isAllPointsInLineOfSight: bool = true
+	var isAtLeastOnePointInLineOfSightAndWithinViewCheck: bool = false
+	
+	for j in range(visibilityVertices.size()):
+		var pointToCheck: Vector2 = hiddenObject.global_position + visibilityVertices[j]
+		
+		var withinViewCheck = isPointWithinViewCheck(space_state, pointToCheck)
+		var withinLineOfSight = isPointWithinLineOfSight(space_state, pointToCheck, exceptionArray)
+		
+		if withinLineOfSight and withinViewCheck:
+			isAtLeastOnePointInLineOfSightAndWithinViewCheck = true
+		
+		if not withinLineOfSight:
+			isAllPointsInLineOfSight = false
+	
+	var result = isAllPointsInLineOfSight or isAtLeastOnePointInLineOfSightAndWithinViewCheck
+	
+	return result
+
+func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
+	var result: Array = space_state.intersect_point(point, 32, [], LightViewCheckAreaLayer, false, true)
+	
+	if result.empty():
+		return false
+	
+	return true
+
+func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array):
+	var result: Dictionary = space_state.intersect_ray(point, global_position, exceptionArray)
+	
+	if not result.has("collider"):
+		return true
+	
+	return false
 
 #External Control
 var isSwitchedOn := true

@@ -5,9 +5,10 @@ onready var charSpriteStartPos: Vector2 = charSprite.position
 onready var charSpriteStartScale: Vector2 = charSprite.scale
 var animationTime: float = 0.0
 
-const MB_animationBasePeriod: float = 0.5
-const MB_animationJumpHeight: float = 10.0
-const MB_animationRotationAngle: float = deg2rad(10.0)
+#Move Bounce animation
+export var MB_animationBasePeriod: float = 0.5
+export var MB_animationJumpHeight: float = 10.0
+export var MB_animationRotationAngle: float = deg2rad(10.0)
 
 func moveBounce(isMove: bool):
 	var MB_animationPeriod = MB_animationBasePeriod
@@ -32,8 +33,11 @@ func moveBounce(isMove: bool):
 	charSprite.rotation = lerp_angle(charSprite.rotation, targetRotation, 0.4)
 	charSprite.scale.y = lerp(charSprite.scale.y, charSpriteStartScale.y, 0.2)
 
+#Dodge Squish 
+export var DODGE_SQUISH_FACTOR := 0.6
+
 func dodgeSquish():
-	charSprite.scale.y = lerp(charSprite.scale.y, charSpriteStartScale.y * 0.6, 0.2)
+	charSprite.scale.y = lerp(charSprite.scale.y, charSpriteStartScale.y * DODGE_SQUISH_FACTOR, 0.2)
 
 func spriteFlip(signX: int):
 	if signX == 0:

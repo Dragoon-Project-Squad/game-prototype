@@ -71,6 +71,16 @@ DodgeRoll={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="PlayerBody"
+2d_physics/layer_2="EnemyBody"
+2d_physics/layer_3="ProjectileArea"
+2d_physics/layer_4="WallBody"
+2d_physics/layer_5="DestructibleBody"
+2d_physics/layer_6="CollectibleArea"
+2d_physics/layer_7="LightViewCheckArea"
+
 [physics]
 
 common/enable_pause_aware_picking=true

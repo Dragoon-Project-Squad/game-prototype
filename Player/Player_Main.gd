@@ -22,9 +22,9 @@ func getDirectionalInput() -> Vector2:
 	return Vector2(x_axis_input, y_axis_input).normalized()
 
 #Movement
-const MAX_MOVE_SPEED := 300.0
-const MOVE_ACCEL := 1500.0
-const MOVE_FRICT := 2000.0
+export var MAX_MOVE_SPEED := 300.0
+export var MOVE_ACCEL := 1500.0
+export var MOVE_FRICT := 2000.0
 
 var velocity: Vector2 = Vector2.ZERO
 
@@ -43,9 +43,9 @@ func movement():
 	move_and_slide(velocity)
 
 #Dodging
-const DODGE_ROLL_DISTANCE := 200.0
+export var DODGE_ROLL_DISTANCE := 200.0
 onready var DODGE_ROLL_IMPULSE := sqrt( pow(MAX_MOVE_SPEED, 2) + 2 * MOVE_ACCEL * DODGE_ROLL_DISTANCE )
-const DODGE_ROLL_CD := 0.6
+export var DODGE_ROLL_CD := 0.6
 
 var isDodging := false
 onready var timeLastDodged := -DODGE_ROLL_CD

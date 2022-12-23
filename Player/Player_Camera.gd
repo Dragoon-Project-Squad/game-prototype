@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 	updateCameraRotation()
 
 #Camera
-const CAMERA_LERP_CONSTANT := 0.05
+export var CAMERA_LERP_CONSTANT := 0.05
 
 func updateCameraPosition():
 	var camOffsetInAimDirectionVector: Vector2 = getCamOffsetInAimDirection()
@@ -30,8 +30,8 @@ func updateCameraRotation():
 	camera.rotation = lerp_angle(camera.rotation, targetAngle, CAMERA_LERP_CONSTANT)
 
 #Look In Aim Direction
-const MAX_CAMERA_OFFSET := 50.0
-const MAX_MOUSE_OFFSET_DISTANCE := 200.0
+export var MAX_CAMERA_OFFSET := 50.0
+export var MAX_MOUSE_OFFSET_DISTANCE := 200.0
 
 export (Curve) var PERCENT_REMAPPING_CURVE: Curve
 
@@ -47,9 +47,9 @@ func getCamOffsetInAimDirection() -> Vector2:
 	return offsetVector
 
 #Cam Shake
-const TRAUMA_DECAY_RATE := 1.2
-const DISPLACEMENT_SHAKE_MAG := 200.0
-const ROTATION_SHAKE_MAG := deg2rad(5)
+export var TRAUMA_DECAY_RATE := 1.2
+export var DISPLACEMENT_SHAKE_MAG := 200.0
+export var ROTATION_SHAKE_MAG := deg2rad(5)
 
 var trauma := 0.0
 var noise: OpenSimplexNoise

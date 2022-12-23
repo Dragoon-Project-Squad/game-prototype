@@ -13,7 +13,7 @@ func _process(delta):
 	pointLightToMouse()
 
 #View cone Pointing
-const LIGHT_ROTATE_LERP_CONSTANT := 0.1
+export var LIGHT_ROTATE_LERP_CONSTANT := 0.1
 
 func pointLightToMouse():
 	var vectorToMouse = get_global_mouse_position() - global_position
