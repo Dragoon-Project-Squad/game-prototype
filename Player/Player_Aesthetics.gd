@@ -8,7 +8,7 @@ var animationTime: float = 0.0
 #Move Bounce animation
 export var MB_animationBasePeriod: float = 0.5
 export var MB_animationJumpHeight: float = 10.0
-export var MB_animationRotationAngle: float = deg2rad(10.0)
+export var MB_animationRotationAngle: float = 10.0
 
 func moveBounce(isMove: bool):
 	var MB_animationPeriod = MB_animationBasePeriod
@@ -27,7 +27,7 @@ func moveBounce(isMove: bool):
 		animationTime = max(0,animationTime)
 	
 	var targetPosition = charSpriteStartPos + MB_animationJumpHeight * pow(sin(2 * PI * animationTime / MB_animationPeriod), 2) * Vector2.UP
-	var targetRotation = MB_animationRotationAngle * sin(2 * PI * animationTime / MB_animationPeriod) 
+	var targetRotation = deg2rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
 	
 	charSprite.position = lerp(charSprite.position, targetPosition, 0.4)
 	charSprite.rotation = lerp_angle(charSprite.rotation, targetRotation, 0.4)

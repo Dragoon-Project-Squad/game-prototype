@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 	updateCameraRotation()
 
 #Camera
-export var CAMERA_LERP_CONSTANT := 0.05
+export (float, 0.01, 0.5) var CAMERA_LERP_CONSTANT := 0.05
 
 func updateCameraPosition():
 	var camOffsetInAimDirectionVector: Vector2 = getCamOffsetInAimDirection()

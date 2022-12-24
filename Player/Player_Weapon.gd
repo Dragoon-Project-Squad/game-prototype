@@ -58,7 +58,7 @@ func shootBullet():
 		bulletInstance.global_position = global_position
 		bulletInstance.startPos = global_position
 
-func getSpreadDirection(index: int):
+func getSpreadDirection(index: int) -> Vector2:
 	var baseDirection = shootDirection
 	
 	var spreadAngle = deg2rad(BULLET_SPREAD_ANGLE)

@@ -46,7 +46,7 @@ func movement():
 	aesthetics.spriteFlip(sign(direction.x))
 
 func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
-	if velocity.dot(force.normalized()) > speedLimit:
+	if (velocity+force).dot(force.normalized()) > speedLimit:
 		return
 	
 	velocity += force
