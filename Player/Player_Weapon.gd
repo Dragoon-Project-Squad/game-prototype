@@ -13,7 +13,7 @@ export var WEAPON_ROTATE_LERP_CONSTANT := 0.1
 var shootDirection: Vector2
 
 func pointToMouse():
-	shootDirection = get_global_mouse_position() - global_position
+	shootDirection = (get_global_mouse_position() - global_position).normalized()
 	
 	weaponSprite.rotation = lerp_angle(weaponSprite.rotation, shootDirection.angle(), WEAPON_ROTATE_LERP_CONSTANT)
 	weaponSprite.scale.y = sign(shootDirection.x) * weaponSpriteStartScale.y
@@ -27,6 +27,9 @@ export (float) var BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT := 0.3
 export (float) var BULLET_SELF_KNOCKBACK_IMPULSE: float = 0.4
 export (float) var BULLET_SELF_KNOCKBACK_SPEED_LIMIT: float = 100.0
 export (float) var BULLET_MUZZLE_FLASH_DUR: float = 0.2
+export (float) var BULLET_SPREAD_ANGLE: float = 0.0
+export (float, 0.0, 1.0) var BULLET_SPREAD_RANDOMNESS: float = 0.0
+export (int) var BULLET_NUM_PER_SHOT: int = 1
 
 onready var BULLET_CD_PERIOD: float = 1 / BULLETS_PER_SECOND
 var isBulletBuffered := false
@@ -45,11 +48,32 @@ func attemptShootBullet() -> bool:
 	return true
 
 func shootBullet():
-	var bulletInstance = bulletScene.instance()
+	for i in range(BULLET_NUM_PER_SHOT):
+		var bulletInstance = bulletScene.instance()
+		
+		bulletInstance.velocity = getSpreadDirection(i) * BULLET_INITIAL_SPEED
+		
+		bulletSpawnNode.add_child(bulletInstance)
+		
+		bulletInstance.global_position = global_position
+		bulletInstance.startPos = global_position
+
+func getSpreadDirection(index: int):
+	var baseDirection = shootDirection
 	
-	bulletInstance.velocity = shootDirection.normalized() * BULLET_INITIAL_SPEED
+	var spreadAngle = deg2rad(BULLET_SPREAD_ANGLE)
 	
-	bulletSpawnNode.add_child(bulletInstance)
+	var rotationAngle = 0.0
 	
-	bulletInstance.global_position = global_position
-	bulletInstance.startPos = global_position
+	if BULLET_NUM_PER_SHOT > 1:
+		rotationAngle = spreadAngle * (0.5 - index * 1/float(BULLET_NUM_PER_SHOT-1))
+	
+	if BULLET_SPREAD_RANDOMNESS <= 0.0:
+		return baseDirection.rotated(rotationAngle)
+	
+	rotationAngle += rand_range(0.0, BULLET_SPREAD_RANDOMNESS * spreadAngle)
+	rotationAngle = fmod(rotationAngle + spreadAngle/2, spreadAngle) - spreadAngle/2
+	
+	print(rad2deg(rotationAngle))
+	
+	return baseDirection.rotated(rotationAngle)

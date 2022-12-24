@@ -120,6 +120,9 @@ script = ExtResource( 9 )
 bulletSpawnNode = NodePath("SpawnNode")
 weaponSprite = NodePath("Sprite")
 bulletScene = ExtResource( 10 )
+BULLET_SPREAD_ANGLE = 60.0
+BULLET_SPREAD_RANDOMNESS = 0.131
+BULLET_NUM_PER_SHOT = 6
 
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon"]
 modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
