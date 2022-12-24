@@ -32,6 +32,8 @@ export var MOVE_FRICT := 2200.0
 var velocity: Vector2 = Vector2.ZERO
 
 func movement():
+	velocity = move_and_slide(velocity)
+	
 	var direction = getDirectionalInput()
 	var isInputMove = (direction != Vector2(0,0))
 	
@@ -42,8 +44,6 @@ func movement():
 	
 	aesthetics.moveBounce(isInputMove)
 	aesthetics.spriteFlip(sign(direction.x))
-	
-	move_and_slide(velocity)
 
 func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
 	if velocity.dot(force.normalized()) > speedLimit:

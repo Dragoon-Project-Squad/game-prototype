@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Bullet.gd"
+"path": "res://Bullet/Bullet.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -35,6 +35,10 @@ _global_script_class_icons={
 config/name="SelenHorrorGungeon"
 run/main_scene="res://MapScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+MaterialReferences="*res://Autoloads/MaterialReferences.gd"
 
 [editor]
 

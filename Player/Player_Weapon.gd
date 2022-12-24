@@ -74,6 +74,4 @@ func getSpreadDirection(index: int):
 	rotationAngle += rand_range(0.0, BULLET_SPREAD_RANDOMNESS * spreadAngle)
 	rotationAngle = fmod(rotationAngle + spreadAngle/2, spreadAngle) - spreadAngle/2
 	
-	print(rad2deg(rotationAngle))
-	
 	return baseDirection.rotated(rotationAngle)

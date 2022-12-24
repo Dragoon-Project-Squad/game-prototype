@@ -5,8 +5,23 @@ var lightSources: Array = []
 #Contains the Nodes telling this object that it is currently under a light
 
 func _process(delta):
-	visible = isLitUp()
+	updateTransparency()
 
+#For Smooth transition from invisible to visible
+export (float) var TRANSPARENCY_CHANGE_RATE := 10
+export (float) var TRANSPARENCY_ON_LIT := 0.6
+
+func updateTransparency():
+	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
+	
+	if isLitUp():
+		changeInAlpha *= -1
+		modulate.a = max(TRANSPARENCY_ON_LIT, modulate.a)
+	
+	modulate.a += changeInAlpha
+	modulate.a = clamp(modulate.a, 0.0, 1.0)
+
+#For handling the lighting
 func isLitUp() -> bool:
 	return lightSources.size() > 0
 

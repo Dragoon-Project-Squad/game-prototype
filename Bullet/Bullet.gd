@@ -18,6 +18,8 @@ func movement():
 	rotation = velocity.angle()
 
 #Hitting Objects
+export (float) var BULLET_KNOCKBACK := 50.0
+
 func setupHitboxSignals():
 	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
 

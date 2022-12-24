@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=4]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.5.1.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix,unshaded;
+
+void fragment(){
+	COLOR = vec4(1,1,1,texture(TEXTURE,UV).w);
+}"
+
+[resource]
+shader = SubResource( 4 )
