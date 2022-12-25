@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Enemy/Enemy_Aesthetics.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Enemy_Vision.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/Enemy_Collision.gd" type="Script" id=3]
+[ext_resource path="res://Enemy/Enemy_Movement.gd" type="Script" id=4]
+[ext_resource path="res://Enemy/EnemyMB_Chase.gd" type="Script" id=5]
+[ext_resource path="res://Enemy/EnemyMB_Patrol.gd" type="Script" id=6]
+[ext_resource path="res://Enemy/EnemyMB_Knockback.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30, 52 )
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( 346, 325 )
+collision_layer = 2
+collision_mask = 31
+script = ExtResource( 3 )
+visibilityPolygon2DPath = NodePath("VisibilityPolygon")
+movement = NodePath("Movement")
+aesthetics = NodePath("Aesthetics")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityPolygon" type="Polygon2D" parent="."]
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( -28, -49, 28, -49, 28, 49, -28, 49 )
+
+[node name="Movement" type="Node2D" parent="."]
+script = ExtResource( 4 )
+enemyBody = NodePath("..")
+vision = NodePath("Vision")
+moveBehaviours = [ NodePath("Patrol"), NodePath("Chase"), NodePath("Knockback") ]
+
+[node name="Patrol" type="Node2D" parent="Movement"]
+script = ExtResource( 6 )
+
+[node name="Chase" type="Node2D" parent="Movement"]
+script = ExtResource( 5 )
+
+[node name="Knockback" type="Node2D" parent="Movement"]
+script = ExtResource( 7 )
+
+[node name="Vision" type="Node2D" parent="Movement"]
+script = ExtResource( 2 )
+viewCone = NodePath("ViewCone")
+
+[node name="ViewCone" type="Area2D" parent="Movement/Vision"]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Movement/Vision/ViewCone"]
+polygon = PoolVector2Array( 0, 0, 400, 200, 400, -200 )
+
+[node name="Aesthetics" type="Node2D" parent="."]
+script = ExtResource( 1 )
+enemySprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite" parent="Aesthetics"]
+scale = Vector2( 0.9375, 1.625 )
+texture = ExtResource( 8 )
