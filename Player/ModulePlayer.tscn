@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Player/Player_Main.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player_Aesthetics.gd" type="Script" id=2]
 [ext_resource path="res://Player/Player_Lights.gd" type="Script" id=3]
 [ext_resource path="res://Player/Player_Camera.gd" type="Script" id=4]
@@ -10,6 +10,7 @@
 [ext_resource path="res://CustomLight/CustomLight.gd" type="Script" id=8]
 [ext_resource path="res://Player/Player_Weapon.gd" type="Script" id=9]
 [ext_resource path="res://Bullet/GenericBullet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Player/Player_Main.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -21,14 +22,16 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 radius = 256.0
 
 [node name="ModulePlayer" type="Node"]
+script = ExtResource( 11 )
+movement = NodePath("PlayerKinematic")
+aesthetics = NodePath("PlayerKinematic/Aesthetics")
+camera = NodePath("PlayerKinematic/Camera")
+lights = NodePath("PlayerKinematic/Lights")
+weapon = NodePath("PlayerKinematic/Weapon")
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="."]
 collision_mask = 186
 script = ExtResource( 1 )
-aesthetics = NodePath("Aesthetics")
-camera = NodePath("Camera")
-lights = NodePath("Lights")
-weapon = NodePath("Weapon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
 shape = SubResource( 1 )

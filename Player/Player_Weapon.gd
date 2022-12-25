@@ -34,10 +34,14 @@ export (int) var BULLET_NUM_PER_SHOT: int = 1
 onready var BULLET_CD_PERIOD: float = 1 / BULLETS_PER_SECOND
 var isBulletBuffered := false
 onready var timeLastShootBullet: float = -BULLET_CD_PERIOD 
+const BULLET_BUFFER_PERIOD := 0.2
 
 #Returns if bullet shoot successful
 func attemptShootBullet() -> bool:
 	var currentTime = Time.get_ticks_usec() / 1000000.0
+	
+	if currentTime - timeLastShootBullet > BULLET_CD_PERIOD - BULLET_BUFFER_PERIOD:
+		isBulletBuffered = true
 	
 	if currentTime - timeLastShootBullet < BULLET_CD_PERIOD:
 		return false

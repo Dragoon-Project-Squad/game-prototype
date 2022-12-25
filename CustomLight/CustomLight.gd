@@ -88,7 +88,7 @@ func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
 	
 	return true
 
-func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array):
+func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array) -> bool:
 	var result: Dictionary = space_state.intersect_ray(point, global_position, exceptionArray)
 	
 	if not result.has("collider"):
