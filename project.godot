@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bullet/Bullet.gd"
 }, {
+"base": "Node",
+"class": "EnemyMoveBehaviour",
+"language": "GDScript",
+"path": "res://Enemy/Enemy_MovementBehaviour.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -23,11 +28,18 @@ _global_script_classes=[ {
 "class": "HiddenObject",
 "language": "GDScript",
 "path": "res://HiddenObject/HiddenObject.gd"
+}, {
+"base": "Node",
+"class": "Walker",
+"language": "GDScript",
+"path": "res://RandomStageTest/Walker.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"EnemyMoveBehaviour": "",
 "GitAPI": "",
-"HiddenObject": ""
+"HiddenObject": "",
+"Walker": ""
 }
 
 [application]
@@ -48,6 +60,10 @@ version_control_plugin_name="GitAPI"
 [gdnative]
 
 singletons=[  ]
+
+[global]
+
+grid=false
 
 [gui]
 
@@ -96,6 +112,10 @@ Shoot={
 2d_physics/layer_6="CollectibleArea"
 2d_physics/layer_7="LightViewCheckArea"
 2d_physics/layer_8="EnemyProjectileArea"
+
+[mono]
+
+project/assembly_name="SelenHorrorGungeon"
 
 [physics]
 
