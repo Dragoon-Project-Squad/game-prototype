@@ -55,7 +55,8 @@ func create_room(position, size):
 	return {position = position, size = size}
 
 func place_room(position):
-	var size = Vector2(randi() % (max_room_size - min_room_size) + min_room_size, randi() % (max_room_size - min_room_size) + min_room_size)
+	randomize()
+	var size = Vector2(rand_range(min_room_size, max_room_size), rand_range(min_room_size, max_room_size))
 	var top_left = (position - size/2).ceil()
 	rooms.append(create_room(position, size))
 	for y in size.y:
@@ -71,3 +72,6 @@ func get_furthest_room():
 		if start_pos.distance_to(room.position) > start_pos.distance_to(furthest_room.position):
 			furthest_room = room
 	return furthest_room
+
+func get_mapdata():
+	return step_hist

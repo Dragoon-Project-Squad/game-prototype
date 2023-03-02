@@ -91,6 +91,7 @@ viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [ NodePath("../../..") ]
 
 [node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+scale = Vector2( 3, 4 )
 
 [node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
 collision_layer = 64
