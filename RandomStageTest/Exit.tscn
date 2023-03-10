@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[node name="Exit" type="Area2D"]
+[node name="Exit" type="Area2D" groups=["minimap_objects"]]
 collision_layer = 256
 script = ExtResource( 1 )
 

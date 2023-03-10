@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player_Aesthetics.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Player/Player_Weapon.gd" type="Script" id=9]
 [ext_resource path="res://Bullet/GenericBullet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Player/Player_Main.gd" type="Script" id=11]
+[ext_resource path="res://RandomStageTest/Minimap/Minimap.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 25 )
@@ -129,6 +130,15 @@ texture = ExtResource( 5 )
 
 [node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
 
-[node name="PlayerUI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="PlayerUI" instance=ExtResource( 12 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -320.0
+margin_right = 0.0
+margin_bottom = 0.0
+player = NodePath("../../PlayerKinematic")

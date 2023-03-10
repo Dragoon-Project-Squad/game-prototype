@@ -42,6 +42,8 @@ func generate_level():
 	for location in map:
 		tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
+	
+	player.get_node("PlayerUI/Minimap").getMapObjects()
 
 func reload_level():
 	get_tree().reload_current_scene()
