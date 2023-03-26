@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ObjectiveMarker.png-27c2d5dc8fb8c29c8cfad1460fe53e5e.stex"
+path="res://.import/EnemyMarker.png-9a7d54362e3edf5582e272c70a2de060.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RandomStageTest/Minimap/ObjectiveMarker.png"
-dest_files=[ "res://.import/ObjectiveMarker.png-27c2d5dc8fb8c29c8cfad1460fe53e5e.stex" ]
+source_file="res://Minimap/Markers/EnemyMarker.png"
+dest_files=[ "res://.import/EnemyMarker.png-9a7d54362e3edf5582e272c70a2de060.stex" ]
 
 [params]
 

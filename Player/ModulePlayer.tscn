@@ -11,7 +11,7 @@
 [ext_resource path="res://Player/Player_Weapon.gd" type="Script" id=9]
 [ext_resource path="res://Bullet/GenericBullet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Player/Player_Main.gd" type="Script" id=11]
-[ext_resource path="res://RandomStageTest/Minimap/Minimap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Minimap/Minimap.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 25 )
@@ -137,8 +137,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -320.0
-margin_top = -320.0
-margin_right = 0.0
-margin_bottom = 0.0
+margin_left = -336.0
+margin_top = -334.0
+margin_right = 304.0
+margin_bottom = 306.0
+rect_scale = Vector2( 0.5, 0.5 )
 player = NodePath("../../PlayerKinematic")

@@ -5,7 +5,7 @@ const Exit = preload("res://RandomStageTest/Exit.tscn")
 const Enemy = preload("res://RandomStageTest/DummyEnemy.tscn")
 var borders = Rect2(1, 1, 50, 50)
 
-var tilesize = 64
+var tilesize = 64.0
 
 onready var tileMap = $TileMap
 
@@ -20,21 +20,27 @@ func generate_level():
 	
 	var player = Player.instance()
 	add_child(player)
-	player.get_child(0).position = map.front()*tilesize
+	player.get_child(0).position = (map.front() * tilesize) - Vector2(tilesize/2, tilesize/2)	#added half-tile offset to prevent spawning in walls
+	print("Player Start Position")
+	print(player.get_child(0).position / tilesize)
 	
 	var exit = Exit.instance()
 	add_child(exit)
-	exit.position = walker.get_furthest_room().position*tilesize
+	exit.position = walker.get_furthest_room().position*tilesize	#no idea why the exit doesn't need an offset to align properly, might be something to do with godot's Area2D object
 	exit.connect("leaving_level", self, "reload_level")
+	print("Exit Position")
+	print(exit.position / tilesize)
 	
 	var randenemypos = [-1]
+	print("Enemy Positions")
 	for n in rand_range(10,20):
 		var enemy = Enemy.instance()
 		add_child(enemy)
 		var enemypos = -1
 		while randenemypos.has(enemypos):
 			enemypos = rand_range(10, map.size())
-		enemy.position = map[enemypos]*tilesize
+		enemy.position = (map[enemypos]*tilesize) - Vector2(tilesize/2, tilesize/2)		#added half-tile offset to prevent spawning in walls
+		print(enemy.position / tilesize)
 		randenemypos.append(enemypos)
 	
 	

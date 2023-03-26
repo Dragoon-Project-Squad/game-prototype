@@ -112,6 +112,8 @@ Shoot={
 2d_physics/layer_6="CollectibleArea"
 2d_physics/layer_7="LightViewCheckArea"
 2d_physics/layer_8="EnemyProjectileArea"
+2d_physics/layer_9="ExitArea"
+2d_physics/layer_10="ScanArea"
 
 [mono]
 
