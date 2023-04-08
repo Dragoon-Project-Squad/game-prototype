@@ -56,7 +56,8 @@ func create_room(position, size):
 
 func place_room(position):
 	randomize()
-	var size = Vector2(rand_range(min_room_size, max_room_size), rand_range(min_room_size, max_room_size))
+	var size = Vector2(randi() % (max_room_size + 1 - min_room_size) + min_room_size, randi() % (max_room_size + 1 - min_room_size) + min_room_size)
+	print(size)
 	var top_left = (position - size/2).ceil()
 	rooms.append(create_room(position, size))
 	for y in size.y:

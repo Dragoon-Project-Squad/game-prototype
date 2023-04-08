@@ -20,7 +20,7 @@ func generate_level():
 	
 	var player = Player.instance()
 	add_child(player)
-	player.get_child(0).position = (map.front() * tilesize) - Vector2(tilesize/2, tilesize/2)	#added half-tile offset to prevent spawning in walls
+	player.get_child(0).position = (map.front() * tilesize) + Vector2(tilesize/2, tilesize/2)	#added half-tile offset to prevent spawning in walls
 	print("Player Start Position")
 	print(player.get_child(0).position / tilesize)
 	
@@ -33,13 +33,15 @@ func generate_level():
 	
 	var randenemypos = [-1]
 	print("Enemy Positions")
-	for n in rand_range(10,20):
+	var MIN = 10
+	var MAX = 20
+	for n in randi() % (MAX - MIN) + MIN:
 		var enemy = Enemy.instance()
 		add_child(enemy)
 		var enemypos = -1
 		while randenemypos.has(enemypos):
-			enemypos = rand_range(10, map.size())
-		enemy.position = (map[enemypos]*tilesize) - Vector2(tilesize/2, tilesize/2)		#added half-tile offset to prevent spawning in walls
+			enemypos = randi() % (map.size() - 10) + 10
+		enemy.position = (map[enemypos]*tilesize) + Vector2(tilesize/2, tilesize/2)		#added half-tile offset to prevent spawning in walls
 		print(enemy.position / tilesize)
 		randenemypos.append(enemypos)
 	

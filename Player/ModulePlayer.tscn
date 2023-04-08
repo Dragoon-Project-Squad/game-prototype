@@ -29,6 +29,7 @@ aesthetics = NodePath("PlayerKinematic/Aesthetics")
 camera = NodePath("PlayerKinematic/Camera")
 lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
+minimap = NodePath("PlayerUI/Minimap")
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="."]
 collision_mask = 186

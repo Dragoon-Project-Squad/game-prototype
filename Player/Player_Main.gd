@@ -6,9 +6,16 @@ export (NodePath) onready var camera = get_node(camera)
 export (NodePath) onready var lights = get_node(lights)
 export (NodePath) onready var weapon = get_node(weapon)
 
+export (NodePath) onready var minimap = get_node(minimap)
+
+var blockPlayerActions = false
+var isMinimapShowing = true
+
 func _process(delta):
-	movement()
-	shooting()
+	if(!blockPlayerActions):
+		movement()
+		shooting()
+		tab()
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -19,6 +26,20 @@ func getDirectionalInput() -> Vector2:
 	y_axis_input = float(Input.is_action_pressed("DownMove")) - float(Input.is_action_pressed("UpMove"))
 	
 	return Vector2(x_axis_input, y_axis_input).normalized()
+
+func tab():
+	#update this with more options later on
+	if Input.is_action_just_pressed("Tab"):
+		if(isMinimapShowing):
+			minimap.hide()
+			isMinimapShowing = false
+		else:
+			minimap.show()
+			isMinimapShowing = true
+
+func interact():
+	if Input.is_action_just_pressed("Interact"):
+		print("Interact")
 
 #Movement
 func movement():
