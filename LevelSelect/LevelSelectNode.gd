@@ -3,20 +3,22 @@ extends Node2D
 export (NodePath) onready var sprite_node = get_node(sprite_node)
 export (NodePath) onready var sprite_highlight_node = get_node(sprite_highlight_node)
 
-var prevNodes = [];
-var nextNodes = [];
-var blockedNodes = [];
-var sourceNode;
-var isStart = false;
-var isEnd = false;
-var isNext = false;
+#data to be saved between scenes
 var path_number = -1;
 var col = -1;
+var saved_pos;
+var content = "";
+var next_node_pos = [];
+
+#data for pathing logic
+var nextNodes = [];
+var prevNodes = [];
+var blockedNodes = [];
+var isStart = false;
+var isEnd = false;
 var can_cross_up = true;
 var can_cross_down = true;
-var saved_pos;
-
-var content = "";
+var isNext = false;
 
 func _ready() -> void:
 	pass

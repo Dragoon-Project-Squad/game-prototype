@@ -22,4 +22,3 @@ func show_marker():
 	if is_in_frame && !is_shown:
 		vis_amount = 1
 		is_shown = true
-		print(self)

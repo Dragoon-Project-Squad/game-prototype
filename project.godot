@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 MaterialReferences="*res://Autoloads/MaterialReferences.gd"
+LevelSelectData="*res://Autoloads/LevelSelectData.gd"
 
 [display]
 

@@ -21,28 +21,23 @@ func generate_level():
 	var player = Player.instance()
 	add_child(player)
 	player.get_child(0).position = (map.front() * tilesize) + Vector2(tilesize/2, tilesize/2)	#added half-tile offset to prevent spawning in walls
-	print("Player Start Position")
-	print(player.get_child(0).position / tilesize)
 	
 	var exit = Exit.instance()
 	add_child(exit)
 	exit.position = walker.get_furthest_room().position*tilesize	#no idea why the exit doesn't need an offset to align properly, might be something to do with godot's Area2D object
-	exit.connect("leaving_level", self, "reload_level")
-	print("Exit Position")
-	print(exit.position / tilesize)
+	exit.connect("leaving_level", self, "finish_level")
+	print(walker.get_furthest_room())
 	
 	var randenemypos = [-1]
-	print("Enemy Positions")
 	var MIN = 10
 	var MAX = 20
 	for n in randi() % (MAX - MIN) + MIN:
 		var enemy = Enemy.instance()
 		add_child(enemy)
 		var enemypos = -1
-		while randenemypos.has(enemypos):
+		while randenemypos.has(enemypos) || map[enemypos] == walker.get_furthest_room().position:
 			enemypos = randi() % (map.size() - 10) + 10
 		enemy.position = (map[enemypos]*tilesize) + Vector2(tilesize/2, tilesize/2)		#added half-tile offset to prevent spawning in walls
-		print(enemy.position / tilesize)
 		randenemypos.append(enemypos)
 	
 	
@@ -53,5 +48,6 @@ func generate_level():
 	
 	player.get_node("PlayerUI/Minimap").getMapObjects()
 
-func reload_level():
-	get_tree().reload_current_scene()
+func finish_level():
+	print("level finished, changing to select scene")
+	get_tree().change_scene("res://LevelSelect/LevelSelect.tscn")
