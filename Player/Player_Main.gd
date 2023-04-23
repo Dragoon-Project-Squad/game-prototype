@@ -9,7 +9,7 @@ export (NodePath) onready var weapon = get_node(weapon)
 export (NodePath) onready var minimap = get_node(minimap)
 
 var blockPlayerActions = false
-var isMinimapShowing = true
+var isMinimapShowing = false
 
 func _process(delta):
 	if(!blockPlayerActions):

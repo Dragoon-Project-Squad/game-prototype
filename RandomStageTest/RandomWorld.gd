@@ -26,7 +26,6 @@ func generate_level():
 	add_child(exit)
 	exit.position = walker.get_furthest_room().position*tilesize	#no idea why the exit doesn't need an offset to align properly, might be something to do with godot's Area2D object
 	exit.connect("leaving_level", self, "finish_level")
-	print(walker.get_furthest_room())
 	
 	var randenemypos = [-1]
 	var MIN = 10

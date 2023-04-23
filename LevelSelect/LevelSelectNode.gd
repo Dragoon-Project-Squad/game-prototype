@@ -23,7 +23,7 @@ var isNext = false;
 func _ready() -> void:
 	pass
 
-func setSprite(con):
+func setContent(con):
 	var boss_icon = preload("res://LevelSelect/LevelIcons/boss-icon.png")
 	var combat_icon = preload("res://LevelSelect/LevelIcons/combat-icon.png")
 	var scavenge_icon = preload("res://LevelSelect/LevelIcons/scavenge-icon.png")
@@ -55,10 +55,10 @@ func _on_ColorRect_mouse_entered() -> void:
 	if get_node("/root/LevelSelect") && isNext:
 		sprite_node.scale.x = 1.3
 		sprite_node.scale.y = 1.3
-		get_node("/root/LevelSelect").hovered_node = self
+		get_node("/root/LevelSelect").hoveredNode = self
 
 func _on_ColorRect_mouse_exited() -> void:
 	if get_node("/root/LevelSelect"):
 		sprite_node.scale.x = 1
 		sprite_node.scale.y = 1
-		get_node("/root/LevelSelect").hovered_node = null
+		get_node("/root/LevelSelect").hoveredNode = null

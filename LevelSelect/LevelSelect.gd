@@ -8,7 +8,8 @@ var scene_size = Vector2(1280, 720)
 
 var nodes = [];
 var currentNode;
-var hovered_node = null;
+var hoveredNode = null;
+var nextNode = null;
 
 var current_time = 0;
 var time_until_next_scene = 0.5;
@@ -28,17 +29,32 @@ func _process(delta):
 			current_time = 0
 			isChangingScenes = false
 			print("selection made, changing to level scene")
-			get_tree().change_scene("res://RandomStageTest/RandomWorld.tscn")
+			if(nextNode.content == "combat"):
+				get_tree().change_scene("res://RandomStageTest/RandomWorld.tscn")
+			elif(nextNode.content == "shop"):
+				get_tree().change_scene("res://PrefabStages/Shop.tscn")
+			elif(nextNode.content == "scavenge"):
+				if(LevelSelectData.scavenge_pool.size() < 1):
+					LevelSelectData.scavenge_pool = DataLibrary.getCurrentScavangePool(LevelSelectData.area_id)
+					print("refilling pool")
+				LevelSelectData.scavenge_pool.shuffle()
+				print(LevelSelectData.scavenge_pool.size())
+				var random_room = LevelSelectData.scavenge_pool.pop_front()
+				get_tree().change_scene("res://PrefabStages/" + random_room + ".tscn")
+			else:
+				print("could not find next scene")
+				get_tree().change_scene("res://RandomStageTest/RandomWorld.tscn")
 	
-	if Input.is_action_just_pressed("Click") && hovered_node != null && isChangingScenes == false:
-		if currentNode.nextNodes.has(hovered_node):
-			LevelSelectData.path_taken.append({"path": hovered_node.path_number, "col": hovered_node.col})
+	if Input.is_action_just_pressed("Click") && hoveredNode != null && isChangingScenes == false:
+		if currentNode.nextNodes.has(hoveredNode):
+			LevelSelectData.path_taken.append({"path": hoveredNode.path_number, "col": hoveredNode.col})
+			nextNode = hoveredNode
 			for item in currentNode.nextNodes:
 				item.isNext = false
-				if item == hovered_node:
+				if item == hoveredNode:
 					item.setHighlightSprite(true)
 			
-			for item in hovered_node.nextNodes:
+			for item in hoveredNode.nextNodes:
 				item.isNext = true
 			
 			isChangingScenes = true
@@ -46,7 +62,10 @@ func _process(delta):
 func generateNewPath():
 	randomize()
 	
-	var cols = 6
+	var cols = LevelSelectData.cols
+	var main_paths = LevelSelectData.main_paths
+	var extra_path_count = LevelSelectData.extra_paths
+	var special_rooms = LevelSelectData.special_rooms
 	
 	#add start node
 	var start_node = level_node.instance()
@@ -57,7 +76,6 @@ func generateNewPath():
 	LevelSelectData.path_taken.append({"path": -1, "col": 0})
 	
 	#generate main path(s)
-	var main_paths = 3
 	for path in main_paths:
 		for col in cols:
 			var new_node = level_node.instance()
@@ -81,7 +99,6 @@ func generateNewPath():
 			connectNodes(node, end_node)
 	
 	#generate additional connections betweeen paths, filtering impossible connections
-	var extra_path_count = 8
 	for i in extra_path_count:
 		var node = nodes[randi() % nodes.size()]	#get random node
 		while(node.isStart || node.isEnd || node.col == cols):
@@ -113,27 +130,26 @@ func generateNewPath():
 						n.can_cross_down = false
 	
 	#place nodes
-	var special_rooms = ["shop", "scavenge", "scavenge", "shop", "scavenge"]
 	var random_nodes = nodes
 	random_nodes.shuffle()
 	
 	for node in random_nodes:
 		if(node.isStart):
-			node.setSprite("combat")
+			node.setContent("combat")
 			node.setHighlightSprite(true)
 			node.position = Vector2((float(1)/(cols+2)) * scene_size.x, scene_size.y/2)
 			node.saved_pos = Vector2((float(1)/(cols+2)) * scene_size.x, scene_size.y/2)
 			
 		if(node.isEnd):
-			node.setSprite("boss")
+			node.setContent("boss")
 			node.position = Vector2((float(cols+1)/(cols+2)) * scene_size.x, scene_size.y/2)
 			node.saved_pos = Vector2((float(cols+1)/(cols+2)) * scene_size.x, scene_size.y/2)
 			
 		if(!node.isStart && !node.isEnd):
 			if(special_rooms.size() > 0):
-				node.setSprite(special_rooms.pop_front())
+				node.setContent(special_rooms.pop_front())
 			else:
-				node.setSprite("combat")
+				node.setContent("combat")
 			
 			var posx = float(node.col+1)/(cols+3) * scene_size.x + rand_range(-20, 20)
 			var posy = float(node.path_number+1)/(main_paths+1) * scene_size.y + rand_range(-20, 20)
@@ -167,7 +183,7 @@ func loadPath():
 		new_node.path_number = node_data.path
 		new_node.col = node_data.col
 		new_node.position = node_data.saved_pos
-		new_node.setSprite(node_data.content)
+		new_node.setContent(node_data.content)
 		new_node.next_node_pos = node_data.next_node_pos
 		nodes.append(new_node)
 		

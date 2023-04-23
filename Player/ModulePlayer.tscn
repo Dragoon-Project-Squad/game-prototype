@@ -22,7 +22,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="CircleShape2D" id=3]
 radius = 256.0
 
-[node name="ModulePlayer" type="Node"]
+[node name="ModulePlayer" type="Node2D"]
 script = ExtResource( 11 )
 movement = NodePath("PlayerKinematic")
 aesthetics = NodePath("PlayerKinematic/Aesthetics")
@@ -134,6 +134,7 @@ texture = ExtResource( 5 )
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
 [node name="Minimap" parent="PlayerUI" instance=ExtResource( 12 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
