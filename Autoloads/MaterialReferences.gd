@@ -1,3 +1,3 @@
 extends Node
 
-var hitFlashMat = preload("res://Materials/HitFlashMat.tres")
+var hitFlashMat = preload("res://Assets/Materials and Textures/HitFlashMat.tres")

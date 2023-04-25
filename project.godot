@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Bullet/Bullet.gd"
+"path": "res://Scripts/Projectiles and Effects/Bullet.gd"
 }, {
 "base": "Node",
 "class": "EnemyMoveBehaviour",
 "language": "GDScript",
-"path": "res://Enemy/Enemy_MovementBehaviour.gd"
+"path": "res://Scripts/Enemy/Enemy_MovementBehaviour.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "HiddenObject",
 "language": "GDScript",
-"path": "res://HiddenObject/HiddenObject.gd"
+"path": "res://Scripts/Projectiles and Effects/HiddenObject.gd"
 }, {
 "base": "Node",
 "class": "Walker",
 "language": "GDScript",
-"path": "res://RandomStageTest/Walker.gd"
+"path": "res://Scripts/Test Files/Walker.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
