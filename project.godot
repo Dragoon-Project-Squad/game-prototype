@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SelenHorrorGungeon"
-run/main_scene="res://Test.tscn"
+run/main_scene="res://Scenes/Test Files/Test.tscn"
 config/icon="res://icon.png"
 
 [autoload]
