@@ -35,7 +35,11 @@ func _process(delta):
 			isChangingScenes = false
 			print("selection made, changing to level scene")
 			if(nextNode.content == "combat"):
-				get_tree().change_scene("res://Scenes/Test Files/RandomWorld.tscn")
+				if(LevelSelectData.combat_pool.size() < 1):
+					LevelSelectData.combat_pool = DataLibrary.getCurrentCombatPool(LevelSelectData.area_id)
+				LevelSelectData.combat_pool.shuffle()
+				var random_room = LevelSelectData.combat_pool.pop_front()
+				get_tree().change_scene("res://Scenes/Levels/" + random_room + ".tscn")
 			elif(nextNode.content == "shop"):
 				get_tree().change_scene("res://Scenes/Levels/Shop.tscn")
 			elif(nextNode.content == "scavenge"):
