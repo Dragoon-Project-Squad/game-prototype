@@ -6,15 +6,18 @@ export (NodePath) onready var parent_node = get_node(parent_node)
 export (NodePath) onready var camera = get_node(camera)
 
 var scene_size = Vector2(1280, 720)
+var node_distance = 200
+var scroll_speed = 800
 
-var nodes = [];
-var currentNode;
-var hoveredNode = null;
-var nextNode = null;
+var nodes = []
+var current_node
+var hovered_node = null
+var next_node = null
+var last_node = null
 
-var current_time = 0;
-var time_until_next_scene = 0.5;
-var isChangingScenes = false;
+var current_time = 0
+var time_until_next_scene = 0.5
+var is_changing_scenes = false
 
 func _ready() -> void:
 	if(LevelSelectData.nodes.size() == 0):
@@ -24,25 +27,31 @@ func _ready() -> void:
 	
 func _process(delta):
 	#camera controls
-	var diff = 0;
+	if !is_changing_scenes:
+		if Input.is_action_pressed("LeftMove"):
+			if camera.position.x > 640:
+				camera.position.x -= delta * scroll_speed
+		if Input.is_action_pressed("RightMove"):
+			if camera.position.x < last_node.position.x + node_distance - 640:
+				camera.position.x += delta * scroll_speed
 	
 	#changing scenes
-	if isChangingScenes:
+	if is_changing_scenes:
 		if current_time < time_until_next_scene:
 			current_time += delta
 		else:
 			current_time = 0
-			isChangingScenes = false
+			is_changing_scenes = false
 			print("selection made, changing to level scene")
-			if(nextNode.content == "combat"):
+			if(next_node.content == "combat"):
 				if(LevelSelectData.combat_pool.size() < 1):
 					LevelSelectData.combat_pool = DataLibrary.getCurrentCombatPool(LevelSelectData.area_id)
 				LevelSelectData.combat_pool.shuffle()
 				var random_room = LevelSelectData.combat_pool.pop_front()
 				get_tree().change_scene("res://Scenes/Levels/" + random_room + ".tscn")
-			elif(nextNode.content == "shop"):
+			elif(next_node.content == "shop"):
 				get_tree().change_scene("res://Scenes/Levels/Shop.tscn")
-			elif(nextNode.content == "scavenge"):
+			elif(next_node.content == "scavenge"):
 				if(LevelSelectData.scavenge_pool.size() < 1):
 					LevelSelectData.scavenge_pool = DataLibrary.getCurrentScavangePool(LevelSelectData.area_id)
 				LevelSelectData.scavenge_pool.shuffle()
@@ -52,19 +61,19 @@ func _process(delta):
 				print("could not find next scene")
 				get_tree().change_scene("res://Scenes/Test Files/RandomWorld.tscn")
 	
-	if Input.is_action_just_pressed("Click") && hoveredNode != null && isChangingScenes == false:
-		if currentNode.nextNodes.has(hoveredNode):
-			LevelSelectData.path_taken.append({"path": hoveredNode.path_number, "col": hoveredNode.col})
-			nextNode = hoveredNode
-			for item in currentNode.nextNodes:
-				item.isNext = false
-				if item == hoveredNode:
+	if Input.is_action_just_pressed("Click") && hovered_node != null && is_changing_scenes == false:
+		if current_node.next_nodes.has(hovered_node):
+			LevelSelectData.path_taken.append({"path": hovered_node.path_number, "col": hovered_node.col})
+			next_node = hovered_node
+			for item in current_node.next_nodes:
+				item.is_next = false
+				if item == hovered_node:
 					item.setHighlightSprite(true)
 			
-			for item in hoveredNode.nextNodes:
-				item.isNext = true
+			for item in hovered_node.next_nodes:
+				item.is_next = true
 			
-			isChangingScenes = true
+			is_changing_scenes = true
 
 func generateNewPath():
 	randomize()
@@ -77,7 +86,7 @@ func generateNewPath():
 	#add start node
 	var start_node = level_node.instance()
 	parent_node.add_child(start_node)
-	start_node.isStart = true
+	start_node.is_start = true
 	start_node.col = 0
 	nodes.append(start_node)
 	LevelSelectData.path_taken.append({"path": -1, "col": 0})
@@ -98,7 +107,7 @@ func generateNewPath():
 	#add end node
 	var end_node = level_node.instance()
 	parent_node.add_child(end_node)
-	end_node.isEnd = true
+	end_node.is_end = true
 	end_node.col = cols + 1
 	nodes.append(end_node)
 	for node in nodes:
@@ -108,7 +117,7 @@ func generateNewPath():
 	#generate additional connections betweeen paths, filtering impossible connections
 	for i in extra_path_count:
 		var node = nodes[randi() % nodes.size()]	#get random node
-		while(node.isStart || node.isEnd || node.col == cols):
+		while(node.is_start || node.is_end || node.col == cols):
 			node = nodes[randi() % nodes.size()]	#that isnt start or end, or connecting to end
 		
 		var upper_path_neighbor = node.path_number - 1
@@ -116,7 +125,7 @@ func generateNewPath():
 		
 		var possible_nodes = []
 		for n in nodes:
-			if (n.col == node.col + 1) && !(node.blockedNodes.has(n)):
+			if (n.col == node.col + 1) && !(node.blocked_nodes.has(n)):
 				if(n.path_number == upper_path_neighbor && node.can_cross_up):
 					possible_nodes.append(n)
 					
@@ -141,31 +150,32 @@ func generateNewPath():
 	random_nodes.shuffle()
 	
 	for node in random_nodes:
-		if(node.isStart):
+		if(node.is_start):
 			node.setContent("combat")
 			node.setHighlightSprite(true)
-			node.position = Vector2((float(1)/(cols+2)) * scene_size.x, scene_size.y/2)
-			node.saved_pos = Vector2((float(1)/(cols+2)) * scene_size.x, scene_size.y/2)
+			node.position = Vector2((node.col+1) * node_distance, scene_size.y/2)
+			node.saved_pos = node.position
 			
-		if(node.isEnd):
+		if(node.is_end):
 			node.setContent("boss")
-			node.position = Vector2((float(cols+1)/(cols+2)) * scene_size.x, scene_size.y/2)
-			node.saved_pos = Vector2((float(cols+1)/(cols+2)) * scene_size.x, scene_size.y/2)
+			last_node = node
+			node.position = Vector2((node.col+1) * node_distance, scene_size.y/2)
+			node.saved_pos = node.position
 			
-		if(!node.isStart && !node.isEnd):
+		if(!node.is_start && !node.is_end):
 			if(special_rooms.size() > 0):
 				node.setContent(special_rooms.pop_front())
 			else:
 				node.setContent("combat")
 			
-			var posx = float(node.col+1)/(cols+3) * scene_size.x + rand_range(-20, 20)
+			var posx = (node.col+1) * node_distance + rand_range(-20, 20)
 			var posy = float(node.path_number+1)/(main_paths+1) * scene_size.y + rand_range(-20, 20)
 			node.position = Vector2(posx,posy)
-			node.saved_pos = Vector2(posx,posy)
+			node.saved_pos = node.position
 		
 		#save to level select
 		var next_node_pos = []
-		for next_node in node.nextNodes:
+		for next_node in node.next_nodes:
 			next_node_pos.append(Vector2(next_node.path_number, next_node.col))
 			
 		LevelSelectData.nodes.append({"path": node.path_number, "col": node.col, "saved_pos": node.saved_pos, "content": node.content, "next_node_pos": next_node_pos})
@@ -178,9 +188,9 @@ func generateNewPath():
 	
 
 func connectNodes(source, dest):
-	source.nextNodes.append(dest)
-	source.blockedNodes.append(dest)
-	dest.prevNodes.append(source)
+	source.next_nodes.append(dest)
+	source.blocked_nodes.append(dest)
+	dest.prev_nodes.append(source)
 	pass
 
 func loadPath():
@@ -193,6 +203,8 @@ func loadPath():
 		new_node.setContent(node_data.content)
 		new_node.next_node_pos = node_data.next_node_pos
 		nodes.append(new_node)
+		if new_node.col == LevelSelectData.cols + 1:
+			last_node = new_node
 		
 	for node in nodes:
 		for next_node in node.next_node_pos:
@@ -216,7 +228,7 @@ func findCurrent():
 	var current_node_data = LevelSelectData.path_taken[LevelSelectData.path_taken.size() - 1]
 	for node in nodes:
 		if(node.path_number == current_node_data.path && node.col == current_node_data.col):
-			currentNode = node
-			for next_node in currentNode.nextNodes:
-				next_node.isNext = true;
+			current_node = node
+			for next_node in current_node.next_nodes:
+				next_node.is_next = true;
 			break

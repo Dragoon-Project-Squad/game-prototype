@@ -11,14 +11,14 @@ var content = "";
 var next_node_pos = [];
 
 #data for pathing logic
-var nextNodes = [];
-var prevNodes = [];
-var blockedNodes = [];
-var isStart = false;
-var isEnd = false;
+var next_nodes = [];
+var prev_nodes = [];
+var blocked_nodes = [];
+var is_start = false;
+var is_end = false;
 var can_cross_up = true;
 var can_cross_down = true;
-var isNext = false;
+var is_next = false;
 
 func _ready() -> void:
 	pass
@@ -52,13 +52,13 @@ func setHighlightSprite(isPath):
 		sprite_highlight_node.set_texture(cross_icon)
 
 func _on_ColorRect_mouse_entered() -> void:
-	if get_node("/root/LevelSelect") && isNext:
+	if get_node("/root/LevelSelect") && is_next:
 		sprite_node.scale.x = 1.3
 		sprite_node.scale.y = 1.3
-		get_node("/root/LevelSelect").hoveredNode = self
+		get_node("/root/LevelSelect").hovered_node = self
 
 func _on_ColorRect_mouse_exited() -> void:
 	if get_node("/root/LevelSelect"):
 		sprite_node.scale.x = 1
 		sprite_node.scale.y = 1
-		get_node("/root/LevelSelect").hoveredNode = null
+		get_node("/root/LevelSelect").hovered_node = null
