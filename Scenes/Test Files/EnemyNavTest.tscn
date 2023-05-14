@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tilesets/TilePlaceholderBig.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Enemy/DummyEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Level/EnemyNavTest.gd" type="Script" id=5]
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -42,6 +43,8 @@ outlines = [ PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 ) ]
 1/z_index = 0
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
+player = NodePath("Objects/ModulePlayer")
 
 [node name="LevelNavigation" type="Navigation2D" parent="." groups=["LevelNavigation"]]
 
