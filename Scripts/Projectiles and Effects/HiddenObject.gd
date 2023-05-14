@@ -2,10 +2,15 @@ extends Node2D
 class_name HiddenObject
 
 var lightSources: Array = []
+var type = "";
+var visible_to_player = false;
 #Contains the Nodes telling this object that it is currently under a light
 
 func _process(delta):
-	updateTransparency()
+	if type == "enemyV2":
+		updateVisibility()
+	else:
+		updateTransparency()
 
 #For Smooth transition from invisible to visible
 export (float) var TRANSPARENCY_CHANGE_RATE := 10
@@ -20,6 +25,12 @@ func updateTransparency():
 	
 	modulate.a += changeInAlpha
 	modulate.a = clamp(modulate.a, 0.0, 1.0)
+	
+func updateVisibility():
+	if isLitUp():
+		visible_to_player = true;
+	else:
+		visible_to_player = false;
 
 #For handling the lighting
 func isLitUp() -> bool:
@@ -36,6 +47,9 @@ func removeLightSource(node):
 		return
 	
 	lightSources.erase(node)
+
+func setType(typestring):
+	type = typestring
 
 #Custom visibility check offsets
 export (NodePath) var visibilityPolygon2DPath: NodePath

@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Walker",
 "language": "GDScript",
 "path": "res://Scripts/Test Files/Walker.gd"
+}, {
+"base": "Resource",
+"class": "WeaponResource",
+"language": "GDScript",
+"path": "res://Scripts/Weapons/WeaponResource.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
 "EnemyMoveBehaviour": "",
 "GitAPI": "",
 "HiddenObject": "",
-"Walker": ""
+"Walker": "",
+"WeaponResource": ""
 }
 
 [application]
@@ -73,6 +79,7 @@ singletons=[  ]
 [global]
 
 grid=false
+Hidden=false
 
 [gui]
 
