@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "HiddenObject",
 "language": "GDScript",
 "path": "res://Scripts/Projectiles and Effects/HiddenObject.gd"

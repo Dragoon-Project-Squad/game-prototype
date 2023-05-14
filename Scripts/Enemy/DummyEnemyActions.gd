@@ -1,7 +1,4 @@
-extends HiddenObject
-
-#minimap
-var minimap_icon = "enemy"
+extends KinematicBody2D
 
 #states
 enum{
@@ -31,7 +28,6 @@ var active_states = [SLASH, AOE, POKE]
 export (NodePath) onready var sprites = get_node(sprites)
 
 func _ready():
-	setType("enemyV2")
 	var tree = get_tree()
 	if tree.has_group("LevelNavigation"):
 		level_navigation = tree.get_nodes_in_group("LevelNavigation")[0]

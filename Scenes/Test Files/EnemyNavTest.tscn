@@ -68,7 +68,7 @@ tile_data = PoolIntArray( -1114132, 0, 0, -1114131, 0, 1, -1114130, 0, 1, -11141
 [node name="ModulePlayer" parent="Objects" instance=ExtResource( 3 )]
 
 [node name="Enemy 1" parent="Objects" instance=ExtResource( 4 )]
-position = Vector2( 967, 359 )
+position = Vector2( 862, 933 )
 
 [node name="Enemy 2" parent="Objects" instance=ExtResource( 4 )]
-position = Vector2( 827, 855 )
+position = Vector2( 870, 377 )
