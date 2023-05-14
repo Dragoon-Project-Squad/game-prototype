@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/Player_Weapon.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Scene Objects/GenericBullet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/WeaponTypes/Pistol.tres" type="Resource" id=10]
 [ext_resource path="res://Scripts/Player/Player_Main.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Minimap.tscn" type="PackedScene" id=12]
 
@@ -31,9 +31,11 @@ lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
 
-[node name="PlayerKinematic" type="KinematicBody2D" parent="."]
+[node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["Player"]]
 collision_mask = 186
 script = ExtResource( 1 )
+MAX_MOVE_SPEED = 450.0
+MOVE_FRICT = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
 shape = SubResource( 1 )
@@ -123,7 +125,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 9 )
 bulletSpawnNode = NodePath("SpawnNode")
 weaponSprite = NodePath("Sprite")
-bulletScene = ExtResource( 10 )
+startingWeaponResource = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon"]
 modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
