@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Weapons/WeaponResource.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Scene Objects/GenericBullet.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+bulletScene = ExtResource( 2 )
+BULLET_INITIAL_SPEED = 750.0
+BULLETS_PER_SECOND = 2.0
+BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT = 0.3
+BULLET_SELF_KNOCKBACK_IMPULSE = 0.6
+BULLET_SELF_KNOCKBACK_SPEED_LIMIT = 100.0
+BULLET_MUZZLE_FLASH_DUR = 0.2
+BULLET_SPREAD_ANGLE = 5.0
+BULLET_SPREAD_RANDOMNESS = 1.0
+BULLET_NUM_PER_SHOT = 1
