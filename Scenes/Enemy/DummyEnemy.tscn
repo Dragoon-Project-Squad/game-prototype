@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/Enemy/DummyEnemyActions.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemy/V2/EnemyStateController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemy/enemy-concept.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Enemy/EnemyVisuals.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemy/V2/EnemyActions.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemy/Attacks/slash.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemy/Attacks/aoe.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemy/Attacks/poke.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Enemy/DummyEnemyMain.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemy/V2/EnemyMain.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
@@ -18,7 +16,7 @@ script = ExtResource( 7 )
 script = ExtResource( 1 )
 aggro = NodePath("VisionRange/AggroRange")
 deaggro = NodePath("VisionRange/DeaggroRange")
-sprites = NodePath("Visuals")
+actions = NodePath("Actions")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Body"]
 shape = SubResource( 1 )
@@ -39,15 +37,13 @@ enabled = true
 cast_to = Vector2( 500, 0 )
 collision_mask = 9
 
-[node name="Visuals" type="Node2D" parent="Enemy Body"]
+[node name="Actions" type="Node2D" parent="Enemy Body"]
 script = ExtResource( 3 )
 main = NodePath("Main")
 attack_origin = NodePath("AttackOrigin")
 slash = ExtResource( 4 )
-aoe = ExtResource( 5 )
-poke = ExtResource( 6 )
 
-[node name="Main" type="Sprite" parent="Enemy Body/Visuals"]
+[node name="Main" type="Sprite" parent="Enemy Body/Actions"]
 texture = ExtResource( 2 )
 
-[node name="AttackOrigin" type="Node2D" parent="Enemy Body/Visuals"]
+[node name="AttackOrigin" type="Node2D" parent="Enemy Body/Actions"]
