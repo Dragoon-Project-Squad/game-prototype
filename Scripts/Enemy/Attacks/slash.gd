@@ -1,9 +1,12 @@
 extends Area2D
 
+var duration = 3
+
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func _process(delta: float) -> void:
+	if duration > 0:
+		duration -= delta
+	else:
+		queue_free()
