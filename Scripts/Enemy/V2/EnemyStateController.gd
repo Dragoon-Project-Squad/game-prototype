@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 #states
 enum{
@@ -26,6 +26,12 @@ var active_states = [ATTACKING]
 #actions node
 export (NodePath) onready var actions = get_node(actions)
 
+#kinematic body
+export (NodePath) onready var enemy_body = get_node(enemy_body)
+
+#telegraph node
+export (NodePath) onready var telegraph = get_node(telegraph)
+
 func _ready():
 	var tree = get_tree()
 	if tree.has_group("LevelNavigation"):
@@ -36,16 +42,18 @@ func _ready():
 func _physics_process(delta: float):
 	#check if the enemy can do something
 	checkAggro()
-	if actions.current_attack == null && player && level_navigation:
+	if actions.action_ready && player && level_navigation:
 		match current_state:
 			ROAMING:
-				pass
+				telegraph.modulate.a = 0
 			ATTACKING:
+				telegraph.modulate.a = 1
 				#attack logic, ability cooldown checks will happen here
 				if global_position.distance_to(player.global_position) > 100:
 					chasePlayer()
 				else:
-					actions.basicAttack(player.global_position)
+					#actions.basicAttack(player.global_position)
+					actions.startAttack(player.global_position)
 					selectNextActiveState()
 			_:
 				print("Action not implemented!")
@@ -92,7 +100,7 @@ func chasePlayer():
 	else:
 		last_seen = null
 		current_state = ROAMING
-	velocity = move_and_slide(velocity)
+	velocity = enemy_body.move_and_slide(velocity)
 
 #on death
 func triggerDeath():

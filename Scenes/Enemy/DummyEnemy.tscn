@@ -1,49 +1,135 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Enemy/V2/EnemyStateController.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Enemy/enemy-concept.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemy/enemy-spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Enemy/V2/EnemyActions.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemy/Attacks/slash.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Enemy/enemy-eyes.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Enemy/V2/EnemyMain.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
 
-[node name="Enemy" type="Node2D" groups=["minimap_objects"]]
+[sub_resource type="Animation" id=4]
+resource_name = "Attack"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Recovery"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Windup"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 0 ) ]
+}
+
+[node name="Enemy" type="KinematicBody2D" groups=["minimap_objects"]]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 7 )
+hidden_sprites = NodePath("HiddenSprites")
 
-[node name="Enemy Body" type="KinematicBody2D" parent="."]
-script = ExtResource( 1 )
-aggro = NodePath("VisionRange/AggroRange")
-deaggro = NodePath("VisionRange/DeaggroRange")
-actions = NodePath("Actions")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="VisibilityPolygon" type="Polygon2D" parent="Enemy Body"]
+[node name="VisibilityPolygon" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="VisionRange" type="Node2D" parent="Enemy Body"]
+[node name="State Controller" type="Node2D" parent="."]
+script = ExtResource( 1 )
+aggro = NodePath("../VisionRange/AggroRange")
+deaggro = NodePath("../VisionRange/DeaggroRange")
+actions = NodePath("../Actions")
+enemy_body = NodePath("..")
+telegraph = NodePath("../TelegraphSprites")
 
-[node name="AggroRange" type="RayCast2D" parent="Enemy Body/VisionRange"]
+[node name="VisionRange" type="Node2D" parent="."]
+
+[node name="AggroRange" type="RayCast2D" parent="VisionRange"]
 enabled = true
 cast_to = Vector2( 300, 0 )
 collision_mask = 9
 
-[node name="DeaggroRange" type="RayCast2D" parent="Enemy Body/VisionRange"]
+[node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
 enabled = true
 cast_to = Vector2( 500, 0 )
 collision_mask = 9
 
-[node name="Actions" type="Node2D" parent="Enemy Body"]
+[node name="Actions" type="Node2D" parent="."]
 script = ExtResource( 3 )
-main = NodePath("Main")
+main = NodePath("../HiddenSprites/Main")
+telegraph = NodePath("../TelegraphSprites/Eyes")
 attack_origin = NodePath("AttackOrigin")
+animation_player = NodePath("../HiddenSprites/AnimationPlayer")
 slash = ExtResource( 4 )
 
-[node name="Main" type="Sprite" parent="Enemy Body/Actions"]
-texture = ExtResource( 2 )
+[node name="AttackOrigin" type="Node2D" parent="Actions"]
 
-[node name="AttackOrigin" type="Node2D" parent="Enemy Body/Actions"]
+[node name="TelegraphSprites" type="Node2D" parent="."]
+
+[node name="Eyes" type="Sprite" parent="TelegraphSprites"]
+z_index = 1
+texture = ExtResource( 5 )
+
+[node name="HiddenSprites" type="Node2D" parent="."]
+
+[node name="Main" type="Sprite" parent="HiddenSprites"]
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HiddenSprites"]
+anims/Attack = SubResource( 4 )
+anims/Idle = SubResource( 2 )
+anims/Recovery = SubResource( 5 )
+anims/Windup = SubResource( 3 )

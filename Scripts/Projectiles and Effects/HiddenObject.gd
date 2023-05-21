@@ -3,12 +3,11 @@ class_name HiddenObject
 
 var lightSources: Array = []
 var type = "";
-var visible_to_player = false;
 #Contains the Nodes telling this object that it is currently under a light
 
 func _process(delta):
 	if type == "enemyV2":
-		updateVisibility()
+		pass
 	else:
 		updateTransparency()
 
@@ -25,12 +24,6 @@ func updateTransparency():
 	
 	modulate.a += changeInAlpha
 	modulate.a = clamp(modulate.a, 0.0, 1.0)
-	
-func updateVisibility():
-	if isLitUp():
-		visible_to_player = true;
-	else:
-		visible_to_player = false;
 
 #For handling the lighting
 func isLitUp() -> bool:
