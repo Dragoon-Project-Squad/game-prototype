@@ -50,4 +50,7 @@ position = Vector2( -256, 1008 )
 [connection signal="door_stuck" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_door_stuck"]
 [connection signal="key_used" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_key_used"]
 [connection signal="key_acquired" from="Objects/Key" to="Objects/ModulePlayer" method="_on_Key_key_acquired"]
+[connection signal="body_entered" from="Objects/Lever" to="Objects/Lever" method="_on_Lever_body_entered"]
+[connection signal="body_exited" from="Objects/Lever" to="Objects/Lever" method="_on_Lever_body_exited"]
+[connection signal="body_exited" from="Objects/KeyLockedExit" to="Objects/KeyLockedExit" method="_on_KeyLockedExit_body_exited"]
 [connection signal="key_checked" from="Objects/KeyLockedExit" to="Objects/ModulePlayer" method="_on_KeyLockedExit_key_checked"]
