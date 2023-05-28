@@ -5,10 +5,8 @@ var minimap_icon = "enemy"
 
 export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
 
-func _ready() -> void:
-	setType("enemyV2")
-
-func _process(delta):
+#overrrides
+func updateTransparency():
 	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
 	
 	if isLitUp():
