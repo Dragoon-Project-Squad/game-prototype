@@ -35,7 +35,7 @@ minimap = NodePath("PlayerUI/Minimap")
 [node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["Player"]]
 collision_mask = 186
 script = ExtResource( 1 )
-MAX_MOVE_SPEED = 450.0
+MAX_MOVE_SPEED = 150.0
 MOVE_FRICT = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
@@ -49,6 +49,7 @@ PERCENT_REMAPPING_CURVE = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera"]
 current = true
+zoom = Vector2( 0.6, 0.6 )
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 3 )
@@ -61,7 +62,9 @@ muzzleFlashRotate = NodePath("MuzzleFlashRotate")
 viewConeRotate = NodePath("ViewConeRotate")
 
 [node name="Viewzone" type="Light2D" parent="PlayerKinematic/Lights"]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 7 )
+texture_scale = 1.5
 range_z_max = 9
 shadow_enabled = true
 script = ExtResource( 8 )
@@ -99,7 +102,7 @@ viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [ NodePath("../../..") ]
 
 [node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
-scale = Vector2( 3, 4 )
+scale = Vector2( 1.2, 2 )
 
 [node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
 collision_layer = 64
@@ -111,9 +114,11 @@ polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
 [node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
 texture = ExtResource( 6 )
 offset = Vector2( 256, 0 )
-color = Color( 1, 1, 1, 0.207843 )
+color = Color( 1, 1, 1, 0.0980392 )
+energy = 3.5
 range_z_max = 9
 shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
 script = ExtResource( 8 )
 viewCheck = NodePath("../ViewConeCheck")
 viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
