@@ -78,7 +78,6 @@ func getCurrentStateAction():
 				if global_position.distance_to(player.global_position) > 100:
 					chasePlayer()
 				else:
-					actions.startAttack(player.global_position)
 					selectNextActiveState()
 			_:
 				print("Action not implemented!")
