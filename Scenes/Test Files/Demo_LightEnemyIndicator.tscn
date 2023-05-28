@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Materials and Textures/betterLight.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Test Files/Enemylightindicator.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 256.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 830.501
+
+[node name="EnemyIndicatorLightTest" type="Node2D"]
+scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 3 )
+time_on = 3.0
+time_off = 0.6
+
+[node name="Viewzone" type="Light2D" parent="."]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+texture_scale = 10.0
+color = Color( 1, 1, 1, 0.392157 )
+energy = 2.0
+shadow_enabled = true
+script = ExtResource( 1 )
+init_energy = 2.0
+viewCheck = NodePath("ViewZoneCheck")
+viewCheckShape = NodePath("ViewZoneCheck/CollisionShape2D")
+
+[node name="ViewZoneCheck" type="Area2D" parent="Viewzone"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Viewzone/ViewZoneCheck"]
+shape = SubResource( 1 )
+
+[node name="InitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="EnemyCheck" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCheck"]
+position = Vector2( -4, -1 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="EnemyCheck" to="." method="_on_EnemyCheck_body_entered"]
+[connection signal="body_exited" from="EnemyCheck" to="." method="_on_EnemyCheck_body_exited"]
