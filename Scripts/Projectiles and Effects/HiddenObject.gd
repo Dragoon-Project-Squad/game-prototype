@@ -2,14 +2,10 @@ extends Node2D
 class_name HiddenObject
 
 var lightSources: Array = []
-var type = "";
 #Contains the Nodes telling this object that it is currently under a light
 
 func _process(delta):
-	if type == "enemyV2":
-		pass
-	else:
-		updateTransparency()
+	updateTransparency()
 
 #For Smooth transition from invisible to visible
 export (float) var TRANSPARENCY_CHANGE_RATE := 10
@@ -40,9 +36,6 @@ func removeLightSource(node):
 		return
 	
 	lightSources.erase(node)
-
-func setType(typestring):
-	type = typestring
 
 #Custom visibility check offsets
 export (NodePath) var visibilityPolygon2DPath: NodePath
