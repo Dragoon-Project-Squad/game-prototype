@@ -15,8 +15,9 @@ func onHitByBullet(bulletNode: Bullet):
 
 func isLitUp() -> bool:
 	var hasLightSource = lightSources.size() > 0
+	if hasLightSource:
+		print(lightSources)
 	var isHitFlash = aesthetics.hitFlashDur > 0
-	
 	return hasLightSource or isHitFlash
 
 #On Death

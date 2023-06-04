@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Scene Objects/Exit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Scene Objects/Key.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Scene Objects/Lever.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scene Objects/KeyLockedExit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Scene Objects/Torch.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -36,16 +37,19 @@ position = Vector2( 2104, -1464 )
 position = Vector2( -1592, 1248 )
 
 [node name="Enemy" parent="Objects" instance=ExtResource( 5 )]
-position = Vector2( -2144, -1296 )
+position = Vector2( -2056, -456 )
 
 [node name="Key" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( -800, 1304 )
+position = Vector2( -800, 1320 )
 
 [node name="Lever" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( -800, 1152 )
 
 [node name="KeyLockedExit" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( -256, 1008 )
+
+[node name="Torch" parent="." instance=ExtResource( 9 )]
+position = Vector2( -552, 1280 )
 
 [connection signal="door_stuck" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_door_stuck"]
 [connection signal="key_used" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_key_used"]
