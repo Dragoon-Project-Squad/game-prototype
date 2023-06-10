@@ -1,6 +1,6 @@
 extends Area2D
 
-var duration = 3
+var duration = 1
 
 func _ready() -> void:
 	pass # Replace with function body.

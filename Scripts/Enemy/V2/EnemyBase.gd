@@ -3,9 +3,9 @@ class_name EnemyBase
 
 #states
 enum{
-	ROAMING, ATTACKING
+	ROAM, CHASE, HALT
 }
-var current_state = ROAMING
+var current_state = ROAM
 
 #movement
 var speed = 200;
@@ -22,7 +22,7 @@ var player_spotted = false
 var last_seen = null
 
 #state pool
-var active_states = [ATTACKING]
+var active_states = [CHASE]
 
 #actions node
 export (NodePath) onready var actions = get_node(actions)
@@ -42,7 +42,7 @@ func _ready():
 	
 func _physics_process(delta: float):
 	#check if the enemy can do something
-	if level_navigation && player:
+	if player:
 		checkAggro()
 		getCurrentStateAction()
 
@@ -57,7 +57,8 @@ func checkAggro():
 			if collider && collider.get_parent().is_in_group("Player"):
 				player_spotted = true
 				if actions.current_attack == null:
-					selectNextActiveState()
+					selectNextAction()
+					current_state = CHASE
 		else:
 			var collider = deaggro.get_collider()
 			if collider && collider.get_parent().is_in_group("Player"):
@@ -68,42 +69,54 @@ func checkAggro():
 
 #state behavior, this will be overrided between enemies
 func getCurrentStateAction():
-	if actions.action_ready && player && level_navigation:
+	if actions.action_ready && player:
 		match current_state:
-			ROAMING:
+			HALT:
+				pass
+			ROAM:
 				telegraph.modulate.a = 0
-			ATTACKING:
+			CHASE:
 				telegraph.modulate.a = 1
 				#attack logic, ability cooldown checks will happen here
 				if global_position.distance_to(player.global_position) > 100:
 					chasePlayer()
 				else:
-					selectNextActiveState()
+					actions.startAttack(player.global_position)
+					selectNextAction()
 			_:
 				print("Action not implemented!")
-				current_state = ROAMING
+				current_state = ROAM
 
-func selectNextActiveState():
-	var states = active_states.duplicate()
-	states.shuffle()
-	current_state = states[0]
+func selectNextAction():
+	pass
 
 func chasePlayer():
-	#default action, no cooldown required
 	actions.updateDirection(velocity)
-	var path = []
-	if player_spotted:
-		path = level_navigation.get_simple_path(global_position, player.global_position, false)
-	elif last_seen:
-		path = level_navigation.get_simple_path(global_position, last_seen, false)
+	if level_navigation:
+		var path = []
+		if player_spotted:
+			path = level_navigation.get_simple_path(global_position, player.global_position, false)
+		elif last_seen:
+			path = level_navigation.get_simple_path(global_position, last_seen, false)
+		else:
+			return
+		
+		if path.size() > 2:
+			velocity = global_position.direction_to(path[1]) * speed
+		else:
+			last_seen = null
+			current_state = ROAM
 	else:
-		return
-	
-	if path.size() > 2:
-		velocity = global_position.direction_to(path[1]) * speed
-	else:
-		last_seen = null
-		current_state = ROAMING
+		if player_spotted:
+			velocity = global_position.direction_to(player.global_position) * speed
+		elif last_seen:
+			velocity = global_position.direction_to(last_seen) * speed
+			if global_position.distance_to(last_seen) < 10:
+				last_seen = null
+				current_state = ROAM
+		else:
+			return
+		
 	velocity = enemy_body.move_and_slide(velocity)
 
 #on death
