@@ -10,6 +10,11 @@ export (NodePath) onready var minimap = get_node(minimap)
 
 var blockPlayerActions = false
 var isMinimapShowing = false
+var currentKeys = 0
+const MAX_KEYS = 9
+
+signal key_used
+signal door_stuck
 
 func _process(delta):
 	if(!blockPlayerActions):
@@ -65,3 +70,17 @@ func shooting():
 			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
 			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
 			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
+
+
+func _on_Key_key_acquired():
+	print("Key accepted by Player...")
+	currentKeys = min(currentKeys+1, MAX_KEYS)
+
+
+func _on_KeyLockedExit_key_checked():
+	if (currentKeys > 0):
+		currentKeys = currentKeys - 1
+		print("Removing key...")
+		emit_signal("key_used")
+	else:
+		emit_signal("door_stuck")
