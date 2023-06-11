@@ -4,7 +4,7 @@ signal lever_set(oldval, newval)
 var isLeverActive = false;
 var isNearLever = false
 
-func _process(delta):
+func _process(_delta):
 	if isNearLever:
 		if Input.is_action_just_pressed("Interact"):
 			if (!isLeverActive): 
@@ -18,9 +18,9 @@ func _process(delta):
 			#Cosmetic lever effects go here.
 			
 
-func _on_LeverArea_body_entered(body):
+func _on_LeverArea_body_entered(_body):
 	isNearLever = true
 
 
-func _on_LeverArea_body_exited(body):
+func _on_LeverArea_body_exited(_body):
 	isNearLever = false
