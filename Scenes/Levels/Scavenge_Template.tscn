@@ -51,6 +51,7 @@ position = Vector2( -256, 1008 )
 [node name="Torch" parent="." instance=ExtResource( 9 )]
 position = Vector2( -552, 1280 )
 
+[connection signal="key_randomPos" from="." to="Objects/Key" method="_on_Node2D_key_randomPos"]
 [connection signal="door_stuck" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_door_stuck"]
 [connection signal="key_used" from="Objects/ModulePlayer" to="Objects/KeyLockedExit" method="_on_ModulePlayer_key_used"]
 [connection signal="key_acquired" from="Objects/Key" to="Objects/ModulePlayer" method="_on_Key_key_acquired"]
