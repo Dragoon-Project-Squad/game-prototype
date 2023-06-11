@@ -2,7 +2,7 @@ extends Node2D
 
 const Player = preload("res://Scenes/Player/ModulePlayer.tscn")
 const Exit = preload("res://Scenes/Scene Objects/Exit.tscn")
-const Enemy = preload("res://Scenes/Enemy/DummyEnemy.tscn")
+const Enemy = preload("res://Scenes/Enemy/EnemyDragoon.tscn")
 var borders = Rect2(1, 1, 50, 50)
 
 var tilesize = 64.0
