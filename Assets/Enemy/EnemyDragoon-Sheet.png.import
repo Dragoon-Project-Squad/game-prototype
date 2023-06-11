@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy-spritesheet.png-480e9a7376eacae7434a3a0f0dcb82d3.stex"
+path="res://.import/EnemyDragoon-Sheet.png-3cfbe0c1138d5722625c2f7a26310ed5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemy/enemy-spritesheet.png"
-dest_files=[ "res://.import/enemy-spritesheet.png-480e9a7376eacae7434a3a0f0dcb82d3.stex" ]
+source_file="res://Assets/Enemy/EnemyDragoon-Sheet.png"
+dest_files=[ "res://.import/EnemyDragoon-Sheet.png-3cfbe0c1138d5722625c2f7a26310ed5.stex" ]
 
 [params]
 

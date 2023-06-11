@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "EnemyMoveBehaviour",
 "language": "GDScript",
-"path": "res://Scripts/Enemy/Enemy_MovementBehaviour.gd"
+"path": "res://Scripts/Enemy/V1/Enemy_MovementBehaviour.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
