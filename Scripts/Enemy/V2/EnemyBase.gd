@@ -6,7 +6,6 @@ enum{
 	ROAM, CHASE, HALT
 }
 var current_state = ROAM
-var next_attack = null
 
 #movement
 var speed = 200;
@@ -31,13 +30,15 @@ export (NodePath) onready var main = get_node(main)
 export (NodePath) onready var animation_player = get_node(animation_player)
 
 #attack flags
-var current_attack = null
+var current_attack_instance = null
 var action_ready = true
 var attack_player_pos = null
+var action_cooldown = 0
 
 #export arrays
 export (Array, NodePath) onready var move_options
 export (Array, NodePath) onready var action_options
+var next_attack = null
 
 func _ready():
 	selectNextAction()
@@ -51,6 +52,8 @@ func _ready():
 		player = tree.get_nodes_in_group("Player")[0].get_child(0)
 	
 func _physics_process(delta: float):
+	if action_cooldown > 0:
+		action_cooldown -= delta
 	if player:
 		checkAggro()
 		getCurrentState()
@@ -65,7 +68,7 @@ func checkAggro():
 			var collider = aggro.get_collider()
 			if collider && collider.get_parent().is_in_group("Player"):
 				player_spotted = true
-				if current_attack == null:
+				if current_attack_instance == null:
 					selectNextAction()
 					current_state = CHASE
 		else:
@@ -98,9 +101,10 @@ func updateDirection(velocity):
 		
 
 func animationFinished(anim_name):
-	if anim_name == "Attack":
+	if get_node(next_attack) && anim_name == get_node(next_attack).animation_name:
+		action_cooldown = get_node(next_attack).cooldown
 		action_ready = true
-		current_attack = null
+		current_attack_instance = null
 
 func startAttack(position, attack_name):
 	if position.x > global_position.x:
