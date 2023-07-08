@@ -84,7 +84,9 @@ func getCurrentState():
 	print("getCurrentState has not been implemented")
 
 func selectNextAction():
-	print("selectNextAction has not been implemented")
+	var options = action_options.duplicate()
+	options.shuffle()
+	next_attack = options[0]
 
 #on death
 func triggerDeath():
@@ -105,6 +107,7 @@ func animationFinished(anim_name):
 		action_cooldown = get_node(next_attack).cooldown
 		action_ready = true
 		current_attack_instance = null
+		selectNextAction()
 
 func startAttack(position, attack_name):
 	if position.x > global_position.x:

@@ -1,10 +1,5 @@
 extends EnemyBase
 
-func selectNextAction():
-	var options = action_options.duplicate()
-	options.shuffle()
-	next_attack = options[0]
-
 func getCurrentState():
 	if action_ready && player:
 		match current_state:
@@ -21,7 +16,6 @@ func getCurrentState():
 				else:
 					if action_cooldown <= 0:
 						startAttack(player.global_position, get_node(next_attack).animation_name)
-						selectNextAction()
 			_:
 				print("Action not implemented!")
 				current_state = ROAM

@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Enemy/V2/Pomudachi/EnemyPomudachiController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemy/pomudachi-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Enemy/Movement/Chase.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Enemy/Attacks/JarCreator.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Enemy/V2/Pomudachi/EnemyPomudachiMain.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Enemy/Attacks/slash.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemy/Attacks/pool.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Enemy/Movement/Kite.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Enemy/Movement/Roam.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Enemy/Attacks/PoolCreator.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Enemy/Attacks/jar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
@@ -35,6 +37,36 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "createAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5, 6, 5, 6, 5, 6, 4 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../Controller/Actions/Pool Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -124,7 +156,7 @@ telegraph = NodePath("../Sprites/TelegraphSprites/None")
 main = NodePath("../Sprites/HiddenSprites/Main")
 animation_player = NodePath("AnimationPlayer")
 move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase"), NodePath("Movement/Kite") ]
-action_options = [ NodePath("Actions/Jar Attack") ]
+action_options = [ NodePath("Actions/Jar Attack"), NodePath("Actions/Pool Attack") ]
 
 [node name="Movement" type="Node2D" parent="Controller"]
 
@@ -144,15 +176,24 @@ enemy_control = NodePath("../..")
 
 [node name="Jar Attack" type="Node2D" parent="Controller/Actions"]
 script = ExtResource( 4 )
-jar = ExtResource( 6 )
-attack_origin = NodePath("../../AttackOrigin")
+jar = ExtResource( 10 )
+attack_origin = NodePath("../../RangeOrigin")
 enemy_control = NodePath("../..")
 
-[node name="AttackOrigin" type="Node2D" parent="Controller"]
+[node name="Pool Attack" type="Node2D" parent="Controller/Actions"]
+script = ExtResource( 9 )
+pool = ExtResource( 6 )
+attack_origin = NodePath("../../RangeOrigin")
+enemy_control = NodePath("../..")
+
+[node name="MeleeOrigin" type="Node2D" parent="Controller"]
+
+[node name="RangeOrigin" type="Node" parent="Controller"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Controller"]
 root_node = NodePath("../../Sprites/HiddenSprites")
 anims/Attack1 = SubResource( 2 )
+anims/Attack2 = SubResource( 6 )
 anims/Chase = SubResource( 5 )
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 3 )
@@ -178,5 +219,6 @@ collision_mask = 9
 [node name="HiddenSprites" type="Node2D" parent="Sprites"]
 
 [node name="Main" type="Sprite" parent="Sprites/HiddenSprites"]
+z_index = 1
 texture = ExtResource( 2 )
 hframes = 7
