@@ -12,8 +12,9 @@ func _ready():
 	connect("key_acquired", owner, "key_acquired")
 
 func body_entered(body: Node) -> void:
-	emit_signal("key_acquired")
-	get_parent().queue_free()
+	if body.is_in_group("Player"):
+		emit_signal("key_acquired")
+		get_parent().queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
