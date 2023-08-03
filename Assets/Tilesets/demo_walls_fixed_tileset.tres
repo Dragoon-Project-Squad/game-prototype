@@ -7,10 +7,10 @@
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 48, 0, 336, 128 )
+0/region = Rect2( 0, 0, 400, 192 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 1
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 176, Vector2( 0, 1 ), 50, Vector2( 1, 0 ), 152, Vector2( 1, 1 ), 26, Vector2( 2, 0 ), 48, Vector2( 3, 0 ), 56, Vector2( 4, 0 ), 56, Vector2( 5, 0 ), 56, Vector2( 6, 0 ), 56, Vector2( 6, 1 ), 146, Vector2( 7, 0 ), 56, Vector2( 8, 0 ), 56, Vector2( 9, 0 ), 56, Vector2( 10, 0 ), 56, Vector2( 11, 0 ), 56, Vector2( 12, 0 ), 56, Vector2( 13, 0 ), 24, Vector2( 14, 0 ), 144, Vector2( 14, 1 ), 18 ]
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 176, Vector2( 0, 1 ), 178, Vector2( 0, 2 ), 50, Vector2( 1, 0 ), 184, Vector2( 1, 1 ), 186, Vector2( 1, 2 ), 58, Vector2( 2, 0 ), 152, Vector2( 2, 1 ), 154, Vector2( 2, 2 ), 26, Vector2( 3, 0 ), 48, Vector2( 3, 1 ), 146, Vector2( 4, 0 ), 56, Vector2( 4, 1 ), 146, Vector2( 5, 0 ), 56, Vector2( 5, 1 ), 146, Vector2( 6, 0 ), 56, Vector2( 6, 1 ), 144, Vector2( 6, 2 ), 18, Vector2( 7, 0 ), 56, Vector2( 7, 1 ), 144, Vector2( 7, 2 ), 18, Vector2( 8, 0 ), 56, Vector2( 8, 1 ), 144, Vector2( 8, 2 ), 18, Vector2( 9, 0 ), 56, Vector2( 10, 0 ), 56, Vector2( 11, 0 ), 56, Vector2( 12, 0 ), 56, Vector2( 13, 0 ), 56, Vector2( 14, 0 ), 24, Vector2( 15, 0 ), 504, Vector2( 15, 1 ), 219, Vector2( 15, 2 ), 63, Vector2( 16, 0 ), 504, Vector2( 16, 1 ), 219, Vector2( 16, 2 ), 63, Vector2( 17, 0 ), 504, Vector2( 17, 1 ), 219, Vector2( 17, 2 ), 63, Vector2( 18, 0 ), 504, Vector2( 18, 1 ), 438, Vector2( 18, 2 ), 63, Vector2( 19, 0 ), 504, Vector2( 19, 1 ), 438, Vector2( 19, 2 ), 63, Vector2( 20, 0 ), 432, Vector2( 20, 1 ), 438, Vector2( 20, 2 ), 63, Vector2( 21, 0 ), 216, Vector2( 21, 1 ), 511, Vector2( 21, 2 ), 63, Vector2( 22, 0 ), 54, Vector2( 22, 2 ), 63, Vector2( 23, 0 ), 27, Vector2( 23, 2 ), 63, Vector2( 24, 2 ), 63 ]
 0/autotile/icon_coordinate = Vector2( 7, 0 )
 0/autotile/tile_size = Vector2( 16, 64 )
 0/autotile/spacing = 0
