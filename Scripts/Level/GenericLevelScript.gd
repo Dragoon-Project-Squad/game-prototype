@@ -6,6 +6,7 @@ export (NodePath) onready var exit = get_node(exit)
 func _ready() -> void:
 	exit.connect("leaving_level", self, "finish_level")
 
+
 func finish_level():
 	print("level finished, changing to select scene")
 	get_tree().change_scene("res://Scenes/Menus/LevelSelect.tscn")

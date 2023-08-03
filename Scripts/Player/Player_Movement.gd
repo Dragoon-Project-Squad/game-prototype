@@ -17,6 +17,7 @@ func basicMovement(direction: Vector2):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, MOVE_FRICT * get_process_delta_time())
 
+
 func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
 	if (velocity+force).dot(force.normalized()) > speedLimit:
 		return

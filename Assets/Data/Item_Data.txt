@@ -1,0 +1,25 @@
+{	"Copium tank": {
+	   "Type": "Consumable",
+	   "StackSize": 100,
+	   "AddHealth": 5,
+	   "Description": "A simple tank of gas infused with copium, heals 5 hp for each use. 
+			   It just works."
+	},
+	
+	"Deez Nuts jar": {
+	   "Type": "Consumable",
+	   "StackSize": 1,
+	   "ItemAttackDMG": 10,
+	   "Description": "Simple, but effective!
+			   Throw it to your foes and make them eat deez."
+	},
+
+	"Hand Gun": {
+	   "Type": "Weapon",
+	   "SubType": "Ranged",
+	   "ItemAttackDamage": 2,
+	   "AmmoCapacity": 10,
+	   "Description": "Found from a monster's instestines, its metal still drips the gross 
+			   liquid but its ignition still gets you out of danger."
+	}
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player/Player_Aesthetics.gd" type="Script" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/Player_Weapon.gd" type="Script" id=9]
-[ext_resource path="res://Resources/WeaponTypes/Pistol.tres" type="Resource" id=10]
-[ext_resource path="res://Scripts/Player/Player_Main.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Scene Objects/GenericBullet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Player/PlayerMain.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Minimap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Inventory/Inventory.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Player/PlayerUI.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 25 )
@@ -31,11 +33,9 @@ lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
 
-[node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["Player"]]
+[node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["player"]]
 collision_mask = 186
 script = ExtResource( 1 )
-MAX_MOVE_SPEED = 450.0
-MOVE_FRICT = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
 shape = SubResource( 1 )
@@ -49,6 +49,7 @@ PERCENT_REMAPPING_CURVE = SubResource( 2 )
 current = true
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic"]
+visible = false
 script = ExtResource( 3 )
 muzzleFlash = NodePath("MuzzleFlashRotate/MuzzleFlash")
 muzzleFlashCheckShape = NodePath("MuzzleFlashRotate/MuzzleFlashCheck/CollisionShape2D")
@@ -107,7 +108,6 @@ polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
 [node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
 texture = ExtResource( 6 )
 offset = Vector2( 256, 0 )
-color = Color( 1, 1, 1, 0.207843 )
 shadow_enabled = true
 script = ExtResource( 8 )
 viewCheck = NodePath("../ViewConeCheck")
@@ -125,7 +125,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 9 )
 bulletSpawnNode = NodePath("SpawnNode")
 weaponSprite = NodePath("Sprite")
-startingWeaponResource = ExtResource( 10 )
+bulletScene = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon"]
 modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
@@ -135,9 +135,9 @@ texture = ExtResource( 5 )
 [node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
+script = ExtResource( 14 )
 
 [node name="Minimap" parent="PlayerUI" instance=ExtResource( 12 )]
-visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -148,3 +148,7 @@ margin_right = 304.0
 margin_bottom = 306.0
 rect_scale = Vector2( 0.5, 0.5 )
 player = NodePath("../../PlayerKinematic")
+
+[node name="Inventory" parent="PlayerUI" instance=ExtResource( 13 )]
+visible = false
+position = Vector2( 459, 123 )

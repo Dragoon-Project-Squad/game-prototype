@@ -68,9 +68,10 @@ func shooting():
 			lights.triggerMuzzleFlash(min(weapon.BULLET_CD_PERIOD / 2, weapon.BULLET_MUZZLE_FLASH_DUR))
 
 #modification from elwey, for pick ups
-func _pick_up(event):
+func pick_up(event):
 	if event.is_action_pressed("Pickup"):
 		if$"PlayerKinematic/Pick up Zone/CollisionShape2D".items_in_range.size() < 4:
 			var pickup_item = $"PlayerKinematic/Pick up Zone/CollisionShape2D".items_in_range.values()[0]
 			pickup_item.pick_up_item(self)
 			$"PlayerKinematic/Pick up Zone/CollisionShape2D".items_in_range.erase(pickup_item)
+			

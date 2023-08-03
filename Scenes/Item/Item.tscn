@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Item/Item_Script.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites Test/Copium tank.jpg" type="Texture" id=2]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 3 )
+
+[node name="Item" type="Node2D" groups=["Item"]]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 29.0
+margin_top = 18.0
+margin_right = 79.0
+margin_bottom = 68.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 59.0
+margin_right = 55.0
+margin_bottom = 68.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "100"
