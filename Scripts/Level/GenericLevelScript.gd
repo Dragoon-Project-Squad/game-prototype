@@ -1,4 +1,5 @@
 extends Node2D
+class_name GenericLevelScript
 
 export (NodePath) onready var exit = get_node("Objects/Exit")
 

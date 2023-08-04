@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy/V1/Enemy_MovementBehaviour.gd"
 }, {
+"base": "Node2D",
+"class": "GenericLevelScript",
+"language": "GDScript",
+"path": "res://Scripts/Level/GenericLevelScript.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -48,6 +53,7 @@ _global_script_class_icons={
 "Bullet": "",
 "EnemyBase": "",
 "EnemyMoveBehaviour": "",
+"GenericLevelScript": "",
 "GitAPI": "",
 "HiddenObject": "",
 "Walker": "",
@@ -86,6 +92,7 @@ singletons=[  ]
 
 grid=false
 Hidden=false
+png=false
 
 [gui]
 

@@ -36,7 +36,8 @@ minimap = NodePath("PlayerUI/Minimap")
 z_index = 1
 collision_mask = 186
 script = ExtResource( 1 )
-MAX_MOVE_SPEED = 450.0
+MAX_MOVE_SPEED = 150.0
+MOVE_ACCEL = 500.0
 MOVE_FRICT = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
@@ -50,6 +51,7 @@ PERCENT_REMAPPING_CURVE = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera"]
 current = true
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 3 )
