@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/CutsceneResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+data = "{\"data\": [{\"type\": \"dialogue\",\"left_id\": \"Selen\",\"right_id\": \"Pomu\",\"lines\": [{\"focus\": \"right\",\"text\": \"Hey... do you like me?\",\"portrait\": \"1\"},{\"focus\": \"left\",\"text\": \"Domain Expansion\",\"portrait\": \"1\"},{\"focus\": \"right\",\"text\": \"???????\",\"portrait\": \"2\"},]},{\"type\": \"monologue\",\"id\": \"Selen\",\"lines\": [{\"text\": \"...\",\"portrait\": \"2\"},{\"text\": \"She wouldn't get it\",\"portrait\": \"3\"},{\"text\": \"Scrolling text aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaa\",\"portrait\": \"3\"},]}]}"

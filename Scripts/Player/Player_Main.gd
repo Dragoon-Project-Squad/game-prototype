@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 export (NodePath) onready var movement = get_node(movement)
 export (NodePath) onready var aesthetics = get_node(aesthetics)
@@ -16,11 +16,14 @@ const MAX_KEYS = 9
 signal key_used
 signal door_stuck
 
+var interact_list = []
+
 func _process(delta):
 	if(!blockPlayerActions):
 		movement()
 		shooting()
 		tab()
+		interact()
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -43,8 +46,11 @@ func tab():
 			isMinimapShowing = true
 
 func interact():
+	var item = getClosestInteractable()
+	
 	if Input.is_action_just_pressed("Interact"):
-		print("Interact")
+		if item:
+			item.onInteract()
 
 #Movement
 func movement():
@@ -71,6 +77,31 @@ func shooting():
 			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
 			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
 
+func addToInteractList(node: Node):
+	interact_list.append(node)
+	
+func removeFromInteractList(node: Node):
+	interact_list.erase(node)
+
+func getClosestInteractable():
+	if interact_list.size() == 0:
+		return null
+	
+	var closest_item
+	for item in interact_list:
+		if closest_item:
+			if global_position.distance_to(item.global_position) < global_position.distance_to(closest_item.global_position):
+				closest_item = item
+		else:
+			closest_item = item
+	
+	for item in interact_list:
+		if item == closest_item:
+			item.setHighlight(true)
+		else:
+			item.setHighlight(false)
+	
+	return closest_item
 
 func _on_Key_key_acquired():
 	print("Key accepted by Player...")

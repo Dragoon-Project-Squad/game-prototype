@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Projectiles and Effects/HiddenObject.gd"
 }, {
+"base": "HiddenObject",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Scripts/Objects/Interactable.gd"
+}, {
 "base": "Node",
 "class": "Walker",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_class_icons={
 "GenericLevelScript": "",
 "GitAPI": "",
 "HiddenObject": "",
+"Interactable": "",
 "Walker": "",
 "WeaponResource": ""
 }
@@ -93,6 +99,7 @@ singletons=[  ]
 grid=false
 Hidden=false
 png=false
+resources=false
 
 [gui]
 

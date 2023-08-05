@@ -3,13 +3,20 @@ extends CanvasLayer
 export (PackedScene) var dialogue: PackedScene
 export (PackedScene) var monologue: PackedScene
 
+export var cutsceneResource: Resource
+
 export (Array, PackedScene) var portraits
 var portrait_dict = {
 	"Selen": 0,
 	"Pomu": 1
 }
 
-var is_active = true
+var is_active = false
+var cutscene_playing = false
+
+var cutscene_ending = false
+var current_ending_timer = 0
+var end_delay = 0.1
 
 var event_list = []
 
@@ -22,6 +29,16 @@ var event_size
 var line_size
 
 func _process(delta: float) -> void:
+	if cutscene_ending:
+		if current_ending_timer < end_delay:
+			current_ending_timer += delta
+		else:
+			cutscene_ending = false
+			current_ending_timer = 0
+			is_active = false
+			cutscene_playing = false
+			get_tree().paused = false
+	
 	if Input.is_action_just_pressed("Menu Select") and is_active and current_scene:
 		if(current_scene.is_scrolling):
 			current_scene.skipText()
@@ -34,11 +51,10 @@ func _process(delta: float) -> void:
 			if(event_counter < event_size):
 				loadScene()
 			else:
-				is_active = false
+				cutscene_ending = true
 
 func _ready() -> void:
-	loadEvents()
-	loadScene()
+	pass
 
 func handleNext():
 	if current_type == "dialogue":
@@ -72,48 +88,18 @@ func loadScene():
 		
 	handleNext()
 
-func loadEvents():
-	event_list = [
-		{
-			"type": "dialogue",
-			"left_id": "Selen",
-			"right_id": "Pomu",
-			"lines": [
-				{
-					"focus": "right",
-					"text": "Hey... do you like me?",
-					"portrait": "1"
-				},
-				{
-					"focus": "left",
-					"text": "Domain Expansion",
-					"portrait": "1"
-				},
-				{
-					"focus": "right",
-					"text": "???????",
-					"portrait": "2"
-				},
-			]
-		},
-		{
-			"type": "monologue",
-			"id": "Selen",
-			"lines": [
-				{
-					"text": "...",
-					"portrait": "2"
-				},
-				{
-					"text": "She wouldn't get it",
-					"portrait": "3"
-				},
-				{
-					"text": "Scrolling text aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaa",
-					"portrait": "3"
-				},
-			]
-		}
-	]
-	event_size = event_list.size()
-	event_counter = 0
+func loadEvents(resource):
+	get_tree().paused = true
+	is_active = true
+	cutscene_playing = true
+	var result_json = JSON.parse(resource.data)
+	if result_json.error == OK:
+		event_list = result_json.result.data
+		event_size = event_list.size()
+		event_counter = 0
+		loadScene()
+	else:
+		print("Error: ", result_json.error)
+		print("Error Line: ", result_json.error_line)
+		print("Error String: ", result_json.error_string)
+	

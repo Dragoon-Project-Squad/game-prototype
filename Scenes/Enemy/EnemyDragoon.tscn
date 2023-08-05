@@ -159,6 +159,5 @@ texture = ExtResource( 5 )
 [node name="HiddenSprites" type="Node2D" parent="Sprites"]
 
 [node name="Main" type="Sprite" parent="Sprites/HiddenSprites"]
-position = Vector2( 103, 84 )
 texture = ExtResource( 2 )
 hframes = 5
