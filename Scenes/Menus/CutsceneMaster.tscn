@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/UI/CutsceneMaster.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Dialogue.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Monologue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Portraits/SelenPortrait.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Portraits/PomuPortrait.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Cutscene Data/test_scene.tres" type="Resource" id=6]
+
+[node name="CutsceneMaster" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+dialogue = ExtResource( 2 )
+monologue = ExtResource( 3 )
+cutsceneResource = ExtResource( 6 )
+portraits = [ ExtResource( 4 ), ExtResource( 5 ) ]

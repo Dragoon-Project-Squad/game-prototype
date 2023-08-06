@@ -21,3 +21,4 @@ func getCurrentCombatPool(var i):
 		if area.area_id == i:
 			return area.pool.duplicate()
 	return []
+

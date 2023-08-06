@@ -33,6 +33,7 @@ weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["Player"]]
+z_index = 1
 collision_mask = 186
 script = ExtResource( 1 )
 MAX_MOVE_SPEED = 150.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tilesets/TilePlaceholderBig.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Enemy/EnemyDragoon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Level/EnemyNavTest.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemy/EnemyPomudachi.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -73,3 +74,6 @@ position = Vector2( 862, 933 )
 
 [node name="Enemy 2" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 968, 354 )
+
+[node name="Enemy 3" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( -47, 633 )
