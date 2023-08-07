@@ -34,6 +34,7 @@ size = 20
 font_data = ExtResource( 2 )
 
 [node name="Dialogue" type="CanvasLayer"]
+layer = 10
 script = ExtResource( 1 )
 left_sprite = NodePath("Left/LeftPortrait")
 left_toggle = NodePath("Left/LeftToggle")
@@ -47,9 +48,10 @@ right_name = NodePath("Right/RightToggle/RightName/RightNameText")
 right_main = NodePath("Right")
 
 [node name="Left" type="CanvasLayer" parent="."]
+layer = 15
 
 [node name="LeftToggle" type="CanvasLayer" parent="Left"]
-layer = 0
+layer = 15
 
 [node name="LeftDialogue" type="Panel" parent="Left/LeftToggle"]
 anchor_left = 0.5
@@ -98,9 +100,10 @@ margin_right = 320.0
 margin_bottom = -128.0
 
 [node name="Right" type="CanvasLayer" parent="."]
+layer = 15
 
 [node name="RightToggle" type="CanvasLayer" parent="Right"]
-layer = 0
+layer = 15
 
 [node name="RightDialogue" type="Panel" parent="Right/RightToggle"]
 anchor_left = 0.5

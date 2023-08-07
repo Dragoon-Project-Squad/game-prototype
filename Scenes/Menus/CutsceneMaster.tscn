@@ -9,6 +9,7 @@
 
 [node name="CutsceneMaster" type="CanvasLayer"]
 pause_mode = 2
+layer = 20
 script = ExtResource( 1 )
 dialogue = ExtResource( 2 )
 monologue = ExtResource( 3 )

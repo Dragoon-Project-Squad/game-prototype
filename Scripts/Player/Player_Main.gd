@@ -56,8 +56,9 @@ func interact():
 func movement():
 	var direction = getDirectionalInput()
 	
-	if Input.is_action_just_pressed("DodgeRoll") or movement.isDodgeBuffered:
-		movement.attemptDodgeRoll(direction)
+	#disabled dodgeroll
+	#if Input.is_action_just_pressed("DodgeRoll") or movement.isDodgeBuffered:
+	#	movement.attemptDodgeRoll(direction)
 	
 	if movement.isDodging:
 		movement.dodgeRollMovement()
