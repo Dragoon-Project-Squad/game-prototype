@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player/Player_Aesthetics.gd" type="Script" id=2]
@@ -9,12 +9,13 @@
 [ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/Player_Weapon.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Scene Objects/GenericBullet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/WeaponTypes/Pistol.tres" type="Resource" id=10]
 [ext_resource path="res://Scripts/Player/Player_Main.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Minimap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Player/selen-player.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 25 )
+extents = Vector2( 15, 21 )
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -22,7 +23,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="CircleShape2D" id=3]
 radius = 256.0
 
-[node name="ModulePlayer" type="Node2D"]
+[node name="ModulePlayer" type="Node2D" groups=["Player"]]
 script = ExtResource( 11 )
 movement = NodePath("PlayerKinematic")
 aesthetics = NodePath("PlayerKinematic/Aesthetics")
@@ -31,11 +32,16 @@ lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
 
-[node name="PlayerKinematic" type="KinematicBody2D" parent="."]
+[node name="PlayerKinematic" type="KinematicBody2D" parent="." groups=["Player"]]
+z_index = 1
 collision_mask = 186
 script = ExtResource( 1 )
+MAX_MOVE_SPEED = 150.0
+MOVE_ACCEL = 500.0
+MOVE_FRICT = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
+position = Vector2( 0, 11 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Node2D" parent="PlayerKinematic"]
@@ -45,6 +51,7 @@ PERCENT_REMAPPING_CURVE = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera"]
 current = true
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 3 )
@@ -58,6 +65,7 @@ viewConeRotate = NodePath("ViewConeRotate")
 
 [node name="Viewzone" type="Light2D" parent="PlayerKinematic/Lights"]
 texture = ExtResource( 7 )
+range_z_max = 9
 shadow_enabled = true
 script = ExtResource( 8 )
 viewCheck = NodePath("ViewZoneCheck")
@@ -86,6 +94,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.1, 0.6 )
 texture = ExtResource( 6 )
 offset = Vector2( 256, 0 )
+range_z_max = 9
 shadow_enabled = true
 script = ExtResource( 8 )
 viewCheck = NodePath("../MuzzleFlashCheck")
@@ -105,6 +114,8 @@ polygon = PoolVector2Array( 0, 0, 1, 1, 1, -1 )
 [node name="Viewcone" type="Light2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
 texture = ExtResource( 6 )
 offset = Vector2( 256, 0 )
+color = Color( 1, 1, 1, 0.207843 )
+range_z_max = 9
 shadow_enabled = true
 script = ExtResource( 8 )
 viewCheck = NodePath("../ViewConeCheck")
@@ -116,13 +127,16 @@ script = ExtResource( 2 )
 charSprite = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Aesthetics"]
-texture = ExtResource( 5 )
+light_mask = 2
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
 
 [node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+visible = false
 script = ExtResource( 9 )
 bulletSpawnNode = NodePath("SpawnNode")
 weaponSprite = NodePath("Sprite")
-bulletScene = ExtResource( 10 )
+startingWeaponResource = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon"]
 modulate = Color( 0.145098, 0.145098, 0.145098, 1 )

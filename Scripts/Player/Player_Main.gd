@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 export (NodePath) onready var movement = get_node(movement)
 export (NodePath) onready var aesthetics = get_node(aesthetics)
@@ -10,12 +10,20 @@ export (NodePath) onready var minimap = get_node(minimap)
 
 var blockPlayerActions = false
 var isMinimapShowing = false
+var currentKeys = 0
+const MAX_KEYS = 9
+
+signal key_used
+signal door_stuck
+
+var interact_list = []
 
 func _process(delta):
 	if(!blockPlayerActions):
 		movement()
 		shooting()
 		tab()
+		interact()
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -38,15 +46,19 @@ func tab():
 			isMinimapShowing = true
 
 func interact():
+	var item = getClosestInteractable()
+	
 	if Input.is_action_just_pressed("Interact"):
-		print("Interact")
+		if item:
+			item.onInteract()
 
 #Movement
 func movement():
 	var direction = getDirectionalInput()
 	
-	if Input.is_action_just_pressed("DodgeRoll") or movement.isDodgeBuffered:
-		movement.attemptDodgeRoll(direction)
+	#disabled dodgeroll
+	#if Input.is_action_just_pressed("DodgeRoll") or movement.isDodgeBuffered:
+	#	movement.attemptDodgeRoll(direction)
 	
 	if movement.isDodging:
 		movement.dodgeRollMovement()
@@ -62,6 +74,45 @@ func shooting():
 		var isBulletShot = weapon.attemptShootBullet()
 		
 		if isBulletShot:
-			camera.addShake(weapon.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
-			movement.addImpulse(weapon.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
-			lights.triggerMuzzleFlash(min(weapon.BULLET_CD_PERIOD / 2, weapon.BULLET_MUZZLE_FLASH_DUR))
+			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
+			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
+			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
+
+func addToInteractList(node: Node):
+	interact_list.append(node)
+	
+func removeFromInteractList(node: Node):
+	interact_list.erase(node)
+
+func getClosestInteractable():
+	if interact_list.size() == 0:
+		return null
+	
+	var closest_item
+	for item in interact_list:
+		if closest_item:
+			if global_position.distance_to(item.global_position) < global_position.distance_to(closest_item.global_position):
+				closest_item = item
+		else:
+			closest_item = item
+	
+	for item in interact_list:
+		if item == closest_item:
+			item.setHighlight(true)
+		else:
+			item.setHighlight(false)
+	
+	return closest_item
+
+func _on_Key_key_acquired():
+	print("Key accepted by Player...")
+	currentKeys = min(currentKeys+1, MAX_KEYS)
+
+
+func _on_KeyLockedExit_key_checked():
+	if (currentKeys > 0):
+		currentKeys = currentKeys - 1
+		print("Removing key...")
+		emit_signal("key_used")
+	else:
+		emit_signal("door_stuck")
