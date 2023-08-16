@@ -5,7 +5,7 @@ onready var options_menu = $OptionsMenu
 var is_paused = false setget set_is_paused
 
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("Escape"):
 		self.is_paused = !is_paused
 
 func set_is_paused(value):

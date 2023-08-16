@@ -20,8 +20,10 @@ polygon = PoolVector2Array( -32, 32, 32, 32, 32, -32, -32, -32 )
 
 [node name="Test" type="Node2D"]
 
-[node name="PauseMenu" parent="." instance=ExtResource( 8 )]
-visible = false
+[node name="Menus" type="CanvasLayer" parent="."]
+layer = 30
+
+[node name="PauseMenu" parent="Menus" instance=ExtResource( 8 )]
 
 [node name="CutsceneMaster" parent="." groups=["CutsceneControl"] instance=ExtResource( 9 )]
 
