@@ -1,47 +1,71 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/UI/Days.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scripts/UI/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Menu/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Lato-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Menus/OptionsMenu.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 50
-font_data = ExtResource( 1 )
+size = 42
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 1 )
+size = 42
+font_data = ExtResource( 2 )
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="Control"]
 pause_mode = 2
-layer = 21
-script = ExtResource( 2 )
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -309.0
-margin_top = -278.5
-margin_right = 309.0
-margin_bottom = 278.5
-color = Color( 0, 0, 0, 0.556863 )
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.207843, 0.184314, 0.184314, 0.541176 )
 
-[node name="Pause Label" type="Label" parent="ColorRect"]
-margin_left = 1.0
-margin_top = 2.0
-margin_right = 617.0
-margin_bottom = 219.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 490.0
+margin_top = 219.0
+margin_right = 790.0
+margin_bottom = 501.0
+custom_constants/separation = 20
+
+[node name="PausedLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 51.0
 custom_fonts/font = SubResource( 1 )
-text = "PAUSE MENU"
+text = "Paused"
 align = 1
-valign = 1
 
-[node name="Lmao" type="Label" parent="ColorRect"]
-margin_left = 123.0
-margin_top = 230.5
-margin_right = 489.0
-margin_bottom = 322.5
+[node name="ResumeBtn" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 71.0
+margin_right = 300.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 300, 0 )
 custom_fonts/font = SubResource( 2 )
-text = "put stuff here eventually lmao"
-align = 1
-valign = 1
+text = "Resume Game"
+
+[node name="OptionsBtn" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 148.0
+margin_right = 300.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 2 )
+text = "Options"
+
+[node name="QuitBtn" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 225.0
+margin_right = 300.0
+margin_bottom = 282.0
+custom_fonts/font = SubResource( 2 )
+text = "Quit Game"
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsBtn" to="." method="_on_OptionsBtn_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]
