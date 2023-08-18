@@ -8,9 +8,9 @@ const SPECIAL_ROOMS: Array = [preload("res://Scenes/Levels/Rooms/Dungeon_Room01.
 const END_ROOMS: Array = [preload("res://Scenes/Levels/Rooms/Dungeon_SafeRoom.tscn")]
 
 const TILE_SIZE: int = 16
-const FLOOR_TILE_INDEX: int = 0
-const RIGHT_WALL_TILE_INDEX: int = 5
-const LEFT_WALL_TILE_INDEX: int = 6
+const FLOOR_TILE_INDEX: int = 36
+const RIGHT_WALL_TILE_INDEX: int = 0
+const LEFT_WALL_TILE_INDEX: int = 0
 
 export(int) var num_levels: int = 5
 
@@ -47,7 +47,7 @@ func _spawn_rooms() -> void:
 					room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instance()
 				
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
-			var previous_room_door: StaticBody2D = previous_room.get_node("Door")
+			var previous_room_door: Node2D = previous_room.get_node("Door")
 			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) + Vector2.UP * 2
 			
 			var corridor_height: int = randi() % 5 + 3

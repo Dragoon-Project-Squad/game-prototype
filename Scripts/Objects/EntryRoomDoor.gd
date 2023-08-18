@@ -16,6 +16,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("Interact"):
 		emit_signal("entry_door_opened")
+		#TODO: (AUDIO) Play Door sounds here
 		queue_free()
 		#else:
 			#This is the part where we play the funny door open slam sound
