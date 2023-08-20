@@ -1,0 +1,134 @@
+warning: in the working copy of 'Assets/Tilesets/tileset.tres', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scenes/Menus/MainMenu.tscn', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/Player/Player_Main.gd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'project.godot', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/Scenes/Menus/MainMenu.tscn b/Scenes/Menus/MainMenu.tscn[m
+[1mindex 94eee35..7d4c6ce 100644[m
+[1m--- a/Scenes/Menus/MainMenu.tscn[m
+[1m+++ b/Scenes/Menus/MainMenu.tscn[m
+[36m@@ -1,12 +1,17 @@[m
+[31m-[gd_scene load_steps=6 format=2][m
+[32m+[m[32m[gd_scene load_steps=7 format=2][m
+ [m
+ [ext_resource path="res://Assets/Menu/titleTemp.png" type="Texture" id=1][m
+ [ext_resource path="res://Scripts/Menu/PlayBtn.gd" type="Script" id=2][m
+ [ext_resource path="res://Assets/Menu/label_continue.png" type="Texture" id=3][m
+[32m+[m[32m[ext_resource path="res://Scenes/Menus/MovingBackground.tscn" type="PackedScene" id=4][m
+ [ext_resource path="res://Assets/Menu/label_new_game.png" type="Texture" id=5][m
+ [ext_resource path="res://Assets/Menu/label_options.png" type="Texture" id=6][m
+ [m
+[31m-[node name="MarginContainer" type="MarginContainer"][m
+[32m+[m[32m[node name="CanvasLayer" type="CanvasLayer"][m
+[32m+[m
+[32m+[m[32m[node name="Background" parent="." instance=ExtResource( 4 )][m
+[32m+[m
+[32m+[m[32m[node name="MarginContainer" type="MarginContainer" parent="."][m
+ anchor_right = 1.0[m
+ anchor_bottom = 1.0[m
+ custom_constants/margin_right = 120[m
+[36m@@ -14,7 +19,7 @@[m [mcustom_constants/margin_top = 80[m
+ custom_constants/margin_left = 120[m
+ custom_constants/margin_bottom = 80[m
+ [m
+[31m-[node name="CenterContainer" type="CenterContainer" parent="."][m
+[32m+[m[32m[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"][m
+ margin_left = 120.0[m
+ margin_top = 80.0[m
+ margin_right = 1160.0[m
+[36m@@ -22,34 +27,34 @@[m [mmargin_bottom = 640.0[m
+ grow_horizontal = 0[m
+ grow_vertical = 0[m
+ [m
+[31m-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"][m
+[32m+[m[32m[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"][m
+ margin_left = 255.0[m
+ margin_top = 69.0[m
+ margin_right = 784.0[m
+ margin_bottom = 491.0[m
+ [m
+[31m-[node name="title" type="TextureRect" parent="CenterContainer/VBoxContainer"][m
+[32m+[m[32m[node name="title" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"][m
+ margin_right = 529.0[m
+ margin_bottom = 200.0[m
+ rect_min_size = Vector2( 100, 200 )[m
+ texture = ExtResource( 1 )[m
+ expand = true[m
+ [m
+[31m-[node name="spacer" type="TextureRect" parent="CenterContainer/VBoxContainer"][m
+[32m+[m[32m[node name="spacer" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"][m
+ margin_top = 204.0[m
+ margin_right = 529.0[m
+ margin_bottom = 224.0[m
+ rect_min_size = Vector2( 0, 20 )[m
+ expand = true[m
+ [m
+[31m-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"][m
+[32m+[m[32m[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"][m
+ margin_top = 228.0[m
+ margin_right = 529.0[m
+ margin_bottom = 422.0[m
+ custom_constants/margin_right = 139[m
+ custom_constants/margin_left = 140[m
+ [m
+[31m-[node name="MenuBtns" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer"][m
+[32m+[m[32m[node name="MenuBtns" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer"][m
+ margin_left = 140.0[m
+ margin_right = 390.0[m
+ margin_bottom = 194.0[m
+[36m@@ -59,7 +64,7 @@[m [msize_flags_vertical = 3[m
+ custom_constants/separation = 29[m
+ alignment = 1[m
+ [m
+[31m-[node name="PlayBtn" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+[32m+[m[32m[node name="PlayBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+ margin_right = 250.0[m
+ margin_bottom = 42.0[m
+ icon = ExtResource( 5 )[m
+[36m@@ -67,13 +72,13 @@[m [mscript = ExtResource( 2 )[m
+ playBtn = NodePath(".")[m
+ scenePath = "res://Scenes/Test Files/Test.tscn"[m
+ [m
+[31m-[node name="ContinueBtn" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+[32m+[m[32m[node name="ContinueBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+ margin_top = 71.0[m
+ margin_right = 250.0[m
+ margin_bottom = 113.0[m
+ icon = ExtResource( 3 )[m
+ [m
+[31m-[node name="OptionsBtn" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+[32m+[m[32m[node name="OptionsBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"][m
+ margin_top = 142.0[m
+ margin_right = 250.0[m
+ margin_bottom = 194.0[m
+[1mdiff --git a/Scripts/Player/Player_Main.gd b/Scripts/Player/Player_Main.gd[m
+[1mindex e2787fe..9c8c4fb 100644[m
+[1m--- a/Scripts/Player/Player_Main.gd[m
+[1m+++ b/Scripts/Player/Player_Main.gd[m
+[36m@@ -12,6 +12,11 @@[m [mvar blockPlayerActions = false[m
+ var isMinimapShowing = false[m
+ [m
+ func _process(delta):[m
+[32m+[m	[32m# test code[m
+[32m+[m[41m	[m
+[32m+[m	[32mif Input.is_action_just_pressed("ChangeDisplay"):[m
+[32m+[m		[32mOS.window_fullscreen = not OS.window_fullscreen[m
+[32m+[m[41m	[m
+ 	if(!blockPlayerActions):[m
+ 		movement()[m
+ 		shooting()[m
+[1mdiff --git a/project.godot b/project.godot[m
+[1mindex a711caf..4767fc4 100644[m
+[1m--- a/project.godot[m
+[1m+++ b/project.godot[m
+[36m@@ -125,6 +125,11 @@[m [mClick={[m
+ "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)[m
+  ][m
+ }[m
+[32m+[m[32mChangeDisplay={[m
+[32m+[m[32m"deadzone": 0.5,[m
+[32m+[m[32m"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":48,"unicode":0,"echo":false,"script":null)[m
+[32m+[m[32m ][m
+[32m+[m[32m}[m
+ [m
+ [layer_names][m
+ [m

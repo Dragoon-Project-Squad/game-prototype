@@ -12,6 +12,11 @@ var blockPlayerActions = false
 var isMinimapShowing = false
 
 func _process(delta):
+	# test code
+	
+	if Input.is_action_just_pressed("ChangeDisplay"):
+		OS.window_fullscreen = not OS.window_fullscreen
+	
 	if(!blockPlayerActions):
 		movement()
 		shooting()
