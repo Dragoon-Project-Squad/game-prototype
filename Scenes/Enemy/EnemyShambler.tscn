@@ -30,7 +30,7 @@ tracks/0/keys = {
 "values": [ 0, 3, 4, 5, 6, 7, 7, 7 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Controller/Actions/Basic Attack")
+tracks/1/path = NodePath("../../Controller/Actions/Slash")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -125,7 +125,7 @@ telegraph = NodePath("../Sprites/TelegraphSprites/Telegraph")
 main = NodePath("../Sprites/HiddenSprites/Main")
 animation_player = NodePath("AnimationPlayer")
 move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase") ]
-action_options = [ NodePath("Actions/Basic Attack") ]
+action_options = [ NodePath("Actions/Slash") ]
 
 [node name="Movement" type="Node2D" parent="Controller"]
 
@@ -139,7 +139,7 @@ enemy_control = NodePath("../..")
 
 [node name="Actions" type="Node2D" parent="Controller"]
 
-[node name="Basic Attack" type="Node2D" parent="Controller/Actions"]
+[node name="Slash" type="Node2D" parent="Controller/Actions"]
 script = ExtResource( 10 )
 slashNW = ExtResource( 4 )
 slashNE = ExtResource( 7 )
