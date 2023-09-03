@@ -8,9 +8,13 @@ const SPECIAL_ROOMS: Array = [preload("res://Scenes/Levels/Rooms/Dungeon_Room01.
 const END_ROOMS: Array = [preload("res://Scenes/Levels/Rooms/Dungeon_EndRoom01.tscn")]
 
 const TILE_SIZE: int = 64
-const FLOOR_TILE_INDEX: int = 37
+#const FLOOR_TILE_INDEX: int = 37
+#const RIGHT_WALL_TILE_INDEX: int = 0
+#const LEFT_WALL_TILE_INDEX: int = 0
+const FLOOR_TILE_INDEX: int = 34
 const RIGHT_WALL_TILE_INDEX: int = 0
 const LEFT_WALL_TILE_INDEX: int = 0
+
 
 export(int) var num_levels: int = 3
 
@@ -54,28 +58,22 @@ func _spawn_rooms() -> void:
 			#Identify previous room's tilemap, door, and 	
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: Node2D = previous_room.get_node("Door")
-			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position)
-			print("Exit Tile Position: ", exit_tile_pos)
+			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) / 4
+			var room_tilemap: TileMap = room.get_node("TileMap")
 			var corridor_height: int = randi() % 5 + 5
 			print ("Corridor height: ", corridor_height)
 			for y in corridor_height:
-				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(-4, -y), LEFT_WALL_TILE_INDEX)
-				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(-3, -y), FLOOR_TILE_INDEX)
-				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(-2, -y), FLOOR_TILE_INDEX)
-				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(-1, -y), FLOOR_TILE_INDEX)
-				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(0, -y), RIGHT_WALL_TILE_INDEX)
-				
-			print("Prev. Room Door Global Pos: ", previous_room_door.global_position)	
+				print("Editing Tile: ", exit_tile_pos + Vector2(4, -y-1))
+				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(4, -y-1), LEFT_WALL_TILE_INDEX)
+				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(3, -y-1), FLOOR_TILE_INDEX)
+				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(2, -y-1), FLOOR_TILE_INDEX)
+				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(1, -y-1), FLOOR_TILE_INDEX)
+				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(0, -y-1), RIGHT_WALL_TILE_INDEX)
 			previous_room_tilemap.update_dirty_quadrants()
-			var room_tilemap: TileMap = room.get_node("TileMap")
 			var lengthofroom = Vector2.UP * room_tilemap.get_used_rect().size.y * TILE_SIZE
-			print("Lenngth of the room identified as", lengthofroom)
-			var lengthofcorridor = Vector2.UP * (1 + corridor_height) * TILE_SIZE
-			print("Lenngth of the cooridor identified as", lengthofcorridor)
-			var widthofroomtoetrance = Vector2.LEFT * room_tilemap.world_to_map(room.get_node("RoomEntrance").position).x * TILE_SIZE
-			room.position = previous_room_door.global_position + lengthofroom + lengthofcorridor #+ widthofroomtoetrance
-			#room.position =  Vector2(0, -1048)
-			print("Room Final Pos:", room.position)
+			var lengthofcorridor = Vector2.UP * (corridor_height) * TILE_SIZE
+			var widthofroomtoetrance = Vector2.LEFT * room.get_node("RoomEntrance").position.x
+			room.position = previous_room_door.global_position + lengthofroom + lengthofcorridor + widthofroomtoetrance
 		add_child(room)
 		previous_room = room
 

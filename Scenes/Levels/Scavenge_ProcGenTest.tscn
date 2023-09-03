@@ -10,7 +10,6 @@ __meta__ = {
 }
 
 [node name="Objects" type="Node2D" parent="."]
-position = Vector2( 0, 8 )
 
 [node name="ModulePlayer" parent="Objects" instance=ExtResource( 2 )]
 position = Vector2( 512, 280 )

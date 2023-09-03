@@ -34,4 +34,4 @@ position = Vector2( 1216, 512 )
 position = Vector2( 512, 704 )
 
 [node name="RoomEntrance" type="Position2D" parent="."]
-position = Vector2( 832, 704 )
+position = Vector2( 512, 704 )
