@@ -24,6 +24,7 @@ onready var player: Node2D = get_node("Objects/ModulePlayer")
 # var a = 2
 # var b = "text"
 
+#Shoutouts to https://github.com/MateuSai, their work helped a lot here
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +40,7 @@ func _spawn_rooms() -> void:
 		
 		#If this is the first room in the level
 		if i == 0:
-			#Generate a spawn room
+			#Generate a spawn room instance
 			room = SPAWN_ROOMS[randi() % SPAWN_ROOMS.size()].instance()
 			player.position = room.get_node("SpawnPos").position
 		else:
@@ -58,22 +59,28 @@ func _spawn_rooms() -> void:
 			#Identify previous room's tilemap, door, and 	
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: Node2D = previous_room.get_node("Door")
+			#We divide by 4 due to using 16x16 cells with 64x64 transformations. If we can unjank the tiles we can unjank this.
 			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) / 4
-			var room_tilemap: TileMap = room.get_node("TileMap")
 			var corridor_height: int = randi() % 5 + 5
-			print ("Corridor height: ", corridor_height)
+			#Dynamically slap down corridor tiles above the door of the last room
 			for y in corridor_height:
-				print("Editing Tile: ", exit_tile_pos + Vector2(4, -y-1))
+				#We add 1 because otherwise the 'corridor' would intersect the edge of the room.
 				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(4, -y-1), LEFT_WALL_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(3, -y-1), FLOOR_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(2, -y-1), FLOOR_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(1, -y-1), FLOOR_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos + Vector2(0, -y-1), RIGHT_WALL_TILE_INDEX)
+			#refresh the map afterwards	
 			previous_room_tilemap.update_dirty_quadrants()
+			var room_tilemap: TileMap = room.get_node("TileMap")
+			#get_used_rect is great because it looks at what space HAS been used already
 			var lengthofroom = Vector2.UP * room_tilemap.get_used_rect().size.y * TILE_SIZE
 			var lengthofcorridor = Vector2.UP * (corridor_height) * TILE_SIZE
-			var widthofroomtoetrance = Vector2.LEFT * room.get_node("RoomEntrance").position.x
-			room.position = previous_room_door.global_position + lengthofroom + lengthofcorridor + widthofroomtoetrance
+			#Due to some odd tile math involving cells and transformations we DO NOT multiply this by TILE SIZE.
+			var roomwidthtoetrance = Vector2.LEFT * room.get_node("RoomEntrance").position.x
+			#Coords For New Room = Old Room's Door + Width From Wall To Entrance for X and Cooridor + New Room Length for Y
+			room.position = previous_room_door.global_position + lengthofroom + lengthofcorridor + roomwidthtoetrance
+		#Finally, add the room instance as a child node
 		add_child(room)
 		previous_room = room
 
