@@ -62,8 +62,8 @@ func updatePortrait(focus: String, state: String):
 	
 
 func toggleLeft():
-	left_main.layer = 1
-	right_main.layer = -1
+	left_main.layer = 16
+	right_main.layer = 14
 	
 	left_toggle.visible = true
 	right_toggle.visible = false
@@ -74,8 +74,8 @@ func toggleLeft():
 	is_scrolling = true
 	
 func toggleRight():
-	left_main.layer = -1
-	right_main.layer = 1
+	left_main.layer = 14
+	right_main.layer = 16
 	
 	left_toggle.visible = false
 	right_toggle.visible = true
