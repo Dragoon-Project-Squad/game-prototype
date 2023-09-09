@@ -93,4 +93,4 @@ position = Vector2( 1640, 968 )
 rotation = -2.35619
 
 [node name="EntryDoor" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, 1632 )
+position = Vector2( -160, 1600 )

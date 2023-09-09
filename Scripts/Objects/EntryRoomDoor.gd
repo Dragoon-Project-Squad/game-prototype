@@ -1,12 +1,8 @@
-extends StaticBody2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+extends Node2D
 
 signal entry_door_opened
-
+var isNearDoor = false
+onready var doorTiles: TileMap = $"DoorSprite"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,10 +10,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("Interact"):
-		emit_signal("entry_door_opened")
-		#TODO: (AUDIO) Play Door sounds here
-		queue_free()
+	if isNearDoor:
+		if Input.is_action_just_pressed("Interact"):
+			emit_signal("entry_door_opened")
+			#TODO: (AUDIO) Play Door sounds here
+			get_node("DoorArea/DoorCollision").queue_free()
+			#Set Door Sprite to the open door, hardcoded
+			doorTiles.set_cell(0, 0, 1)
+			#Enable this if the door isn't refreshing 
+			#doorTiles.update_dirty_quadrants()
 		#else:
-			#This is the part where we play the funny door open slam sound
+			#The door won't do anything.
 	
+func _on_DoorArea_body_entered(_body):
+	isNearDoor = true
+
+
+func _on_DoorArea_body_exited(_body):
+	isNearDoor = false

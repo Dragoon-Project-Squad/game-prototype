@@ -1,14 +1,10 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-signal door_opened
+#0 for Closed, 1 for Open
+signal door_used(oldval, newval)
 var isNearDoor = false
-onready var doorTiles: TileMap = get_node("DoorSprite")
-onready var doorCollision: TileMap = get_node("DoorCollision")
+var isOpen = false
+onready var doorTiles: TileMap = $"DoorSprite"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,10 +14,18 @@ func _ready():
 func _process(delta):
 	if isNearDoor:
 		if Input.is_action_just_pressed("Interact"):
-			emit_signal("door_opened")
-			#TODO: (AUDIO) Play Door sounds here
-			get_node("DoorArea/DoorCollision").queue_free()
-			doorTiles.set_cell(0, 0, 1)
+			if (!isOpen):
+				emit_signal("door_used", 0, 1)
+				isOpen = true
+				#TODO: (AUDIO) Play Door Open sounds here
+				#Set Door Sprite to the open door, hardcoded
+				doorTiles.set_cell(0, 0, 1)
+			else:
+				emit_signal("door_used", 1, 0)
+				isOpen = false
+				#TODO: (AUDIO) Play Door Closed sounds here
+				#Set Door Sprite to the closed door, hardcoded
+				doorTiles.set_cell(0, 0, 0)
 			#Enable this if the door isn't refreshing 
 			#doorTiles.update_dirty_quadrants()
 		#else:
