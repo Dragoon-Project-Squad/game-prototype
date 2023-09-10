@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Menu/wall.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Menus/MovingBackground.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Menu/MovingBackground.gd" type="Script" id=2]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource( 2 )
+camera_velocity = Vector2( 0, 100 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 0, 632 )
+motion_mirroring = Vector2( 632, 632 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer"]
 position = Vector2( 750, 370 )

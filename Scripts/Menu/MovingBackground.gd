@@ -1,6 +1,7 @@
 extends ParallaxBackground
 
-export var camera_velocity: Vector2 = Vector2(0,100)
+# https://www.asmaloney.com/2021/02/code/vertical-scrolling-parallax-backgrounds-in-godot/
+export var camera_velocity: Vector2 = Vector2(0,45) # X changes angle, Y changes velocity | If won't loop, modify ParallaxLayer in scene
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
