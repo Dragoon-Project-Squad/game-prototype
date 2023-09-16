@@ -30,6 +30,8 @@ camera = NodePath("PlayerKinematic/Camera")
 lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
+damageHighlightColor = Color( 1, 0, 0, 0.470588 )
+damageHighlightTimer = NodePath("DamageHighlightTimer")
 
 [node name="PlayerKinematic" type="KinematicBody2D" parent="."]
 collision_mask = 186
@@ -145,3 +147,5 @@ margin_right = 304.0
 margin_bottom = 306.0
 rect_scale = Vector2( 0.5, 0.5 )
 player = NodePath("../../PlayerKinematic")
+
+[node name="DamageHighlightTimer" type="Timer" parent="."]

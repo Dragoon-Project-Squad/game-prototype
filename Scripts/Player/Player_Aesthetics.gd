@@ -44,3 +44,10 @@ func spriteFlip(signX: int):
 		return
 	
 	charSprite.scale.x = signX * charSpriteStartScale.x
+
+# added by Acxelion
+# Changes the color of the child sprite and returns the original color
+func changeColor(color: Color) -> Color:
+	var oldColor = charSprite.modulate
+	charSprite.modulate = color
+	return oldColor

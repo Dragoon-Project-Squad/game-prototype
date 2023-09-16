@@ -11,6 +11,15 @@ export (NodePath) onready var minimap = get_node(minimap)
 var blockPlayerActions = false
 var isMinimapShowing = false
 
+export (int) onready var health = 10000 # integer to track hp, maybe change to bits for optimization later on
+export (int) onready var damageHighlightLength = 2 #ms, how many ticks the highlight lasts
+export (Color) onready var damageHighlightColor # decides what color the damage highlight is
+export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
+
+func _ready():
+	# sets up timer for damage highlight
+	damageHighlightTimer.connect("timeout", self, "_endHighlight") # connect _endHighlight() to the timer's "timeout" signal
+
 func _process(delta):
 	# test code
 	
@@ -21,6 +30,9 @@ func _process(delta):
 		movement()
 		shooting()
 		tab()
+	
+	if Input.is_action_pressed("Shoot"):
+		gotHurt(1)
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -70,3 +82,20 @@ func shooting():
 			camera.addShake(weapon.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
 			movement.addImpulse(weapon.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
 			lights.triggerMuzzleFlash(min(weapon.BULLET_CD_PERIOD / 2, weapon.BULLET_MUZZLE_FLASH_DUR))
+			
+# Called when damaged
+func gotHurt(damage: int):
+	# updates player's health value
+	health -= damage
+	
+	# highlights the player
+	print(aesthetics.changeColor(damageHighlightColor), "|", damageHighlightColor) # changes highlight
+	
+	# starts timer for when to stop highlight
+	damageHighlightTimer.start(damageHighlightLength / 10000) # starts timer w/ length, start() uses seconds as unit
+	
+# Changes the sprite's highlight back to neutral
+# Called by DamageHighlightTimer's "timeout" signal
+func _endHighlight():
+	aesthetics.changeColor(Color("ffffff")) # changes highlight
+	damageHighlightTimer.stop() # stops timer, tbh to be safe
