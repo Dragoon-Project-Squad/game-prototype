@@ -37,7 +37,7 @@ func _process(delta):
 		movement()
 		shooting()
 		tab()
-    interact()
+		interact()
 
 	#if Input.is_action_pressed("Shoot"):
 	#	gotHurt(1)
@@ -91,9 +91,9 @@ func shooting():
 		var isBulletShot = weapon.attemptShootBullet()
 		
 		if isBulletShot:
-			camera.addShake(weapon.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
-			movement.addImpulse(weapon.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
-			lights.triggerMuzzleFlash(min(weapon.BULLET_CD_PERIOD / 2, weapon.BULLET_MUZZLE_FLASH_DUR))
+			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
+			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
+			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
 			
 # Called when damaged
 func gotHurt(damage: int):
