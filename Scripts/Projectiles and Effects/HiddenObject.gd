@@ -55,4 +55,3 @@ func getVisibilityVertices() -> PoolVector2Array:
 		return PoolVector2Array([Vector2.ZERO])
 	
 	return visibilityVertices
-

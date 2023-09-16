@@ -43,7 +43,6 @@ const LightViewCheckAreaLayer: int = 64
 
 func lightUpHiddenBodiesInViewCheck():
 	var space_state = get_world_2d().direct_space_state
-	
 	for i in range(hiddenObjectsInViewCheck.size()):
 		var currentHiddenObject: HiddenObject = hiddenObjectsInViewCheck[i]
 		var isInLineOfSight = isPointsWithinViewCheckInLineOfSight(space_state, currentHiddenObject)
