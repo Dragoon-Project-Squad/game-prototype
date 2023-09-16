@@ -31,8 +31,8 @@ func _process(delta):
 		shooting()
 		tab()
 	
-	if Input.is_action_pressed("Shoot"):
-		gotHurt(1)
+	#if Input.is_action_pressed("Shoot"):
+	#	gotHurt(1)
 
 #Inputs
 func getDirectionalInput() -> Vector2:
