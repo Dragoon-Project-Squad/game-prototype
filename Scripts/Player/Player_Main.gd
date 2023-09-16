@@ -89,7 +89,7 @@ func gotHurt(damage: int):
 	health -= damage
 	
 	# highlights the player
-	print(aesthetics.changeColor(damageHighlightColor), "|", damageHighlightColor) # changes highlight
+	aesthetics.changeColor(damageHighlightColor) # changes highlight
 	
 	# starts timer for when to stop highlight
 	damageHighlightTimer.start(damageHighlightLength / 10000) # starts timer w/ length, start() uses seconds as unit
