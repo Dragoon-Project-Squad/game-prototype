@@ -29,18 +29,24 @@ func _process(delta):
 			#doorTiles.update_dirty_quadrants()
 		#else:
 			#The door won't do anything.
-	if canExit && Input.is_action_just_pressed("Interact") && isOpen:
+	if (canExit && Input.is_action_just_pressed("Interact") && isOpen):
 		#Run level clear stuff
+		isOpen = false
+		doorTiles.set_cell(0, 0, 0)
 		emit_signal("leaving_level")
 		
 func _on_DoorAreaBottom_body_entered(_body):
+	print("Door can be opened and closed")
 	isNearDoor = true
 
 func _on_DoorAreaBottom_body_exited(_body):
+	print("Door cannot be opened and closed")
 	isNearDoor = false
 	
 func _on_DoorAreaTop_body_entered(_body):
+	print("Level can be exited")
 	canExit = true
 
 func _on_DoorAreaTop_body_exited(_body):
+	print("Level canNOT be exited")
 	canExit = false

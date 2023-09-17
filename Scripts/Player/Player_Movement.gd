@@ -13,7 +13,7 @@ func basicMovement(direction: Vector2):
 	var isInputMove = (direction != Vector2(0,0))
 	
 	if isInputMove:
-		velocity = velocity.move_toward(direction * MAX_MOVE_SPEED, MOVE_ACCEL * get_process_delta_time())
+		velocity = velocity.move_toward(2 * (direction * MAX_MOVE_SPEED), MOVE_ACCEL * get_process_delta_time())
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, MOVE_FRICT * get_process_delta_time())
 
