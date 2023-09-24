@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Enemy/prowler-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemy/V2/Prowler/EnemyProwlerMain.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemy/V2/EnemyProwler.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Enemy/Movement/Chase.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Enemy/V2/Prowler/EnemyProwlerController.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerBiteCreator.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Enemy/Attacks/Prowler/ProwlerBite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerPounce.gd" type="Script" id=7]
@@ -32,7 +31,7 @@ tracks/0/keys = {
 "values": [ 0, 4, 5, 5, 8 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Controller/Actions/Bite")
+tracks/1/path = NodePath("../../Actions/Bite")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -94,7 +93,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Controller/Special Actions/Pounce")
+tracks/1/path = NodePath("../../Special Actions/Pounce")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -152,7 +151,7 @@ tracks/0/keys = {
 "values": [ 0, 4, 5, 5, 5, 5 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Controller/Special Actions/Pounce")
+tracks/1/path = NodePath("../../Special Actions/Pounce")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -191,7 +190,16 @@ tracks/0/keys = {
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 2 )
-hidden_sprites = NodePath("Sprites/HiddenSprites")
+aggro = NodePath("VisionRange/AggroRange")
+deaggro = NodePath("VisionRange/DeaggroRange")
+enemy_body = NodePath(".")
+telegraph = NodePath("Sprites/TelegraphSprites/Telegraph")
+main = NodePath("Sprites/HiddenSprites/Main")
+animation_player = NodePath("AnimationPlayer")
+move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase") ]
+action_options = [ NodePath("Actions/Bite") ]
+special_options = [ NodePath("Special Actions/Pounce") ]
+hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
@@ -203,52 +211,40 @@ scale = Vector2( 1.09375, 0.734375 )
 color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( -32, -32, -0.562683, -32, 32, -32, 35.6571, -3.40426, 32, 32, -32, 32, -34.7429, -2.04256 )
 
-[node name="Controller" type="Node2D" parent="."]
-script = ExtResource( 4 )
-aggro = NodePath("../VisionRange/AggroRange")
-deaggro = NodePath("../VisionRange/DeaggroRange")
-enemy_body = NodePath("..")
-telegraph = NodePath("../Sprites/TelegraphSprites/Telegraph")
-main = NodePath("../Sprites/HiddenSprites/Main")
-animation_player = NodePath("AnimationPlayer")
-move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase") ]
-action_options = [ NodePath("Actions/Bite") ]
-special_options = [ NodePath("Special Actions/Pounce") ]
+[node name="Movement" type="Node2D" parent="."]
 
-[node name="Movement" type="Node2D" parent="Controller"]
-
-[node name="Roam" type="Node2D" parent="Controller/Movement"]
+[node name="Roam" type="Node2D" parent="Movement"]
 script = ExtResource( 8 )
 enemy_control = NodePath("../..")
 
-[node name="Chase" type="Node2D" parent="Controller/Movement"]
+[node name="Chase" type="Node2D" parent="Movement"]
 script = ExtResource( 3 )
 enemy_control = NodePath("../..")
 
-[node name="Actions" type="Node2D" parent="Controller"]
+[node name="Actions" type="Node2D" parent="."]
 
-[node name="Bite" type="Node2D" parent="Controller/Actions"]
+[node name="Bite" type="Node2D" parent="Actions"]
 script = ExtResource( 5 )
 bite = ExtResource( 6 )
 attack_origin = NodePath("../../AttackOrigin")
 enemy_control = NodePath("../..")
 
-[node name="Special Actions" type="Node2D" parent="Controller"]
+[node name="Special Actions" type="Node2D" parent="."]
 
-[node name="Pounce" type="Node2D" parent="Controller/Special Actions"]
+[node name="Pounce" type="Node2D" parent="Special Actions"]
 script = ExtResource( 7 )
 enemy_control = NodePath("../..")
 
-[node name="Hitbox" type="Area2D" parent="Controller/Special Actions/Pounce"]
+[node name="Hitbox" type="Area2D" parent="Special Actions/Pounce"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Special Actions/Pounce/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Special Actions/Pounce/Hitbox"]
 position = Vector2( 0, 8 )
 shape = SubResource( 8 )
 
-[node name="AttackOrigin" type="Node2D" parent="Controller"]
+[node name="AttackOrigin" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Controller"]
-root_node = NodePath("../../Sprites/HiddenSprites")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites/HiddenSprites")
 anims/Bite = SubResource( 7 )
 anims/Idle = SubResource( 4 )
 anims/PounceAttack = SubResource( 9 )
@@ -283,4 +279,4 @@ texture = ExtResource( 1 )
 hframes = 9
 frame = 1
 
-[connection signal="body_entered" from="Controller/Special Actions/Pounce/Hitbox" to="Controller/Special Actions/Pounce" method="_on_Hitbox_body_entered"]
+[connection signal="body_entered" from="Special Actions/Pounce/Hitbox" to="Special Actions/Pounce" method="_on_Hitbox_body_entered"]
