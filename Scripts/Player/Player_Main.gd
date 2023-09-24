@@ -19,7 +19,7 @@ signal door_stuck
 var interact_list = []
 
 export (int) onready var health = 10000 # integer to track hp, maybe change to bits for optimization later on
-export (int) onready var damageHighlightLength = 2 #ms, how many ticks the highlight lasts
+export (int) onready var damageHighlightLength #centiseconds, how many ticks the highlight lasts
 export (Color) onready var damageHighlightColor # decides what color the damage highlight is
 export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
 
@@ -38,9 +38,9 @@ func _process(delta):
 		shooting()
 		tab()
 		interact()
-
-	#if Input.is_action_pressed("Shoot"):
-	#	gotHurt(1)
+		
+	#if(Input.is_action_just_released("Shoot")):
+	#	GotHurt(1)
 
 #Inputs
 func getDirectionalInput() -> Vector2:
@@ -96,7 +96,7 @@ func shooting():
 			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
 			
 # Called when damaged
-func gotHurt(damage: int):
+func GotHurt(damage: int):
 	# updates player's health value
 	health -= damage
 	
@@ -104,7 +104,7 @@ func gotHurt(damage: int):
 	aesthetics.changeColor(damageHighlightColor) # changes highlight
 	
 	# starts timer for when to stop highlight
-	damageHighlightTimer.start(damageHighlightLength / 10000) # starts timer w/ length, start() uses seconds as unit
+	damageHighlightTimer.start(damageHighlightLength / 100.0) # starts timer w/ length, start() uses seconds as unit
 	
 # Changes the sprite's highlight back to neutral
 # Called by DamageHighlightTimer's "timeout" signal
