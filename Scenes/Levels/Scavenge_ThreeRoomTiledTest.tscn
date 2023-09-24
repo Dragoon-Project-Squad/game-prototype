@@ -51,7 +51,7 @@ position = Vector2( 840, -904 )
 
 [node name="Position2D" type="Position2D" parent="Node"]
 
-[node name="Level Start" parent="." instance=ExtResource( 10 )]
+[node name="EntryDoor" parent="." instance=ExtResource( 10 )]
 position = Vector2( 448, -64 )
 
 [node name="Door1" parent="." instance=ExtResource( 11 )]
@@ -60,11 +60,11 @@ position = Vector2( 448, -576 )
 [node name="Door2" parent="Door1" instance=ExtResource( 11 )]
 position = Vector2( 0, -640 )
 
-[node name="EndDoor" parent="." instance=ExtResource( 1 )]
+[node name="ExitDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 448, -1664 )
 
 [connection signal="key_acquired" from="Objects/Key" to="Objects/ModulePlayer" method="_on_Key_key_acquired"]
 [connection signal="body_entered" from="Objects/Lever" to="Objects/Lever" method="_on_Lever_body_entered"]
 [connection signal="body_exited" from="Objects/Lever" to="Objects/Lever" method="_on_Lever_body_exited"]
 [connection signal="lever_set" from="Objects/Lever" to="." method="_on_Lever_lever_set"]
-[connection signal="leaving_level" from="EndDoor" to="." method="_on_End_Door_leaving_level"]
+[connection signal="leaving_level" from="ExitDoor" to="." method="_on_End_Door_leaving_level"]

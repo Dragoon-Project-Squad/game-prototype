@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name DragoonGameDoor
 #0 for Closed, 1 for Open
 signal door_used(oldval, newval)
 var isNearDoor = false
@@ -14,15 +14,15 @@ func _ready():
 func _process(delta):
 	if isNearDoor:
 		if Input.is_action_just_pressed("Interact"):
-			if (!isOpen):
+			if (!self.isOpen):
 				emit_signal("door_used", 0, 1)
-				isOpen = true
+				self.isOpen = true
 				#TODO: (AUDIO) Play Door Open sounds here
 				#Set Door Sprite to the open door, hardcoded
 				doorTiles.set_cell(0, 0, 1)
 			else:
 				emit_signal("door_used", 1, 0)
-				isOpen = false
+				self.isOpen = false
 				#TODO: (AUDIO) Play Door Closed sounds here
 				#Set Door Sprite to the closed door, hardcoded
 				doorTiles.set_cell(0, 0, 0)
@@ -32,8 +32,10 @@ func _process(delta):
 			#The door won't do anything.
 	
 func _on_DoorArea_body_entered(_body):
-	isNearDoor = true
+	if _body.is_in_group("Player"):
+		self.isNearDoor = true
 
 
 func _on_DoorArea_body_exited(_body):
-	isNearDoor = false
+	if _body.is_in_group("Player"):
+		self.isNearDoor = false

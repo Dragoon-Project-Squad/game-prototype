@@ -51,7 +51,7 @@ position = Vector2( 835, -158 )
 position = Vector2( 866, 47 )
 
 [node name="Enemy" parent="Objects" groups=["enemy"] instance=ExtResource( 5 )]
-position = Vector2( -611, 791 )
+position = Vector2( -648, 826 )
 
 [node name="Key" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( -505, 542 )

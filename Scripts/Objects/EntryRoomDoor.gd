@@ -1,8 +1,6 @@
-extends Node2D
+extends DragoonGameDoor
 
 signal entry_door_opened
-var isNearDoor = false
-onready var doorTiles: TileMap = $"DoorSprite"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,8 +21,8 @@ func _process(delta):
 			#The door won't do anything.
 	
 func _on_DoorArea_body_entered(_body):
-	isNearDoor = true
+	._on_DoorArea_body_entered(_body)
 
 
 func _on_DoorArea_body_exited(_body):
-	isNearDoor = false
+	._on_DoorArea_body_exited(_body)
