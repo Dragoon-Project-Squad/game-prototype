@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Menu/titleTemp.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Menu/StartScreen.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Menu/label_continue.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Menus/MovingBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Menu/label_new_game.png" type="Texture" id=5]
@@ -11,7 +10,6 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="Background" parent="." instance=ExtResource( 4 )]
-camera_velocity = Vector2( 45, 45 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -86,6 +84,3 @@ icon = ExtResource( 6 )
 [node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
 
 [node name="FpsLabel" parent="." instance=ExtResource( 7 )]
-
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/MenuBtns/PlayBtn" to="." method="_on_PlayBtn_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/MenuBtns/OptionsBtn" to="." method="_on_OptionsBtn_pressed"]
