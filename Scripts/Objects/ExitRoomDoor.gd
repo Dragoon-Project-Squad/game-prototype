@@ -7,7 +7,7 @@ var canExit = false
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if self.isNearDoor:
 		if Input.is_action_just_pressed("Interact"):
 			if (isOpen):

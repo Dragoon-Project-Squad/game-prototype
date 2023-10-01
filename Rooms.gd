@@ -16,7 +16,7 @@ const RIGHT_WALL_TILE_INDEX: int = 0
 const LEFT_WALL_TILE_INDEX: int = 0
 
 
-export(int) var num_levels: int = 3
+export(int) var num_rooms: int = 5
 
 onready var player: Node2D = get_node("Objects/ModulePlayer")
 
@@ -35,7 +35,7 @@ func _spawn_rooms() -> void:
 	var previous_room: Node2D
 	var special_room_spawned: bool = false
 	
-	for i in num_levels:
+	for i in num_rooms:
 		var room: Node2D
 		
 		#If this is the first room in the level
@@ -45,12 +45,12 @@ func _spawn_rooms() -> void:
 			player.position = room.get_node("SpawnPos").position
 		else:
 			#If this is the last room in the level
-			if i == num_levels - 1:
+			if i == num_rooms - 1:
 				#Generate an end room
 				room = END_ROOMS[randi() % END_ROOMS.size()].instance()
 			else:
 				#Potentially add a special room, but only 1
-				if (randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned):
+				if (randi() % 3 == 0 and not special_room_spawned) or (i == num_rooms - 2 and not special_room_spawned):
 					room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instance()
 					special_room_spawned = true
 				else:

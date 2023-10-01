@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if isNearDoor:
 		if Input.is_action_just_pressed("Interact"):
 			if (!self.isOpen):

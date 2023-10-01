@@ -8,7 +8,7 @@ signal leaving_level
 var isOpen = false
 var isNearExit = false
 
-func _process(delta):
+func _process(_delta):
 	if isNearExit:
 		if Input.is_action_just_pressed("Interact"):
 			if isOpen:
@@ -16,12 +16,12 @@ func _process(delta):
 			else:
 				emit_signal("key_checked")
 
-func _on_Exit_body_entered(body: Node) -> void:
+func _on_Exit_body_entered(_body: Node) -> void:
 	print("You entered the door's area. The door is: ")
 	print(isOpen)
 	isNearExit = true
 
-func _on_KeyLockedExit_body_exited(body):
+func _on_KeyLockedExit_body_exited(_body):
 	print("You exited the door's area. The door is: ")
 	print(isOpen)
 	isNearExit = false
