@@ -30,7 +30,7 @@ func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
 		#print("player hit")
 		create_pool()
-		body.get_parent().GotHurt(1)
+		body.take_damage(1)
 		
 func onBodyExitedHitbox(body):
 	

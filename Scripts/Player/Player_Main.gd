@@ -26,6 +26,9 @@ export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTim
 func _ready():
 	# sets up timer for damage highlight
 	damageHighlightTimer.connect("timeout", self, "_endHighlight") # connect _endHighlight() to the timer's "timeout" signal
+	
+	# connects signal to function
+	movement.connect("ReceivedDamage", self, "GotHurt") #required b/c colliders are getting child of main, Movement
 
 func _process(delta):
 	# test code

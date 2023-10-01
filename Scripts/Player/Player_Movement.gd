@@ -61,3 +61,10 @@ func dodgeRoll(direction: Vector2):
 
 func dodgeRollMovement():
 	velocity = move_and_slide(velocity)
+	
+# Receiving damage call
+signal ReceivedDamage(amount)
+
+#required to get around get_parent() call
+func take_damage(amount: int):
+	emit_signal("ReceivedDamage", amount)

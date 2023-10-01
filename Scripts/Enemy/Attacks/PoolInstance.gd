@@ -36,7 +36,7 @@ func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
 		#print("player hit")
 		
-		body.get_parent().GotHurt(1) #get_parent() is a bad call, should be changed to something else
+		body.take_damage(1) #get_parent() is a bad call, should be changed to something else
 		damageOverTime_Timer.start(damageDelay / 100.0) # starts timer
 		playerBody = body # required as a reference to the player outside of this function
 		
