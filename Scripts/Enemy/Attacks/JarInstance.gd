@@ -5,6 +5,7 @@ export (NodePath) onready var hitbox = get_node(hitbox)
 
 export (PackedScene) var pool: PackedScene
 
+export (int) var damage
 var projectile_speed = 350
 var target_pos = null
 
@@ -30,7 +31,7 @@ func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
 		#print("player hit")
 		create_pool()
-		body.take_damage(1)
+		body.take_damage(damage)
 		
 func onBodyExitedHitbox(body):
 	

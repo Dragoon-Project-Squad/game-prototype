@@ -15,3 +15,6 @@ func updateTransparency():
 	
 	hidden_sprites.modulate.a += changeInAlpha
 	hidden_sprites.modulate.a = clamp(hidden_sprites.modulate.a, 0.0, 1.0)
+
+func onHitByBullet():
+	return

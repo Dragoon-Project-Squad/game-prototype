@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 hitbox = NodePath("Area2D")
 damageOverTime_Timer = NodePath("DamageOverTime_Timer")
 damageDelay = 100
+damage = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

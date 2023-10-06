@@ -4,6 +4,7 @@ export (NodePath) onready var hitbox = get_node(hitbox)
 
 export (NodePath) onready var damageOverTime_Timer = get_node(damageOverTime_Timer) # added for damage over time function
 export (int) onready var damageDelay #centisecond, how many ticks between incurring damage in pool | must be longer than the highlight interval
+export (int) onready var damage # how much damage each tick
 
 var growth_rate = 2
 var duration = 5
@@ -36,13 +37,13 @@ func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
 		#print("player hit")
 		
-		body.take_damage(1) #get_parent() is a bad call, should be changed to something else
+		body.take_damage(damage) #get_parent() is a bad call, should be changed to something else
 		damageOverTime_Timer.start(damageDelay / 100.0) # starts timer
 		playerBody = body # required as a reference to the player outside of this function
 		
 func _WhileInPool():
 	#print("damage tick went off")
-	playerBody.get_parent().GotHurt(1) #get_parent() is a bad call, should be changed to something else
+	playerBody.take_damage(damage)
 
 func onBodyExitedHitbox(body):
 	if body.is_in_group("Player"):

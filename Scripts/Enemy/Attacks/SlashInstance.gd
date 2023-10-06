@@ -1,5 +1,6 @@
 extends Area2D
 
+export (int) var damage
 var duration = 1
 var knockback = 8
 
@@ -17,3 +18,6 @@ func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
 		print("player hit")
 		body.addImpulse(Vector2(body.global_position.x - get_parent().global_position.x, body.global_position.y - get_parent().global_position.y) * knockback)
+		
+		body.take_damage(damage) # calls and sends signal to player, triggers highlight and changes HP value
+		
