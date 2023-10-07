@@ -8,6 +8,8 @@ export (PackedScene) var pool: PackedScene
 var projectile_speed = 350
 var target_pos = null
 
+export (int) var damage: int = 1
+
 func _ready() -> void:
 	animation_player.play("spin")
 	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
@@ -29,3 +31,4 @@ func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
 		print("player hit")
 		create_pool()
+		body.take_damage(damage)

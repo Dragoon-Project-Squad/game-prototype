@@ -3,6 +3,8 @@ class_name Bullet
 
 export (NodePath) onready var hitbox = get_node(hitbox)
 
+var damage: int # received from script when dynamically made
+
 func _ready():
 	setupHitboxSignals()
 
@@ -25,7 +27,7 @@ func setupHitboxSignals():
 
 func onBodyEnteredHitbox(body):
 	if body.has_method("onHitByBullet"):
-		body.onHitByBullet(self)
+		body.onHitByBullet(self, damage)
 	
 	activateParticles()
 	

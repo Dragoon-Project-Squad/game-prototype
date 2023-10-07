@@ -54,6 +54,7 @@ func shootBullet():
 	for i in range(weaponResource.BULLET_NUM_PER_SHOT):
 		var bulletInstance = weaponResource.bulletScene.instance()
 		
+		bulletInstance.damage = weaponResource.BULLET_DAMAGE # pass value to spawned scene
 		bulletInstance.velocity = getSpreadDirection(i) * weaponResource.BULLET_INITIAL_SPEED
 		
 		bulletSpawnNode.add_child(bulletInstance)
