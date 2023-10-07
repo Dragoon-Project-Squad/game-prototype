@@ -1,4 +1,4 @@
-extends Node2D
+extends HiddenObject
 class_name EnemyBase
 
 #states

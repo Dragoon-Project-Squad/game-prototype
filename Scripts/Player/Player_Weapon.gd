@@ -54,8 +54,6 @@ func shootBullet():
 	for i in range(weaponResource.BULLET_NUM_PER_SHOT):
 		var bulletInstance = weaponResource.bulletScene.instance()
 		
-		# defines attributes bullet instance scene needs to know from weaponResource
-		bulletInstance.damage = weaponResource.BULLET_DAMAGE # added by Acxelion
 		bulletInstance.velocity = getSpreadDirection(i) * weaponResource.BULLET_INITIAL_SPEED
 		
 		bulletSpawnNode.add_child(bulletInstance)

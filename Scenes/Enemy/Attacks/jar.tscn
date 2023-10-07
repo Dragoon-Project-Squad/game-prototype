@@ -43,7 +43,7 @@ script = ExtResource( 2 )
 animation_player = NodePath("AnimationPlayer")
 hitbox = NodePath("Area2D")
 pool = ExtResource( 3 )
-damage = 1
+damage = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

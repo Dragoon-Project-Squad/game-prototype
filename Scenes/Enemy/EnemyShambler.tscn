@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scripts/Enemy/V2/Shambler/EnemyShamblerController.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemy/V2/EnemyShambler.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemy/shambler-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Enemy/Movement/Chase.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNW.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Enemy/V2/Shambler/EnemyShamblerMain.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashSE.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNE.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Enemy/Movement/Roam.gd" type="Script" id=8]
@@ -30,7 +29,7 @@ tracks/0/keys = {
 "values": [ 0, 3, 4, 5, 6, 7, 7, 7 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Controller/Actions/Slash")
+tracks/1/path = NodePath("../../Actions/Slash")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -106,7 +105,15 @@ tracks/0/keys = {
 [node name="Shambler" type="KinematicBody2D" groups=["minimap_objects"]]
 collision_layer = 2
 collision_mask = 13
-script = ExtResource( 5 )
+script = ExtResource( 1 )
+aggro = NodePath("VisionRange/AggroRange")
+deaggro = NodePath("VisionRange/DeaggroRange")
+enemy_body = NodePath(".")
+telegraph = NodePath("Sprites/TelegraphSprites/Telegraph")
+main = NodePath("Sprites/HiddenSprites/Main")
+animation_player = NodePath("AnimationPlayer")
+move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase") ]
+action_options = [ NodePath("Actions/Slash") ]
 hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -116,30 +123,19 @@ shape = SubResource( 1 )
 color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="Controller" type="Node2D" parent="."]
-script = ExtResource( 1 )
-aggro = NodePath("../VisionRange/AggroRange")
-deaggro = NodePath("../VisionRange/DeaggroRange")
-enemy_body = NodePath("..")
-telegraph = NodePath("../Sprites/TelegraphSprites/Telegraph")
-main = NodePath("../Sprites/HiddenSprites/Main")
-animation_player = NodePath("AnimationPlayer")
-move_options = [ NodePath("Movement/Roam"), NodePath("Movement/Chase") ]
-action_options = [ NodePath("Actions/Slash") ]
+[node name="Movement" type="Node2D" parent="."]
 
-[node name="Movement" type="Node2D" parent="Controller"]
-
-[node name="Roam" type="Node2D" parent="Controller/Movement"]
+[node name="Roam" type="Node2D" parent="Movement"]
 script = ExtResource( 8 )
 enemy_control = NodePath("../..")
 
-[node name="Chase" type="Node2D" parent="Controller/Movement"]
+[node name="Chase" type="Node2D" parent="Movement"]
 script = ExtResource( 3 )
 enemy_control = NodePath("../..")
 
-[node name="Actions" type="Node2D" parent="Controller"]
+[node name="Actions" type="Node2D" parent="."]
 
-[node name="Slash" type="Node2D" parent="Controller/Actions"]
+[node name="Slash" type="Node2D" parent="Actions"]
 script = ExtResource( 10 )
 slashNW = ExtResource( 4 )
 slashNE = ExtResource( 7 )
@@ -148,10 +144,10 @@ slashSE = ExtResource( 6 )
 attack_origin = NodePath("../../AttackOrigin")
 enemy_control = NodePath("../..")
 
-[node name="AttackOrigin" type="Node2D" parent="Controller"]
+[node name="AttackOrigin" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Controller"]
-root_node = NodePath("../../Sprites/HiddenSprites")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites/HiddenSprites")
 anims/Attack = SubResource( 6 )
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 3 )

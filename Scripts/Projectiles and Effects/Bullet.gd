@@ -12,7 +12,6 @@ func _process(delta):
 
 #Movement
 var velocity: Vector2
-var damage: int
 
 func movement():
 	position += velocity * get_process_delta_time()
@@ -26,7 +25,7 @@ func setupHitboxSignals():
 
 func onBodyEnteredHitbox(body):
 	if body.has_method("onHitByBullet"):
-		body.onHitByBullet(damage) # should have a parameter type int
+		body.onHitByBullet(self)
 	
 	activateParticles()
 	

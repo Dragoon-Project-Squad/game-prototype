@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Projectiles and Effects/Bullet.gd"
 }, {
-"base": "Node2D",
+"base": "HiddenObject",
 "class": "EnemyBase",
 "language": "GDScript",
 "path": "res://Scripts/Enemy/V2/EnemyBase.gd"

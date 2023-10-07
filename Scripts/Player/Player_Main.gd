@@ -18,9 +18,10 @@ signal door_stuck
 
 var interact_list = []
 
-export (int) onready var health = 10000 # integer to track hp, maybe change to bits for optimization later on
-export (int) onready var damageHighlightLength #centiseconds, how many ticks the highlight lasts
-export (Color) onready var damageHighlightColor # decides what color the damage highlight is
+export (int) var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
+
+export (int) var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
+export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
 export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
 
 func _ready():
@@ -101,7 +102,7 @@ func GotHurt(damage: int):
 	health -= damage
 	
 	# highlights the player
-	aesthetics.changeColor(damageHighlightColor) # changes highlight
+	aesthetics.changeColor(damageHighlightColor) # changes highlight/modulate value
 	
 	# starts timer for when to stop highlight
 	damageHighlightTimer.start(damageHighlightLength / 100.0) # starts timer w/ length, start() uses seconds as unit
@@ -109,7 +110,7 @@ func GotHurt(damage: int):
 # Changes the sprite's highlight back to neutral
 # Called by DamageHighlightTimer's "timeout" signal
 func _endHighlight():
-	aesthetics.changeColor(Color("ffffff")) # changes highlight
+	aesthetics.changeColor(Color("ffffff")) # changes highlight/modulate to default
 	damageHighlightTimer.stop() # stops timer, tbh to be safe
 
 func addToInteractList(node: Node):

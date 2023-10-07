@@ -5,14 +5,14 @@ export (NodePath) onready var hitbox = get_node(hitbox)
 
 export (PackedScene) var pool: PackedScene
 
-export (int) var damage
 var projectile_speed = 350
 var target_pos = null
+
+export (int) var damage: int = 1
 
 func _ready() -> void:
 	animation_player.play("spin")
 	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
-	hitbox.connect("body exited", self, "onBodyExitedHitBox")
 
 func _process(delta: float) -> void:
 	if target_pos:
@@ -29,10 +29,6 @@ func create_pool():
 
 func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
-		#print("player hit")
+		print("player hit")
 		create_pool()
 		body.take_damage(damage)
-		
-func onBodyExitedHitbox(body):
-	
-	return

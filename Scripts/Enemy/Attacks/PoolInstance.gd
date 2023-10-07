@@ -2,15 +2,15 @@ extends Node2D
 
 export (NodePath) onready var hitbox = get_node(hitbox)
 
-export (NodePath) onready var damageOverTime_Timer = get_node(damageOverTime_Timer) # added for damage over time function
-export (int) onready var damageDelay #centisecond, how many ticks between incurring damage in pool | must be longer than the highlight interval
-export (int) onready var damage # how much damage each tick
-
 var growth_rate = 2
 var duration = 5
 var is_spreading = true
 
-var playerBody = null # temporary variable to store player body
+export (NodePath) onready var damageOverTime_Timer = get_node(damageOverTime_Timer) # added for damage over time function
+export (int) onready var damageDelay #centisecond, how many ticks between incurring damage in pool | must be longer than the highlight interval
+export (int) onready var damage # how much damage each tick
+
+var playerBody = null
 
 func _ready() -> void:
 	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
@@ -31,13 +31,13 @@ func _process(delta: float) -> void:
 			scale += Vector2(delta * growth_rate * 2, delta * growth_rate)
 		else:
 			is_spreading = false
-			
+
 
 func onBodyEnteredHitbox(body):
 	if body.is_in_group("Player"):
-		#print("player hit")
+		print("player hit")
 		
-		body.take_damage(damage) #get_parent() is a bad call, should be changed to something else
+		body.take_damage(damage) # takes damage on first contact
 		damageOverTime_Timer.start(damageDelay / 100.0) # starts timer
 		playerBody = body # required as a reference to the player outside of this function
 		
@@ -49,3 +49,5 @@ func onBodyExitedHitbox(body):
 	if body.is_in_group("Player"):
 		#print("player exited")
 		damageOverTime_Timer.stop() # stops the timer
+		
+		

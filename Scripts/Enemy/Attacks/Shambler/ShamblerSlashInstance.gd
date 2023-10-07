@@ -2,9 +2,10 @@ extends Area2D
 
 var duration = 0.375
 var knockback = 8
-export (int) var damage
 
 export (NodePath) onready var animation_player = get_node(animation_player)
+
+export (int) var damage: int = 1
 
 func _ready() -> void:
 	animation_player.play("Start")
