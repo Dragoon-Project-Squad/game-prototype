@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Projectiles and Effects/Bullet.gd"
 }, {
+"base": "Node2D",
+"class": "DragoonGameDoor",
+"language": "GDScript",
+"path": "res://Door.gd"
+}, {
 "base": "HiddenObject",
 "class": "EnemyBase",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"DragoonGameDoor": "",
 "EnemyBase": "",
 "EnemyMoveBehaviour": "",
 "GenericLevelScript": "",
