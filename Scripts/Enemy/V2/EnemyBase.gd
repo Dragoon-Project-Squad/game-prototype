@@ -1,4 +1,4 @@
-extends Node2D
+extends HiddenObject
 class_name EnemyBase
 
 #states
@@ -6,6 +6,9 @@ enum{
 	ROAM, CHASE, HALT
 }
 var current_state = ROAM
+
+#stats
+export (int) var health: int = 10000
 
 #movement
 var speed = 200;
@@ -40,7 +43,15 @@ export (Array, NodePath) onready var move_options
 export (Array, NodePath) onready var action_options
 var next_attack = null
 
+#damage highlight
+var damageHighlightTimer: Timer = null
+export (int) var damageHighlightLength: int = 20 # centiseconds, how long highlight lasts
+export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+
 func _ready():
+	# sets up timer for damage highlight
+	setupHighlightTimers()
+	
 	selectNextAction()
 	animation_player.connect("animation_finished", self, "animationFinished")
 	animation_player.play("Idle")
@@ -119,3 +130,38 @@ func startAttack(position, attack_name):
 	attack_player_pos = position
 	action_ready = false
 	animation_player.play(attack_name)
+	
+#code triggered when hit by an attack
+func setupHighlightTimers(): # made into helper func if _ready() is overriden
+	# create a new timer
+	damageHighlightTimer = Timer.new()
+	
+	# sets its length
+	damageHighlightTimer.wait_time = (damageHighlightLength / 100.0) # measured in centiseconds
+	
+	# adds to scene's tree
+	add_child(damageHighlightTimer) 
+	
+	# connects timer's signal to function
+	damageHighlightTimer.connect("timeout", self, "_onDamagedTimerEnd")
+
+func _highlightSelf(): # made into helper func if onHitByBullet() is overriden
+	# changes highlight
+	modulate = damageHighlightColor
+	
+	# starts timer
+	damageHighlightTimer.start()
+
+func onHitByBullet(bullet: Bullet, damage: int):
+	# updates health value
+	health -= damage
+	
+	# highlights self to indicate was damaged
+	_highlightSelf()
+	
+func _onDamagedTimerEnd():
+	# resets color to default
+	modulate = Color("ffffff")
+	
+	# stops timer 
+	damageHighlightTimer.stop()

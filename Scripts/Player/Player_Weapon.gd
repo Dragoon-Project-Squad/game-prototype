@@ -3,6 +3,8 @@ extends Node2D
 export (NodePath) onready var bulletSpawnNode = get_node(bulletSpawnNode)
 
 export (NodePath) onready var weaponSprite = get_node(weaponSprite)
+export (NodePath) onready var animationPlayer = get_node(animationPlayer)
+
 onready var weaponSpriteStartScale: Vector2 = weaponSprite.scale
 
 func _ready():
@@ -51,9 +53,13 @@ func attemptShootBullet() -> bool:
 	return true
 
 func shootBullet():
+	animationPlayer.stop()
+	animationPlayer.play("Shoot")
+	
 	for i in range(weaponResource.BULLET_NUM_PER_SHOT):
 		var bulletInstance = weaponResource.bulletScene.instance()
 		
+		bulletInstance.damage = weaponResource.BULLET_DAMAGE # pass value to spawned scene
 		bulletInstance.velocity = getSpreadDirection(i) * weaponResource.BULLET_INITIAL_SPEED
 		
 		bulletSpawnNode.add_child(bulletInstance)
