@@ -1,0 +1,42 @@
+{
+  "10001": {
+    "Name": "Pistol",
+    "Type": "Weapon",
+    "EquipmentSlot": "SecWeapon",
+    "Description": "Basic sidearm.",
+    "Attack": 2,
+    "Healing": null,
+    "Stackable": false,
+    "StackLimit": null
+  },
+  "10002": {
+    "Name": "Medkit",
+    "Type": "Consumable",
+    "EquipmentSlot": null,
+    "Description": "Heals you right up",
+    "Attack": null,
+    "Healing": 2,
+    "Stackable": true,
+    "StackLimit": 4
+  },
+  "10003": {
+    "Name": "Rifle",
+    "Type": "Weapon",
+    "EquipmentSlot": "PrimWeapon1",
+    "Description": "Shoots bullets.",
+    "Attack": 4,
+    "Healing": null,
+    "Stackable": false,
+    "StackLimit": null
+  },
+  "10004": {
+    "Name": "Rifle Ammo",
+    "Type": "Ammo",
+    "EquipmentSlot": null,
+    "Description": "Boolets.",
+    "Attack": null,
+    "Healing": null,
+    "Stackable": true,
+    "StackLimit": 40
+  }
+}

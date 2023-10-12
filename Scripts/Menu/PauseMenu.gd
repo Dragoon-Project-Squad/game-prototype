@@ -1,5 +1,6 @@
 extends Control
 
+onready var restart_btn = $CenterContainer/VBoxContainer/RestartBtn
 onready var options_menu = $OptionsMenu
 
 var is_paused = false setget set_is_paused
@@ -23,3 +24,13 @@ func _on_OptionsBtn_pressed():
 
 func _on_QuitBtn_pressed():
 	get_tree().quit()
+
+
+func _on_RestartBtn_pressed():
+	get_tree().change_scene("res://Scenes/Test Files/Test.tscn")
+	self.is_paused = false
+
+
+func _on_EndBtn_pressed():
+	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
+	self.is_paused = false
