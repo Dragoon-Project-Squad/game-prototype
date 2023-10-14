@@ -46,7 +46,7 @@ position = Vector2( 538, -194 )
 
 [node name="WeaponPickup" parent="World" instance=ExtResource( 4 )]
 position = Vector2( 788, 122 )
-weaponID = "Pistol"
+weaponID = "Shotgun"
 
 [node name="ModulePlayer" parent="World" instance=ExtResource( 2 )]
 position = Vector2( -68, -140 )
