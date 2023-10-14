@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scene Objects/WeaponPickup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/WeaponTypes/AK47.tres" type="Resource" id=5]
 [ext_resource path="res://Scenes/Enemy/EnemyDragoon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Enemy/EnemyPomudachi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=8]
@@ -47,7 +46,7 @@ position = Vector2( 538, -194 )
 
 [node name="WeaponPickup" parent="World" instance=ExtResource( 4 )]
 position = Vector2( 788, 122 )
-weaponResource = ExtResource( 5 )
+weaponID = "Pistol"
 
 [node name="ModulePlayer" parent="World" instance=ExtResource( 2 )]
 position = Vector2( -68, -140 )

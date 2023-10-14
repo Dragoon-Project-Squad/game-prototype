@@ -1,15 +1,14 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player/Player_Aesthetics.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player/Player_Lights.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Player/Player_Camera.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Player/Weapons/Pistol.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Materials and Textures/Lights.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/Player_Weapon.gd" type="Script" id=9]
-[ext_resource path="res://Resources/WeaponTypes/Pistol.tres" type="Resource" id=10]
 [ext_resource path="res://Scripts/Player/Player_Main.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Minimap.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Player/selen-player-no-arms.png" type="Texture" id=13]
@@ -23,54 +22,13 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="CircleShape2D" id=3]
 radius = 256.0
 
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Origin/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Shoot"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Origin/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 4, 5, 0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-
 [node name="ModulePlayer" type="Node2D" groups=["Player"]]
 script = ExtResource( 11 )
 movement = NodePath("PlayerKinematic")
 aesthetics = NodePath("PlayerKinematic/Aesthetics")
 camera = NodePath("PlayerKinematic/Camera")
 lights = NodePath("PlayerKinematic/Lights")
-weapon = NodePath("PlayerKinematic/Weapon")
+weapon = NodePath("PlayerKinematic/EquippedWeapon")
 minimap = NodePath("PlayerUI/Minimap")
 damageHighlightColor = Color( 1, 0, 0, 0.470588 )
 damageHighlightTimer = NodePath("DamageHighlightTimer")
@@ -133,8 +91,8 @@ collision_mask = 38
 polygon = PoolVector2Array( 0, 0, 256, 128, 256, -128 )
 
 [node name="MuzzleFlash" type="Light2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
-position = Vector2( 30, 0 )
-scale = Vector2( 0.1, 0.6 )
+position = Vector2( 48, 0 )
+scale = Vector2( 0.0527344, 0.269531 )
 texture = ExtResource( 6 )
 offset = Vector2( 256, 0 )
 range_z_max = 9
@@ -174,27 +132,10 @@ light_mask = 2
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
-[node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+[node name="EquippedWeapon" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 9 )
-bulletSpawnNode = NodePath("SpawnNode")
-weaponSprite = NodePath("Origin")
-animationPlayer = NodePath("AnimationPlayer")
-startingWeaponResource = ExtResource( 10 )
 
-[node name="Origin" type="Node2D" parent="PlayerKinematic/Weapon"]
-
-[node name="Sprite" type="Sprite" parent="PlayerKinematic/Weapon/Origin"]
-light_mask = 2
-position = Vector2( 32, -4 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 5 )
-hframes = 6
-
-[node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerKinematic/Weapon"]
-anims/RESET = SubResource( 4 )
-anims/Shoot = SubResource( 5 )
+[node name="Pistol" parent="PlayerKinematic/EquippedWeapon" instance=ExtResource( 5 )]
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 

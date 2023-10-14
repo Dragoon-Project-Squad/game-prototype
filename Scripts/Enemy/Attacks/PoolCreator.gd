@@ -12,7 +12,6 @@ var cooldown = 3
 
 func createAttack():
 	var attackInstance = pool.instance()
-	attackInstance.connect("tree_exited", self, "attackEnded")
 	attackInstance.global_position = global_position  + Vector2(0, 20)
 	attack_origin.add_child(attackInstance)
 	enemy_control.current_attack_instance = attackInstance
