@@ -18,7 +18,25 @@ signal door_stuck
 
 var interact_list = []
 
+export (int) var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
+
+export (int) var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
+export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
+
+func _ready():
+	# sets up timer for damage highlight
+	damageHighlightTimer.connect("timeout", self, "_endHighlight") # connect _endHighlight() to the timer's "timeout" signal
+	
+	# connects signal to function
+	movement.connect("ReceivedDamage", self, "GotHurt") #required b/c colliders are getting child of main, Movement
+
 func _process(delta):
+	# test code
+	
+	if Input.is_action_just_pressed("ChangeDisplay"):
+		OS.window_fullscreen = not OS.window_fullscreen
+	
 	if(!blockPlayerActions):
 		movement()
 		shooting()
@@ -66,17 +84,35 @@ func movement():
 	else:
 		movement.basicMovement(direction)
 		aesthetics.moveBounce(direction != Vector2(0,0))
-		aesthetics.spriteFlip(sign(direction.x))
+		aesthetics.spriteFlip(sign(((get_global_mouse_position() - movement.global_position).normalized()).x))
 
 #Shooting
 func shooting():
-	if Input.is_action_pressed("Shoot") or weapon.isBulletBuffered:
-		var isBulletShot = weapon.attemptShootBullet()
-		
-		if isBulletShot:
-			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
-			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
-			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
+	if weapon.equipped:
+		if Input.is_action_pressed("Shoot") or weapon.equipped.isBulletBuffered:
+			var isBulletShot = weapon.equipped.attemptShootBullet()
+			
+			if isBulletShot:
+				camera.addShake(weapon.equipped.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
+				movement.addImpulse(weapon.equipped.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.equipped.shootDirection, weapon.equipped.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
+				lights.triggerMuzzleFlash(min(weapon.equipped.weaponResource.BULLET_CD_PERIOD / 2, weapon.equipped.weaponResource.BULLET_MUZZLE_FLASH_DUR))
+			
+# Called when damaged
+func GotHurt(damage: int):
+	# updates player's health value
+	health -= damage
+	
+	# highlights the player
+	aesthetics.changeColor(damageHighlightColor) # changes highlight/modulate value
+	
+	# starts timer for when to stop highlight
+	damageHighlightTimer.start(damageHighlightLength / 100.0) # starts timer w/ length, start() uses seconds as unit
+	
+# Changes the sprite's highlight back to neutral
+# Called by DamageHighlightTimer's "timeout" signal
+func _endHighlight():
+	aesthetics.changeColor(Color("ffffff")) # changes highlight/modulate to default
+	damageHighlightTimer.stop() # stops timer, tbh to be safe
 
 func addToInteractList(node: Node):
 	interact_list.append(node)

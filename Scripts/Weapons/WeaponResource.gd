@@ -11,6 +11,7 @@ export (float) var BULLET_MUZZLE_FLASH_DUR: float = 0.2
 export (float) var BULLET_SPREAD_ANGLE: float = 0.0
 export (float, 0.0, 1.0) var BULLET_SPREAD_RANDOMNESS: float = 0.0
 export (int) var BULLET_NUM_PER_SHOT: int = 1
+export (int) var BULLET_DAMAGE: int = 1
 
 onready var BULLET_CD_PERIOD: float setget , getBulletCDPeriod
 

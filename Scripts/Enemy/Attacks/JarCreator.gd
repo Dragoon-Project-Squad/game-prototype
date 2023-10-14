@@ -12,7 +12,6 @@ var cooldown = 5
 
 func createAttack():
 	var attackInstance = jar.instance()
-	attackInstance.connect("tree_exited", self, "attackEnded")
 	attackInstance.global_position = global_position
 	attackInstance.target_pos = get_tree().get_nodes_in_group("Player")[0].get_child(0).global_position
 	attack_origin.add_child(attackInstance)
