@@ -90,7 +90,7 @@ func movement():
 func shooting():
 	if weapon.equipped:
 		if Input.is_action_pressed("Shoot") or weapon.equipped.isBulletBuffered:
-			var isBulletShot = weapon.equipped.attemptShootBullet()
+			var isBulletShot = weapon.equipped.attemptAttack()
 			
 			if isBulletShot:
 				camera.addShake(weapon.equipped.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)

@@ -32,7 +32,7 @@ func initWeapon(_weaponResource: WeaponResource):
 	timeLastShootBullet = -_weaponResource.BULLET_CD_PERIOD 
 
 #Returns if bullet shoot successful
-func attemptShootBullet() -> bool:
+func attemptAttack() -> bool:
 	var currentTime = Time.get_ticks_usec() / 1000000.0
 	
 	if currentTime - timeLastShootBullet > weaponResource.BULLET_CD_PERIOD - BULLET_BUFFER_PERIOD:

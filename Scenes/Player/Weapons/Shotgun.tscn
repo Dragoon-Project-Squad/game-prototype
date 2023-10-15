@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Player/Weapons/Shotgun_tier_1_fire_animation-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Weapons/WeaponInstance.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Weapons/WeaponRanged.gd" type="Script" id=2]
 [ext_resource path="res://Resources/WeaponTypes/Shotgun.tres" type="Resource" id=3]
 [ext_resource path="res://Assets/Player/selen-player-no-arms.png" type="Texture" id=4]
+
 
 [sub_resource type="Animation" id=1]
 length = 0.001

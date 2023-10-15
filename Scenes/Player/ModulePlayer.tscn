@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Player/Player_Aesthetics.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player/Player_Lights.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Player/Player_Camera.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Player/Weapons/Pistol.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player/Weapons/Bat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Materials and Textures/Lights.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
@@ -135,7 +135,7 @@ texture = ExtResource( 13 )
 [node name="EquippedWeapon" type="Node2D" parent="PlayerKinematic"]
 script = ExtResource( 9 )
 
-[node name="Pistol" parent="PlayerKinematic/EquippedWeapon" instance=ExtResource( 5 )]
+[node name="Bat" parent="PlayerKinematic/EquippedWeapon" instance=ExtResource( 5 )]
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
