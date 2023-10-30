@@ -1,20 +1,20 @@
 extends Popup
 
 # Video Settings
-onready var display_options = $SettingsTab/Video/MarginContainer/VideoSettings/DisplayOptionBtn
-onready var vsync_btn = $SettingsTab/Video/MarginContainer/VideoSettings/VsyncBtn
-onready var display_fps_btn = $SettingsTab/Video/MarginContainer/VideoSettings/DisplayFpsBtn
-onready var max_fps_val = $SettingsTab/Video/MarginContainer/VideoSettings/HBoxContainer/MaxFpsVal
-onready var max_fps_slider = $SettingsTab/Video/MarginContainer/VideoSettings/HBoxContainer/MaxFpsSlider
+@onready var display_options = $SettingsTab/Video/MarginContainer/VideoSettings/DisplayOptionBtn
+@onready var vsync_btn = $SettingsTab/Video/MarginContainer/VideoSettings/VsyncBtn
+@onready var display_fps_btn = $SettingsTab/Video/MarginContainer/VideoSettings/DisplayFpsBtn
+@onready var max_fps_val = $SettingsTab/Video/MarginContainer/VideoSettings/HBoxContainer/MaxFpsVal
+@onready var max_fps_slider = $SettingsTab/Video/MarginContainer/VideoSettings/HBoxContainer/MaxFpsSlider
 
 # Audio Settings
-onready var master_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/MasterVolSlider
-onready var music_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/MusicVolSlider
-onready var sfx_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/SfxVolSlider
+@onready var master_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/MasterVolSlider
+@onready var music_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/MusicVolSlider
+@onready var sfx_slider = $SettingsTab/Audio/MarginContainer2/AudioSettings/SfxVolSlider
 
 # Gameplay Settings
-onready var mouse_sens_amount = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensAmount
-onready var mouse_slider = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensSlider
+@onready var mouse_sens_amount = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensAmount
+@onready var mouse_slider = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensSlider
 
 
 func _ready():

@@ -1,8 +1,8 @@
 extends Node2D
 
-export (PackedScene) var bite: PackedScene
-export (NodePath) onready var attack_origin = get_node(attack_origin)
-export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export (PackedScene) var bite: PackedScene
+@export (NodePath) onready var attack_origin = get_node(attack_origin)
+@export (NodePath) onready var enemy_control = get_node(enemy_control)
 
 var attack_range = 60
 var animation_name = "Bite"
@@ -15,6 +15,6 @@ func snapshotAttackOrigin():
 	
 
 func createAttack():
-	var attackInstance = bite.instance()
+	var attackInstance = bite.instantiate()
 	attack_origin.add_child(attackInstance)
 	enemy_control.current_attack_instance = attackInstance

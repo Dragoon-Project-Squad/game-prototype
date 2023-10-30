@@ -16,9 +16,9 @@ const RIGHT_WALL_TILE_INDEX: int = 0
 const LEFT_WALL_TILE_INDEX: int = 0
 
 
-export(int) var num_rooms: int = 5
+@export var num_rooms: int = 5
 
-onready var player: Node2D = get_node("Objects/ModulePlayer")
+@onready var player: Node2D = get_node("Objects/ModulePlayer")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -41,26 +41,26 @@ func _spawn_rooms() -> void:
 		#If this is the first room in the level
 		if i == 0:
 			#Generate a spawn room instance
-			room = SPAWN_ROOMS[randi() % SPAWN_ROOMS.size()].instance()
+			room = SPAWN_ROOMS[randi() % SPAWN_ROOMS.size()].instantiate()
 			player.position = room.get_node("SpawnPos").position
 		else:
 			#If this is the last room in the level
 			if i == num_rooms - 1:
 				#Generate an end room
-				room = END_ROOMS[randi() % END_ROOMS.size()].instance()
+				room = END_ROOMS[randi() % END_ROOMS.size()].instantiate()
 			else:
 				#Potentially add a special room, but only 1
 				if (randi() % 3 == 0 and not special_room_spawned) or (i == num_rooms - 2 and not special_room_spawned):
-					room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instance()
+					room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instantiate()
 					special_room_spawned = true
 				else:
 				#Normal room
-					room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instance()
+					room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instantiate()
 			#Identify previous room's tilemap, door, and 	
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: Node2D = previous_room.get_node("Door")
 			#We divide by 4 due to using 16x16 cells with 64x64 transformations. If we can unjank the tiles we can unjank this.
-			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) / 4
+			var exit_tile_pos: Vector2 = previous_room_tilemap.local_to_map(previous_room_door.position) / 4
 			var corridor_height: int = randi() % 5 + 5
 			#Dynamically slap down corridor tiles above the door of the last room
 			for y in corridor_height:

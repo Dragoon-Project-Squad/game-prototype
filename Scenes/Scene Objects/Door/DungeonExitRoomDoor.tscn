@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Objects/ExitRoomDoor.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 161, 32.25 )
+size = Vector2( 161, 32.25 )
 
 [node name="ExitDoor" type="Node2D"]
 script = ExtResource( 2 )
@@ -16,7 +16,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 0, 0, 0 )
+tile_data = PackedInt32Array( 0, 0, 0 )
 
 [node name="DoorArea" type="Area2D" parent="."]
 position = Vector2( 0, 192 )

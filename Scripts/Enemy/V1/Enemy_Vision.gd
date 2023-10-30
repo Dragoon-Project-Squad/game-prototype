@@ -1,6 +1,6 @@
 extends Node2D
 
-export (NodePath) onready var viewCone = get_node(viewCone)
+@export (NodePath) onready var viewCone = get_node(viewCone)
 
 func _ready():
 	setupViewConeSignals()
@@ -10,13 +10,13 @@ func _process(delta):
 		lastSeenLocation = targetWithinViewCone.global_position
 
 #Vision
-onready var lastSeenLocation: Vector2 = global_position
+@onready var lastSeenLocation: Vector2 = global_position
 
 var targetWithinViewCone = null
 
 func setupViewConeSignals():
-	viewCone.connect("body_entered", self, "onBodyEnteredViewCone")
-	viewCone.connect("body_exited", self, "onBodyExitedViewCone")
+	viewCone.connect("body_entered", Callable(self, "onBodyEnteredViewCone"))
+	viewCone.connect("body_exited", Callable(self, "onBodyExitedViewCone"))
 
 func onBodyEnteredViewCone(body):
 	if targetWithinViewCone == null:

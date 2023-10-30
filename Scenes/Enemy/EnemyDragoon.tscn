@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Enemy/V2/EnemyDragoon.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Enemy/EnemyDragoon-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemy/EnemyDragoon-Sheet.png" type="Texture2D" id=2]
 [ext_resource path="res://Scripts/Enemy/Movement/Chase.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemy/Attacks/slash.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Enemy/enemy-eyes.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemy/enemy-eyes.png" type="Texture2D" id=5]
 [ext_resource path="res://Scripts/Enemy/Attacks/SlashCreator.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemy/Movement/Roam.gd" type="Script" id=8]
 
@@ -21,8 +21,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 1.5, 1.6, 1.7, 1.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 1.5, 1.6, 1.7, 1.8 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 3, 2, 1, 0 ]
 }
@@ -33,8 +33,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.6 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "createAttack"
@@ -52,8 +52,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
@@ -67,8 +67,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 1 ]
 }
@@ -79,13 +79,13 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="Enemy" type="KinematicBody2D" groups=["minimap_objects"]]
+[node name="Enemy" type="CharacterBody2D" groups=["minimap_objects"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
@@ -104,7 +104,7 @@ shape = SubResource( 1 )
 
 [node name="VisibilityPolygon" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0 )
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+polygon = PackedVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="Movement" type="Node2D" parent="."]
 
@@ -136,24 +136,24 @@ anims/RESET = SubResource( 3 )
 
 [node name="AggroRange" type="RayCast2D" parent="VisionRange"]
 enabled = true
-cast_to = Vector2( 300, 0 )
+target_position = Vector2( 300, 0 )
 collision_mask = 9
 
 [node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
 enabled = true
-cast_to = Vector2( 500, 0 )
+target_position = Vector2( 500, 0 )
 collision_mask = 9
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="TelegraphSprites" type="Node2D" parent="Sprites"]
 
-[node name="Eyes" type="Sprite" parent="Sprites/TelegraphSprites"]
+[node name="Eyes" type="Sprite2D" parent="Sprites/TelegraphSprites"]
 z_index = 1
 texture = ExtResource( 5 )
 
 [node name="HiddenSprites" type="Node2D" parent="Sprites"]
 
-[node name="Main" type="Sprite" parent="Sprites/HiddenSprites"]
+[node name="Main" type="Sprite2D" parent="Sprites/HiddenSprites"]
 texture = ExtResource( 2 )
 hframes = 5

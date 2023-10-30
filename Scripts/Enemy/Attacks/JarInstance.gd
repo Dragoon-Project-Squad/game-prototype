@@ -1,18 +1,18 @@
 extends Node2D
 
-export (NodePath) onready var animation_player = get_node(animation_player)
-export (NodePath) onready var hitbox = get_node(hitbox)
+@export (NodePath) onready var animation_player = get_node(animation_player)
+@export (NodePath) onready var hitbox = get_node(hitbox)
 
-export (PackedScene) var pool: PackedScene
+@export (PackedScene) var pool: PackedScene
 
 var projectile_speed = 350
 var target_pos = null
 
-export (int) var damage: int = 1
+@export (int) var damage: int = 1
 
 func _ready() -> void:
 	animation_player.play("spin")
-	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
+	hitbox.connect("body_entered", Callable(self, "onBodyEnteredHitbox"))
 
 func _process(delta: float) -> void:
 	if target_pos:

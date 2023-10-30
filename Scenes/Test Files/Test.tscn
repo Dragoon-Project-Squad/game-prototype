@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://icon.png" type="Texture2D" id=1]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scene Objects/WeaponPickup.tscn" type="PackedScene" id=4]
@@ -13,10 +13,10 @@
 [ext_resource path="res://Resources/Cutscene Data/test_scene.tres" type="Resource" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+size = Vector2( 32, 32 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( -32, 32, 32, 32, 32, -32, -32, -32 )
+polygon = PackedVector2Array( -32, 32, 32, 32, 32, -32, -32, -32 )
 
 [node name="Test" type="Node2D"]
 
@@ -30,10 +30,10 @@ layer = 30
 [node name="World" type="Node" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="World"]
-margin_left = -4616.0
-margin_top = -2885.0
-margin_right = 4181.0
-margin_bottom = 2506.0
+offset_left = -4616.0
+offset_top = -2885.0
+offset_right = 4181.0
+offset_bottom = 2506.0
 color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 
 [node name="Enemy" parent="World" instance=ExtResource( 3 )]
@@ -65,7 +65,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -85,7 +85,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall4"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall4"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall4"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -105,7 +105,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall2"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall2"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -125,7 +125,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall3"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall3"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall3"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -145,7 +145,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall6"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall6"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall6"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -165,7 +165,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall7"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall7"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall7"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 
@@ -185,7 +185,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall5"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="World/Wall5"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall5"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 

@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Player/Weapons/ShotTracerBright.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Player/Weapons/ShotTracerBright.png" type="Texture2D" id=1]
 [ext_resource path="res://Scripts/Projectiles and Effects/Bullet.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Scene Objects/BulletHitParticles.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.5, 5 )
+size = Vector2( 23.5, 5 )
 
 [node name="GenericBullet" type="Node2D"]
 script = ExtResource( 2 )
 hitbox = NodePath("Hitbox")
 particlesScene = ExtResource( 3 )
 
-[node name="Icon" type="Sprite" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 modulate = Color( 2, 2, 2, 1 )
 rotation = 1.5708
 texture = ExtResource( 1 )

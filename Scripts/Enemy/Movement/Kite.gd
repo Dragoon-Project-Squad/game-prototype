@@ -1,7 +1,7 @@
 extends Node2D
 
-export (NodePath) onready var enemy_control = get_node(enemy_control)
-export var inner_distance = 150
+@export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export var inner_distance = 150
 
 var kite_direction = null
 var kite_time = 0
@@ -25,4 +25,6 @@ func move():
 			kite_direction = null
 			move_override = false
 		
-	enemy_control.velocity = enemy_control.enemy_body.move_and_slide(enemy_control.velocity)
+	enemy_control.enemy_body.set_velocity(enemy_control.velocity)
+	enemy_control.enemy_body.move_and_slide()
+	enemy_control.velocity = enemy_control.enemy_body.velocity

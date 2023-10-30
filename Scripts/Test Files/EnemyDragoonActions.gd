@@ -1,8 +1,8 @@
 extends Node2D
 
-export (NodePath) onready var main = get_node(main)
-export (NodePath) onready var telegraph = get_node(telegraph)
-export (NodePath) onready var animation_player = get_node(animation_player)
+@export (NodePath) onready var main = get_node(main)
+@export (NodePath) onready var telegraph = get_node(telegraph)
+@export (NodePath) onready var animation_player = get_node(animation_player)
 
 
 
@@ -11,7 +11,7 @@ var action_ready = true
 var player_pos = null
 
 func _ready() -> void:
-	animation_player.connect("animation_finished", self, "animationFinished")
+	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
 	animation_player.play("Idle")
 
 func _process(delta: float) -> void:

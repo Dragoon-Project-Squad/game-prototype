@@ -8,7 +8,7 @@ enum{
 var current_state = ROAM
 
 #stats
-export (int) var health: int = 10000
+@export (int) var health: int = 10000
 
 #movement
 var speed = 200;
@@ -19,18 +19,18 @@ var level_navigation: Navigation2D = null
 var player = null
 
 #vision
-export (NodePath) onready var aggro = get_node(aggro)
-export (NodePath) onready var deaggro = get_node(deaggro)
+@export (NodePath) onready var aggro = get_node(aggro)
+@export (NodePath) onready var deaggro = get_node(deaggro)
 var player_spotted = false
 var last_seen = null
 
 #kinematic body
-export (NodePath) onready var enemy_body = get_node(enemy_body)
+@export (NodePath) onready var enemy_body = get_node(enemy_body)
 
 #visuals
-export (NodePath) onready var telegraph = get_node(telegraph)
-export (NodePath) onready var main = get_node(main)
-export (NodePath) onready var animation_player = get_node(animation_player)
+@export (NodePath) onready var telegraph = get_node(telegraph)
+@export (NodePath) onready var main = get_node(main)
+@export (NodePath) onready var animation_player = get_node(animation_player)
 
 #attack flags
 var current_attack_instance = null
@@ -39,21 +39,21 @@ var attack_player_pos = null
 var action_cooldown = 0
 
 #export arrays
-export (Array, NodePath) onready var move_options
-export (Array, NodePath) onready var action_options
+@export (Array, NodePath) onready var move_options
+@export (Array, NodePath) onready var action_options
 var next_attack = null
 
 #damage highlight
 var damageHighlightTimer: Timer = null
-export (int) var damageHighlightLength: int = 20 # centiseconds, how long highlight lasts
-export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+@export (int) var damageHighlightLength: int = 20 # centiseconds, how long highlight lasts
+@export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
 
 func _ready():
 	# sets up timer for damage highlight
 	setupHighlightTimers()
 	
 	selectNextAction()
-	animation_player.connect("animation_finished", self, "animationFinished")
+	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
 	animation_player.play("Idle")
 	
 	var tree = get_tree()
@@ -143,7 +143,7 @@ func setupHighlightTimers(): # made into helper func if _ready() is overriden
 	add_child(damageHighlightTimer) 
 	
 	# connects timer's signal to function
-	damageHighlightTimer.connect("timeout", self, "_onDamagedTimerEnd")
+	damageHighlightTimer.connect("timeout", Callable(self, "_onDamagedTimerEnd"))
 
 func _highlightSelf(): # made into helper func if onHitByBullet() is overriden
 	# changes highlight

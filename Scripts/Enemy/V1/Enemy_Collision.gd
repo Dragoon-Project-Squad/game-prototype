@@ -1,11 +1,11 @@
 extends HiddenObject
 
-export (NodePath) onready var movement = get_node(movement)
-export (NodePath) onready var aesthetics = get_node(aesthetics)
+@export (NodePath) onready var movement = get_node(movement)
+@export (NodePath) onready var aesthetics = get_node(aesthetics)
 
 #On Hit
-export (int) var ENEMY_MAX_HEALTH := 3
-export (float, 0.01, 1000) var ENEMY_MASS := 1.0
+@export (int) var ENEMY_MAX_HEALTH := 3
+@export (float, 0.01, 1000) var ENEMY_MASS := 1.0
 
 func onHitByBullet(bulletNode: Bullet, damage: int):
 	var knockbackForce = bulletNode.velocity.normalized() * bulletNode.BULLET_KNOCKBACK

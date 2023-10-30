@@ -1,10 +1,10 @@
 extends Node2D
 
-export (NodePath) onready var enemyBody = get_node(enemyBody)
-export (NodePath) onready var vision = get_node(vision)
-export (Array, NodePath) onready var moveBehaviours
+@export (NodePath) onready var enemyBody = get_node(enemyBody)
+@export (NodePath) onready var vision = get_node(vision)
+@export (Array, NodePath) onready var moveBehaviours
 
-export (float) var MOVE_FRICT := 400.0
+@export (float) var MOVE_FRICT := 400.0
 
 func _ready():
 	setupMoveBehaviourArray()
@@ -23,7 +23,9 @@ func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
 	velocity += force
 
 func movement():
-	velocity = enemyBody.move_and_slide(velocity)
+	enemyBody.set_velocity(velocity)
+	enemyBody.move_and_slide()
+	velocity = enemyBody.velocity
 	
 	velocity = behaviourTargetVelocity()
 	vision.rotateViewCone(behaviourViewConeDirection())

@@ -8,8 +8,8 @@ signal key_acquired
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connect("body_entered", self, "body_entered")
-	connect("key_acquired", owner, "key_acquired")
+	connect("body_entered", Callable(self, "body_entered"))
+	connect("key_acquired", Callable(owner, "key_acquired"))
 
 func body_entered(body: Node) -> void:
 	emit_signal("key_acquired")

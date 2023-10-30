@@ -17,7 +17,7 @@ __meta__ = {
 [node name="FloorTileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( -1376272, 1, 65540, -1376266, 1, 131076, -1376265, 1, 65539 )
+tile_data = PackedInt32Array( -1376272, 1, 65540, -1376266, 1, 131076, -1376265, 1, 65539 )
 
 [node name="WallTileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -45,7 +45,7 @@ position = Vector2( -2920, 80 )
 
 [node name="Node" type="Node" parent="."]
 
-[node name="Position2D" type="Position2D" parent="Node"]
+[node name="Marker2D" type="Marker2D" parent="Node"]
 
 [connection signal="leaving_level" from="Objects/ExitDoor" to="." method="_on_ExitDoor_leaving_level"]
 [connection signal="key_acquired" from="Objects/Key" to="Objects/ModulePlayer" method="_on_Key_key_acquired"]

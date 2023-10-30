@@ -1,8 +1,8 @@
 extends Node2D
 
 #Enemy Behaviours
-export (float) var CHASE_MAX_SPEED := 200.0
-export (float) var CHASE_ACCEL := 400.0
+@export (float) var CHASE_MAX_SPEED := 200.0
+@export (float) var CHASE_ACCEL := 400.0
 
 func getTargetVelocity(data: Dictionary) -> Vector2:
 	var direction: Vector2 = getDirection(data)

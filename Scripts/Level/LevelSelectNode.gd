@@ -1,7 +1,7 @@
 extends Node2D
 
-export (NodePath) onready var sprite_node = get_node(sprite_node)
-export (NodePath) onready var sprite_highlight_node = get_node(sprite_highlight_node)
+@export (NodePath) onready var sprite_node = get_node(sprite_node)
+@export (NodePath) onready var sprite_highlight_node = get_node(sprite_highlight_node)
 
 #data to be saved between scenes
 var path_number = -1;

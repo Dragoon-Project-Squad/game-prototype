@@ -4,11 +4,11 @@ signal fps_displayed(value)
 signal mouse_sens_updated(value)
 
 func toggle_fullscreen(value):
-	OS.window_fullscreen = value
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
 
 
 func toggle_sync(value):
-	OS.vsync_enabled = value
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if (value) else DisplayServer.VSYNC_DISABLED)
 
 
 func toggle_fps_display(value):

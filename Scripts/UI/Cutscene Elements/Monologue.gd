@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-export (NodePath) onready var left_sprite = get_node(left_sprite)
-export (NodePath) onready var left_toggle = get_node(left_toggle)
-export (NodePath) onready var left_text = get_node(left_text)
-export (NodePath) onready var left_name = get_node(left_name)
-export (NodePath) onready var left_main = get_node(left_main)
+@export (NodePath) onready var left_sprite = get_node(left_sprite)
+@export (NodePath) onready var left_toggle = get_node(left_toggle)
+@export (NodePath) onready var left_text = get_node(left_text)
+@export (NodePath) onready var left_name = get_node(left_name)
+@export (NodePath) onready var left_main = get_node(left_main)
 
 var current_text = ""
 var current_textbox = null
@@ -24,7 +24,7 @@ func setName(left: String):
 	left_name.text = left
 
 func setPortrait(left: PackedScene):
-	var left_portrait = left.instance()
+	var left_portrait = left.instantiate()
 	
 	left_sprite.add_child(left_portrait)
 	

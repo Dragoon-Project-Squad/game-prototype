@@ -8,7 +8,7 @@
 [ext_resource path="res://Resources/Cutscene Data/test_scene.tres" type="Resource" id=6]
 
 [node name="CutsceneMaster" type="CanvasLayer"]
-pause_mode = 2
+process_mode = 3
 layer = 20
 script = ExtResource( 1 )
 dialogue = ExtResource( 2 )

@@ -1,10 +1,10 @@
-extends Light2D
+extends PointLight2D
 
-export (NodePath) onready var viewCheck = get_node(viewCheck)
-export (NodePath) onready var viewCheckShape = get_node(viewCheckShape)
+@export (NodePath) onready var viewCheck = get_node(viewCheck)
+@export (NodePath) onready var viewCheckShape = get_node(viewCheckShape)
 
 #An array of all physics bodies that the light should ignore when raycasting
-export (Array, NodePath) onready var nonHiddenObjectBodiesToIgnore
+@export (Array, NodePath) onready var nonHiddenObjectBodiesToIgnore
 
 var hiddenObjectsInViewCheck: Array = []
 
@@ -25,8 +25,8 @@ func setupNonHiddenObjectBodiesToIgnoreArray():
 	nonHiddenObjectBodiesToIgnore = finalArray
 
 func setupViewCheckSignals():
-	viewCheck.connect("body_entered", self, "onBodyEnteredViewCheck")
-	viewCheck.connect("body_exited", self, "onBodyExitedViewCheck")
+	viewCheck.connect("body_entered", Callable(self, "onBodyEnteredViewCheck"))
+	viewCheck.connect("body_exited", Callable(self, "onBodyExitedViewCheck"))
 
 #Adding Objects found in Area2D
 func onBodyEnteredViewCheck(body: Node):
@@ -58,7 +58,7 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 	exceptionArray.append_array(hiddenObjectsInViewCheck)
 	exceptionArray.append_array(nonHiddenObjectBodiesToIgnore)
 	
-	var visibilityVertices: PoolVector2Array = hiddenObject.visibilityVertices
+	var visibilityVertices: PackedVector2Array = hiddenObject.visibilityVertices
 	
 	var isAllPointsInLineOfSight: bool = true
 	var isAtLeastOnePointInLineOfSightAndWithinViewCheck: bool = false
@@ -82,7 +82,7 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
 	var result: Array = space_state.intersect_point(point, 32, [], LightViewCheckAreaLayer, false, true)
 	
-	if result.empty():
+	if result.is_empty():
 		return false
 	
 	return true

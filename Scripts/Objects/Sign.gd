@@ -1,6 +1,6 @@
 extends Interactable
 
-export var cutsceneResource: Resource
+@export var cutsceneResource: Resource
 
 var cutscene_control
 

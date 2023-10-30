@@ -8,8 +8,8 @@ func _process(delta):
 	updateTransparency()
 
 #For Smooth transition from invisible to visible
-export (float) var TRANSPARENCY_CHANGE_RATE := 10
-export (float) var TRANSPARENCY_ON_LIT := 0.6
+@export (float) var TRANSPARENCY_CHANGE_RATE := 10
+@export (float) var TRANSPARENCY_ON_LIT := 0.6
 
 func updateTransparency():
 	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
@@ -38,20 +38,20 @@ func removeLightSource(node):
 	lightSources.erase(node)
 
 #Custom visibility check offsets
-export (NodePath) var visibilityPolygon2DPath: NodePath
+@export (NodePath) var visibilityPolygon2DPath: NodePath
 var visibilityPolygon2D: Polygon2D = null
-var visibilityVertices: PoolVector2Array setget , getVisibilityVertices
+var visibilityVertices: PackedVector2Array: get = getVisibilityVertices
 
-func getVisibilityVertices() -> PoolVector2Array:
+func getVisibilityVertices() -> PackedVector2Array:
 	if visibilityPolygon2DPath.is_empty():
-		return PoolVector2Array([Vector2.ZERO])
+		return PackedVector2Array([Vector2.ZERO])
 	
 	if visibilityPolygon2D == null:
 		visibilityPolygon2D = get_node(visibilityPolygon2DPath)
 	
 	visibilityVertices = visibilityPolygon2D.polygon
 	
-	if visibilityVertices.empty():
-		return PoolVector2Array([Vector2.ZERO])
+	if visibilityVertices.is_empty():
+		return PackedVector2Array([Vector2.ZERO])
 	
 	return visibilityVertices

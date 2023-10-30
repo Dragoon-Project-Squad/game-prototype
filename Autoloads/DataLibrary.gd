@@ -10,13 +10,13 @@ var combat = [
 	{"area_id": 2, "pool": ["Scavenge_2"]},
 ]	
 
-func getCurrentScavangePool(var i):
+func getCurrentScavangePool(i):
 	for area in scavenge:
 		if area.area_id == i:
 			return area.pool.duplicate()
 	return []
 
-func getCurrentCombatPool(var i):
+func getCurrentCombatPool(i):
 	for area in combat:
 		if area.area_id == i:
 			return area.pool.duplicate()

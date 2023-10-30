@@ -1,8 +1,8 @@
 extends Control
 
-onready var options_menu = $OptionsMenu
+@onready var options_menu = $OptionsMenu
 
-var is_paused = false setget set_is_paused
+var is_paused = false: set = set_is_paused
 
 var cutscene_control
 var cutscene_playing = false

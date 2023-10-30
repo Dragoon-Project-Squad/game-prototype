@@ -3,7 +3,7 @@ extends Area2D
 var duration = 1
 var knockback = 8
 
-export (int) var damage: int = 1
+@export (int) var damage: int = 1
 
 func _ready() -> void:
 	pass # Replace with function body.

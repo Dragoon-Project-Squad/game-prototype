@@ -2,7 +2,7 @@ extends Label
 
 func _ready():
 # warning-ignore:return_value_discarded
-	GlobalSettings.connect("fps_displayed", self, "_on_fps_displayed")
+	GlobalSettings.connect("fps_displayed", Callable(self, "_on_fps_displayed"))
 	
 
 func _process(_delta):

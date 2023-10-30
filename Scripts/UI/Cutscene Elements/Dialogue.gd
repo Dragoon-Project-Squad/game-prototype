@@ -1,16 +1,16 @@
 extends CanvasLayer
 
-export (NodePath) onready var left_sprite = get_node(left_sprite)
-export (NodePath) onready var left_toggle = get_node(left_toggle)
-export (NodePath) onready var left_text = get_node(left_text)
-export (NodePath) onready var left_name = get_node(left_name)
-export (NodePath) onready var left_main = get_node(left_main)
+@export (NodePath) onready var left_sprite = get_node(left_sprite)
+@export (NodePath) onready var left_toggle = get_node(left_toggle)
+@export (NodePath) onready var left_text = get_node(left_text)
+@export (NodePath) onready var left_name = get_node(left_name)
+@export (NodePath) onready var left_main = get_node(left_main)
 
-export (NodePath) onready var right_sprite = get_node(right_sprite)
-export (NodePath) onready var right_toggle = get_node(right_toggle)
-export (NodePath) onready var right_text = get_node(right_text)
-export (NodePath) onready var right_name = get_node(right_name)
-export (NodePath) onready var right_main = get_node(right_main)
+@export (NodePath) onready var right_sprite = get_node(right_sprite)
+@export (NodePath) onready var right_toggle = get_node(right_toggle)
+@export (NodePath) onready var right_text = get_node(right_text)
+@export (NodePath) onready var right_name = get_node(right_name)
+@export (NodePath) onready var right_main = get_node(right_main)
 
 
 var current_text = ""
@@ -32,8 +32,8 @@ func setNames(left: String, right: String):
 	right_name.text = right
 
 func setPortraits(left: PackedScene, right: PackedScene):
-	var left_portrait = left.instance()
-	var right_portrait = right.instance()
+	var left_portrait = left.instantiate()
+	var right_portrait = right.instantiate()
 	
 	left_sprite.add_child(left_portrait)
 	right_sprite.add_child(right_portrait)

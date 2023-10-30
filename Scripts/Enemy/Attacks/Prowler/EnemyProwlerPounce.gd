@@ -1,6 +1,6 @@
 extends Node2D
 
-export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export (NodePath) onready var enemy_control = get_node(enemy_control)
 
 var attack_range = 600
 var telegraph_name = "Telegraph"
@@ -15,13 +15,15 @@ var direction
 var current_pounce_time = 0
 var pounce_time = 0.75
 
-export (int) var damage: int = 1
+@export (int) var damage: int = 1
 
 func _process(delta: float) -> void:
 	if is_attacking:
 		if current_pounce_time >= 0:
 			enemy_control.velocity = direction * 1000
-			enemy_control.velocity = enemy_control.enemy_body.move_and_slide(enemy_control.velocity)
+			enemy_control.enemy_body.set_velocity(enemy_control.velocity)
+			enemy_control.enemy_body.move_and_slide()
+			enemy_control.velocity = enemy_control.enemy_body.velocity
 			current_pounce_time -= delta
 		else:
 			endAttack()

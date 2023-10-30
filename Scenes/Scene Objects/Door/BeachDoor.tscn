@@ -4,10 +4,10 @@
 [ext_resource path="res://Assets/Tilesets/beachdoor.tres" type="TileSet" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 161, 32 )
+size = Vector2( 161, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 160, 32 )
+size = Vector2( 160, 32 )
 
 [node name="NormalDoor" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,7 +20,7 @@ cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 65535, 0, 0 )
+tile_data = PackedInt32Array( 65535, 0, 0 )
 
 [node name="DoorArea" type="Area2D" parent="."]
 

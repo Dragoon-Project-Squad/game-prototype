@@ -1,7 +1,7 @@
 extends HiddenObject
 class_name Interactable
 
-export (NodePath) onready var highlight = get_node(highlight)
+@export (NodePath) onready var highlight = get_node(highlight)
 
 var is_in_range = false
 

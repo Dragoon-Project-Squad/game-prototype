@@ -4,7 +4,7 @@ class_name DragoonGameDoor
 signal door_used(oldval, newval)
 var isNearDoor = false
 var isOpen = false
-onready var doorTiles: TileMap = $"DoorSprite"
+@onready var doorTiles: TileMap = $"DoorSprite"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

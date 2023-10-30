@@ -2,19 +2,19 @@ extends EnemyBase
 
 var max_kite = 300
 
-onready var charSpriteStartPos: Vector2 = main.position
-onready var charSpriteStartScale: Vector2 = main.scale
+@onready var charSpriteStartPos: Vector2 = main.position
+@onready var charSpriteStartScale: Vector2 = main.scale
 var animationTime: float = 0.0
 
 #Move Bounce animation
-export var MB_animationBasePeriod: float = 0.5
-export var MB_animationJumpHeight: float = 10.0
-export var MB_animationRotationAngle: float = 10.0
+@export var MB_animationBasePeriod: float = 0.5
+@export var MB_animationJumpHeight: float = 10.0
+@export var MB_animationRotationAngle: float = 10.0
 
 #minimap
 var minimap_icon = "enemy"
 
-export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
+@export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
 
 #overrrides
 func updateTransparency():
@@ -45,7 +45,7 @@ func moveBounce(isMove: bool):
 		animationTime = max(0,animationTime)
 	
 	var targetPosition = charSpriteStartPos + MB_animationJumpHeight * pow(sin(2 * PI * animationTime / MB_animationPeriod), 2) * Vector2.UP
-	var targetRotation = deg2rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
+	var targetRotation = deg_to_rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
 	
 	main.position = lerp(main.position, targetPosition, 0.4)
 	main.rotation = lerp_angle(main.rotation, targetRotation, 0.4)

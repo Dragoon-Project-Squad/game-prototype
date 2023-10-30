@@ -1,12 +1,12 @@
 extends EnemyBase
 
-export (Array, NodePath) onready var special_options
+@export (Array, NodePath) onready var special_options
 var next_is_special = false
 
 #minimap
 var minimap_icon = "enemy"
 
-export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
+@export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
 
 #overrrides
 func updateTransparency():

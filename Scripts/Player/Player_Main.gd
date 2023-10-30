@@ -1,12 +1,12 @@
 extends Node2D
 
-export (NodePath) onready var movement = get_node(movement)
-export (NodePath) onready var aesthetics = get_node(aesthetics)
-export (NodePath) onready var camera = get_node(camera)
-export (NodePath) onready var lights = get_node(lights)
-export (NodePath) onready var weapon = get_node(weapon)
+@export (NodePath) onready var movement = get_node(movement)
+@export (NodePath) onready var aesthetics = get_node(aesthetics)
+@export (NodePath) onready var camera = get_node(camera)
+@export (NodePath) onready var lights = get_node(lights)
+@export (NodePath) onready var weapon = get_node(weapon)
 
-export (NodePath) onready var minimap = get_node(minimap)
+@export (NodePath) onready var minimap = get_node(minimap)
 
 var blockPlayerActions = false
 var isMinimapShowing = false
@@ -18,24 +18,24 @@ signal door_stuck
 
 var interact_list = []
 
-export (int) var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
+@export (int) var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
 
-export (int) var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
-export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
-export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
+@export (int) var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
+@export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+@export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
 
 func _ready():
 	# sets up timer for damage highlight
-	damageHighlightTimer.connect("timeout", self, "_endHighlight") # connect _endHighlight() to the timer's "timeout" signal
+	damageHighlightTimer.connect("timeout", Callable(self, "_endHighlight")) # connect _endHighlight() to the timer's "timeout" signal
 	
 	# connects signal to function
-	movement.connect("ReceivedDamage", self, "GotHurt") #required b/c colliders are getting child of main, Movement
+	movement.connect("ReceivedDamage", Callable(self, "GotHurt")) #required b/c colliders are getting child of main, Movement
 
 func _process(delta):
 	# test code
 	
 	if Input.is_action_just_pressed("ChangeDisplay"):
-		OS.window_fullscreen = not OS.window_fullscreen
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 	
 	if(!blockPlayerActions):
 		movement()

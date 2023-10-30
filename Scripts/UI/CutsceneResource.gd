@@ -1,3 +1,3 @@
 extends Resource
 
-export var data = ""
+@export var data = ""

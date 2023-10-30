@@ -2,8 +2,8 @@ extends Node2D
 
 const level_node = preload("res://Scenes/Menus/LevelSelectNode.tscn")
 
-export (NodePath) onready var parent_node = get_node(parent_node)
-export (NodePath) onready var camera = get_node(camera)
+@export (NodePath) onready var parent_node = get_node(parent_node)
+@export (NodePath) onready var camera = get_node(camera)
 
 var scene_size = Vector2(1280, 720)
 var node_distance = 200
@@ -48,18 +48,18 @@ func _process(delta):
 					LevelSelectData.combat_pool = DataLibrary.getCurrentCombatPool(LevelSelectData.area_id)
 				LevelSelectData.combat_pool.shuffle()
 				var random_room = LevelSelectData.combat_pool.pop_front()
-				get_tree().change_scene("res://Scenes/Levels/" + random_room + ".tscn")
+				get_tree().change_scene_to_file("res://Scenes/Levels/" + random_room + ".tscn")
 			elif(next_node.content == "shop"):
-				get_tree().change_scene("res://Scenes/Levels/Shop.tscn")
+				get_tree().change_scene_to_file("res://Scenes/Levels/Shop.tscn")
 			elif(next_node.content == "scavenge"):
 				if(LevelSelectData.scavenge_pool.size() < 1):
 					LevelSelectData.scavenge_pool = DataLibrary.getCurrentScavangePool(LevelSelectData.area_id)
 				LevelSelectData.scavenge_pool.shuffle()
 				var random_room = LevelSelectData.scavenge_pool.pop_front()
-				get_tree().change_scene("res://Scenes/Levels/" + random_room + ".tscn")
+				get_tree().change_scene_to_file("res://Scenes/Levels/" + random_room + ".tscn")
 			else:
 				print("could not find next scene")
-				get_tree().change_scene("res://Scenes/Test Files/RandomWorld.tscn")
+				get_tree().change_scene_to_file("res://Scenes/Test Files/RandomWorld.tscn")
 	
 	if Input.is_action_just_pressed("Click") && hovered_node != null && is_changing_scenes == false:
 		if current_node.next_nodes.has(hovered_node):
@@ -84,7 +84,7 @@ func generateNewPath():
 	var special_rooms = LevelSelectData.special_rooms
 	
 	#add start node
-	var start_node = level_node.instance()
+	var start_node = level_node.instantiate()
 	parent_node.add_child(start_node)
 	start_node.is_start = true
 	start_node.col = 0
@@ -94,7 +94,7 @@ func generateNewPath():
 	#generate main path(s)
 	for path in main_paths:
 		for col in cols:
-			var new_node = level_node.instance()
+			var new_node = level_node.instantiate()
 			parent_node.add_child(new_node)
 			new_node.path_number = path
 			new_node.col = col+1
@@ -105,7 +105,7 @@ func generateNewPath():
 			nodes.append(new_node)
 	
 	#add end node
-	var end_node = level_node.instance()
+	var end_node = level_node.instantiate()
 	parent_node.add_child(end_node)
 	end_node.is_end = true
 	end_node.col = cols + 1
@@ -168,8 +168,8 @@ func generateNewPath():
 			else:
 				node.setContent("combat")
 			
-			var posx = (node.col+1) * node_distance + rand_range(-20, 20)
-			var posy = float(node.path_number+1)/(main_paths+1) * scene_size.y + rand_range(-20, 20)
+			var posx = (node.col+1) * node_distance + randf_range(-20, 20)
+			var posy = float(node.path_number+1)/(main_paths+1) * scene_size.y + randf_range(-20, 20)
 			node.position = Vector2(posx,posy)
 			node.saved_pos = node.position
 		
@@ -195,7 +195,7 @@ func connectNodes(source, dest):
 
 func loadPath():
 	for node_data in LevelSelectData.nodes:
-		var new_node = level_node.instance()
+		var new_node = level_node.instantiate()
 		parent_node.add_child(new_node)
 		new_node.path_number = node_data.path
 		new_node.col = node_data.col

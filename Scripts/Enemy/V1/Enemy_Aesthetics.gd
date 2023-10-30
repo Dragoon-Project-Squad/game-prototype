@@ -3,8 +3,8 @@ extends Node2D
 func _process(delta):
 	updateHitFlashMat()
 
-export (NodePath) onready var enemySprite = get_node(enemySprite)
-onready var enemySpriteStartMaterial: Material = enemySprite.material
+@export (NodePath) onready var enemySprite = get_node(enemySprite)
+@onready var enemySpriteStartMaterial: Material = enemySprite.material
 
 var hitFlashDur:= 0.0
 

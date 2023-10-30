@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-export (PackedScene) var dialogue: PackedScene
-export (PackedScene) var monologue: PackedScene
+@export (PackedScene) var dialogue: PackedScene
+@export (PackedScene) var monologue: PackedScene
 
-export var cutsceneResource: Resource
+@export var cutsceneResource: Resource
 
-export (Array, PackedScene) var portraits
+@export (Array, PackedScene) var portraits
 var portrait_dict = {
 	"Selen": 0,
 	"Pomu": 1
@@ -75,13 +75,13 @@ func loadScene():
 	line_counter = 0
 	
 	if current_type == "dialogue":
-		current_scene = dialogue.instance()
+		current_scene = dialogue.instantiate()
 		add_child(current_scene)
 		current_scene.setNames(event_list[event_counter].left_id, event_list[event_counter].right_id)
 		current_scene.setPortraits(portraits[portrait_dict[event_list[event_counter].left_id]], portraits[portrait_dict[event_list[event_counter].right_id]])
 	
 	if current_type == "monologue":
-		current_scene = monologue.instance()
+		current_scene = monologue.instantiate()
 		add_child(current_scene)
 		current_scene.setName(event_list[event_counter].id)
 		current_scene.setPortrait(portraits[portrait_dict[event_list[event_counter].id]])
@@ -92,7 +92,9 @@ func loadEvents(resource):
 	get_tree().paused = true
 	is_active = true
 	cutscene_playing = true
-	var result_json = JSON.parse(resource.data)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(resource.data)
+	var result_json = test_json_conv.get_data()
 	if result_json.error == OK:
 		event_list = result_json.result.data
 		event_size = event_list.size()

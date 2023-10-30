@@ -1,6 +1,6 @@
 extends Node2D
 
-export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export (NodePath) onready var enemy_control = get_node(enemy_control)
 
 func move():
 	if enemy_control.level_navigation:
@@ -28,4 +28,6 @@ func move():
 		else:
 			return
 		
-	enemy_control.velocity = enemy_control.enemy_body.move_and_slide(enemy_control.velocity)
+	enemy_control.enemy_body.set_velocity(enemy_control.velocity)
+	enemy_control.enemy_body.move_and_slide()
+	enemy_control.velocity = enemy_control.enemy_body.velocity
