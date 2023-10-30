@@ -3,10 +3,10 @@
 [ext_resource path="res://Assets/Tilesets/tiles_lab.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Level/GenericLevelScript.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Scene Objects/EntryRoomDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Scene Objects/Key.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Scene Objects/Torch.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Scene Objects/ExitRoomDoor.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn" type="PackedScene" id=14]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -29,13 +29,13 @@ position = Vector2( 640, -3656 )
 position = Vector2( 576, 304 )
 
 [node name="Key" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 16, 2408 )
+position = Vector2( 1392, -3176 )
 
 [node name="EntryDoor" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( 448, -264 )
 
 [node name="Torch" parent="." instance=ExtResource( 9 )]
-position = Vector2( -2920, 80 )
+position = Vector2( -1208, -984 )
 
 [node name="Node" type="Node" parent="."]
 
