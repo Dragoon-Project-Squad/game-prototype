@@ -1,12 +1,12 @@
 extends Node2D
 
-@export (NodePath) onready var movement = get_node(movement)
-@export (NodePath) onready var aesthetics = get_node(aesthetics)
-@export (NodePath) onready var camera = get_node(camera)
-@export (NodePath) onready var lights = get_node(lights)
-@export (NodePath) onready var weapon = get_node(weapon)
+@export var movement : Node
+@export var aesthetics : Node
+@export var camera : Node
+@export var lights : Node
+@export var weapon : Node
 
-@export (NodePath) onready var minimap = get_node(minimap)
+@export var minimap : Node
 
 var blockPlayerActions = false
 var isMinimapShowing = false
@@ -18,11 +18,11 @@ signal door_stuck
 
 var interact_list = []
 
-@export (int) var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
+@export var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
 
-@export (int) var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
-@export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
-@export (NodePath) onready var damageHighlightTimer = get_node(damageHighlightTimer) # ref to timer
+@export var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
+@export var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+@export var damageHighlightTimer: Node # ref to timer
 
 func _ready():
 	# sets up timer for damage highlight
@@ -38,7 +38,7 @@ func _process(delta):
 		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 	
 	if(!blockPlayerActions):
-		movement()
+		pMovement()
 		shooting()
 		tab()
 		interact()
@@ -71,7 +71,7 @@ func interact():
 			item.onInteract()
 
 #Movement
-func movement():
+func pMovement():
 	var direction = getDirectionalInput()
 	
 	#disabled dodgeroll

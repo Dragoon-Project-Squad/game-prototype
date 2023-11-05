@@ -5,8 +5,6 @@ extends CharacterBody2D
 @export var MOVE_ACCEL := 2000.0
 @export var MOVE_FRICT := 2200.0
 
-var velocity: Vector2 = Vector2.ZERO
-
 func basicMovement(direction: Vector2):
 	set_velocity(velocity)
 	move_and_slide()

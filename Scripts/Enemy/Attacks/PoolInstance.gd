@@ -1,14 +1,14 @@
 extends Node2D
 
-@export (NodePath) onready var hitbox = get_node(hitbox)
+@export var hitbox : Node
 
 var growth_rate = 2
 var duration = 5
 var is_spreading = true
 
-@export (NodePath) onready var damageOverTime_Timer = get_node(damageOverTime_Timer) # added for damage over time function
-@export (int) onready var damageDelay #centisecond, how many ticks between incurring damage in pool | must be longer than the highlight interval
-@export (int) onready var damage # how much damage each tick
+@export var damageOverTime_Timer : Node # added for damage over time function
+@export var damageDelay : int #centisecond, how many ticks between incurring damage in pool | must be longer than the highlight interval
+@export var damage : int # how much damage each tick
 
 var playerBody = null
 

@@ -1,0 +1,14 @@
+res://default_env.tres
+res://Scenes/Test Files/Test.tscn
+res://Assets/Materials and Textures/HitFlashMat.tres
+res://Autoloads/GlobalSettings.gd
+res://Scripts/Player/Player_Movement.gd
+res://Scenes/Player/ModulePlayer.tscn
+res://Scripts/Projectiles and Effects/HiddenObject.gd
+res://Scripts/Player/Player_Main.gd
+res://Scripts/Objects/Interactable.gd
+res://Scripts/Enemy/Attacks/PoolInstance.gd
+res://Scripts/Objects/Lever.gd
+res://Scripts/Objects/Sign.gd
+res://Scripts/Enemy/Attacks/Prowler/ProwlerBiteInstance.gd
+res://Scripts/UI/Cutscene Elements/Portrait.gd

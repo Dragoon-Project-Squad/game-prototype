@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1698628846
+::res://::1699143348
 Assetes.png::CompressedTexture2D::3101232272722638476::1694897911::1698628858::1::::<><>::
 default_env.tres::Environment::-1::1698628811::0::1::::<><>::
 Door.gd::GDScript::-1::1698628811::0::1::::DragoonGameDoor<>Node2D<>::
@@ -17,7 +17,7 @@ THIRDPARTY.md::TextFile::-1::1684682977::0::1::::<><>::
 ::res://addons/godot-git-plugin/x11/::1684682977
 ::res://addons/godot-git-plugin/x11/release/::1684682977
 ::res://Assets/::1693751746
-::res://Assets/Enemy/::1693751799
+::res://Assets/Enemy/::1698628848
 enemy-concept.png::CompressedTexture2D::8640496476293672792::1684682977::1698628848::1::::<><>::
 enemy-eyes.png::CompressedTexture2D::1514500656209544703::1684682983::1698628847::1::::<><>::
 EnemyDragoon-Sheet.png::CompressedTexture2D::6000613359966432570::1689275633::1698628848::1::::<><>::
@@ -29,13 +29,13 @@ shambler-Sheet.png::CompressedTexture2D::1198775800520757451::1693751746::169862
 shambler-slashes-Sheet.png::CompressedTexture2D::581078658265984858::1693751746::1698628848::1::::<><>::
 slash.png::CompressedTexture2D::7899225257373197799::1684682977::1698628848::1::::<><>::
 yellowliquid.png::CompressedTexture2D::520634230920901703::1691339908::1698628848::1::::<><>::
-::res://Assets/Fonts/::1693751746
+::res://Assets/Fonts/::1698628847
 Lato-Bold.ttf::FontFile::7736516611607880741::1693751746::1698628847::1::::<><>::
-::res://Assets/Materials and Textures/::1698588956
+::res://Assets/Materials and Textures/::1698628848
 HitFlashMat.tres::ShaderMaterial::-1::1698628812::0::1::::<><>::
 Lights2.png::CompressedTexture2D::2399779292823397410::1684682977::1698628848::1::::<><>::
 Lights.png::CompressedTexture2D::3418845091249303272::1684682977::1698628848::1::::<><>::
-::res://Assets/Menu/::1694897987
+::res://Assets/Menu/::1698628848
 characters.png::CompressedTexture2D::7753181718243137534::1693751746::1698628848::1::::<><>::
 label_continue.png::CompressedTexture2D::7058664529788644785::1693751746::1698628848::1::::<><>::
 label_new_game.png::CompressedTexture2D::4923358887386724320::1693751746::1698628848::1::::<><>::
@@ -45,18 +45,18 @@ title.png::CompressedTexture2D::2172153784412866480::1693751746::1698628848::1::
 titleTemp.png::CompressedTexture2D::2791095143741948064::1693751746::1698628848::1::::<><>::
 version.png::CompressedTexture2D::8898951983818096820::1693751746::1698628848::1::::<><>::
 wall.png::CompressedTexture2D::5525673194891412::1694897911::1698628848::1::::<><>::
-::res://Assets/Other Objects/::1691340009
+::res://Assets/Other Objects/::1698628848
 sign-highlight.png::CompressedTexture2D::2943570923282263737::1691339908::1698628848::1::::<><>::
 sign.png::CompressedTexture2D::2302373670460672660::1691339908::1698628848::1::::<><>::
-::res://Assets/Player/::1696754995
+::res://Assets/Player/::1698628848
 selen-player-no-arms.png::CompressedTexture2D::2871767039939330067::1696754851::1698628848::1::::<><>::
 selen-player.png::CompressedTexture2D::2005119989787854229::1685059662::1698628848::1::::<><>::
-::res://Assets/Player/Weapons/::1696754995
+::res://Assets/Player/Weapons/::1698628848
 melee_tier_1_attack_animation_test-Sheet.png::CompressedTexture2D::2711635160842941181::1696754851::1698628848::1::::<><>::
 pistol_tier_1_fire_animation_test-Sheet.png::CompressedTexture2D::6327576432113339624::1696754851::1698628848::1::::<><>::
 Shotgun_tier_1_fire_animation-Sheet.png::CompressedTexture2D::5631080739814816940::1696754851::1698628848::1::::<><>::
 ShotTracerBright.png::CompressedTexture2D::9027342607256791987::1696754851::1698628848::1::::<><>::
-::res://Assets/Tilesets/::1698593258
+::res://Assets/Tilesets/::1698628850
 Assets7.png::CompressedTexture2D::6259502165496956167::1694213636::1698628848::1::::<><>::
 Autotiles-big.png::CompressedTexture2D::2117407599631617591::1684682977::1698628848::1::::<><>::
 beach tiles.png::CompressedTexture2D::1009497746101392267::1691339904::1698628850::1::::<><>::
@@ -85,20 +85,20 @@ walltile_lab.png::CompressedTexture2D::2807925148159710562::1694889848::16986288
 walltile_lab_deco.png::CompressedTexture2D::775071384210712891::1694889848::1698628847::1::::<><>::
 wip tileset.tres::TileSet::-1::1698628812::0::1::::<><>::res://Assets/Tilesets/dungeon tiles.png
 ::res://Assets/Tilesets/src/::1694213686
-::res://Assets/UI/::1691339908
+::res://Assets/UI/::1698628847
 Days.ttf::FontFile::5521622133894105860::1691339908::1698628847::1::::<><>::
-::res://Assets/UI/Cutscene Elements/::1691340009
+::res://Assets/UI/Cutscene Elements/::1698628847
 namebox.png::CompressedTexture2D::8114473929144778061::1691339908::1698628847::1::::<><>::
 pomu-portraits-test.png::CompressedTexture2D::708871673330756581::1691339908::1698628847::1::::<><>::
 selen-portraits-test.png::CompressedTexture2D::6033480101411604331::1691339908::1698628847::1::::<><>::
 textbox.png::CompressedTexture2D::7554695315493490080::1691339908::1698628847::1::::<><>::
-::res://Assets/UI/HUD/::1684683035
+::res://Assets/UI/HUD/::1698628847
 Minimap-border.png::CompressedTexture2D::826683258487215597::1684682977::1698628847::1::::<><>::
-::res://Assets/UI/HUD/Map Markers/::1684683035
+::res://Assets/UI/HUD/Map Markers/::1698628847
 EnemyMarker.png::CompressedTexture2D::6118044076705374360::1684682977::1698628847::1::::<><>::
 ObjectiveMarker.png::CompressedTexture2D::4342009928789709993::1684682977::1698628847::1::::<><>::
 PlayerMarker.png::CompressedTexture2D::329501391168907354::1684682977::1698628847::1::::<><>::
-::res://Assets/UI/LevelIcons/::1684683035
+::res://Assets/UI/LevelIcons/::1698628847
 boss-icon.png::CompressedTexture2D::6917718021968547003::1684682977::1698628847::1::::<><>::
 combat-icon.png::CompressedTexture2D::6735538852510188356::1684682977::1698628847::1::::<><>::
 cross-icon.png::CompressedTexture2D::1115233112969152422::1684682977::1698628847::1::::<><>::

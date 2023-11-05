@@ -15,8 +15,9 @@ func toggle_fps_display(value):
 	emit_signal("fps_displayed", value)
 
 
+#TODO: Is this the proper way to code this
 func set_max_fps(value):
-	Engine.target_fps = value if value < 500 else 0
+	Engine.max_fps = value if value < 500 else 0
 
 #TODO: Audio buses still need to be added
 func update_master_vol(vol):

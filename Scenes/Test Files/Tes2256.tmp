@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dwbxongbvi3eb"]
 
 [ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Scenes/Enemy/Enemy.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Scene Objects/WeaponPickup.tscn" id="4"]
 [ext_resource type="Resource" path="res://Resources/WeaponTypes/AK47.tres" id="5"]
@@ -26,8 +26,6 @@ layer = 30
 [node name="PauseMenu" parent="Menus" instance=ExtResource("8")]
 layout_mode = 3
 anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="CutsceneMaster" parent="." groups=["CutsceneControl"] instance=ExtResource("9")]
 

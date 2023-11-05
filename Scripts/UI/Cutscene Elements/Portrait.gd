@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (NodePath) onready var animation_player = get_node(animation_player)
+@export var animation_player : Node
 
 func setPortrait(name: String):
 	animation_player.play(name)
