@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/CutsceneResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+data = "{\"data\": [{\"type\": \"dialogue\",\"left_id\": \"Selen\",\"right_id\": \"Pomu\",\"lines\": [{\"focus\": \"right\",\"right_state\": \"1\",\"text\": \"*pomu spends a long time explaining all of the controls*\"},{\"text\": \"Got that, Selen?\",\"options\": [{\"text\": \"Got it\",\"set_line\": 2},{\"text\": \"I think so...\",\"set_line\": 8},{\"text\": \"Could you repeat that?\",\"set_line\": 7}]},{\"focus\": \"left\",\"left_state\": \"2\",\"text\": \"I think I got everything\",},{\"focus\": \"right\",\"right_state\": \"2\",\"text\": \"Are you sure?\",\"options\": [{\"text\": \"Yes\",\"set_line\": 4},{\"text\": \"Could you repeat that?\",\"set_line\": 7}]},{\"focus\": \"left\",\"text\": \"I'm sure, Pomu\",},{\"focus\": \"right\",\"text\": \"Are you REALLY sure?\",\"options\": [{\"text\": \"Could you repeat that?\",\"set_line\": 7},{\"text\": \"Yes\",\"set_line\": 6}]},{\"focus\": \"left\",\"left_state\": \"3\",\"text\": \"I'm outta here\",\"add_counter\": 999,},{\"focus\": \"right\",\"right_state\": \"1\",\"text\": \"Oh! Let me go over everything again\",\"add_counter\": -7,},{\"focus\": \"right\",\"right_state\": \"1\",\"text\": \"Oh! You aren't sure? Let me go over everything again\",\"add_counter\": -8,}]},]}"

@@ -57,17 +57,21 @@ func _ready() -> void:
 	pass
 
 func handleNext():
-	if current_type == "dialogue":
-		current_scene.nextLine(event_list[event_counter].lines[line_counter].focus, event_list[event_counter].lines[line_counter].text)
-		if event_list[event_counter].lines[line_counter].portrait:
-			current_scene.updatePortrait(event_list[event_counter].lines[line_counter].focus, event_list[event_counter].lines[line_counter].portrait)
-		
-	if current_type == "monologue":
-		current_scene.nextLine(event_list[event_counter].lines[line_counter].text)
-		if event_list[event_counter].lines[line_counter].portrait:
-			current_scene.updatePortrait(event_list[event_counter].lines[line_counter].portrait)
+	var line = event_list[event_counter].lines[line_counter]
 	
-	line_counter += 1
+	if current_type == "dialogue":
+		line_counter = current_scene.nextLine(line, line_counter)
+		if "options" in line:
+			current_scene.setNextLine()
+			
+	if current_type == "monologue":
+		current_scene.nextLine(line.text)
+		if "portrait" in line:
+			current_scene.updatePortrait(line.portrait)
+		if "add_counter" in line:
+			line_counter += int(line.add_counter)
+		else:
+			line_counter += 1
 
 func loadScene():
 	current_type = event_list[event_counter].type
@@ -77,8 +81,10 @@ func loadScene():
 	if current_type == "dialogue":
 		current_scene = dialogue.instance()
 		add_child(current_scene)
-		current_scene.setNames(event_list[event_counter].left_id, event_list[event_counter].right_id)
-		current_scene.setPortraits(portraits[portrait_dict[event_list[event_counter].left_id]], portraits[portrait_dict[event_list[event_counter].right_id]])
+		current_scene.setLeftName(event_list[event_counter].left_id)
+		current_scene.setRightName(event_list[event_counter].right_id)
+		current_scene.setLeftPortrait(portraits[portrait_dict[event_list[event_counter].left_id]])
+		current_scene.setRightPortrait(portraits[portrait_dict[event_list[event_counter].right_id]])
 	
 	if current_type == "monologue":
 		current_scene = monologue.instance()

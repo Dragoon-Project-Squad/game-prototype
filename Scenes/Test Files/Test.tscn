@@ -4,12 +4,12 @@
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scene Objects/WeaponPickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Cutscene Data/test_scene_2.tres" type="Resource" id=5]
 [ext_resource path="res://Scenes/Enemy/EnemyDragoon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Enemy/EnemyPomudachi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Menus/CutsceneMaster.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scene Objects/InteractableSign.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Resources/Cutscene Data/test_scene.tres" type="Resource" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -45,7 +45,7 @@ position = Vector2( 409, 366 )
 position = Vector2( 538, -194 )
 
 [node name="WeaponPickup" parent="World" instance=ExtResource( 4 )]
-position = Vector2( 788, 122 )
+position = Vector2( 206, -44 )
 weaponID = "Shotgun"
 
 [node name="ModulePlayer" parent="World" instance=ExtResource( 2 )]
@@ -193,7 +193,7 @@ occluder = SubResource( 2 )
 
 [node name="Sign" parent="World" instance=ExtResource( 10 )]
 position = Vector2( -195, 293 )
-cutsceneResource = ExtResource( 11 )
+cutsceneResource = ExtResource( 5 )
 
 [node name="Sign 2" parent="World" instance=ExtResource( 10 )]
 position = Vector2( -101, 291 )

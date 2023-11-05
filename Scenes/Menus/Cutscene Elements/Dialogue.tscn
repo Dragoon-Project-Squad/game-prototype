@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/UI/Cutscene Elements/Dialogue.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Days.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/UI/Cutscene Elements/textbox.png" type="Texture" id=3]
 [ext_resource path="res://Assets/UI/Cutscene Elements/namebox.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Portraits/SelenPortrait.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/Portraits/PomuPortrait.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Menus/Cutscene Elements/DialogueOption.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 3 )
@@ -46,6 +49,9 @@ right_toggle = NodePath("Right/RightToggle")
 right_text = NodePath("Right/RightToggle/RightDialogue/RightDialogueText")
 right_name = NodePath("Right/RightToggle/RightName/RightNameText")
 right_main = NodePath("Right")
+screen_options = NodePath("Options")
+dia_option = ExtResource( 7 )
+portraits = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Left" type="CanvasLayer" parent="."]
 layer = 15
@@ -154,3 +160,6 @@ margin_left = -320.0
 margin_top = -384.0
 margin_right = -64.0
 margin_bottom = -128.0
+
+[node name="Options" type="CanvasLayer" parent="."]
+layer = 16
