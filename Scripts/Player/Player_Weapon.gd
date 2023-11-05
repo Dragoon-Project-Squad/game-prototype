@@ -1,16 +1,16 @@
 extends Node2D
 
-@export (NodePath) onready var bulletSpawnNode = get_node(bulletSpawnNode)
+@export var bulletSpawnNode : Node
 
-@export (NodePath) onready var weaponSprite = get_node(weaponSprite)
-@export (NodePath) onready var animationPlayer = get_node(animationPlayer)
+@export var weaponSprite : Node
+@export var animationPlayer : Node
 
 @onready var weaponSpriteStartScale: Vector2 = weaponSprite.scale
 
 func _ready():
 	setNewWeapon(startingWeaponResource)
 
-func _process(delta):
+func _process(_delta):
 	pointToMouse()
 
 #Aesthetics

@@ -1,7 +1,7 @@
 extends Node2D
 
-@export (NodePath) onready var exit = get_node("Objects/KeyLockedExit")
-@export (NodePath) onready var exitDoor = get_node("Objects/ExitDoor")
+@export var exit : Node
+@export var exitDoor : Node
 signal key_randomPos
 
 # Called when the node enters the scene tree for the first time.

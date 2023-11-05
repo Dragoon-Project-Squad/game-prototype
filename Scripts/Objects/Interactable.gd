@@ -5,7 +5,7 @@ class_name Interactable
 
 var is_in_range = false
 
-func _process(delta: float) -> void:
+func _process(_delta) -> void:
 	pass
 
 func _ready() -> void:

@@ -1,11 +1,11 @@
 extends Node2D
 
-@export (NodePath) onready var viewCone = get_node(viewCone)
+@export var viewCone : Area2D
 
 func _ready():
 	setupViewConeSignals()
 
-func _process(delta):
+func _process(_delta):
 	if isTargetInLineOfSight():
 		lastSeenLocation = targetWithinViewCone.global_position
 
@@ -15,8 +15,8 @@ func _process(delta):
 var targetWithinViewCone = null
 
 func setupViewConeSignals():
-	viewCone.connect("body_entered", Callable(self, "onBodyEnteredViewCone"))
-	viewCone.connect("body_exited", Callable(self, "onBodyExitedViewCone"))
+	viewCone.body_entered.connect(onBodyEnteredViewCone)
+	viewCone.body_exited.connect(onBodyExitedViewCone)
 
 func onBodyEnteredViewCone(body):
 	if targetWithinViewCone == null:
@@ -30,8 +30,8 @@ func isTargetInLineOfSight():
 		return false
 	
 	var space_state = get_world_2d().direct_space_state
-	
-	var result: Dictionary = space_state.intersect_ray(targetWithinViewCone.global_position, global_position, [], viewCone.collision_mask)
+	var raycast_query = PhysicsRayQueryParameters2D.create(targetWithinViewCone.global_position, global_position, viewCone.collision_mask)
+	var result: Dictionary = space_state.intersect_ray(raycast_query)
 	
 	if result.has("collider"):
 		return true

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (NodePath) onready var player = get_node(player)
+@export var player : Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

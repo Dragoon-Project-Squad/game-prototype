@@ -71,9 +71,16 @@ _data = {
 "Shoot": SubResource("5")
 }
 
-[node name="ModulePlayer" type="Node2D" groups=["Player"]]
+[node name="ModulePlayer" type="Node2D" node_paths=PackedStringArray("movement", "aesthetics", "camera", "lights", "weapon", "minimap", "damageHighlightTimer") groups=["Player"]]
 script = ExtResource("11")
+movement = NodePath("PlayerKinematic")
+aesthetics = NodePath("PlayerKinematic/Aesthetics")
+camera = NodePath("PlayerKinematic/Camera3D")
+lights = NodePath("PlayerKinematic/Lights")
+weapon = NodePath("PlayerKinematic/Weapon")
+minimap = NodePath("PlayerUI/Minimap")
 damageHighlightColor = Color(1, 0, 0, 0.470588)
+damageHighlightTimer = NodePath("DamageHighlightTimer")
 
 [node name="PlayerKinematic" type="CharacterBody2D" parent="." groups=["Player"]]
 z_index = 1
@@ -87,7 +94,7 @@ MOVE_FRICT = 1500.0
 position = Vector2(0, 11)
 shape = SubResource("1")
 
-[node name="Camera3D" type="Node2D" parent="PlayerKinematic"]
+[node name="Camera3D" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("camera")]
 script = ExtResource("4")
 camera = NodePath("Camera2D")
 PERCENT_REMAPPING_CURVE = SubResource("2")
@@ -95,7 +102,7 @@ PERCENT_REMAPPING_CURVE = SubResource("2")
 [node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera3D"]
 zoom = Vector2(0.8, 0.8)
 
-[node name="Lights" type="Node2D" parent="PlayerKinematic"]
+[node name="Lights" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("muzzleFlash", "muzzleFlashCheckShape", "viewZone", "viewCone", "viewConeCheckShape", "muzzleFlashRotate", "viewConeRotate")]
 script = ExtResource("3")
 muzzleFlash = NodePath("MuzzleFlashRotate/MuzzleFlash")
 muzzleFlashCheckShape = NodePath("MuzzleFlashRotate/MuzzleFlashCheck/CollisionShape2D")
@@ -105,7 +112,7 @@ viewConeCheckShape = NodePath("ViewConeRotate/ViewConeCheck/CollisionShape2D")
 muzzleFlashRotate = NodePath("MuzzleFlashRotate")
 viewConeRotate = NodePath("ViewConeRotate")
 
-[node name="Viewzone" type="PointLight2D" parent="PlayerKinematic/Lights"]
+[node name="Viewzone" type="PointLight2D" parent="PlayerKinematic/Lights" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
 range_z_max = 9
 shadow_enabled = true
 texture = ExtResource("7")
@@ -139,8 +146,6 @@ shadow_enabled = true
 texture = ExtResource("6")
 offset = Vector2(256, 0)
 script = ExtResource("8")
-viewCheck = NodePath("../MuzzleFlashCheck")
-viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
 
 [node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
@@ -160,11 +165,9 @@ shadow_enabled = true
 texture = ExtResource("6")
 offset = Vector2(256, 0)
 script = ExtResource("8")
-viewCheck = NodePath("../ViewConeCheck")
-viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
 
-[node name="Aesthetics" type="Node2D" parent="PlayerKinematic"]
+[node name="Aesthetics" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("charSprite")]
 script = ExtResource("2")
 charSprite = NodePath("Sprite2D")
 

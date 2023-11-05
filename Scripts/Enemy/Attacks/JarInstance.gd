@@ -1,14 +1,14 @@
 extends Node2D
 
-@export (NodePath) onready var animation_player = get_node(animation_player)
-@export (NodePath) onready var hitbox = get_node(hitbox)
+@export var animation_player : Node
+@export var hitbox : Node
 
-@export (PackedScene) var pool: PackedScene
+@export var pool: PackedScene
 
 var projectile_speed = 350
 var target_pos = null
 
-@export (int) var damage: int = 1
+@export var damage: int = 1
 
 func _ready() -> void:
 	animation_player.play("spin")

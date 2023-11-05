@@ -31,7 +31,7 @@ func _ready():
 	# connects signal to function
 	movement.connect("ReceivedDamage", Callable(self, "GotHurt")) #required b/c colliders are getting child of main, Movement
 
-func _process(delta):
+func _process(_delta):
 	# test code
 	
 	if Input.is_action_just_pressed("ChangeDisplay"):

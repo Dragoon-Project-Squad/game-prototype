@@ -1,15 +1,15 @@
 extends Node2D
 
-@export (NodePath) onready var enemyBody = get_node(enemyBody)
-@export (NodePath) onready var vision = get_node(vision)
-@export (Array, NodePath) onready var moveBehaviours
+@export var enemyBody : HiddenObject
+@export var vision : Node2D
+@export var moveBehaviours : Array
 
-@export (float) var MOVE_FRICT := 400.0
+@export var MOVE_FRICT := 400.0
 
 func _ready():
 	setupMoveBehaviourArray()
 
-func _process(delta):
+func _process(_delta):
 	movement()
 	checkConditions()
 
@@ -49,9 +49,12 @@ func behaviourTargetVelocity() -> Vector2:
 	
 	return moveBehaviours[currentMovementBehaviourIndex].getTargetVelocity(data)
 
-func behaviourViewConeDirection() -> float:
+#Porting Note: The method that accepts this wants a Vector2, 
+#it originally released Vector2s, so I'm changing it to Vector2
+
+func behaviourViewConeDirection() -> Vector2:
 	if currentMovementBehaviourIndex == null:
-		return 0.0
+		return Vector2.ZERO #Porting Note: 0.0 -> Vector2.ZERO
 	
 	var data = getDataDictionary()
 	

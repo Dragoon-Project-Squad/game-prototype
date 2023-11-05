@@ -1,10 +1,10 @@
 extends PointLight2D
 
-@export (NodePath) onready var viewCheck = get_node(viewCheck)
-@export (NodePath) onready var viewCheckShape = get_node(viewCheckShape)
+@export var viewCheck : Node
+@export var viewCheckShape : Node
 
 #An array of all physics bodies that the light should ignore when raycasting
-@export (Array, NodePath) onready var nonHiddenObjectBodiesToIgnore
+@export var nonHiddenObjectBodiesToIgnore : Array = []
 
 var hiddenObjectsInViewCheck: Array = []
 
@@ -12,7 +12,7 @@ func _ready():
 	setupNonHiddenObjectBodiesToIgnoreArray()
 	setupViewCheckSignals()
 
-func _process(delta):
+func _process(_delta):
 	lightUpHiddenBodiesInViewCheck()
 
 #Setup
@@ -25,8 +25,8 @@ func setupNonHiddenObjectBodiesToIgnoreArray():
 	nonHiddenObjectBodiesToIgnore = finalArray
 
 func setupViewCheckSignals():
-	viewCheck.connect("body_entered", Callable(self, "onBodyEnteredViewCheck"))
-	viewCheck.connect("body_exited", Callable(self, "onBodyExitedViewCheck"))
+	viewCheck.body_entered.connect(onBodyEnteredViewCheck)
+	viewCheck.body_exited.connect(onBodyExitedViewCheck)
 
 #Adding Objects found in Area2D
 func onBodyEnteredViewCheck(body: Node):

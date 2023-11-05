@@ -2,8 +2,8 @@ extends Node2D
 
 const level_node = preload("res://Scenes/Menus/LevelSelectNode.tscn")
 
-@export (NodePath) onready var parent_node = get_node(parent_node)
-@export (NodePath) onready var camera = get_node(camera)
+@export var parent_node : Node
+@export var camera : Node
 
 var scene_size = Vector2(1280, 720)
 var node_distance = 200

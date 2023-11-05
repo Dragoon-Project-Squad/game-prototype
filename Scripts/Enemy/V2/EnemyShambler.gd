@@ -3,7 +3,7 @@ extends EnemyBase
 #minimap
 var minimap_icon = "enemy"
 
-@export (NodePath) onready var hidden_sprites = get_node(hidden_sprites)
+@export var hidden_sprites : Node
 
 #overrrides
 func updateTransparency():

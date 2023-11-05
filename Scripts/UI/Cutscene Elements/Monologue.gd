@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@export (NodePath) onready var left_sprite = get_node(left_sprite)
-@export (NodePath) onready var left_toggle = get_node(left_toggle)
-@export (NodePath) onready var left_text = get_node(left_text)
-@export (NodePath) onready var left_name = get_node(left_name)
-@export (NodePath) onready var left_main = get_node(left_main)
+@export var left_sprite : Node
+@export var left_toggle : Node
+@export var left_text : Node
+@export var left_name : Node
+@export var left_main : Node
 
 var current_text = ""
 var current_textbox = null
@@ -13,7 +13,7 @@ var is_scrolling = false
 func _ready() -> void:
 	current_textbox = left_text
 
-func _process(delta: float) -> void:
+func _process(_delta) -> void:
 	if current_textbox and current_text != "":
 		if current_textbox.visible_characters < current_text.length():
 			current_textbox.visible_characters += 1

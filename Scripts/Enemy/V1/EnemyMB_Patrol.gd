@@ -1,8 +1,8 @@
 extends Node2D
 
 #Enemy Behaviours
-@export (float) var PATROL_MAX_SPEED := 200.0
-@export (float) var PATROL_ACCEL := 400.0
+@export var PATROL_MAX_SPEED := 200.0
+@export var PATROL_ACCEL := 400.0
 
 @onready var START_POS = global_position
 

@@ -4,7 +4,7 @@ class_name HiddenObject
 var lightSources: Array = []
 #Contains the Nodes telling this object that it is currently under a light
 
-func _process(delta):
+func _process(_delta):
 	updateTransparency()
 
 #For Smooth transition from invisible to visible

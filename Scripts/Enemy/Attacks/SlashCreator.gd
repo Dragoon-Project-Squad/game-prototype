@@ -1,8 +1,8 @@
 extends Node2D
 
-@export (PackedScene) var slash: PackedScene
-@export (NodePath) onready var attack_origin = get_node(attack_origin)
-@export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export var slash: PackedScene
+@export var attack_origin : Node
+@export var enemy_control : Node
 
 var attack_range = 100
 var animation_name = "Attack"

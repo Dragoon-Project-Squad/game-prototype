@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (NodePath) onready var enemy_control = get_node(enemy_control)
+@export var enemy_control : Node
 
 func move():
 	if enemy_control.level_navigation:

@@ -8,29 +8,30 @@ enum{
 var current_state = ROAM
 
 #stats
-@export (int) var health: int = 10000
+@export var health: int = 10000
 
 #movement
 var speed = 200;
 var velocity = Vector2.ZERO
 
 #external objects
-var level_navigation: Navigation2D = null
+var level_navigation: NavigationAgent2D = null
 var player = null
 
 #vision
-@export (NodePath) onready var aggro = get_node(aggro)
-@export (NodePath) onready var deaggro = get_node(deaggro)
+@export var aggro : Node
+@export var deaggro : Node
 var player_spotted = false
 var last_seen = null
 
 #kinematic body
-@export (NodePath) onready var enemy_body = get_node(enemy_body)
+@export var enemy_body : Node
 
 #visuals
-@export (NodePath) onready var telegraph = get_node(telegraph)
-@export (NodePath) onready var main = get_node(main)
-@export (NodePath) onready var animation_player = get_node(animation_player)
+@export var telegraph : Sprite2D
+@export var main : Sprite2D
+#Porting Note: maybe rename these two ^^^ for clarity
+@export var animation_player : AnimationPlayer
 
 #attack flags
 var current_attack_instance = null
@@ -39,21 +40,22 @@ var attack_player_pos = null
 var action_cooldown = 0
 
 #export arrays
-@export (Array, NodePath) onready var move_options
-@export (Array, NodePath) onready var action_options
+@export var move_options : Array
+@export var action_options : Array
 var next_attack = null
 
 #damage highlight
 var damageHighlightTimer: Timer = null
-@export (int) var damageHighlightLength: int = 20 # centiseconds, how long highlight lasts
-@export (Color) var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
+@export var damageHighlightLength: int = 20 # centiseconds, how long highlight lasts
+@export var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
 
 func _ready():
 	# sets up timer for damage highlight
 	setupHighlightTimers()
 	
 	selectNextAction()
-	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
+	print(animation_player.get_path())
+	animation_player.animation_finished.connect(animationFinished)
 	animation_player.play("Idle")
 	
 	var tree = get_tree()
@@ -104,30 +106,30 @@ func triggerDeath():
 	print("triggerDeath has not been implemented")
 
 
-func updateDirection(velocity):
-	if velocity.x > 0:
+func updateDirection(enemy_velocity):
+	if enemy_velocity.x > 0:
 		main.set_flip_h(false)
 		telegraph.set_flip_h(false)
-	elif velocity.x < 0:
+	elif enemy_velocity.x < 0:
 		main.set_flip_h(true)
 		telegraph.set_flip_h(true)
 		
 
-func animationFinished(anim_name):
+func animationFinished(anim_name = "Idle"):
 	if get_node(next_attack) && anim_name == get_node(next_attack).animation_name:
 		action_cooldown = get_node(next_attack).cooldown
 		action_ready = true
 		current_attack_instance = null
 		selectNextAction()
 
-func startAttack(position, attack_name):
-	if position.x > global_position.x:
+func startAttack(attack_position, attack_name):
+	if attack_position.x > global_position.x:
 		main.set_flip_h(false)
 		telegraph.set_flip_h(false)
-	elif position.x < global_position.x:
+	elif attack_position.x < global_position.x:
 		main.set_flip_h(true)
 		telegraph.set_flip_h(true)
-	attack_player_pos = position
+	attack_player_pos = attack_position
 	action_ready = false
 	animation_player.play(attack_name)
 	
@@ -152,7 +154,7 @@ func _highlightSelf(): # made into helper func if onHitByBullet() is overriden
 	# starts timer
 	damageHighlightTimer.start()
 
-func onHitByBullet(bullet: Bullet, damage: int):
+func onHitByBullet(_bullet: Bullet, damage: int):
 	# updates health value
 	health -= damage
 	
