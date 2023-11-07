@@ -11,7 +11,7 @@ var action_ready = true
 var player_pos = null
 
 func _ready() -> void:
-	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
+	animation_player.animation_finished.connect(animationFinished)
 	animation_player.play("Idle")
 
 func _process(delta: float) -> void:

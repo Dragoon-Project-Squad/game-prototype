@@ -1,21 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699220302
+::res://::1699282346
 Assetes.png::CompressedTexture2D::3101232272722638476::1694894311::1699144014::1::::<><>::
-default_env.tres::Environment::1814275660175919506::1699220289::0::1::::<><>::
-Door.gd::GDScript::-1::1699144014::0::1::::DragoonGameDoor<>Node2D<>::
+default_env.tres::Environment::1814275660175919506::1699278336::0::1::::<><>::
 icon.png::CompressedTexture2D::2869152336526471861::1684679377::1699144015::1::::<><>::
-Rooms.gd::GDScript::-1::1699144014::0::1::::<>Node2D<>::
-::res://addons/::1684679377
-::res://addons/godot-git-plugin/::1684679377
-plugin.cfg::TextFile::-1::1684679377::0::1::::<><>::
-THIRDPARTY.md::TextFile::-1::1684679377::0::1::::<><>::
-::res://addons/godot-git-plugin/linux/::1684679377
-::res://addons/godot-git-plugin/osx/::1684679377
-::res://addons/godot-git-plugin/osx/release/::1684679377
-::res://addons/godot-git-plugin/win64/::1684679377
-::res://addons/godot-git-plugin/win64/release/::1684679377
-::res://addons/godot-git-plugin/x11/::1684679377
-::res://addons/godot-git-plugin/x11/release/::1684679377
+::res://addons/::1699227131
 ::res://Assets/::1693748146
 ::res://Assets/Enemy/::1699144014
 enemy-concept.png::CompressedTexture2D::8640496476293672792::1684679377::1699144014::1::::<><>::
@@ -31,8 +19,8 @@ slash.png::CompressedTexture2D::7899225257373197799::1684679377::1699144014::1::
 yellowliquid.png::CompressedTexture2D::520634230920901703::1691336308::1699144014::1::::<><>::
 ::res://Assets/Fonts/::1699144014
 Lato-Bold.ttf::FontFile::7736516611607880741::1693748146::1699144014::1::::<><>::
-::res://Assets/Materials and Textures/::1699215773
-HitFlashMat.tres::ShaderMaterial::3887118401099238933::1699215773::0::1::::<><>::
+::res://Assets/Materials and Textures/::1699276965
+HitFlashMat.tres::ShaderMaterial::3887118401099238933::1699276965::0::1::::<><>::
 Lights2.png::CompressedTexture2D::2399779292823397410::1684679377::1699144014::1::::<><>::
 Lights.png::CompressedTexture2D::3418845091249303272::1684679377::1699144014::1::::<><>::
 ::res://Assets/Menu/::1699144014
@@ -117,12 +105,12 @@ test_scene.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/UI/Cutsce
 AK47.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/Weapons/WeaponResource.gd<>res://Scenes/Scene Objects/GenericBullet.tscn
 Pistol.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/Weapons/WeaponResource.gd<>res://Scenes/Scene Objects/GenericBullet.tscn
 ::res://Scenes/::1684679377
-::res://Scenes/Enemy/::1699220289
-Enemy.tscn::PackedScene::7615109179362190659::1699217071::0::1::::<><>::res://Scripts/Enemy/V1/Enemy_Aesthetics.gd<>res://Scripts/Enemy/V1/Enemy_Vision.gd<>res://Scripts/Enemy/V1/Enemy_Collision.gd<>res://Scripts/Enemy/V1/Enemy_Movement.gd<>res://Scripts/Enemy/V1/EnemyMB_Chase.gd<>res://Scripts/Enemy/V1/EnemyMB_Patrol.gd<>res://Scripts/Enemy/V1/EnemyMB_Knockback.gd<>uid://bg43rw48xl1mn::::res://icon.png
-EnemyDragoon.tscn::PackedScene::922736386648264848::1699220289::0::1::::<><>::res://Scripts/Enemy/V2/EnemyDragoon.gd<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scripts/Enemy/Movement/Roam.gd
-EnemyPomudachi.tscn::PackedScene::966537619946580402::1699220289::0::1::::<><>::res://Scripts/Enemy/V2/EnemyPomudachi.gd<>uid://b4k5wpt15e5mm::::res://Assets/Enemy/pomudachi-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/JarCreator.gd<>res://Scenes/Enemy/Attacks/pool.tscn<>res://Scripts/Enemy/Movement/Kite.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Attacks/PoolCreator.gd<>res://Scenes/Enemy/Attacks/jar.tscn
-EnemyProwler.tscn::PackedScene::2245195787695942391::1699220289::0::1::::<><>::uid://b0aii2ort6a7c::::res://Assets/Enemy/prowler-Sheet.png<>res://Scripts/Enemy/V2/EnemyProwler.gd<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerBiteCreator.gd<>res://Scenes/Enemy/Attacks/Prowler/ProwlerBite.tscn<>res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerPounce.gd<>res://Scripts/Enemy/Movement/Roam.gd
-EnemyShambler.tscn::PackedScene::1272619912232737671::1699220289::0::1::::<><>::res://Scripts/Enemy/V2/EnemyShambler.gd<>uid://rcxwruxvlab8::::res://Assets/Enemy/shambler-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNW.tscn<>res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashSE.tscn<>res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNE.tscn<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashSW.tscn<>res://Scripts/Enemy/Attacks/Shambler/EnemyShamblerSlashCreator.gd
+::res://Scenes/Enemy/::1699278336
+EnemyBase.tscn::PackedScene::609107496377437663::1699278335::0::1::::<><>::res://Scripts/Enemy/V2/EnemyBase.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png
+EnemyDragoon.tscn::PackedScene::922736386648264848::1699278336::0::1::::<><>::res://Scripts/Enemy/V2/EnemyDragoon.gd<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scripts/Enemy/Movement/Roam.gd
+EnemyPomudachi.tscn::PackedScene::966537619946580402::1699278336::0::1::::<><>::res://Scripts/Enemy/V2/EnemyPomudachi.gd<>uid://b4k5wpt15e5mm::::res://Assets/Enemy/pomudachi-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/JarCreator.gd<>res://Scenes/Enemy/Attacks/pool.tscn<>res://Scripts/Enemy/Movement/Kite.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Attacks/PoolCreator.gd<>res://Scenes/Enemy/Attacks/jar.tscn
+EnemyProwler.tscn::PackedScene::2245195787695942391::1699220379::0::1::::<><>::uid://b0aii2ort6a7c
+EnemyShambler.tscn::PackedScene::1272619912232737671::1699220379::0::1::::<><>::res://Scripts/Enemy/V2/EnemyShambler.gd<>uid://rcxwruxvlab8
 ::res://Scenes/Enemy/Attacks/::1699144014
 jar.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Enemy/pomujarate.png<>res://Scripts/Enemy/Attacks/JarInstance.gd<>res://Scenes/Enemy/Attacks/pool.tscn
 pool.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Enemy/yellowliquid.png<>res://Scripts/Enemy/Attacks/PoolInstance.gd
@@ -134,22 +122,24 @@ ShamblerSlashNE.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scripts/E
 ShamblerSlashNW.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scripts/Enemy/Attacks/Shambler/ShamblerSlashInstance.gd<>res://Assets/Enemy/shambler-slashes-Sheet.png
 ShamblerSlashSE.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scripts/Enemy/Attacks/Shambler/ShamblerSlashInstance.gd<>res://Assets/Enemy/shambler-slashes-Sheet.png
 ShamblerSlashSW.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scripts/Enemy/Attacks/Shambler/ShamblerSlashInstance.gd<>res://Assets/Enemy/shambler-slashes-Sheet.png
-::res://Scenes/Levels/::1699144015
+::res://Scenes/Enemy/V1/::1699277316
+Enemy.tscn::PackedScene::7615109179362190659::1699217071::0::1::::<><>::res://Scripts/Enemy/V1/Enemy_Aesthetics.gd<>res://Scripts/Enemy/V1/Enemy_Vision.gd<>res://Scripts/Enemy/V1/Enemy_Collision.gd<>res://Scripts/Enemy/V1/Enemy_Movement.gd<>res://Scripts/Enemy/V1/EnemyMB_Chase.gd<>res://Scripts/Enemy/V1/EnemyMB_Patrol.gd<>res://Scripts/Enemy/V1/EnemyMB_Knockback.gd<>uid://bg43rw48xl1mn
+::res://Scenes/Levels/::1699277316
 Beach_Locked_1.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/beach_tiles.tres<>res://Scripts/Level/LockedExitLevelScript.gd<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/KeyLockedExit.tscn<>res://Scenes/Scene Objects/Torch.tscn<>res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn
 Beach_Maze.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/beach_tiles.tres<>res://Scenes/Player/ModulePlayer.tscn<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Scene Objects/Door/BeachEntryRoomDoor.tscn<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Torch.tscn<>res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn
-Dungeon_DeadSimple.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Scenes/Scene Objects/Lever.tscn<>res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn<>res://Assets/Tilesets/dungeon_tiles.tres
+Dungeon_DeadSimple.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
 Lab_SnakeWay.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/tiles_lab.tres<>res://Scenes/Player/ModulePlayer.tscn<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Torch.tscn<>res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn
 Scavenge_1.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Enemy/EnemyDragoon.tscn
 Scavenge_2.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Scripts/Level/GenericLevelScript.gd
-Scavenge_Gauntlet.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/tileset.tres<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Enemy/Enemy.tscn
-Scavenge_ILane.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/tileset.tres<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Enemy/Enemy.tscn
+Scavenge_Gauntlet.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
+Scavenge_ILane.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
 Scavenge_Maze.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/tileset.tres<>res://Scripts/Level/GenericLevelScript.gd
-Scavenge_ProcGenTest.tscn::PackedScene::-1::1698625212::0::1::::<><>::res://Rooms.gd<>res://Scenes/Player/ModulePlayer.tscn
-Scavenge_Template.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/demo_walls_fixed_tileset.tres<>res://Scripts/Level/LockedExitLevelScript.gd<>res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Lever.tscn<>res://Scenes/Scene Objects/KeyLockedExit.tscn<>res://Scenes/Scene Objects/Torch.tscn
-Scavenge_Template_Small.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/demo_walls_fixed_tileset.tres<>res://Scripts/Level/LockedExitLevelScript.gd<>res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Lever.tscn<>res://Scenes/Scene Objects/KeyLockedExit.tscn<>res://Scenes/Scene Objects/Torch.tscn
+Scavenge_ProcGenTest.tscn::PackedScene::-1::1699227746::0::1::::<><>::res://Scripts/Level/Rooms.gd<>uid://dfvbf3g3nk1ef
+Scavenge_Template.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
+Scavenge_Template_Small.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
 Scavenge_ThreeRoomTiledTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/demo_walls_fixed_tileset.tres<>res://Scripts/Level/GenericLevelScript.gd<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Lever.tscn<>res://Scenes/Scene Objects/Torch.tscn<>res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn<>res://Scenes/Scene Objects/Door/Door.tscn
 Shop.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Scenes/Player/ModulePlayer.tscn<>res://Scenes/Scene Objects/Exit.tscn<>res://Scripts/Level/GenericLevelScript.gd
-Test_OneRoom.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/beach_tiles.tres<>res://Scripts/Level/LockedExitLevelScript.gd<>res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Scene Objects/Key.tscn<>res://Scenes/Scene Objects/Lever.tscn<>res://Scenes/Scene Objects/KeyLockedExit.tscn<>res://Scenes/Scene Objects/Torch.tscn<>res://Scenes/Enemy/EnemyDragoon.tscn<>res://Scenes/Enemy/EnemyShambler.tscn<>res://Scenes/Enemy/EnemyPomudachi.tscn<>res://Scenes/Enemy/EnemyProwler.tscn<>res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn
+Test_OneRoom.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Scenes/Scene Objects/Exit.tscn<>uid://dfvbf3g3nk1ef
 ::res://Scenes/Levels/Rooms/::1699144014
 Dungeon_EndRoom01.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/demo_walls_fixed_tileset.tres<>res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn<>res://Scenes/Scene Objects/Torch.tscn
 Dungeon_Room01.tscn::PackedScene::-1::1699144014::0::1::::<><>::res://Scenes/Scene Objects/Door/Door.tscn<>res://Assets/Tilesets/demo_walls_fixed_tileset.tres<>res://Scenes/Scene Objects/Torch.tscn
@@ -171,9 +161,9 @@ Monologue.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Days.
 ::res://Scenes/Menus/Cutscene Elements/Portraits/::1699144015
 PomuPortrait.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Cutscene Elements/pomu-portraits-test.png<>res://Scripts/UI/Cutscene Elements/Portrait.gd
 SelenPortrait.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Cutscene Elements/selen-portraits-test.png<>res://Scripts/UI/Cutscene Elements/Portrait.gd
-::res://Scenes/Player/::1699215728
+::res://Scenes/Player/::1699278336
 Minimap.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/HUD/Minimap-border.png<>res://Scripts/UI/PulseLine.gd<>res://Scripts/UI/Minimap.gd<>res://Scripts/UI/EnemyMarker.gd<>res://Assets/UI/HUD/Map Markers/ObjectiveMarker.png<>res://Assets/UI/HUD/Map Markers/EnemyMarker.png<>res://Assets/UI/HUD/Map Markers/PlayerMarker.png
-ModulePlayer.tscn::PackedScene::7553629329279629333::1699215728::0::1::::<><>::res://Scripts/Player/Player_Movement.gd<>res://Scripts/Player/Player_Aesthetics.gd<>res://Scripts/Player/Player_Lights.gd<>res://Scripts/Player/Player_Camera.gd<>uid://cwfei23exjk1u
+ModulePlayer.tscn::PackedScene::7553629329279629333::1699278336::0::1::::<><>::res://Scripts/Player/Player_Movement.gd<>res://Scripts/Player/Player_Aesthetics.gd<>res://Scripts/Player/Player_Lights.gd<>res://Scripts/Player/Player_Camera.gd<>uid://cwfei23exjk1u::::res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png<>uid://boyd45kijsfum::::res://Assets/Materials and Textures/Lights.png<>uid://bagqaqtv658oc::::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd<>res://Scripts/Player/Player_Weapon.gd<>res://Resources/WeaponTypes/Pistol.tres<>res://Scripts/Player/Player_Main.gd<>res://Scenes/Player/Minimap.tscn<>uid://bg6dt3u6p65rr::::res://Assets/Player/selen-player-no-arms.png
 ::res://Scenes/Scene Objects/::1699144015
 BulletHitParticles.tscn::PackedScene::-1::1698625211::0::1::::<><>::res://Scripts/Projectiles and Effects/BulletHitParticles.gd
 DebugTorch.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd
@@ -185,22 +175,22 @@ KeyLockedExit.tscn::PackedScene::-1::1698625211::0::1::::<><>::res://Scenes/Scen
 Lever.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scripts/Objects/Lever.gd
 Torch.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd
 WeaponPickup.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://icon.png<>res://Scripts/Weapons/WeaponPickup.gd
-::res://Scenes/Scene Objects/Door/::1699144015
-BeachDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Door.gd<>res://Assets/Tilesets/beachdoor.tres
+::res://Scenes/Scene Objects/Door/::1699227723
+BeachDoor.tscn::PackedScene::-1::1699227723::0::1::::<><>::res://Scripts/Objects/Door.gd<>res://Assets/Tilesets/beachdoor.tres
 BeachEntryRoomDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/beachdoor.tres<>res://Scripts/Objects/EntryRoomDoor.gd
-Door.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Door.gd<>res://Assets/Tilesets/dungeondoor.tres
+Door.tscn::PackedScene::-1::1699227723::0::1::::<><>::res://Scripts/Objects/Door.gd<>res://Assets/Tilesets/dungeondoor.tres
 DungeonEntryRoomDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/dungeondoor.tres<>res://Scripts/Objects/EntryRoomDoor.gd
 DungeonExitRoomDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/dungeondoor.tres<>res://Scripts/Objects/ExitRoomDoor.gd
-LabDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Door.gd<>res://Assets/Tilesets/labdoor.tres
-::res://Scenes/Test Files/::1699220289
+LabDoor.tscn::PackedScene::-1::1699227723::0::1::::<><>::res://Scripts/Objects/Door.gd<>res://Assets/Tilesets/labdoor.tres
+::res://Scenes/Test Files/::1699278335
 demo_tileSetTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/demo_walls_with_collision.tres
-EnemyNavTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Assets/Tilesets/TilePlaceholderBig.png<>res://Scenes/Player/ModulePlayer.tscn<>res://Scenes/Enemy/EnemyDragoon.tscn<>res://Scripts/Level/EnemyNavTest.gd<>res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Enemy/EnemyPomudachi.tscn
+EnemyNavTest.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>uid://dxrhh4uopg7su
 EnemyTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://icon.png<>res://Scenes/Player/ModulePlayer.tscn<>res://Scenes/Enemy/EnemyShambler.tscn<>res://Scenes/Enemy/EnemyProwler.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn
 FlickeringLightTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scripts/Player/CustomLight.gd<>res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Test Files/FlickeringLightTest.gd
 RandomWorld.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scripts/Test Files/RandomWorld.gd<>res://Assets/Tilesets/Autotiles-big.png
-Test.tscn::PackedScene::8706903172964596393::1699220289::0::1::::<><>::uid://bg43rw48xl1mn::::res://icon.png<>uid://dfvbf3g3nk1ef::::res://Scenes/Player/ModulePlayer.tscn<>uid://dgq20amenquxv::::res://Scenes/Enemy/Enemy.tscn<>res://Scenes/Scene Objects/WeaponPickup.tscn<>res://Resources/WeaponTypes/AK47.tres<>uid://ne8llq5e6hwq::::res://Scenes/Enemy/EnemyDragoon.tscn<>uid://n1gy62ci4ma1::::res://Scenes/Enemy/EnemyPomudachi.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn<>res://Scenes/Scene Objects/InteractableSign.tscn<>res://Resources/Cutscene Data/test_scene.tres
+Test.tscn::PackedScene::8706903172964596393::1699278335::0::1::::<><>::uid://bg43rw48xl1mn::::res://icon.png<>uid://dfvbf3g3nk1ef::::res://Scenes/Player/ModulePlayer.tscn<>uid://dgq20amenquxv::::res://Scenes/Enemy/V1/Enemy.tscn<>res://Scenes/Scene Objects/WeaponPickup.tscn<>uid://ixb58wtajkeh::::res://Scenes/Enemy/EnemyBase.tscn<>res://Resources/WeaponTypes/AK47.tres<>uid://ne8llq5e6hwq::::res://Scenes/Enemy/EnemyDragoon.tscn<>uid://n1gy62ci4ma1::::res://Scenes/Enemy/EnemyPomudachi.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn<>res://Scenes/Scene Objects/InteractableSign.tscn<>res://Resources/Cutscene Data/test_scene.tres
 TilesetTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/dungeon-tileset.png
-::res://Scripts/::1693748146
+::res://Scripts/::1699227746
 ::res://Scripts/Enemy/::1689272034
 ::res://Scripts/Enemy/Attacks/::1699219708
 JarCreator.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
@@ -229,21 +219,22 @@ Enemy_Collision.gd::GDScript::-1::1699214533::0::1::::<>HiddenObject<>::
 Enemy_Movement.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
 Enemy_MovementBehaviour.gd::GDScript::-1::1698625211::0::1::::EnemyMoveBehaviour<>Node<>::
 Enemy_Vision.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
-::res://Scripts/Enemy/V2/::1699219823
-EnemyBase.gd::GDScript::-1::1699219823::0::1::::EnemyBase<>HiddenObject<>::
-EnemyDragoon.gd::GDScript::-1::1699214928::0::1::::<>EnemyBase<>::
-EnemyPomudachi.gd::GDScript::-1::1699215258::0::1::::<>EnemyBase<>::
-EnemyProwler.gd::GDScript::-1::1699217230::0::1::::<>EnemyBase<>::
-EnemyShambler.gd::GDScript::-1::1699215687::0::1::::<>EnemyBase<>::
-::res://Scripts/Level/::1699144015
+::res://Scripts/Enemy/V2/::1699242482
+EnemyBase.gd::GDScript::-1::1699242482::0::1::::EnemyBase<>HiddenObject<>::
+EnemyDragoon.gd::GDScript::-1::1699239832::0::1::::<>EnemyBase<>::
+EnemyPomudachi.gd::GDScript::-1::1699240555::0::1::::<>EnemyBase<>::
+EnemyProwler.gd::GDScript::-1::1699239799::0::1::::<>EnemyBase<>::
+EnemyShambler.gd::GDScript::-1::1699239806::0::1::::<>EnemyBase<>::
+::res://Scripts/Level/::1699227746
 EnemyNavTest.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
 Exit.gd::GDScript::-1::1698625211::0::1::::<>Area2D<>::
-GenericLevelScript.gd::GDScript::-1::1699196873::0::1::::GenericLevelScript<>Node2D<>::
+GenericLevelScript.gd::GDScript::-1::1699227636::0::1::::GenericLevelScript<>Node2D<>::
 LevelSelect.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
 LevelSelectNode.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
 Lever_Aesthetics.gd::GDScript::-1::1699144015::0::1::::<>Area2D<>::
 LockedExitLevelScript.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
 NodesAndLines.gd::GDScript::-1::1698625211::0::1::::<>Node2D<>::
+Rooms.gd::GDScript::-1::1699144014::0::1::::<>Node2D<>::
 ::res://Scripts/Menu/::1699144015
 MovingBackground.gd::GDScript::-1::1699144015::0::1::::<>ParallaxBackground<>::
 OptionsMenu.gd::GDScript::-1::1699144015::0::1::::<>Popup<>::
@@ -251,30 +242,31 @@ PauseMenu.gd::GDScript::-1::1699144015::0::1::::<>Control<>::
 PlayBtn.gd::GDScript::-1::1699144015::0::1::::<>Node<>::
 Save.gd::GDScript::-1::1698625211::0::1::::<>Node<>::
 StartScreen.gd::GDScript::-1::1699144015::0::1::::<>Node<>::
-::res://Scripts/Objects/::1699219294
-EntryRoomDoor.gd::GDScript::-1::1699144015::0::1::::<>DragoonGameDoor<>::
-ExitRoomDoor.gd::GDScript::-1::1698625211::0::1::::<>DragoonGameDoor<>::
+::res://Scripts/Objects/::1699276966
+Door.gd::GDScript::-1::1699227552::0::1::::DragoonGameDoor<>Node2D<>::
+EntryRoomDoor.gd::GDScript::-1::1699227777::0::1::::<>DragoonGameDoor<>::
+ExitRoomDoor.gd::GDScript::-1::1699227686::0::1::::<>DragoonGameDoor<>::
 Interactable.gd::GDScript::-1::1699219294::0::1::::Interactable<>HiddenObject<>::
 Key.gd::GDScript::-1::1698625211::0::1::::<>HiddenObject<>::
 KeyLockedExit.gd::GDScript::-1::1698625211::0::1::::<>Area2D<>::
 KeyPickupArea.gd::GDScript::-1::1699144015::0::1::::<>Area2D<>::
-Lever.gd::GDScript::-1::1699215773::0::1::::<>HiddenObject<>::
+Lever.gd::GDScript::-1::1699276965::0::1::::<>HiddenObject<>::
 Lever_Area.gd::GDScript::-1::1699144015::0::1::::<>Area2D<>::
-Sign.gd::GDScript::-1::1699215773::0::1::::<>Interactable<>::
-::res://Scripts/Player/::1699219294
-CustomLight.gd::GDScript::-1::1699219294::0::1::::<>PointLight2D<>::
+Sign.gd::GDScript::-1::1699276966::0::1::::<>Interactable<>::
+::res://Scripts/Player/::1699278320
+CustomLight.gd::GDScript::-1::1699278320::0::1::::<>PointLight2D<>::
 Player_Aesthetics.gd::GDScript::-1::1699197155::0::1::::<>Node2D<>::
-Player_Camera.gd::GDScript::-1::1699198546::0::1::::<>Node2D<>::
+Player_Camera.gd::GDScript::-1::1699226016::0::1::::<>Node2D<>::
 Player_Lights.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
-Player_Main.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
-Player_Movement.gd::GDScript::-1::1699215773::0::1::::<>CharacterBody2D<>::
+Player_Main.gd::GDScript::-1::1699276966::0::1::::<>Node2D<>::
+Player_Movement.gd::GDScript::-1::1699276966::0::1::::<>CharacterBody2D<>::
 Player_Weapon.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
 ::res://Scripts/Projectiles and Effects/::1699219294
 Bullet.gd::GDScript::-1::1699217607::0::1::::Bullet<>Node2D<>::
 BulletHitParticles.gd::GDScript::-1::1699219294::0::1::::<>CPUParticles2D<>::
 HiddenObject.gd::GDScript::-1::1699217607::0::1::::HiddenObject<>Node2D<>::
-::res://Scripts/Test Files/::1699144015
-EnemyDragoonActions.gd::GDScript::-1::1699215688::0::1::::<>Node2D<>::
+::res://Scripts/Test Files/::1699239622
+EnemyDragoonActions.gd::GDScript::-1::1699239622::0::1::::<>Node2D<>::
 FlickeringLightTest.gd::GDScript::-1::1699144015::0::1::::<>Node2D<>::
 RandomWorld.gd::GDScript::-1::1699144015::0::1::::<>Node2D<>::
 Walker.gd::GDScript::-1::1698625211::0::1::::Walker<>Node<>::

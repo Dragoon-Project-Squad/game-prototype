@@ -25,6 +25,7 @@ func onBodyEnteredViewCone(body):
 func onBodyExitedViewCone(body):
 	targetWithinViewCone = null
 
+#Porting Note: Now uses PhysicsRayQueryParameters2D
 func isTargetInLineOfSight():
 	if targetWithinViewCone == null:
 		return false

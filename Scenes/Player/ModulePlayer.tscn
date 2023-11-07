@@ -138,7 +138,7 @@ collision_mask = 38
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate/MuzzleFlashCheck"]
 polygon = PackedVector2Array(0, 0, 256, 128, 256, -128)
 
-[node name="MuzzleFlash" type="PointLight2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+[node name="MuzzleFlash" type="PointLight2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
 position = Vector2(30, 0)
 scale = Vector2(0.1, 0.6)
 range_z_max = 9
@@ -146,6 +146,8 @@ shadow_enabled = true
 texture = ExtResource("6")
 offset = Vector2(256, 0)
 script = ExtResource("8")
+viewCheck = NodePath("../MuzzleFlashCheck")
+viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
 
 [node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
@@ -158,13 +160,15 @@ collision_mask = 38
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeRotate/ViewConeCheck"]
 polygon = PackedVector2Array(0, 0, 1, 1, 1, -1)
 
-[node name="Viewcone" type="PointLight2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+[node name="Viewcone" type="PointLight2D" parent="PlayerKinematic/Lights/ViewConeRotate" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
 color = Color(1, 1, 1, 0.207843)
 range_z_max = 9
 shadow_enabled = true
 texture = ExtResource("6")
 offset = Vector2(256, 0)
 script = ExtResource("8")
+viewCheck = NodePath("../ViewConeCheck")
+viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
 
 [node name="Aesthetics" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("charSprite")]
@@ -176,7 +180,7 @@ light_mask = 2
 scale = Vector2(2, 2)
 texture = ExtResource("13")
 
-[node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+[node name="Weapon" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("bulletSpawnNode", "weaponSprite", "animationPlayer")]
 script = ExtResource("9")
 bulletSpawnNode = NodePath("SpawnNode")
 weaponSprite = NodePath("Origin")

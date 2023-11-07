@@ -18,6 +18,7 @@ var minimap_icon = "enemy"
 
 #overrrides
 func updateTransparency():
+	super()
 	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
 	
 	if isLitUp():
@@ -55,6 +56,7 @@ func moveBounce(isMove: bool):
 		main.rotation = 0
 
 func getCurrentState():
+	super()
 	if action_ready && player:
 		match current_state:
 			HALT:

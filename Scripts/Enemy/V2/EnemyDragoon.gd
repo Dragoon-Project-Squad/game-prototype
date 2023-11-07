@@ -7,6 +7,7 @@ var minimap_icon = "enemy"
 
 #overrrides
 func updateTransparency():
+	super()
 	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
 	
 	if isLitUp():
@@ -17,6 +18,7 @@ func updateTransparency():
 	hidden_sprites.modulate.a = clamp(hidden_sprites.modulate.a, 0.0, 1.0)
 
 func getCurrentState():
+	super()
 	if action_ready && player:
 		match current_state:
 			HALT:

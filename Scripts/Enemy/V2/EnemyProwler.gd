@@ -20,6 +20,7 @@ func updateTransparency():
 	hidden_sprites.modulate.a = clamp(hidden_sprites.modulate.a, 0.0, 1.0)
 
 func _ready() -> void:
+	super()
 	speed = 200
 
 func selectNextAction():

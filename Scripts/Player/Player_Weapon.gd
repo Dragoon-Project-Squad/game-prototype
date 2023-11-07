@@ -5,9 +5,10 @@ extends Node2D
 @export var weaponSprite : Node
 @export var animationPlayer : Node
 
-@onready var weaponSpriteStartScale: Vector2 = weaponSprite.scale
+@export var weaponSpriteStartScale: Vector2 
 
 func _ready():
+	weaponSpriteStartScale = weaponSprite.scale
 	setNewWeapon(startingWeaponResource)
 
 func _process(_delta):

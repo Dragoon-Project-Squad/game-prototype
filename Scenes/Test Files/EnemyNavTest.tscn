@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource path="res://Assets/Tilesets/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Assets/Tilesets/TilePlaceholderBig.png" type="Texture2D" id=2]
-[ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Enemy/EnemyDragoon.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Level/EnemyNavTest.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemy/EnemyPomudachi.tscn" type="PackedScene" id=7]
+[ext_resource type="TileSet" path="res://Assets/Tilesets/tileset.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://dxrhh4uopg7su" path="res://Assets/Tilesets/TilePlaceholderBig.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ne8llq5e6hwq" path="res://Scenes/Enemy/EnemyDragoon.tscn" id="4"]
+[ext_resource type="Script" path="res://Scripts/Level/EnemyNavTest.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/V1/Enemy.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="7"]
+
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PackedVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )

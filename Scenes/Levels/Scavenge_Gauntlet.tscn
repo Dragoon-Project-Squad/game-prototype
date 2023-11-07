@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource path="res://Scenes/Scene Objects/Exit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Tilesets/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://Scripts/Level/GenericLevelScript.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource type="PackedScene" path="res://Scenes/Scene Objects/Exit.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
+[ext_resource type="TileSet" path="res://Assets/Tilesets/tileset.tres" id="3"]
+[ext_resource type="Script" path="res://Scripts/Level/GenericLevelScript.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/V1/Enemy.tscn" id="5"]
+
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )

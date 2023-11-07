@@ -1,7 +1,7 @@
 extends PointLight2D
 
-@export var viewCheck : Node
-@export var viewCheckShape : Node
+@export var viewCheck : Area2D
+@export var viewCheckShape : Node2D
 
 #An array of all physics bodies that the light should ignore when raycasting
 @export var nonHiddenObjectBodiesToIgnore : Array = []
@@ -79,16 +79,23 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 	
 	return result
 
+#Porting Note: Now uses a PhysicsPointQueryParamters2D for everything except max targets.
 func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
-	var result: Array = space_state.intersect_point(point, 32, [], LightViewCheckAreaLayer, false, true)
-	
+	var intersectparams = PhysicsPointQueryParameters2D.new()
+	intersectparams.collide_with_areas = true
+	intersectparams.collide_with_bodies = false
+	intersectparams.collision_mask = LightViewCheckAreaLayer
+	intersectparams.position = point
+	var result: Array = space_state.intersect_point(intersectparams, 32)
 	if result.is_empty():
 		return false
 	
 	return true
-
+#Porting Note: Now uses PhysicsRayQueryParameters2D. collision_mask hardcoded to default value.
 func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array) -> bool:
-	var result: Dictionary = space_state.intersect_ray(point, global_position, exceptionArray)
+	
+	var raycast_query = PhysicsRayQueryParameters2D.create(point, global_position, 4294967295, exceptionArray)
+	var result: Dictionary = space_state.intersect_ray(raycast_query)
 	
 	if not result.has("collider"):
 		return true

@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/Enemy.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/V1/Enemy.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Scene Objects/WeaponPickup.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ixb58wtajkeh" path="res://Scenes/Enemy/EnemyBase.tscn" id="4_1o61d"]
 [ext_resource type="Resource" path="res://Resources/WeaponTypes/AK47.tres" id="5"]
-[ext_resource type="PackedScene" uid="uid://ne8llq5e6hwq" path="res://Scenes/Enemy/EnemyDragoon.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/CutsceneMaster.tscn" id="9"]
@@ -40,11 +40,11 @@ offset_right = 4181.0
 offset_bottom = 2506.0
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
-[node name="Enemy" parent="World" instance=ExtResource("3")]
+[node name="EnemyOld" parent="World" instance=ExtResource("3")]
 position = Vector2(1167, -238)
 
-[node name="Enemy2" parent="World" instance=ExtResource("6")]
-position = Vector2(409, 366)
+[node name="Enemy" parent="World" instance=ExtResource("4_1o61d")]
+position = Vector2(1033, -297)
 
 [node name="Enemy3" parent="World" instance=ExtResource("7")]
 position = Vector2(538, -194)

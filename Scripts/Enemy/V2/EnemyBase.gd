@@ -19,13 +19,13 @@ var level_navigation: NavigationAgent2D = null
 var player = null
 
 #vision
-@export var aggro : Node
-@export var deaggro : Node
+@export var aggro : RayCast2D
+@export var deaggro : RayCast2D
 var player_spotted = false
 var last_seen = null
 
 #kinematic body
-@export var enemy_body : Node
+@export var enemy_body : CharacterBody2D
 
 #visuals
 @export var telegraph : Sprite2D
@@ -52,12 +52,9 @@ var damageHighlightTimer: Timer = null
 func _ready():
 	# sets up timer for damage highlight
 	setupHighlightTimers()
-	
-	selectNextAction()
-	print(animation_player.get_path())
+	selectNextAction()	
 	animation_player.animation_finished.connect(animationFinished)
-	animation_player.play("Idle")
-	
+	animation_player.play("Idle")	
 	var tree = get_tree()
 	if tree.has_group("LevelNavigation"):
 		level_navigation = tree.get_nodes_in_group("LevelNavigation")[0]

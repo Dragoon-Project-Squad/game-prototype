@@ -14,7 +14,7 @@ func _process(_delta):
 			#TODO: (AUDIO) Play Door sounds here
 			get_node("DoorArea/DoorCollision").queue_free()
 			#Set Door Sprite to the open door, hardcoded
-			doorTiles.set_cell(0, 0, 1)
+			doorTiles.set_cell(0, Vector2.ZERO, 1, Vector2i.ZERO)
 			#Enable this if the door isn't refreshing 
 			#doorTiles.update_dirty_quadrants()
 		#else:

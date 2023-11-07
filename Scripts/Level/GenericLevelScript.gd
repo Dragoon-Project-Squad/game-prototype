@@ -1,7 +1,7 @@
 extends Node2D
 class_name GenericLevelScript
 
-@export var exitDoor = $Objects/ExitDoor
+@export var exitDoor : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

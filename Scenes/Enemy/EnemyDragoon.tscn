@@ -92,7 +92,7 @@ _data = {
 "RESET": SubResource("3")
 }
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "animation_player") groups=["minimap_objects"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "telegraph", "animation_player") groups=["minimap_objects"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1")

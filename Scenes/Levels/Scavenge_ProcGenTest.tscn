@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource path="res://Rooms.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://Scripts/Level/Rooms.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
