@@ -91,10 +91,10 @@ func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
 		return false
 	
 	return true
-#Porting Note: Now uses PhysicsRayQueryParameters2D. collision_mask hardcoded to default value.
+#Porting Note: Now uses PhysicsRayQueryParameters2D. collision_mask parameter set to default value.
 func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array) -> bool:
-	
-	var raycast_query = PhysicsRayQueryParameters2D.create(point, global_position, 4294967295, exceptionArray)
+	const COLLISION_MASK = 4294967295
+	var raycast_query = PhysicsRayQueryParameters2D.create(point, global_position, COLLISION_MASK, exceptionArray)
 	var result: Dictionary = space_state.intersect_ray(raycast_query)
 	
 	if not result.has("collider"):

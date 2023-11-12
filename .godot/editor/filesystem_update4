@@ -14,3 +14,4 @@ res://Scripts/Enemy/Attacks/JarCreator.gd
 res://Scenes/Enemy/Attacks/jar.tscn
 res://Scenes/Enemy/Attacks/pool.tscn
 res://Scripts/Enemy/Attacks/JarInstance.gd
+res://Scripts/Player/CustomLight.gd
