@@ -1,9 +1,63 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699282346
+::res://::1699402215
 Assetes.png::CompressedTexture2D::3101232272722638476::1694894311::1699144014::1::::<><>::
-default_env.tres::Environment::1814275660175919506::1699278336::0::1::::<><>::
+default_env.tres::Environment::1814275660175919506::1699329508::0::1::::<><>::
 icon.png::CompressedTexture2D::2869152336526471861::1684679377::1699144015::1::::<><>::
-::res://addons/::1699227131
+::res://addons/::1699402208
+::res://addons/AsepriteWizard/::1699402209
+base_sprite_resource_creator.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+noop_import_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorImportPlugin<>::
+plugin.cfg::TextFile::-1::1699402209::0::1::::<><>::
+plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorPlugin<>::
+::res://addons/AsepriteWizard/animated_sprite/::1699402209
+import_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorImportPlugin<>::
+inspector_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorInspectorPlugin<>::
+sprite_frames_creator.gd::GDScript::-1::1699402209::0::1::::<><>::
+::res://addons/AsepriteWizard/animated_sprite/docks/::1699402208
+animated_sprite_inspector_dock.gd::GDScript::-1::1699402208::0::1::::<>PanelContainer<>::
+animated_sprite_inspector_dock.tscn::PackedScene::1482828111488489973::1699402208::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/animated_sprite_inspector_dock.gd<>uid://dj1uo3blocr8e::::res://addons/AsepriteWizard/shared/source_drop_button.tscn<>uid://cwvgnm3o7eed2::::res://addons/AsepriteWizard/shared/dir_drop_button.tscn
+as_wizard_dock_container.gd::GDScript::-1::1699402208::0::1::::<>TabContainer<>::
+as_wizard_dock_container.tscn::PackedScene::-1::1699402208::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/as_wizard_window.tscn<>res://addons/AsepriteWizard/animated_sprite/docks/as_wizard_dock_container.gd<>res://addons/AsepriteWizard/animated_sprite/docks/sprite_frames_import_history.tscn
+as_wizard_window.gd::GDScript::-1::1699402208::0::1::::<>PanelContainer<>::
+as_wizard_window.tscn::PackedScene::6886060651346363495::1699402208::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/as_wizard_window.gd
+sprite_frames_import_history.gd::GDScript::-1::1699402208::0::1::::<>PanelContainer<>::
+sprite_frames_import_history.tscn::PackedScene::6486785450419732274::1699402208::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/sprite_frames_import_history.gd
+::res://addons/AsepriteWizard/animated_sprite/docks/wizard_nodes/::1699402209
+import_date.gd::GDScript::-1::1699402209::0::1::::<>Label<>::
+import_date.tscn::PackedScene::-1::1699402209::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/wizard_nodes/import_date.gd
+list_actions.gd::GDScript::-1::1699402209::0::1::::<>HBoxContainer<>::
+list_actions.tscn::PackedScene::-1::1699402209::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/wizard_nodes/list_actions.gd
+output_path.tscn::PackedScene::-1::1699402209::0::1::::<><>::
+source_path.gd::GDScript::-1::1699402209::0::1::::<>LineEdit<>::
+source_path.tscn::PackedScene::-1::1699402209::0::1::::<><>::res://addons/AsepriteWizard/animated_sprite/docks/wizard_nodes/source_path.gd
+::res://addons/AsepriteWizard/animation_player/::1699402209
+animation_creator.gd::GDScript::-1::1699402209::0::1::::<><>::
+inspector_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorInspectorPlugin<>::
+sprite_animation_creator.gd::GDScript::-1::1699402209::0::1::::<><>::
+texture_rect_animation_creator.gd::GDScript::-1::1699402209::0::1::::<><>::
+::res://addons/AsepriteWizard/animation_player/docks/::1699402209
+animation_player_inspector_dock.gd::GDScript::-1::1699402209::0::1::::<>PanelContainer<>::
+animation_player_inspector_dock.tscn::PackedScene::2998581922542402478::1699402209::0::1::::<><>::res://addons/AsepriteWizard/animation_player/docks/animation_player_inspector_dock.gd<>uid://x1f1t87m582u::::res://addons/AsepriteWizard/shared/animation_player_drop_button.tscn<>uid://dj1uo3blocr8e::::res://addons/AsepriteWizard/shared/source_drop_button.tscn<>uid://cwvgnm3o7eed2::::res://addons/AsepriteWizard/shared/dir_drop_button.tscn
+::res://addons/AsepriteWizard/aseprite/::1699402209
+aseprite.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+file_exporter.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+::res://addons/AsepriteWizard/config/::1699402209
+config.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+config_dialog.gd::GDScript::-1::1699402209::0::1::::<>PopupPanel<>::
+config_dialog.tscn::PackedScene::8959845410224223728::1699402209::0::1::::<><>::res://addons/AsepriteWizard/config/config_dialog.gd
+result_codes.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+wizard_config.gd::GDScript::-1::1699402209::0::1::::<>RefCounted<>::
+::res://addons/AsepriteWizard/export/::1699402209
+metadata_export_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorExportPlugin<>::
+::res://addons/AsepriteWizard/shared/::1699402209
+animation_player_drop_button.gd::GDScript::-1::1699402209::0::1::::<>Button<>::
+animation_player_drop_button.tscn::PackedScene::1668368291279044894::1699402209::0::1::::<><>::res://addons/AsepriteWizard/shared/animation_player_drop_button.gd
+dir_drop_button.gd::GDScript::-1::1699402209::0::1::::<>Button<>::
+dir_drop_button.tscn::PackedScene::6360736051749278321::1699402209::0::1::::<><>::res://addons/AsepriteWizard/shared/dir_drop_button.gd
+source_drop_button.gd::GDScript::-1::1699402209::0::1::::<>Button<>::
+source_drop_button.tscn::PackedScene::7845876279114352826::1699402209::0::1::::<><>::res://addons/AsepriteWizard/shared/source_drop_button.gd
+::res://addons/AsepriteWizard/tileset/::1699402209
+tileset_texture_import_plugin.gd::GDScript::-1::1699402209::0::1::::<>EditorImportPlugin<>::
 ::res://Assets/::1693748146
 ::res://Assets/Enemy/::1699144014
 enemy-concept.png::CompressedTexture2D::8640496476293672792::1684679377::1699144014::1::::<><>::
@@ -19,8 +73,8 @@ slash.png::CompressedTexture2D::7899225257373197799::1684679377::1699144014::1::
 yellowliquid.png::CompressedTexture2D::520634230920901703::1691336308::1699144014::1::::<><>::
 ::res://Assets/Fonts/::1699144014
 Lato-Bold.ttf::FontFile::7736516611607880741::1693748146::1699144014::1::::<><>::
-::res://Assets/Materials and Textures/::1699276965
-HitFlashMat.tres::ShaderMaterial::3887118401099238933::1699276965::0::1::::<><>::
+::res://Assets/Materials and Textures/::1699282351
+HitFlashMat.tres::ShaderMaterial::3887118401099238933::1699282351::0::1::::<><>::
 Lights2.png::CompressedTexture2D::2399779292823397410::1684679377::1699144014::1::::<><>::
 Lights.png::CompressedTexture2D::3418845091249303272::1684679377::1699144014::1::::<><>::
 ::res://Assets/Menu/::1699144014
@@ -73,6 +127,10 @@ walltile_lab.png::CompressedTexture2D::2807925148159710562::1694886248::16991440
 walltile_lab_deco.png::CompressedTexture2D::775071384210712891::1694886248::1699144014::1::::<><>::
 wip tileset.tres::TileSet::-1::1699144014::0::1::::<><>::res://Assets/Tilesets/dungeon tiles.png
 ::res://Assets/Tilesets/src/::1694210086
+Assetes.aseprite::PackedDataContainer::3549784406560509099::1694209747::1699402216::1::::<><>::
+Sprite-0001.aseprite::PackedDataContainer::1046261786541188412::1694209819::1699402216::1::::<><>::
+Sprite-0002.aseprite::PackedDataContainer::3399462163086698441::1694209820::1699402216::1::::<><>::
+Sprite-0003.aseprite::PackedDataContainer::5334725596952484545::1694209821::1699402216::1::::<><>::
 ::res://Assets/UI/::1699144014
 Days.ttf::FontFile::5521622133894105860::1691336308::1699144014::1::::<><>::
 ::res://Assets/UI/Cutscene Elements/::1699144014
@@ -105,10 +163,10 @@ test_scene.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/UI/Cutsce
 AK47.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/Weapons/WeaponResource.gd<>res://Scenes/Scene Objects/GenericBullet.tscn
 Pistol.tres::Resource::-1::1698625212::0::1::::<><>::res://Scripts/Weapons/WeaponResource.gd<>res://Scenes/Scene Objects/GenericBullet.tscn
 ::res://Scenes/::1684679377
-::res://Scenes/Enemy/::1699278336
-EnemyBase.tscn::PackedScene::609107496377437663::1699278335::0::1::::<><>::res://Scripts/Enemy/V2/EnemyBase.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png
-EnemyDragoon.tscn::PackedScene::922736386648264848::1699278336::0::1::::<><>::res://Scripts/Enemy/V2/EnemyDragoon.gd<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scripts/Enemy/Movement/Roam.gd
-EnemyPomudachi.tscn::PackedScene::966537619946580402::1699278336::0::1::::<><>::res://Scripts/Enemy/V2/EnemyPomudachi.gd<>uid://b4k5wpt15e5mm::::res://Assets/Enemy/pomudachi-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/JarCreator.gd<>res://Scenes/Enemy/Attacks/pool.tscn<>res://Scripts/Enemy/Movement/Kite.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Attacks/PoolCreator.gd<>res://Scenes/Enemy/Attacks/jar.tscn
+::res://Scenes/Enemy/::1699329508
+EnemyBase.tscn::PackedScene::609107496377437663::1699307499::0::1::::<><>::res://Scripts/Enemy/V2/EnemyBase.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png
+EnemyDragoon.tscn::PackedScene::922736386648264848::1699329508::0::1::::<><>::res://Scripts/Enemy/V2/EnemyDragoon.gd<>uid://crq0hwqxmplwk::::res://Assets/Enemy/EnemyDragoon-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scenes/Enemy/Attacks/slash.tscn<>uid://vtvus3x3hbqd::::res://Assets/Enemy/enemy-eyes.png<>res://Scripts/Enemy/Attacks/SlashCreator.gd<>res://Scripts/Enemy/Movement/Roam.gd
+EnemyPomudachi.tscn::PackedScene::966537619946580402::1699329508::0::1::::<><>::res://Scripts/Enemy/V2/EnemyPomudachi.gd<>uid://b4k5wpt15e5mm::::res://Assets/Enemy/pomudachi-Sheet.png<>res://Scripts/Enemy/Movement/Chase.gd<>res://Scripts/Enemy/Attacks/JarCreator.gd<>res://Scenes/Enemy/Attacks/pool.tscn<>res://Scripts/Enemy/Movement/Kite.gd<>res://Scripts/Enemy/Movement/Roam.gd<>res://Scripts/Enemy/Attacks/PoolCreator.gd<>res://Scenes/Enemy/Attacks/jar.tscn
 EnemyProwler.tscn::PackedScene::2245195787695942391::1699220379::0::1::::<><>::uid://b0aii2ort6a7c
 EnemyShambler.tscn::PackedScene::1272619912232737671::1699220379::0::1::::<><>::res://Scripts/Enemy/V2/EnemyShambler.gd<>uid://rcxwruxvlab8
 ::res://Scenes/Enemy/Attacks/::1699144014
@@ -161,9 +219,9 @@ Monologue.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Days.
 ::res://Scenes/Menus/Cutscene Elements/Portraits/::1699144015
 PomuPortrait.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Cutscene Elements/pomu-portraits-test.png<>res://Scripts/UI/Cutscene Elements/Portrait.gd
 SelenPortrait.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/Cutscene Elements/selen-portraits-test.png<>res://Scripts/UI/Cutscene Elements/Portrait.gd
-::res://Scenes/Player/::1699278336
+::res://Scenes/Player/::1699329508
 Minimap.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/UI/HUD/Minimap-border.png<>res://Scripts/UI/PulseLine.gd<>res://Scripts/UI/Minimap.gd<>res://Scripts/UI/EnemyMarker.gd<>res://Assets/UI/HUD/Map Markers/ObjectiveMarker.png<>res://Assets/UI/HUD/Map Markers/EnemyMarker.png<>res://Assets/UI/HUD/Map Markers/PlayerMarker.png
-ModulePlayer.tscn::PackedScene::7553629329279629333::1699278336::0::1::::<><>::res://Scripts/Player/Player_Movement.gd<>res://Scripts/Player/Player_Aesthetics.gd<>res://Scripts/Player/Player_Lights.gd<>res://Scripts/Player/Player_Camera.gd<>uid://cwfei23exjk1u::::res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png<>uid://boyd45kijsfum::::res://Assets/Materials and Textures/Lights.png<>uid://bagqaqtv658oc::::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd<>res://Scripts/Player/Player_Weapon.gd<>res://Resources/WeaponTypes/Pistol.tres<>res://Scripts/Player/Player_Main.gd<>res://Scenes/Player/Minimap.tscn<>uid://bg6dt3u6p65rr::::res://Assets/Player/selen-player-no-arms.png
+ModulePlayer.tscn::PackedScene::7553629329279629333::1699329508::0::1::::<><>::res://Scripts/Player/Player_Movement.gd<>res://Scripts/Player/Player_Aesthetics.gd<>res://Scripts/Player/Player_Lights.gd<>res://Scripts/Player/Player_Camera.gd<>uid://cwfei23exjk1u::::res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png<>uid://boyd45kijsfum::::res://Assets/Materials and Textures/Lights.png<>uid://bagqaqtv658oc::::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd<>res://Scripts/Player/Player_Weapon.gd<>res://Resources/WeaponTypes/Pistol.tres<>res://Scripts/Player/Player_Main.gd<>res://Scenes/Player/Minimap.tscn<>uid://bg6dt3u6p65rr::::res://Assets/Player/selen-player-no-arms.png
 ::res://Scenes/Scene Objects/::1699144015
 BulletHitParticles.tscn::PackedScene::-1::1698625211::0::1::::<><>::res://Scripts/Projectiles and Effects/BulletHitParticles.gd
 DebugTorch.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Player/CustomLight.gd
@@ -182,13 +240,13 @@ Door.tscn::PackedScene::-1::1699227723::0::1::::<><>::res://Scripts/Objects/Door
 DungeonEntryRoomDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/dungeondoor.tres<>res://Scripts/Objects/EntryRoomDoor.gd
 DungeonExitRoomDoor.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/dungeondoor.tres<>res://Scripts/Objects/ExitRoomDoor.gd
 LabDoor.tscn::PackedScene::-1::1699227723::0::1::::<><>::res://Scripts/Objects/Door.gd<>res://Assets/Tilesets/labdoor.tres
-::res://Scenes/Test Files/::1699278335
+::res://Scenes/Test Files/::1699329508
 demo_tileSetTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/demo_walls_with_collision.tres
 EnemyNavTest.tscn::PackedScene::-1::1699277316::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>uid://dxrhh4uopg7su
 EnemyTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://icon.png<>res://Scenes/Player/ModulePlayer.tscn<>res://Scenes/Enemy/EnemyShambler.tscn<>res://Scenes/Enemy/EnemyProwler.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn
 FlickeringLightTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scripts/Player/CustomLight.gd<>res://Assets/Materials and Textures/Lights2.png<>res://Scripts/Test Files/FlickeringLightTest.gd
 RandomWorld.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Scripts/Test Files/RandomWorld.gd<>res://Assets/Tilesets/Autotiles-big.png
-Test.tscn::PackedScene::8706903172964596393::1699278335::0::1::::<><>::uid://bg43rw48xl1mn::::res://icon.png<>uid://dfvbf3g3nk1ef::::res://Scenes/Player/ModulePlayer.tscn<>uid://dgq20amenquxv::::res://Scenes/Enemy/V1/Enemy.tscn<>res://Scenes/Scene Objects/WeaponPickup.tscn<>uid://ixb58wtajkeh::::res://Scenes/Enemy/EnemyBase.tscn<>res://Resources/WeaponTypes/AK47.tres<>uid://ne8llq5e6hwq::::res://Scenes/Enemy/EnemyDragoon.tscn<>uid://n1gy62ci4ma1::::res://Scenes/Enemy/EnemyPomudachi.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn<>res://Scenes/Scene Objects/InteractableSign.tscn<>res://Resources/Cutscene Data/test_scene.tres
+Test.tscn::PackedScene::8706903172964596393::1699329508::0::1::::<><>::uid://bg43rw48xl1mn::::res://icon.png<>uid://dfvbf3g3nk1ef::::res://Scenes/Player/ModulePlayer.tscn<>uid://dgq20amenquxv::::res://Scenes/Enemy/V1/Enemy.tscn<>res://Scenes/Scene Objects/WeaponPickup.tscn<>uid://ixb58wtajkeh::::res://Scenes/Enemy/EnemyBase.tscn<>res://Resources/WeaponTypes/AK47.tres<>uid://n1gy62ci4ma1::::res://Scenes/Enemy/EnemyPomudachi.tscn<>res://Scenes/Menus/PauseMenu.tscn<>res://Scenes/Menus/CutsceneMaster.tscn<>res://Scenes/Scene Objects/InteractableSign.tscn<>res://Resources/Cutscene Data/test_scene.tres
 TilesetTest.tscn::PackedScene::-1::1699144015::0::1::::<><>::res://Assets/Tilesets/tileset.tres<>res://Scenes/Player/ModulePlayer.tscn<>res://Assets/Tilesets/dungeon-tileset.png
 ::res://Scripts/::1699227746
 ::res://Scripts/Enemy/::1689272034
@@ -210,7 +268,7 @@ ShamblerSlashInstance.gd::GDScript::-1::1699217187::0::1::::<>Area2D<>::
 Chase.gd::GDScript::-1::1699215242::0::1::::<>Node2D<>::
 Kite.gd::GDScript::-1::1699215687::0::1::::<>Node2D<>::
 Roam.gd::GDScript::-1::1699215251::0::1::::<>Node2D<>::
-::res://Scripts/Enemy/V1/::1699219294
+::res://Scripts/Enemy/V1/::1699329340
 EnemyMB_Chase.gd::GDScript::-1::1699215887::0::1::::<>Node2D<>::
 EnemyMB_Knockback.gd::GDScript::-1::1699215881::0::1::::<>Node2D<>::
 EnemyMB_Patrol.gd::GDScript::-1::1699215896::0::1::::<>Node2D<>::
@@ -218,9 +276,9 @@ Enemy_Aesthetics.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
 Enemy_Collision.gd::GDScript::-1::1699214533::0::1::::<>HiddenObject<>::
 Enemy_Movement.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
 Enemy_MovementBehaviour.gd::GDScript::-1::1698625211::0::1::::EnemyMoveBehaviour<>Node<>::
-Enemy_Vision.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
-::res://Scripts/Enemy/V2/::1699242482
-EnemyBase.gd::GDScript::-1::1699242482::0::1::::EnemyBase<>HiddenObject<>::
+Enemy_Vision.gd::GDScript::-1::1699329340::0::1::::<>Node2D<>::
+::res://Scripts/Enemy/V2/::1699328509
+EnemyBase.gd::GDScript::-1::1699328509::0::1::::EnemyBase<>HiddenObject<>::
 EnemyDragoon.gd::GDScript::-1::1699239832::0::1::::<>EnemyBase<>::
 EnemyPomudachi.gd::GDScript::-1::1699240555::0::1::::<>EnemyBase<>::
 EnemyProwler.gd::GDScript::-1::1699239799::0::1::::<>EnemyBase<>::
@@ -242,7 +300,7 @@ PauseMenu.gd::GDScript::-1::1699144015::0::1::::<>Control<>::
 PlayBtn.gd::GDScript::-1::1699144015::0::1::::<>Node<>::
 Save.gd::GDScript::-1::1698625211::0::1::::<>Node<>::
 StartScreen.gd::GDScript::-1::1699144015::0::1::::<>Node<>::
-::res://Scripts/Objects/::1699276966
+::res://Scripts/Objects/::1699282351
 Door.gd::GDScript::-1::1699227552::0::1::::DragoonGameDoor<>Node2D<>::
 EntryRoomDoor.gd::GDScript::-1::1699227777::0::1::::<>DragoonGameDoor<>::
 ExitRoomDoor.gd::GDScript::-1::1699227686::0::1::::<>DragoonGameDoor<>::
@@ -250,17 +308,17 @@ Interactable.gd::GDScript::-1::1699219294::0::1::::Interactable<>HiddenObject<>:
 Key.gd::GDScript::-1::1698625211::0::1::::<>HiddenObject<>::
 KeyLockedExit.gd::GDScript::-1::1698625211::0::1::::<>Area2D<>::
 KeyPickupArea.gd::GDScript::-1::1699144015::0::1::::<>Area2D<>::
-Lever.gd::GDScript::-1::1699276965::0::1::::<>HiddenObject<>::
+Lever.gd::GDScript::-1::1699282351::0::1::::<>HiddenObject<>::
 Lever_Area.gd::GDScript::-1::1699144015::0::1::::<>Area2D<>::
-Sign.gd::GDScript::-1::1699276966::0::1::::<>Interactable<>::
-::res://Scripts/Player/::1699278320
-CustomLight.gd::GDScript::-1::1699278320::0::1::::<>PointLight2D<>::
+Sign.gd::GDScript::-1::1699282351::0::1::::<>Interactable<>::
+::res://Scripts/Player/::1699329499
+CustomLight.gd::GDScript::-1::1699329499::0::1::::<>PointLight2D<>::
 Player_Aesthetics.gd::GDScript::-1::1699197155::0::1::::<>Node2D<>::
 Player_Camera.gd::GDScript::-1::1699226016::0::1::::<>Node2D<>::
 Player_Lights.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
-Player_Main.gd::GDScript::-1::1699276966::0::1::::<>Node2D<>::
-Player_Movement.gd::GDScript::-1::1699276966::0::1::::<>CharacterBody2D<>::
-Player_Weapon.gd::GDScript::-1::1699219294::0::1::::<>Node2D<>::
+Player_Main.gd::GDScript::-1::1699282351::0::1::::<>Node2D<>::
+Player_Movement.gd::GDScript::-1::1699282351::0::1::::<>CharacterBody2D<>::
+Player_Weapon.gd::GDScript::-1::1699328186::0::1::::<>Node2D<>::
 ::res://Scripts/Projectiles and Effects/::1699219294
 Bullet.gd::GDScript::-1::1699217607::0::1::::Bullet<>Node2D<>::
 BulletHitParticles.gd::GDScript::-1::1699219294::0::1::::<>CPUParticles2D<>::
