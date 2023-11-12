@@ -23,7 +23,7 @@ func movement():
 @export var BULLET_KNOCKBACK := 50.0
 
 func setupHitboxSignals():
-	hitbox.connect("body_entered", Callable(self, "onBodyEnteredHitbox"))
+	hitbox.body_entered.connect(onBodyEnteredHitbox)
 
 func onBodyEnteredHitbox(body):
 	if body.has_method("onHitByBullet"):

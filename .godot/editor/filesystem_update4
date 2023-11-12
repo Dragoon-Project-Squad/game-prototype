@@ -5,11 +5,12 @@ res://Scripts/Objects/Lever.gd
 res://Scripts/Objects/Sign.gd
 res://Scripts/Player/Player_Main.gd
 res://Scripts/Player/Player_Movement.gd
-res://Scenes/Enemy/EnemyBase.tscn
 res://Scenes/Enemy/EnemyDragoon.tscn
 res://Scenes/Enemy/EnemyPomudachi.tscn
 res://Scenes/Player/ModulePlayer.tscn
-res://Scripts/Enemy/V2/EnemyBase.gd
-res://Scripts/Player/CustomLight.gd
-res://Scripts/Player/Player_Weapon.gd
-res://Scripts/Enemy/V1/Enemy_Vision.gd
+res://Scenes/Levels/Dungeon_DeadSimple.tscn
+res://Scenes/Scene Objects/GenericBullet.tscn
+res://Scripts/Enemy/Attacks/JarCreator.gd
+res://Scenes/Enemy/Attacks/jar.tscn
+res://Scenes/Enemy/Attacks/pool.tscn
+res://Scripts/Enemy/Attacks/JarInstance.gd

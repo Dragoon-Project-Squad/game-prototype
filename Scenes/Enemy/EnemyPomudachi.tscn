@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b4k5wpt15e5mm" path="res://Assets/Enemy/pomudachi-Sheet.png" id="2"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Attacks/JarCreator.gd" id="4"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemy/Attacks/pool.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://ba8gdhcpflemy" path="res://Scenes/Enemy/Attacks/pool.tscn" id="6"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Kite.gd" id="7"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="8"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Attacks/PoolCreator.gd" id="9"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemy/Attacks/jar.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://bp3csr51pc3a1" path="res://Scenes/Enemy/Attacks/jar.tscn" id="10"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 30.0
@@ -142,7 +142,7 @@ _data = {
 "RESET": SubResource("3")
 }
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "telegraph", "main", "animation_player") groups=["minimap_objects"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph", "main", "animation_player") groups=["minimap_objects"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1")
@@ -170,24 +170,27 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 script = ExtResource("8")
 enemy_control = NodePath("../..")
 
-[node name="Chase" type="Node2D" parent="Movement"]
+[node name="Chase" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
 script = ExtResource("3")
 enemy_control = NodePath("../..")
 
-[node name="Kite" type="Node2D" parent="Movement"]
+[node name="Kite" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
 script = ExtResource("7")
+enemy_control = NodePath("../..")
 
 [node name="Actions" type="Node2D" parent="."]
 
-[node name="Jar Attack" type="Node2D" parent="Actions"]
+[node name="Jar Attack" type="Node2D" parent="Actions" node_paths=PackedStringArray("attack_origin", "enemy_control")]
 script = ExtResource("4")
 jar = ExtResource("10")
 attack_origin = NodePath("../../RangeOrigin")
 enemy_control = NodePath("../..")
 
-[node name="Pool Attack" type="Node2D" parent="Actions"]
+[node name="Pool Attack" type="Node2D" parent="Actions" node_paths=PackedStringArray("attack_origin", "enemy_control")]
 script = ExtResource("9")
 pool = ExtResource("6")
+attack_origin = NodePath("../../RangeOrigin")
+enemy_control = NodePath("../..")
 
 [node name="MeleeOrigin" type="Node2D" parent="."]
 

@@ -122,7 +122,6 @@ enemy_control = NodePath("../..")
 
 [node name="Chase" type="Node2D" parent="Movement"]
 script = ExtResource("3")
-enemy_control = NodePath("../..")
 
 [node name="Actions" type="Node2D" parent="."]
 

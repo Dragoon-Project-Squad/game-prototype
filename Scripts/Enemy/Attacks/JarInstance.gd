@@ -20,9 +20,9 @@ func _process(delta: float) -> void:
 			global_position += global_position.direction_to(target_pos) * delta * projectile_speed
 		else:
 			create_pool()
-
+#Porting Node: instance() is dead, long live instantiate()
 func create_pool():
-	var pool_instance = pool.instance()
+	var pool_instance = pool.instantiate()
 	pool_instance.global_position = global_position
 	get_parent().add_child(pool_instance)
 	queue_free()
