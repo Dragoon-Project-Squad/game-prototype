@@ -26,10 +26,10 @@ func getCurrentState():
 			HALT:
 				pass
 			ROAM:
-				telegraph.modulate.a = 0
+				telegraph_sprite.modulate.a = 0
 			CHASE:
 				updateDirection(velocity)
-				telegraph.modulate.a = 1
+				telegraph_sprite.modulate.a = 1
 				#attack logic, ability cooldown checks will happen here
 				if global_position.distance_to(player.global_position) > get_node(next_attack).attack_range:
 					get_node(move_options[1]).move()

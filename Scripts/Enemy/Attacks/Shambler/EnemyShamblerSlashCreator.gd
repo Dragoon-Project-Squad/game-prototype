@@ -1,9 +1,9 @@
 extends Node2D
 
-@export (PackedScene) var slashNW: PackedScene
-@export (PackedScene) var slashNE: PackedScene
-@export (PackedScene) var slashSW: PackedScene
-@export (PackedScene) var slashSE: PackedScene
+@export var slashNW: PackedScene
+@export var slashNE: PackedScene
+@export var slashSW: PackedScene
+@export var slashSE: PackedScene
 @export var attack_origin : Node
 @export var enemy_control : Node
 

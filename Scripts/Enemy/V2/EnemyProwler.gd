@@ -42,11 +42,11 @@ func selectNextAction():
 
 func startSpecial(position, attack_name):
 	if position.x > global_position.x:
-		main.set_flip_h(false)
-		telegraph.set_flip_h(false)
+		main_sprite.set_flip_h(false)
+		telegraph_sprite.set_flip_h(false)
 	elif position.x < global_position.x:
-		main.set_flip_h(true)
-		telegraph.set_flip_h(true)
+		main_sprite.set_flip_h(true)
+		telegraph_sprite.set_flip_h(true)
 	attack_player_pos = position
 	action_ready = false
 	animation_player.play(attack_name)
@@ -57,10 +57,10 @@ func getCurrentState():
 			HALT:
 				pass
 			ROAM:
-				telegraph.modulate.a = 0
+				telegraph_sprite.modulate.a = 0
 			CHASE:
 				updateDirection(velocity)
-				telegraph.modulate.a = 1
+				telegraph_sprite.modulate.a = 1
 				#attack logic, ability cooldown checks will happen here
 				if global_position.distance_to(player.global_position) > get_node(next_attack).attack_range:
 					get_node(move_options[1]).move()

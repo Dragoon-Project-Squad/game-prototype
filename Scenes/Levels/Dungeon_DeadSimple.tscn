@@ -84,8 +84,6 @@ rotation = -1.0472
 [node name="Enemy2" parent="Objects/Enemy" instance=ExtResource("5")]
 position = Vector2(-408.765, 235.999)
 rotation = 2.61799
-movement = NodePath("../Movement")
-aesthetics = NodePath("../Aesthetics")
 visibilityPolygon2DPath = NodePath("../VisibilityPolygon")
 
 [node name="Enemy3" parent="Objects/Enemy" instance=ExtResource("5")]

@@ -28,9 +28,8 @@ var last_seen = null
 @export var enemy_body : CharacterBody2D
 
 #visuals
-@export var telegraph : Sprite2D
-@export var main : Sprite2D
-#Porting Note: maybe rename these two ^^^ for clarity
+@export var telegraph_sprite : Sprite2D
+@export var main_sprite : Sprite2D
 @export var animation_player : AnimationPlayer
 
 #attack flags
@@ -91,7 +90,8 @@ func checkAggro():
 
 #state behavior, this will be overrided between enemies
 func getCurrentState():
-	print("getCurrentState has not been implemented")
+	pass
+	#print("getCurrentState has not been implemented")
 
 func selectNextAction():
 	var options = action_options.duplicate()
@@ -105,11 +105,11 @@ func triggerDeath():
 
 func updateDirection(enemy_velocity):
 	if enemy_velocity.x > 0:
-		main.set_flip_h(false)
-		telegraph.set_flip_h(false)
+		main_sprite.set_flip_h(false)
+		telegraph_sprite.set_flip_h(false)
 	elif enemy_velocity.x < 0:
-		main.set_flip_h(true)
-		telegraph.set_flip_h(true)
+		main_sprite.set_flip_h(true)
+		telegraph_sprite.set_flip_h(true)
 		
 
 func animationFinished(anim_name = "Idle"):
@@ -121,11 +121,11 @@ func animationFinished(anim_name = "Idle"):
 
 func startAttack(attack_position, attack_name):
 	if attack_position.x > global_position.x:
-		main.set_flip_h(false)
-		telegraph.set_flip_h(false)
+		main_sprite.set_flip_h(false)
+		telegraph_sprite.set_flip_h(false)
 	elif attack_position.x < global_position.x:
-		main.set_flip_h(true)
-		telegraph.set_flip_h(true)
+		main_sprite.set_flip_h(true)
+		telegraph_sprite.set_flip_h(true)
 	attack_player_pos = attack_position
 	action_ready = false
 	animation_player.play(attack_name)
