@@ -2,8 +2,8 @@ extends EnemyBase
 
 var max_kite = 300
 
-@onready var charSpriteStartPos: Vector2 = main.position
-@onready var charSpriteStartScale: Vector2 = main.scale
+@onready var charSpriteStartPos: Vector2 = main_sprite.position
+@onready var charSpriteStartScale: Vector2 = main_sprite.scale
 var animationTime: float = 0.0
 
 #Move Bounce animation
@@ -48,12 +48,12 @@ func moveBounce(isMove: bool):
 	var targetPosition = charSpriteStartPos + MB_animationJumpHeight * pow(sin(2 * PI * animationTime / MB_animationPeriod), 2) * Vector2.UP
 	var targetRotation = deg_to_rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
 	
-	main.position = lerp(main.position, targetPosition, 0.4)
-	main.rotation = lerp_angle(main.rotation, targetRotation, 0.4)
-	main.scale.y = lerp(main.scale.y, charSpriteStartScale.y, 0.2)
+	main_sprite.position = lerp(main_sprite.position, targetPosition, 0.4)
+	main_sprite.rotation = lerp_angle(main_sprite.rotation, targetRotation, 0.4)
+	main_sprite.scale.y = lerp(main_sprite.scale.y, charSpriteStartScale.y, 0.2)
 	
 	if !isMove:
-		main.rotation = 0
+		main_sprite.rotation = 0
 
 func getCurrentState():
 	super()
@@ -63,12 +63,12 @@ func getCurrentState():
 				moveBounce(false)
 				pass
 			ROAM:
-				telegraph.modulate.a = 0
+				telegraph_sprite.modulate.a = 0
 				moveBounce(false)
 				animation_player.play("Idle")
 			CHASE:
 				updateDirection(velocity)
-				telegraph.modulate.a = 1
+				telegraph_sprite.modulate.a = 1
 				#attack logic, ability cooldown checks will happen here
 				if action_cooldown <= 0:
 					if global_position.distance_to(player.global_position) > get_node(next_attack).attack_range:

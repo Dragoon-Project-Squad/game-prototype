@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (PackedScene) var bite: PackedScene
+@export var bite: PackedScene
 @export var attack_origin : Node
 @export var enemy_control : Node
 

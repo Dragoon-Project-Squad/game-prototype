@@ -142,7 +142,7 @@ _data = {
 "RESET": SubResource("3")
 }
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph", "main", "animation_player") groups=["minimap_objects"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph_sprite", "main_sprite", "animation_player") groups=["minimap_objects"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1")
@@ -150,8 +150,8 @@ hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
 aggro = NodePath("VisionRange/AggroRange")
 deaggro = NodePath("VisionRange/DeaggroRange")
 enemy_body = NodePath(".")
-telegraph = NodePath("Sprites/TelegraphSprites/None")
-main = NodePath("Sprites/HiddenSprites/Main")
+telegraph_sprite = NodePath("Sprites/TelegraphSprites/None")
+main_sprite = NodePath("Sprites/HiddenSprites/Main")
 animation_player = NodePath("AnimationPlayer")
 move_options = [NodePath("Movement/Roam"), NodePath("Movement/Chase"), NodePath("Movement/Kite")]
 action_options = [NodePath("Actions/Jar Attack"), NodePath("Actions/Pool Attack")]
@@ -168,7 +168,6 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [node name="Roam" type="Node2D" parent="Movement"]
 script = ExtResource("8")
-enemy_control = NodePath("../..")
 
 [node name="Chase" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
 script = ExtResource("3")

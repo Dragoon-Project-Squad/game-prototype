@@ -217,6 +217,5 @@ offset_top = -334.0
 offset_right = 304.0
 offset_bottom = 306.0
 scale = Vector2(0.5, 0.5)
-player = NodePath("../../PlayerKinematic")
 
 [node name="DamageHighlightTimer" type="Timer" parent="."]
