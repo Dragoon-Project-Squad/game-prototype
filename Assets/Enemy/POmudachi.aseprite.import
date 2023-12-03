@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dyv54j14x4dd6"
+path="res://.godot/imported/POmudachi.aseprite-d3d829a4d4cfafa154c23a2d59b30e3d.res"
+
+[deps]
+
+source_file="res://Assets/Enemy/POmudachi.aseprite"
+dest_files=["res://.godot/imported/POmudachi.aseprite-d3d829a4d4cfafa154c23a2d59b30e3d.res"]
+
+[params]
+
