@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/ModulePlayer.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/Materials and Textures/inventorySlot.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/UI/Inventory.gd" type="Script" id=16]
 [ext_resource path="res://Assets/Items/riflePlaceholder.png" type="Texture" id=17]
+[ext_resource path="res://Scripts/UI/ItemMenu.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -212,8 +213,10 @@ pause_mode = 0
 [node name="ItemMenu" type="Control" parent="Menus"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 18 )
 
 [node name="Equipment" type="Control" parent="Menus/ItemMenu"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -279,6 +282,7 @@ texture = ExtResource( 13 )
 script = ExtResource( 12 )
 
 [node name="Inventory" type="Control" parent="Menus/ItemMenu"]
+visible = false
 margin_left = 950.0
 margin_top = 130.0
 margin_right = 1114.0
