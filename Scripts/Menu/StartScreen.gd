@@ -1,6 +1,6 @@
 extends Node
 
-@export var level # (String, FILE)
+@export_file var level # (String, FILE)
 
 @onready var play_btn = $CenterContainer/VBoxContainer/MarginContainer/MenuBtns/PlayBtn
 @onready var options_menu = $OptionsMenu
