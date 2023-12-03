@@ -1,0 +1,288 @@
+[gd_scene load_steps=18 format=3 uid="uid://68ubt4odqo12"]
+
+[ext_resource type="Texture2D" uid="uid://b0aii2ort6a7c" path="res://Assets/Enemy/prowler-Sheet.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/Enemy/V2/EnemyProwler.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerBiteCreator.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://cm6mb05s2lurh" path="res://Scenes/Enemy/Attacks/Prowler/ProwlerBite.tscn" id="6"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Attacks/Prowler/EnemyProwlerPounce.gd" id="7"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="8"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="8"]
+size = Vector2(39, 25)
+
+[sub_resource type="Animation" id="7"]
+resource_name = "Bite"
+length = 0.8
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 5, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Actions/Bite")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16, 0.48),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"snapshotAttackOrigin"
+}, {
+"args": [],
+"method": &"createAttack"
+}]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="9"]
+resource_name = "PounceAttack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="10"]
+resource_name = "PounceHit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Special Actions/Pounce")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"endAttack"
+}]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "Telegraph"
+length = 0.75
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 5, 5, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Special Actions/Pounce")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.125, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"snapshotDirection"
+}, {
+"args": [],
+"method": &"startAttack"
+}]
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "Walk"
+length = 0.24
+loop_mode = 1
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4aib"]
+_data = {
+"Bite": SubResource("7"),
+"Idle": SubResource("4"),
+"PounceAttack": SubResource("9"),
+"PounceHit": SubResource("10"),
+"RESET": SubResource("3"),
+"Telegraph": SubResource("6"),
+"Walk": SubResource("5")
+}
+
+[node name="Prowler" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph_sprite", "main_sprite", "animation_player") groups=["minimap_objects"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("2")
+special_options = [NodePath("Special Actions/Pounce")]
+hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
+aggro = NodePath("VisionRange/AggroRange")
+deaggro = NodePath("VisionRange/DeaggroRange")
+enemy_body = NodePath(".")
+telegraph_sprite = NodePath("Sprites/TelegraphSprites/Telegraph")
+main_sprite = NodePath("Sprites/HiddenSprites/Main")
+animation_player = NodePath("AnimationPlayer")
+move_options = [NodePath("Movement/Roam"), NodePath("Movement/Chase")]
+action_options = [NodePath("Actions/Bite")]
+visibilityPolygon2DPath = NodePath("VisibilityPolygon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("1")
+
+[node name="VisibilityPolygon" type="Polygon2D" parent="."]
+position = Vector2(-3, 8.50001)
+scale = Vector2(1.09375, 0.734375)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-32, -32, -0.562683, -32, 32, -32, 35.6571, -3.40426, 32, 32, -32, 32, -34.7429, -2.04256)
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="Roam" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("8")
+enemy_control = NodePath("../..")
+
+[node name="Chase" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("3")
+enemy_control = NodePath("../..")
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="Bite" type="Node2D" parent="Actions" node_paths=PackedStringArray("attack_origin", "enemy_control")]
+script = ExtResource("5")
+bite = ExtResource("6")
+attack_origin = NodePath("../../AttackOrigin")
+enemy_control = NodePath("../..")
+
+[node name="Special Actions" type="Node2D" parent="."]
+
+[node name="Pounce" type="Node2D" parent="Special Actions" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("7")
+enemy_control = NodePath("../..")
+
+[node name="Hitbox" type="Area2D" parent="Special Actions/Pounce"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Special Actions/Pounce/Hitbox"]
+position = Vector2(0, 8)
+shape = SubResource("8")
+
+[node name="AttackOrigin" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites/HiddenSprites")
+libraries = {
+"": SubResource("AnimationLibrary_n4aib")
+}
+
+[node name="VisionRange" type="Node2D" parent="."]
+
+[node name="AggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(300, 0)
+collision_mask = 9
+
+[node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(500, 0)
+collision_mask = 9
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="TelegraphSprites" type="Node2D" parent="Sprites"]
+
+[node name="Telegraph" type="Sprite2D" parent="Sprites/TelegraphSprites"]
+
+[node name="HiddenSprites" type="Node2D" parent="Sprites"]
+
+[node name="Main" type="Sprite2D" parent="Sprites/HiddenSprites"]
+scale = Vector2(2, 2)
+texture = ExtResource("1")
+hframes = 9
+frame = 1
+
+[connection signal="body_entered" from="Special Actions/Pounce/Hitbox" to="Special Actions/Pounce" method="_on_Hitbox_body_entered"]

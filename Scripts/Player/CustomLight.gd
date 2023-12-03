@@ -1,10 +1,10 @@
-extends Light2D
+extends PointLight2D
 
-export (NodePath) onready var viewCheck = get_node(viewCheck)
-export (NodePath) onready var viewCheckShape = get_node(viewCheckShape)
+@export var viewCheck : Area2D
+@export var viewCheckShape : Node2D
 
 #An array of all physics bodies that the light should ignore when raycasting
-export (Array, NodePath) onready var nonHiddenObjectBodiesToIgnore
+@export var nonHiddenObjectBodiesToIgnore : Array = []
 
 var hiddenObjectsInViewCheck: Array = []
 
@@ -12,7 +12,7 @@ func _ready():
 	setupNonHiddenObjectBodiesToIgnoreArray()
 	setupViewCheckSignals()
 
-func _process(delta):
+func _process(_delta):
 	lightUpHiddenBodiesInViewCheck()
 
 #Setup
@@ -25,8 +25,8 @@ func setupNonHiddenObjectBodiesToIgnoreArray():
 	nonHiddenObjectBodiesToIgnore = finalArray
 
 func setupViewCheckSignals():
-	viewCheck.connect("body_entered", self, "onBodyEnteredViewCheck")
-	viewCheck.connect("body_exited", self, "onBodyExitedViewCheck")
+	viewCheck.body_entered.connect(onBodyEnteredViewCheck)
+	viewCheck.body_exited.connect(onBodyExitedViewCheck)
 
 #Adding Objects found in Area2D
 func onBodyEnteredViewCheck(body: Node):
@@ -43,7 +43,6 @@ const LightViewCheckAreaLayer: int = 64
 
 func lightUpHiddenBodiesInViewCheck():
 	var space_state = get_world_2d().direct_space_state
-	
 	for i in range(hiddenObjectsInViewCheck.size()):
 		var currentHiddenObject: HiddenObject = hiddenObjectsInViewCheck[i]
 		var isInLineOfSight = isPointsWithinViewCheckInLineOfSight(space_state, currentHiddenObject)
@@ -59,7 +58,7 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 	exceptionArray.append_array(hiddenObjectsInViewCheck)
 	exceptionArray.append_array(nonHiddenObjectBodiesToIgnore)
 	
-	var visibilityVertices: PoolVector2Array = hiddenObject.visibilityVertices
+	var visibilityVertices: PackedVector2Array = hiddenObject.visibilityVertices
 	
 	var isAllPointsInLineOfSight: bool = true
 	var isAtLeastOnePointInLineOfSightAndWithinViewCheck: bool = false
@@ -80,16 +79,23 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 	
 	return result
 
+#Porting Note: Now uses a PhysicsPointQueryParamters2D for everything except max targets.
 func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
-	var result: Array = space_state.intersect_point(point, 32, [], LightViewCheckAreaLayer, false, true)
-	
-	if result.empty():
+	var intersectparams = PhysicsPointQueryParameters2D.new()
+	intersectparams.collide_with_areas = true
+	intersectparams.collide_with_bodies = false
+	intersectparams.collision_mask = LightViewCheckAreaLayer
+	intersectparams.position = point
+	var result: Array = space_state.intersect_point(intersectparams, 32)
+	if result.is_empty():
 		return false
 	
 	return true
-
+#Porting Note: Now uses PhysicsRayQueryParameters2D. collision_mask parameter set to default value.
 func isPointWithinLineOfSight(space_state, point: Vector2, exceptionArray: Array) -> bool:
-	var result: Dictionary = space_state.intersect_ray(point, global_position, exceptionArray)
+	const COLLISION_MASK = 4294967295
+	var raycast_query = PhysicsRayQueryParameters2D.create(point, global_position, COLLISION_MASK, exceptionArray)
+	var result: Dictionary = space_state.intersect_ray(raycast_query)
 	
 	if not result.has("collider"):
 		return true

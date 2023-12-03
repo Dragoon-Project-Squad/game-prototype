@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Menu/titleTemp.png" type="Texture2D" id=1]
+[ext_resource path="res://Scripts/Menu/PlayBtn.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Menu/label_continue.png" type="Texture2D" id=3]
+[ext_resource path="res://Scenes/Menus/MovingBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Menu/label_new_game.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Menu/label_options.png" type="Texture2D" id=6]
+[ext_resource path="res://Scenes/Menus/FpsLabel.tscn" type="PackedScene" id=7]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 1160.0
+offset_bottom = 640.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+offset_left = 255.0
+offset_top = 69.0
+offset_right = 784.0
+offset_bottom = 491.0
+
+[node name="title" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+offset_right = 529.0
+offset_bottom = 200.0
+custom_minimum_size = Vector2( 100, 200 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="spacer" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+offset_top = 204.0
+offset_right = 529.0
+offset_bottom = 224.0
+custom_minimum_size = Vector2( 0, 20 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+offset_top = 228.0
+offset_right = 529.0
+offset_bottom = 422.0
+theme_override_constants/margin_right = 139
+theme_override_constants/margin_left = 140
+
+[node name="MenuBtns" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer"]
+offset_left = 140.0
+offset_right = 390.0
+offset_bottom = 194.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 29
+alignment = 1
+
+[node name="PlayBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"]
+offset_right = 250.0
+offset_bottom = 42.0
+icon = ExtResource( 5 )
+script = ExtResource( 2 )
+playBtn = NodePath(".")
+scenePath = "res://Scenes/Test Files/Test.tscn"
+
+[node name="ContinueBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"]
+offset_top = 71.0
+offset_right = 250.0
+offset_bottom = 113.0
+icon = ExtResource( 3 )
+
+[node name="OptionsBtn" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer/MenuBtns"]
+offset_top = 142.0
+offset_right = 250.0
+offset_bottom = 194.0
+icon = ExtResource( 6 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+camera_velocity = Vector2( 45, 100 )
+
+[node name="FpsLabel" parent="." instance=ExtResource( 7 )]

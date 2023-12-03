@@ -1,14 +1,14 @@
 extends Node2D
 
-export (NodePath) onready var charSprite = get_node(charSprite)
-onready var charSpriteStartPos: Vector2 = charSprite.position
-onready var charSpriteStartScale: Vector2 = charSprite.scale
+@export var charSprite : Node
+@onready var charSpriteStartPos: Vector2 = charSprite.position
+@onready var charSpriteStartScale: Vector2 = charSprite.scale
 var animationTime: float = 0.0
 
 #Move Bounce animation
-export var MB_animationBasePeriod: float = 0.5
-export var MB_animationJumpHeight: float = 10.0
-export var MB_animationRotationAngle: float = 10.0
+@export var MB_animationBasePeriod: float = 0.5
+@export var MB_animationJumpHeight: float = 10.0
+@export var MB_animationRotationAngle: float = 10.0
 
 func moveBounce(isMove: bool):
 	var MB_animationPeriod = MB_animationBasePeriod
@@ -27,14 +27,14 @@ func moveBounce(isMove: bool):
 		animationTime = max(0,animationTime)
 	
 	var targetPosition = charSpriteStartPos + MB_animationJumpHeight * pow(sin(2 * PI * animationTime / MB_animationPeriod), 2) * Vector2.UP
-	var targetRotation = deg2rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
+	var targetRotation = deg_to_rad(MB_animationRotationAngle) * sin(2 * PI * animationTime / MB_animationPeriod) 
 	
 	charSprite.position = lerp(charSprite.position, targetPosition, 0.4)
 	charSprite.rotation = lerp_angle(charSprite.rotation, targetRotation, 0.4)
 	charSprite.scale.y = lerp(charSprite.scale.y, charSpriteStartScale.y, 0.2)
 
 #Dodge Squish 
-export var DODGE_SQUISH_FACTOR := 0.6
+@export var DODGE_SQUISH_FACTOR := 0.6
 
 func dodgeSquish():
 	charSprite.scale.y = lerp(charSprite.scale.y, charSpriteStartScale.y * DODGE_SQUISH_FACTOR, 0.2)
@@ -44,3 +44,10 @@ func spriteFlip(signX: int):
 		return
 	
 	charSprite.scale.x = signX * charSpriteStartScale.x
+
+# added by Acxelion
+# Changes the color of the child sprite and returns the original color
+func changeColor(color: Color) -> Color:
+	var oldColor = charSprite.modulate
+	charSprite.modulate = color
+	return oldColor

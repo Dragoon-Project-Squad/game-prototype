@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://hvd8qkqwifhe"]
+
+[ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://68ubt4odqo12" path="res://Scenes/Enemy/EnemyProwler.tscn" id="4_twdrq"]
+[ext_resource type="PackedScene" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Scenes/Menus/CutsceneMaster.tscn" id="9"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(63.9147, 62.6909)
+
+[sub_resource type="OccluderPolygon2D" id="2"]
+polygon = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
+
+[node name="Test" type="Node2D"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("8")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CutsceneMaster" parent="." groups=["CutsceneControl"] instance=ExtResource("9")]
+
+[node name="World" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="World"]
+offset_left = -4616.0
+offset_top = -2885.0
+offset_right = 4181.0
+offset_bottom = 2506.0
+color = Color(0.192157, 0.2, 0.282353, 1)
+
+[node name="ModulePlayer" parent="World" instance=ExtResource("2")]
+position = Vector2(-68, -140)
+
+[node name="Prowler" parent="World" instance=ExtResource("4_twdrq")]
+position = Vector2(558, 202)
+
+[node name="Wall" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(978, 111)
+rotation = -3.14159
+scale = Vector2(1.4753, -9.48)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall"]
+position = Vector2(-0.338989, 0.0527401)
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall"]
+occluder = SubResource("2")
+
+[node name="Wall4" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(-2, 405)
+rotation = -3.14159
+scale = Vector2(1.4753, -9.48)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall4"]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall4"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall4"]
+occluder = SubResource("2")
+
+[node name="Wall2" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(-303, 123)
+rotation = -3.14159
+scale = Vector2(1.4753, -26.4372)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall2"]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall2"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall2"]
+occluder = SubResource("2")
+
+[node name="Wall3" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(680, -407)
+rotation = -3.14159
+scale = Vector2(24.6735, 0.861304)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall3"]
+position = Vector2(0.0202618, 1.16098)
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall3"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall3"]
+occluder = SubResource("2")
+
+[node name="Wall6" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(258, 130)
+rotation = -3.14159
+scale = Vector2(6.83355, 0.861304)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall6"]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall6"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall6"]
+occluder = SubResource("2")
+
+[node name="Wall7" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(1199, -83)
+rotation = -3.14159
+scale = Vector2(6.83355, 0.861304)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall7"]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall7"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall7"]
+occluder = SubResource("2")
+
+[node name="Wall5" type="StaticBody2D" parent="World" groups=["Walls"]]
+position = Vector2(980, 567)
+rotation = -3.14159
+scale = Vector2(24.6735, 0.861304)
+collision_layer = 8
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wall5"]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Wall5"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Wall5"]
+occluder = SubResource("2")

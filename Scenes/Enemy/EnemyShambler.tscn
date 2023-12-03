@@ -1,0 +1,186 @@
+[gd_scene load_steps=16 format=3 uid="uid://sep4m2shbvfr"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/V2/EnemyShambler.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://rcxwruxvlab8" path="res://Assets/Enemy/shambler-Sheet.png" id="2"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://kiwuas1dp1cm" path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNW.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://buhlmlcyernjp" path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashSE.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dbldyrw2cvjl6" path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashNE.tscn" id="7"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://ds6kbfql0mk5r" path="res://Scenes/Enemy/Attacks/Shambler/ShamblerSlashSW.tscn" id="9"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Attacks/Shambler/EnemyShamblerSlashCreator.gd" id="10"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 33.0
+
+[sub_resource type="Animation" id="6"]
+resource_name = "Attack"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5, 6, 7, 7, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Actions/Slash")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.625),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"createAttack"
+}]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "Walk"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uoba7"]
+_data = {
+"Attack": SubResource("6"),
+"Idle": SubResource("4"),
+"RESET": SubResource("3"),
+"Walk": SubResource("5")
+}
+
+[node name="Shambler" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph_sprite", "main_sprite", "animation_player") groups=["minimap_objects"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1")
+hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
+aggro = NodePath("VisionRange/AggroRange")
+deaggro = NodePath("VisionRange/DeaggroRange")
+enemy_body = NodePath(".")
+telegraph_sprite = NodePath("Sprites/TelegraphSprites/Telegraph")
+main_sprite = NodePath("Sprites/HiddenSprites/Main")
+animation_player = NodePath("AnimationPlayer")
+move_options = [NodePath("Movement/Roam"), NodePath("Movement/Chase")]
+action_options = [NodePath("Actions/Slash")]
+visibilityPolygon2DPath = NodePath("VisibilityPolygon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="VisibilityPolygon" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="Roam" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("8")
+enemy_control = NodePath("../..")
+
+[node name="Chase" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("3")
+enemy_control = NodePath("../..")
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="Slash" type="Node2D" parent="Actions" node_paths=PackedStringArray("attack_origin", "enemy_control")]
+script = ExtResource("10")
+slashNW = ExtResource("4")
+slashNE = ExtResource("7")
+slashSW = ExtResource("9")
+slashSE = ExtResource("6")
+attack_origin = NodePath("../../AttackOrigin")
+enemy_control = NodePath("../..")
+
+[node name="AttackOrigin" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites/HiddenSprites")
+libraries = {
+"": SubResource("AnimationLibrary_uoba7")
+}
+
+[node name="VisionRange" type="Node2D" parent="."]
+
+[node name="AggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(300, 0)
+collision_mask = 9
+
+[node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(500, 0)
+collision_mask = 9
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="TelegraphSprites" type="Node2D" parent="Sprites"]
+
+[node name="Telegraph" type="Sprite2D" parent="Sprites/TelegraphSprites"]
+
+[node name="HiddenSprites" type="Node2D" parent="Sprites"]
+
+[node name="Main" type="Sprite2D" parent="Sprites/HiddenSprites"]
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+hframes = 8
+frame = 1

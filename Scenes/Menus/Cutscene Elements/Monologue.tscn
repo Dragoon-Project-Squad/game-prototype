@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/UI/Days.ttf" type="FontFile" id=1]
+[ext_resource path="res://Scripts/UI/Cutscene Elements/Monologue.gd" type="Script" id=2]
+[ext_resource path="res://Assets/UI/Cutscene Elements/textbox.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/UI/Cutscene Elements/namebox.png" type="Texture2D" id=4]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 896, 192 )
+
+[sub_resource type="FontFile" id=1]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 192, 48 )
+
+[sub_resource type="FontFile" id=2]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="Monologue" type="CanvasLayer"]
+layer = 10
+script = ExtResource( 2 )
+left_sprite = NodePath("Left/LeftPortrait")
+left_toggle = NodePath("Left/LeftToggle")
+left_text = NodePath("Left/LeftToggle/LeftDialogue/LeftDialogueText")
+left_name = NodePath("Left/LeftToggle/LeftName/LeftNameText")
+left_main = NodePath("Left")
+
+[node name="Left" type="CanvasLayer" parent="."]
+layer = 16
+
+[node name="LeftToggle" type="CanvasLayer" parent="Left"]
+layer = 15
+
+[node name="LeftDialogue" type="Panel" parent="Left/LeftToggle"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -256.0
+offset_right = 448.0
+offset_bottom = -64.0
+theme_override_styles/panel = SubResource( 3 )
+
+[node name="LeftDialogueText" type="Label" parent="Left/LeftToggle/LeftDialogue"]
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 864.0
+offset_bottom = 160.0
+theme_override_fonts/font = SubResource( 1 )
+text = "Placeholder text, this should scroll"
+autowrap = true
+
+[node name="LeftName" type="Panel" parent="Left/LeftToggle"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_top = -280.0
+offset_right = 592.0
+offset_bottom = -232.0
+theme_override_styles/panel = SubResource( 4 )
+
+[node name="LeftNameText" type="Label" parent="Left/LeftToggle/LeftName"]
+offset_right = 192.0
+offset_bottom = 48.0
+theme_override_fonts/font = SubResource( 2 )
+text = "Name"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="LeftPortrait" type="MarginContainer" parent="Left"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -384.0
+offset_right = 320.0
+offset_bottom = -128.0

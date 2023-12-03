@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bvm7jiuvgap0h"]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id="4"]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.5.1.stable's CanvasItemMaterial.
 
 shader_type canvas_item;
@@ -11,4 +11,4 @@ void fragment(){
 }"
 
 [resource]
-shader = SubResource( 4 )
+shader = SubResource("4")

@@ -1,0 +1,165 @@
+[gd_scene load_steps=13 format=3 uid="uid://ne8llq5e6hwq"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/V2/EnemyDragoon.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://crq0hwqxmplwk" path="res://Assets/Enemy/EnemyDragoon-Sheet.png" id="2"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy/Attacks/slash.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://vtvus3x3hbqd" path="res://Assets/Enemy/enemy-eyes.png" id="5"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Attacks/SlashCreator.gd" id="6"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="8"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 30.0
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Attack"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Actions/Basic Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"createAttack"
+}]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phi2i"]
+_data = {
+"Attack": SubResource("2"),
+"Idle": SubResource("4"),
+"RESET": SubResource("3")
+}
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph_sprite", "main_sprite", "animation_player") groups=["minimap_objects"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1")
+hidden_sprites = NodePath("Sprites/HiddenSprites/Main")
+aggro = NodePath("VisionRange/AggroRange")
+deaggro = NodePath("VisionRange/DeaggroRange")
+enemy_body = NodePath(".")
+telegraph_sprite = NodePath("Sprites/TelegraphSprites/Eyes")
+main_sprite = NodePath("Sprites/HiddenSprites/Main")
+animation_player = NodePath("AnimationPlayer")
+move_options = [NodePath("Movement/Roam"), NodePath("Movement/Chase")]
+action_options = [NodePath("Actions/Basic Attack")]
+visibilityPolygon2DPath = NodePath("VisibilityPolygon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="VisibilityPolygon" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="Roam" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("8")
+enemy_control = NodePath("../..")
+
+[node name="Chase" type="Node2D" parent="Movement" node_paths=PackedStringArray("enemy_control")]
+script = ExtResource("3")
+enemy_control = NodePath("../..")
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="Basic Attack" type="Node2D" parent="Actions" node_paths=PackedStringArray("attack_origin", "enemy_control")]
+script = ExtResource("6")
+slash = ExtResource("4")
+attack_origin = NodePath("../../AttackOrigin")
+enemy_control = NodePath("../..")
+
+[node name="AttackOrigin" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites/HiddenSprites")
+libraries = {
+"": SubResource("AnimationLibrary_phi2i")
+}
+
+[node name="VisionRange" type="Node2D" parent="."]
+
+[node name="AggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(300, 0)
+collision_mask = 9
+
+[node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
+target_position = Vector2(500, 0)
+collision_mask = 9
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="TelegraphSprites" type="Node2D" parent="Sprites"]
+
+[node name="Eyes" type="Sprite2D" parent="Sprites/TelegraphSprites"]
+z_index = 1
+texture = ExtResource("5")
+
+[node name="HiddenSprites" type="Node2D" parent="Sprites"]
+
+[node name="Main" type="Sprite2D" parent="Sprites/HiddenSprites"]
+texture = ExtResource("2")
+hframes = 5

@@ -1,0 +1,222 @@
+[gd_scene load_steps=20 format=3 uid="uid://dfvbf3g3nk1ef"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Movement.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Aesthetics.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Lights.gd" id="3"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Camera.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://cwfei23exjk1u" path="res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://boyd45kijsfum" path="res://Assets/Materials and Textures/Lights.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bagqaqtv658oc" path="res://Assets/Materials and Textures/Lights2.png" id="7"]
+[ext_resource type="Script" path="res://Scripts/Player/CustomLight.gd" id="8"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Weapon.gd" id="9"]
+[ext_resource type="Resource" path="res://Resources/WeaponTypes/Pistol.tres" id="10"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Main.gd" id="11"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/Minimap.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="13"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(15, 21)
+
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="3"]
+radius = 256.0
+
+[sub_resource type="Animation" id="4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "Shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52pax"]
+_data = {
+"RESET": SubResource("4"),
+"Shoot": SubResource("5")
+}
+
+[node name="ModulePlayer" type="Node2D" node_paths=PackedStringArray("movement", "aesthetics", "camera", "lights", "weapon", "minimap", "damageHighlightTimer") groups=["Player"]]
+script = ExtResource("11")
+movement = NodePath("PlayerKinematic")
+aesthetics = NodePath("PlayerKinematic/Aesthetics")
+camera = NodePath("PlayerKinematic/Camera3D")
+lights = NodePath("PlayerKinematic/Lights")
+weapon = NodePath("PlayerKinematic/Weapon")
+minimap = NodePath("PlayerUI/Minimap")
+damageHighlightColor = Color(1, 0, 0, 0.470588)
+damageHighlightTimer = NodePath("DamageHighlightTimer")
+
+[node name="PlayerKinematic" type="CharacterBody2D" parent="." groups=["Player"]]
+z_index = 1
+collision_mask = 186
+script = ExtResource("1")
+MAX_MOVE_SPEED = 150.0
+MOVE_ACCEL = 500.0
+MOVE_FRICT = 1500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic"]
+position = Vector2(0, 11)
+shape = SubResource("1")
+
+[node name="Camera3D" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("camera")]
+script = ExtResource("4")
+camera = NodePath("Camera2D")
+PERCENT_REMAPPING_CURVE = SubResource("2")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera3D"]
+zoom = Vector2(0.8, 0.8)
+
+[node name="Lights" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("muzzleFlash", "muzzleFlashCheckShape", "viewZone", "viewCone", "viewConeCheckShape", "muzzleFlashRotate", "viewConeRotate")]
+script = ExtResource("3")
+muzzleFlash = NodePath("MuzzleFlashRotate/MuzzleFlash")
+muzzleFlashCheckShape = NodePath("MuzzleFlashRotate/MuzzleFlashCheck/CollisionShape2D")
+viewZone = NodePath("Viewzone")
+viewCone = NodePath("ViewConeRotate/Viewcone")
+viewConeCheckShape = NodePath("ViewConeRotate/ViewConeCheck/CollisionShape2D")
+muzzleFlashRotate = NodePath("MuzzleFlashRotate")
+viewConeRotate = NodePath("ViewConeRotate")
+
+[node name="Viewzone" type="PointLight2D" parent="PlayerKinematic/Lights"]
+range_z_max = 9
+shadow_enabled = true
+texture = ExtResource("7")
+script = ExtResource("8")
+viewCheck = NodePath("ViewZoneCheck")
+viewCheckShape = NodePath("ViewZoneCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [NodePath("../..")]
+
+[node name="ViewZoneCheck" type="Area2D" parent="PlayerKinematic/Lights/Viewzone"]
+collision_layer = 64
+collision_mask = 38
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematic/Lights/Viewzone/ViewZoneCheck"]
+shape = SubResource("3")
+
+[node name="MuzzleFlashRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+
+[node name="MuzzleFlashCheck" type="Area2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+position = Vector2(30, 0)
+collision_layer = 64
+collision_mask = 38
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate/MuzzleFlashCheck"]
+polygon = PackedVector2Array(0, 0, 256, 128, 256, -128)
+
+[node name="MuzzleFlash" type="PointLight2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+position = Vector2(30, 0)
+scale = Vector2(0.1, 0.6)
+range_z_max = 9
+shadow_enabled = true
+texture = ExtResource("6")
+offset = Vector2(256, 0)
+script = ExtResource("8")
+viewCheck = NodePath("../MuzzleFlashCheck")
+viewCheckShape = NodePath("../MuzzleFlashCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
+
+[node name="ViewConeRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+scale = Vector2(3, 4)
+
+[node name="ViewConeCheck" type="Area2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+collision_layer = 64
+collision_mask = 38
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeRotate/ViewConeCheck"]
+polygon = PackedVector2Array(0, 0, 1, 1, 1, -1)
+
+[node name="Viewcone" type="PointLight2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+color = Color(1, 1, 1, 0.207843)
+range_z_max = 9
+shadow_enabled = true
+texture = ExtResource("6")
+offset = Vector2(256, 0)
+script = ExtResource("8")
+viewCheck = NodePath("../ViewConeCheck")
+viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
+
+[node name="Aesthetics" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("charSprite")]
+script = ExtResource("2")
+charSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerKinematic/Aesthetics"]
+light_mask = 2
+scale = Vector2(2, 2)
+texture = ExtResource("13")
+
+[node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource("9")
+bulletSpawnNode = NodePath("SpawnNode")
+weaponSprite = NodePath("Origin")
+animationPlayer = NodePath("AnimationPlayer")
+startingWeaponResource = ExtResource("10")
+
+[node name="Origin" type="Node2D" parent="PlayerKinematic/Weapon"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerKinematic/Weapon/Origin"]
+light_mask = 2
+position = Vector2(32, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("5")
+hframes = 6
+
+[node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerKinematic/Weapon"]
+libraries = {
+"": SubResource("AnimationLibrary_52pax")
+}
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="PlayerUI" instance=ExtResource("12")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -334.0
+offset_right = 304.0
+offset_bottom = 306.0
+scale = Vector2(0.5, 0.5)
+player = NodePath("../../PlayerKinematic")
+
+[node name="DamageHighlightTimer" type="Timer" parent="."]

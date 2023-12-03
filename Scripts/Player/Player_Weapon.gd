@@ -1,18 +1,21 @@
 extends Node2D
 
-export (NodePath) onready var bulletSpawnNode = get_node(bulletSpawnNode)
+@export var bulletSpawnNode : Node
 
-export (NodePath) onready var weaponSprite = get_node(weaponSprite)
-onready var weaponSpriteStartScale: Vector2 = weaponSprite.scale
+@export var weaponSprite : Node
+@export var animationPlayer : Node
+
+@export var weaponSpriteStartScale: Vector2 
 
 func _ready():
+	weaponSpriteStartScale = weaponSprite.scale
 	setNewWeapon(startingWeaponResource)
 
-func _process(delta):
+func _process(_delta):
 	pointToMouse()
 
 #Aesthetics
-export var WEAPON_ROTATE_LERP_CONSTANT := 0.1
+@export var WEAPON_ROTATE_LERP_CONSTANT := 0.1
 var shootDirection: Vector2
 
 func pointToMouse():
@@ -22,7 +25,7 @@ func pointToMouse():
 	weaponSprite.scale.y = sign(shootDirection.x) * weaponSpriteStartScale.y
 
 #Shooting
-export var startingWeaponResource: Resource
+@export var startingWeaponResource: Resource
 var weaponResource: WeaponResource
 
 var isBulletBuffered := false
@@ -51,9 +54,13 @@ func attemptShootBullet() -> bool:
 	return true
 
 func shootBullet():
+	animationPlayer.stop()
+	animationPlayer.play("Shoot")
+	
 	for i in range(weaponResource.BULLET_NUM_PER_SHOT):
-		var bulletInstance = weaponResource.bulletScene.instance()
+		var bulletInstance = weaponResource.bulletScene.instantiate()
 		
+		bulletInstance.damage = weaponResource.BULLET_DAMAGE # pass value to spawned scene
 		bulletInstance.velocity = getSpreadDirection(i) * weaponResource.BULLET_INITIAL_SPEED
 		
 		bulletSpawnNode.add_child(bulletInstance)
@@ -64,7 +71,7 @@ func shootBullet():
 func getSpreadDirection(index: int) -> Vector2:
 	var baseDirection = shootDirection
 	
-	var spreadAngle = deg2rad(weaponResource.BULLET_SPREAD_ANGLE)
+	var spreadAngle = deg_to_rad(weaponResource.BULLET_SPREAD_ANGLE)
 	
 	var rotationAngle = 0.0
 	
@@ -74,7 +81,7 @@ func getSpreadDirection(index: int) -> Vector2:
 	if weaponResource.BULLET_SPREAD_RANDOMNESS <= 0.0:
 		return baseDirection.rotated(rotationAngle)
 	
-	rotationAngle += rand_range(0.0, weaponResource.BULLET_SPREAD_RANDOMNESS * spreadAngle)
+	rotationAngle += randf_range(0.0, weaponResource.BULLET_SPREAD_RANDOMNESS * spreadAngle)
 	rotationAngle = fmod(rotationAngle + spreadAngle/2, spreadAngle) - spreadAngle/2
 	
 	return baseDirection.rotated(rotationAngle)

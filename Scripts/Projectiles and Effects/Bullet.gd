@@ -1,12 +1,14 @@
 extends Node2D
 class_name Bullet
 
-export (NodePath) onready var hitbox = get_node(hitbox)
+@export var hitbox : Node
+
+var damage: int # received from script when dynamically made
 
 func _ready():
 	setupHitboxSignals()
 
-func _process(delta):
+func _process(_delta):
 	movement()
 	queueFreeIfFar()
 
@@ -18,27 +20,27 @@ func movement():
 	rotation = velocity.angle()
 
 #Hitting Objects
-export (float) var BULLET_KNOCKBACK := 50.0
+@export var BULLET_KNOCKBACK := 50.0
 
 func setupHitboxSignals():
-	hitbox.connect("body_entered", self, "onBodyEnteredHitbox")
+	hitbox.body_entered.connect(onBodyEnteredHitbox)
 
 func onBodyEnteredHitbox(body):
 	if body.has_method("onHitByBullet"):
-		body.onHitByBullet(self)
+		body.onHitByBullet(self, damage)
 	
 	activateParticles()
 	
 	queue_free()
 
 #Particles
-export (PackedScene) var particlesScene: PackedScene
+@export var particlesScene: PackedScene
 
 func activateParticles():
 	if particlesScene == null:
 		return
 	
-	var particlesInstance = particlesScene.instance()
+	var particlesInstance = particlesScene.instantiate()
 	
 	get_parent().add_child(particlesInstance)
 	
@@ -46,7 +48,7 @@ func activateParticles():
 	particlesInstance.rotation = rotation
 
 #QueueFreeing
-export var DISTANCE_TO_FREE := 3000.0
+@export var DISTANCE_TO_FREE := 3000.0
 var startPos: Vector2
 
 func queueFreeIfFar():

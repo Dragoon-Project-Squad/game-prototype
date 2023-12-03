@@ -1,10 +1,10 @@
 extends Node2D
 
-export (NodePath) onready var camera = get_node(camera)
+@export var camera : Node
 
 func _ready():
 	setUpSimplexNoise()
-	camera.set_as_toplevel(true)
+	camera.set_as_top_level(true)
 
 func _process(_delta: float) -> void:
 	updateShakeTimes()
@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 	updateCameraRotation()
 
 #Camera
-export (float, 0.01, 0.5) var CAMERA_LERP_CONSTANT := 0.05
+@export_range (0.01, 0.5) var CAMERA_LERP_CONSTANT : float = 0.05
 
 func updateCameraPosition():
 	var camOffsetInAimDirectionVector: Vector2 = getCamOffsetInAimDirection()
@@ -30,16 +30,16 @@ func updateCameraRotation():
 	camera.rotation = lerp_angle(camera.rotation, targetAngle, CAMERA_LERP_CONSTANT)
 
 #Look In Aim Direction
-export var MAX_CAMERA_OFFSET := 50.0
-export var MAX_MOUSE_OFFSET_DISTANCE := 200.0
+@export var MAX_CAMERA_OFFSET : float =  50.0
+@export var MAX_MOUSE_OFFSET_DISTANCE : float = 200.0
 
-export (Curve) var PERCENT_REMAPPING_CURVE: Curve
+@export var PERCENT_REMAPPING_CURVE: Curve
 
 func getCamOffsetInAimDirection() -> Vector2:
 	var direction: Vector2 = get_global_mouse_position() - global_position
-	var percent := min(direction.length() / MAX_MOUSE_OFFSET_DISTANCE, 1)
+	var percent : float = min(direction.length() / MAX_MOUSE_OFFSET_DISTANCE, 1)
 	
-	var modifiedPercent := PERCENT_REMAPPING_CURVE.interpolate(percent)
+	var modifiedPercent := PERCENT_REMAPPING_CURVE.sample(percent)
 	
 	var offsetVector: Vector2
 	offsetVector = direction.normalized() * MAX_CAMERA_OFFSET * modifiedPercent
@@ -47,19 +47,21 @@ func getCamOffsetInAimDirection() -> Vector2:
 	return offsetVector
 
 #Cam Shake
-export var TRAUMA_DECAY_RATE := 1.2
-export var DISPLACEMENT_SHAKE_MAG := 20.0
-export var ROTATION_SHAKE_MAG := 5
+@export var TRAUMA_DECAY_RATE := 1.2
+@export var DISPLACEMENT_SHAKE_MAG := 20.0
+@export var ROTATION_SHAKE_MAG := 5
 
 var trauma := 0.0
-var noise: OpenSimplexNoise
+var noise: FastNoiseLite
 var shakeTime := 0.0
 
+#Porting Note: Breaking port change, OpenSimplex replaced with FastNoiseLite
 func setUpSimplexNoise():
-	noise = OpenSimplexNoise.new()
-	noise.octaves = 3
-	noise.persistence = 0.8
-	noise.period = 0.2
+	noise = FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise.fractal_octaves = 3
+	#Porting Note: noise.persistence = 0.8 - Persistence is no longer available in Godot 4
+	noise.frequency = 0.2
 
 func addShake(addedTrauma: float):
 	trauma += addedTrauma
@@ -81,6 +83,6 @@ func getCamDisplacementShakeVector() -> Vector2:
 	return shakeVector
 
 func getCamRotationalShakeAngle() -> float:
-	var shakeAngle = noise.get_noise_2d(2, shakeTime) * pow(trauma, 2) * deg2rad(ROTATION_SHAKE_MAG)
+	var shakeAngle = noise.get_noise_2d(2, shakeTime) * pow(trauma, 2) * deg_to_rad(ROTATION_SHAKE_MAG)
 	
 	return shakeAngle
