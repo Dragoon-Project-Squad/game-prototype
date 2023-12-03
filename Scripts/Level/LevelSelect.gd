@@ -184,7 +184,7 @@ func generateNewPath():
 	
 	#place lines
 	parent_node.nodes = nodes
-	parent_node.update()
+	parent_node.queue_redraw()
 	
 
 func connectNodes(source, dest):

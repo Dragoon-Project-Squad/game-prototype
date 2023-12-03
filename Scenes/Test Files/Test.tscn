@@ -48,14 +48,7 @@ position = Vector2(1033, -297)
 
 [node name="Enemy3" parent="World" instance=ExtResource("7")]
 position = Vector2(538, -194)
-MB_animationBasePeriod = 0.5
-MB_animationJumpHeight = 10.0
-MB_animationRotationAngle = 10.0
-health = 10000
-damageHighlightLength = 20
 damageHighlightColor = Color(0.470588, 1, 0, 0)
-TRANSPARENCY_CHANGE_RATE = 10
-TRANSPARENCY_ON_LIT = 0.6
 
 [node name="WeaponPickup" parent="World" instance=ExtResource("4")]
 position = Vector2(788, 122)
