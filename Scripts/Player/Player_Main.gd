@@ -84,7 +84,7 @@ func pMovement():
 	else:
 		movement.basicMovement(direction)
 		aesthetics.moveBounce(direction != Vector2(0,0))
-		aesthetics.spriteFlip(sign(((get_global_mouse_position() - global_position).normalized()).x))
+		aesthetics.spriteFlip(sign(((get_global_mouse_position() - movement.global_position).normalized()).x))
 
 #Shooting
 func shooting():
