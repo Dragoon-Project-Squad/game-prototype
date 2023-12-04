@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://17lu1nefvrlf"]
+
+[ext_resource type="Texture2D" uid="uid://cwfei23exjk1u" path="res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/Weapons/WeaponRanged.gd" id="2"]
+[ext_resource type="Resource" uid="uid://c2hra3l10t28i" path="res://Resources/WeaponTypes/Pistol.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="4"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vrat7"]
+_data = {
+"RESET": SubResource("1"),
+"Shoot": SubResource("2")
+}
+
+[node name="Pistol" type="Node2D" node_paths=PackedStringArray("bulletSpawnNode", "weaponOrigin", "animationPlayer")]
+script = ExtResource("2")
+bulletSpawnNode = NodePath("SpawnNode")
+weaponOrigin = NodePath("Origin")
+animationPlayer = NodePath("AnimationPlayer")
+weaponResource = ExtResource("3")
+
+[node name="PositionReference" type="Sprite2D" parent="."]
+visible = false
+light_mask = 2
+scale = Vector2(2, 2)
+texture = ExtResource("4")
+
+[node name="Origin" type="Node2D" parent="."]
+light_mask = 2
+
+[node name="Sprite" type="Sprite2D" parent="Origin"]
+light_mask = 2
+position = Vector2(32, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("1")
+hframes = 6
+
+[node name="SpawnNode" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vrat7")
+}
