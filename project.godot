@@ -27,7 +27,7 @@ GlobalSettings="*res://Autoloads/GlobalSettings.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 
 [editor]
 
@@ -51,6 +51,7 @@ resources=false
 
 [gui]
 
+theme/default_font_antialiasing=2
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

@@ -29,7 +29,7 @@ func _on_ResumeBtn_pressed():
 
 
 func _on_OptionsBtn_pressed():
-	options_menu.popup_centered()
+	options_menu.visible = true
 
 
 func _on_QuitBtn_pressed():
@@ -40,7 +40,7 @@ func handlePauseEvent():
 		cutscene_playing = cutscene_control.cutscene_playing
 	else:
 		cutscene_playing = false
-	
+
 	if cutscene_playing:
 		cutscene_control.is_active = !cutscene_control.is_active
 		visible = !cutscene_control.is_active

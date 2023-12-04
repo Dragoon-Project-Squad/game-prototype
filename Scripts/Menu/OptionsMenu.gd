@@ -1,4 +1,4 @@
-extends Popup
+extends Control
 
 # Video Settings
 @onready var display_options = $SettingsTab/Video/MarginContainer/VideoSettings/DisplayOptionBtn
@@ -53,3 +53,7 @@ func _on_SfxVolSlider_value_changed(value):
 func _on_MouseSensSlider_value_changed(value):
 	GlobalSettings.update_mouse_sens(value)
 	mouse_sens_amount.text = str(value)
+
+
+func _on_close_btn_pressed() -> void:
+	visible = false

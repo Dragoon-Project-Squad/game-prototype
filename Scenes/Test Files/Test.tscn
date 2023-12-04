@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ixb58wtajkeh" path="res://Scenes/Enemy/EnemyBase.tscn" id="4_1o61d"]
 [ext_resource type="Resource" path="res://Resources/WeaponTypes/AK47.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bj8vkqu7bea0q" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/CutsceneMaster.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://Scenes/Scene Objects/InteractableSign.tscn" id="10"]
 [ext_resource type="Resource" path="res://Resources/Cutscene Data/test_scene.tres" id="11"]
@@ -24,10 +24,6 @@ polygon = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
 layer = 30
 
 [node name="PauseMenu" parent="Menus" instance=ExtResource("8")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="CutsceneMaster" parent="." groups=["CutsceneControl"] instance=ExtResource("9")]
 

@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 			is_active = false
 			cutscene_playing = false
 			get_tree().paused = false
-	
+
 	if Input.is_action_just_pressed("Menu Select") and is_active and current_scene:
 		if(current_scene.is_scrolling):
 			current_scene.skipText()
@@ -61,31 +61,31 @@ func handleNext():
 		current_scene.nextLine(event_list[event_counter].lines[line_counter].focus, event_list[event_counter].lines[line_counter].text)
 		if event_list[event_counter].lines[line_counter].portrait:
 			current_scene.updatePortrait(event_list[event_counter].lines[line_counter].focus, event_list[event_counter].lines[line_counter].portrait)
-		
+
 	if current_type == "monologue":
 		current_scene.nextLine(event_list[event_counter].lines[line_counter].text)
 		if event_list[event_counter].lines[line_counter].portrait:
 			current_scene.updatePortrait(event_list[event_counter].lines[line_counter].portrait)
-	
+
 	line_counter += 1
 
 func loadScene():
 	current_type = event_list[event_counter].type
 	line_size = event_list[event_counter].lines.size()
 	line_counter = 0
-	
+
 	if current_type == "dialogue":
 		current_scene = dialogue.instantiate()
 		add_child(current_scene)
 		current_scene.setNames(event_list[event_counter].left_id, event_list[event_counter].right_id)
 		current_scene.setPortraits(portraits[portrait_dict[event_list[event_counter].left_id]], portraits[portrait_dict[event_list[event_counter].right_id]])
-	
+
 	if current_type == "monologue":
 		current_scene = monologue.instantiate()
 		add_child(current_scene)
 		current_scene.setName(event_list[event_counter].id)
 		current_scene.setPortrait(portraits[portrait_dict[event_list[event_counter].id]])
-		
+
 	handleNext()
 
 func loadEvents(resource):
@@ -104,4 +104,4 @@ func loadEvents(resource):
 		print("Error: ", result_json.error)
 		print("Error Line: ", result_json.error_line)
 		print("Error String: ", result_json.error_string)
-	
+
