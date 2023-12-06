@@ -33,14 +33,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
 
-[node name="Background" type="ColorRect" parent="."]
-visible = false
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 846.0
-offset_bottom = 546.0
-color = Color(0.415686, 0.415686, 0.415686, 1)
-
 [node name="SettingsTab" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8

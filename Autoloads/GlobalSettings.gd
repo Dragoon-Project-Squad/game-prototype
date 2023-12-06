@@ -22,13 +22,13 @@ func set_max_fps(value):
 #TODO: Audio buses still need to be added
 func update_master_vol(vol):
 	AudioServer.set_bus_volume_db(0, vol)
-	
+
 func update_music_vol(vol):
 	AudioServer.set_bus_volume_db(1, vol)
-	
+
 func update_sfx_vol(vol):
 	AudioServer.set_bus_volume_db(2, vol)
-	
-	
+
+
 func update_mouse_sens(value):
 	emit_signal("mouse_sens_updated", value)

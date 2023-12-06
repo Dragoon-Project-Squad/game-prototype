@@ -9,9 +9,9 @@ func basicMovement(direction: Vector2):
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
-	
+
 	var isInputMove = (direction != Vector2(0,0))
-	
+
 	if isInputMove:
 		velocity = velocity.move_toward(2 * (direction * MAX_MOVE_SPEED), MOVE_ACCEL * get_process_delta_time())
 	else:
@@ -20,7 +20,7 @@ func basicMovement(direction: Vector2):
 func addImpulse(force: Vector2, speedLimit: float = 1000000.0):
 	if (velocity+force).dot(force.normalized()) > speedLimit:
 		return
-	
+
 	velocity += force
 
 #Dodging
@@ -37,16 +37,16 @@ var isDodgeBuffered := false
 
 func attemptDodgeRoll(direction: Vector2) -> bool:
 	var currentTime = Time.get_ticks_usec() / 1000000.0
-	
+
 	if direction == Vector2.ZERO:
 		return false
-	
+
 	if currentTime - timeLastDodged > DODGE_ROLL_CD - DODGE_BUFFER_PERIOD:
 		isDodgeBuffered = true
-	
+
 	if currentTime - timeLastDodged < DODGE_ROLL_CD or isDodging:
 		return false
-	
+
 	isDodgeBuffered = false
 	timeLastDodged = currentTime
 	isDodging = true
@@ -63,7 +63,7 @@ func dodgeRollMovement():
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
-	
+
 # Receiving damage call
 signal ReceivedDamage(amount) # signal snet to parent(player_main.gd) to inform about damage
 

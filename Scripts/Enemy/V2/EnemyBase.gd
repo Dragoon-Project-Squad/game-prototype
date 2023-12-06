@@ -51,15 +51,15 @@ var damageHighlightTimer: Timer = null
 func _ready():
 	# sets up timer for damage highlight
 	setupHighlightTimers()
-	selectNextAction()	
+	selectNextAction()
 	animation_player.animation_finished.connect(animationFinished)
-	animation_player.play("Idle")	
+	animation_player.play("Idle")
 	var tree = get_tree()
 	if tree.has_group("LevelNavigation"):
 		level_navigation = tree.get_nodes_in_group("LevelNavigation")[0]
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0].get_child(0)
-	
+
 func _physics_process(delta: float):
 	if action_cooldown > 0:
 		action_cooldown -= delta
@@ -110,7 +110,7 @@ func updateDirection(enemy_velocity):
 	elif enemy_velocity.x < 0:
 		main_sprite.set_flip_h(true)
 		telegraph_sprite.set_flip_h(true)
-		
+
 
 func animationFinished(anim_name = "Idle"):
 	if get_node(next_attack) && anim_name == get_node(next_attack).animation_name:
@@ -129,38 +129,38 @@ func startAttack(attack_position, attack_name):
 	attack_player_pos = attack_position
 	action_ready = false
 	animation_player.play(attack_name)
-	
+
 #code triggered when hit by an attack
 func setupHighlightTimers(): # made into helper func if _ready() is overriden
 	# create a new timer
 	damageHighlightTimer = Timer.new()
-	
+
 	# sets its length
 	damageHighlightTimer.wait_time = (damageHighlightLength / 100.0) # measured in centiseconds
-	
+
 	# adds to scene's tree
-	add_child(damageHighlightTimer) 
-	
+	add_child(damageHighlightTimer)
+
 	# connects timer's signal to function
 	damageHighlightTimer.connect("timeout", Callable(self, "_onDamagedTimerEnd"))
 
 func _highlightSelf(): # made into helper func if onHitByBullet() is overriden
 	# changes highlight
 	modulate = damageHighlightColor
-	
+
 	# starts timer
 	damageHighlightTimer.start()
 
 func onHitByBullet(_bullet: Bullet, damage: int):
 	# updates health value
 	health -= damage
-	
+
 	# highlights self to indicate was damaged
 	_highlightSelf()
-	
+
 func _onDamagedTimerEnd():
 	# resets color to default
 	modulate = Color("ffffff")
-	
-	# stops timer 
+
+	# stops timer
 	damageHighlightTimer.stop()

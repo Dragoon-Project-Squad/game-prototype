@@ -27,17 +27,17 @@ var interact_list = []
 func _ready():
 	# sets up timer for damage highlight
 	damageHighlightTimer.connect("timeout", Callable(self, "_endHighlight")) # connect _endHighlight() to the timer's "timeout" signal
-	
+
 	# connects signal to function
 	movement.connect("ReceivedDamage", Callable(self, "GotHurt")) #required b/c colliders are getting child of main, Movement
 
 func _process(_delta):
 	# test code
-	
+
 	if Input.is_action_just_pressed("ChangeDisplay"):
 		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
-	
-	if(!blockPlayerActions):
+
+	if !blockPlayerActions:
 		pMovement()
 		shooting()
 		tab()
@@ -47,10 +47,10 @@ func _process(_delta):
 func getDirectionalInput() -> Vector2:
 	var x_axis_input
 	var y_axis_input
-	
+
 	x_axis_input = float(Input.is_action_pressed("RightMove")) - float(Input.is_action_pressed("LeftMove"))
 	y_axis_input = float(Input.is_action_pressed("DownMove")) - float(Input.is_action_pressed("UpMove"))
-	
+
 	return Vector2(x_axis_input, y_axis_input).normalized()
 
 func tab():
@@ -65,7 +65,7 @@ func tab():
 
 func interact():
 	var item = getClosestInteractable()
-	
+
 	if Input.is_action_just_pressed("Interact"):
 		if item:
 			item.onInteract()
@@ -73,11 +73,11 @@ func interact():
 #Movement
 func pMovement():
 	var direction = getDirectionalInput()
-	
+
 	#disabled dodgeroll
 	#if Input.is_action_just_pressed("DodgeRoll") or movement.isDodgeBuffered:
 	#	movement.attemptDodgeRoll(direction)
-	
+
 	if movement.isDodging:
 		movement.dodgeRollMovement()
 		aesthetics.dodgeSquish()
@@ -90,23 +90,23 @@ func pMovement():
 func shooting():
 	if Input.is_action_pressed("Shoot") or weapon.isBulletBuffered:
 		var isBulletShot = weapon.attemptShootBullet()
-		
+
 		if isBulletShot:
 			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
 			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
 			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
-			
+
 # Called when damaged
 func GotHurt(damage: int):
 	# updates player's health value
 	health -= damage
-	
+
 	# highlights the player
 	aesthetics.changeColor(damageHighlightColor) # changes highlight/modulate value
-	
+
 	# starts timer for when to stop highlight
 	damageHighlightTimer.start(damageHighlightLength / 100.0) # starts timer w/ length, start() uses seconds as unit
-	
+
 # Changes the sprite's highlight back to neutral
 # Called by DamageHighlightTimer's "timeout" signal
 func _endHighlight():
@@ -115,14 +115,14 @@ func _endHighlight():
 
 func addToInteractList(node: Node):
 	interact_list.append(node)
-	
+
 func removeFromInteractList(node: Node):
 	interact_list.erase(node)
 
 func getClosestInteractable():
 	if interact_list.size() == 0:
 		return null
-	
+
 	var closest_item
 	for item in interact_list:
 		if closest_item:
@@ -130,13 +130,13 @@ func getClosestInteractable():
 				closest_item = item
 		else:
 			closest_item = item
-	
+
 	for item in interact_list:
 		if item == closest_item:
 			item.setHighlight(true)
 		else:
 			item.setHighlight(false)
-	
+
 	return closest_item
 
 func _on_Key_key_acquired():
