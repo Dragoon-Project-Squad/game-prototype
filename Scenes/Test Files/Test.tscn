@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwbxongbvi3eb"]
+[gd_scene load_steps=13 format=3 uid="uid://dwbxongbvi3eb"]
 
 [ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/V1/Enemy.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/Scene Objects/WeaponPickup.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://drngepjbjbg31" path="res://Scenes/Scene Objects/WeaponPickup.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://ixb58wtajkeh" path="res://Scenes/Enemy/EnemyBase.tscn" id="4_1o61d"]
-[ext_resource type="Resource" path="res://Resources/WeaponTypes/AK47.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/CutsceneMaster.tscn" id="9"]
@@ -52,10 +51,10 @@ damageHighlightColor = Color(0.470588, 1, 0, 0)
 
 [node name="WeaponPickup" parent="World" instance=ExtResource("4")]
 position = Vector2(788, 122)
-weaponResource = ExtResource("5")
+weaponID = "Shotgun"
 
 [node name="ModulePlayer" parent="World" instance=ExtResource("2")]
-position = Vector2(-68, -140)
+position = Vector2(48, -106)
 
 [node name="Wall" type="StaticBody2D" parent="World"]
 position = Vector2(978, 111)
