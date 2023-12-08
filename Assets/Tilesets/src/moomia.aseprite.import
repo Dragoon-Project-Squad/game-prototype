@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cwvm6fub7k3by"
+path="res://.godot/imported/moomia.aseprite-a1890582bc9fa70fd7d4087c427f7953.res"
+
+[deps]
+
+source_file="res://Assets/Tilesets/src/moomia.aseprite"
+dest_files=["res://.godot/imported/moomia.aseprite-a1890582bc9fa70fd7d4087c427f7953.res"]
+
+[params]
+

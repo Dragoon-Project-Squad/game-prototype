@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bxy7422acuoo3"
+path="res://.godot/imported/Water2.aseprite-871a649765ee57fcbbabf9e4c22e3fd2.res"
+
+[deps]
+
+source_file="res://Assets/Tilesets/src/Water2.aseprite"
+dest_files=["res://.godot/imported/Water2.aseprite-871a649765ee57fcbbabf9e4c22e3fd2.res"]
+
+[params]
+

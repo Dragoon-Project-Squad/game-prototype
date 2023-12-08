@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d0dghgs3kqine"
+path="res://.godot/imported/Water3.aseprite-cf58ce9c9ae5ddae3a52e0ac7f0f210a.res"
+
+[deps]
+
+source_file="res://Assets/Tilesets/src/Water3.aseprite"
+dest_files=["res://.godot/imported/Water3.aseprite-cf58ce9c9ae5ddae3a52e0ac7f0f210a.res"]
+
+[params]
+

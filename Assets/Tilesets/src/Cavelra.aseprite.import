@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bf0e5i5vr0ltm"
+path="res://.godot/imported/Cavelra.aseprite-c0c0709dcbda05f33880be61d31d1121.res"
+
+[deps]
+
+source_file="res://Assets/Tilesets/src/Cavelra.aseprite"
+dest_files=["res://.godot/imported/Cavelra.aseprite-c0c0709dcbda05f33880be61d31d1121.res"]
+
+[params]
+
