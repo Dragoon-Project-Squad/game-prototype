@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Items/pistolPlaceholder.png" type="Texture2D" id=1]
+[ext_resource path="res://Scenes/Menus/Templates/InventorySlot.gd" type="Script" id=2]
+
+[node name="Item" type="Node2D"]
+z_index = 1
+
+[node name="Pistol" type="TextureRect" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 80, 80 )
+mouse_filter = 2
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
