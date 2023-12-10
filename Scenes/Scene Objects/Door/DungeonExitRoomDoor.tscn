@@ -1,35 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://41x5xt2w4ws5"]
 
-[ext_resource path="res://Assets/Tilesets/dungeondoor.tres" type="TileSet" id=1]
-[ext_resource path="res://Scripts/Objects/ExitRoomDoor.gd" type="Script" id=2]
+[ext_resource type="TileSet" uid="uid://cnau5r1pwhgmq" path="res://Assets/Tilesets/dungeondoor.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Objects/ExitRoomDoor.gd" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-size = Vector2( 161, 32.25 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(161, 32.25)
 
 [node name="ExitDoor" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="DoorSprite" type="TileMap" parent="."]
-scale = Vector2( 4, 4 )
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 8
-collision_mask = 0
-format = 1
-tile_data = PackedInt32Array( 0, 0, 0 )
+tile_set = ExtResource("1")
+cell_quadrant_size = 64
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1835011, 4, 65536, 1835011, 5, 131072, 1835011, 6, 196608, 1835011, 7, 1, 1900547, 4, 65537, 1900547, 5, 131073, 1900547, 6, 196609, 1900547, 7, 2, 1966083, 4, 65538, 1966083, 5, 131074, 1966083, 6, 196610, 1966083, 7, 3, 2031619, 4, 65539, 2031619, 5, 131075, 2031619, 6, 196611, 2031619, 7)
 
 [node name="DoorArea" type="Area2D" parent="."]
-position = Vector2( 0, 192 )
+position = Vector2(0, 192)
 
 [node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2( 160, 96 )
-shape = SubResource( 1 )
+position = Vector2(128, 80)
+shape = SubResource("1")
 
 [node name="DoorAreaExitSide" type="Area2D" parent="."]
 
 [node name="DoorCollisionTop" type="CollisionShape2D" parent="DoorAreaExitSide"]
-position = Vector2( 160, -32 )
-shape = SubResource( 1 )
+position = Vector2(128, -16)
+shape = SubResource("1")
 
 [connection signal="body_entered" from="DoorArea" to="." method="_on_DoorArea_body_entered"]
 [connection signal="body_exited" from="DoorArea" to="." method="_on_DoorArea_body_exited"]
