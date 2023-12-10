@@ -1,36 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://crvmas3wkt5h7"]
+[gd_scene load_steps=3 format=3 uid="uid://c61h11e0gsftl"]
 
-[ext_resource type="FontFile" uid="uid://owu4e81s6pdr" path="res://Assets/Fonts/Lato-Bold.ttf" id="1"]
-[ext_resource type="Texture2D" uid="uid://c6ua08wina7vh" path="res://Assets/Materials and Textures/InventoryBG.png" id="2"]
-[ext_resource type="Script" path="res://Scripts/UI/Tooltip.gd" id="3"]
-
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("1")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("1")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+[ext_resource type="Script" path="res://Scripts/UI/Tooltip.gd" id="1_t710e"]
+[ext_resource type="Texture2D" uid="uid://c6ua08wina7vh" path="res://Assets/Materials and Textures/InventoryBG.png" id="2_0r42d"]
 
 [node name="Tooltip" type="Popup"]
+size = Vector2i(300, 200)
 visible = true
-script = ExtResource("3")
+min_size = Vector2i(300, 200)
+script = ExtResource("1_t710e")
 
 [node name="NinePatch" type="NinePatchRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("2")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0r42d")
+region_rect = Rect2(-16, -16, 132, 132)
 patch_margin_left = 15
 patch_margin_top = 15
 patch_margin_right = 15
@@ -38,42 +21,29 @@ patch_margin_bottom = 15
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatch"]
 layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 15
+offset_right = 300.0
+offset_bottom = 200.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatch/MarginContainer"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="ItemName" type="Label" parent="NinePatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("1")
-text = "<ItemName>"
 
 [node name="Stat1" type="HBoxContainer" parent="NinePatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Stat" type="Label" parent="NinePatch/MarginContainer/VBoxContainer/Stat1"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("2")
 
 [node name="Stat2" type="HBoxContainer" parent="NinePatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Stat" type="Label" parent="NinePatch/MarginContainer/VBoxContainer/Stat2"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("2")
 
 [node name="Stat3" type="HBoxContainer" parent="NinePatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Stat" type="Label" parent="NinePatch/MarginContainer/VBoxContainer/Stat3"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("2")
