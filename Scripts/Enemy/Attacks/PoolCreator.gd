@@ -1,8 +1,14 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var pool: PackedScene
 @export var attack_origin : Node
 @export var enemy_control : Node
+=======
+@export (PackedScene) var pool: PackedScene
+@export (NodePath) onready var attack_origin = get_node(attack_origin)
+@export (NodePath) onready var enemy_control = get_node(enemy_control)
+>>>>>>> Stashed changes
 
 #all attacks need this
 var attack_range = 75

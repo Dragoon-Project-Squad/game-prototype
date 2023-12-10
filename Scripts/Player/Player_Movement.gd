@@ -4,6 +4,11 @@ extends CharacterBody2D
 @export var MAX_MOVE_SPEED := 300.0
 @export var MOVE_ACCEL := 2000.0
 @export var MOVE_FRICT := 2200.0
+<<<<<<< Updated upstream
+=======
+
+var velocity: Vector2 = Vector2.ZERO
+>>>>>>> Stashed changes
 
 func basicMovement(direction: Vector2):
 	set_velocity(velocity)
@@ -63,6 +68,7 @@ func dodgeRollMovement():
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
+<<<<<<< Updated upstream
 	
 # Receiving damage call
 signal ReceivedDamage(amount) # signal snet to parent(player_main.gd) to inform about damage
@@ -70,3 +76,5 @@ signal ReceivedDamage(amount) # signal snet to parent(player_main.gd) to inform 
 #required to get around get_parent() call
 func take_damage(amount: int):
 	emit_signal("ReceivedDamage", amount)
+=======
+>>>>>>> Stashed changes

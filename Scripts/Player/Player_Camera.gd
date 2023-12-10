@@ -1,6 +1,10 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var camera : Node
+=======
+@export (NodePath) onready var camera = get_node(camera)
+>>>>>>> Stashed changes
 
 func _ready():
 	setUpSimplexNoise()
@@ -12,7 +16,11 @@ func _process(_delta: float) -> void:
 	updateCameraRotation()
 
 #Camera
+<<<<<<< Updated upstream
 @export_range (0.01, 0.5) var CAMERA_LERP_CONSTANT : float = 0.05
+=======
+@export (float, 0.01, 0.5) var CAMERA_LERP_CONSTANT := 0.05
+>>>>>>> Stashed changes
 
 func updateCameraPosition():
 	var camOffsetInAimDirectionVector: Vector2 = getCamOffsetInAimDirection()
@@ -30,10 +38,17 @@ func updateCameraRotation():
 	camera.rotation = lerp_angle(camera.rotation, targetAngle, CAMERA_LERP_CONSTANT)
 
 #Look In Aim Direction
+<<<<<<< Updated upstream
 @export var MAX_CAMERA_OFFSET : float =  50.0
 @export var MAX_MOUSE_OFFSET_DISTANCE : float = 200.0
 
 @export var PERCENT_REMAPPING_CURVE: Curve
+=======
+@export var MAX_CAMERA_OFFSET := 50.0
+@export var MAX_MOUSE_OFFSET_DISTANCE := 200.0
+
+@export (Curve) var PERCENT_REMAPPING_CURVE: Curve
+>>>>>>> Stashed changes
 
 func getCamOffsetInAimDirection() -> Vector2:
 	var direction: Vector2 = get_global_mouse_position() - global_position
@@ -58,10 +73,16 @@ var shakeTime := 0.0
 #Porting Note: Breaking port change, OpenSimplex replaced with FastNoiseLite
 func setUpSimplexNoise():
 	noise = FastNoiseLite.new()
+<<<<<<< Updated upstream
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.fractal_octaves = 3
 	#Porting Note: noise.persistence = 0.8 - Persistence is no longer available in Godot 4
 	noise.frequency = 0.2
+=======
+	noise.fractal_octaves = 3
+	noise.persistence = 0.8
+	noise.period = 0.2
+>>>>>>> Stashed changes
 
 func addShake(addedTrauma: float):
 	trauma += addedTrauma

@@ -1,11 +1,20 @@
 extends CanvasLayer
 
+<<<<<<< Updated upstream
 @export var dialogue: PackedScene
 @export var monologue: PackedScene
 
 @export var cutsceneResource: Resource
 
 @export var portraits : Array
+=======
+@export (PackedScene) var dialogue: PackedScene
+@export (PackedScene) var monologue: PackedScene
+
+@export var cutsceneResource: Resource
+
+@export (Array, PackedScene) var portraits
+>>>>>>> Stashed changes
 var portrait_dict = {
 	"Selen": 0,
 	"Pomu": 1

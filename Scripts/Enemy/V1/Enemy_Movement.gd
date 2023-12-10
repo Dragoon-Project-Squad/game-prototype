@@ -1,10 +1,18 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var enemyBody : HiddenObject
 @export var vision : Node2D
 @export var moveBehaviours : Array
 
 @export var MOVE_FRICT := 400.0
+=======
+@export (NodePath) onready var enemyBody = get_node(enemyBody)
+@export (NodePath) onready var vision = get_node(vision)
+@export (Array, NodePath) onready var moveBehaviours
+
+@export (float) var MOVE_FRICT := 400.0
+>>>>>>> Stashed changes
 
 func _ready():
 	setupMoveBehaviourArray()

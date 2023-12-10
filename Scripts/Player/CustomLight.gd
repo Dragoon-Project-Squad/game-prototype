@@ -1,10 +1,18 @@
 extends PointLight2D
 
+<<<<<<< Updated upstream
 @export var viewCheck : Area2D
 @export var viewCheckShape : Node2D
 
 #An array of all physics bodies that the light should ignore when raycasting
 @export var nonHiddenObjectBodiesToIgnore : Array = []
+=======
+@export (NodePath) onready var viewCheck = get_node(viewCheck)
+@export (NodePath) onready var viewCheckShape = get_node(viewCheckShape)
+
+#An array of all physics bodies that the light should ignore when raycasting
+@export (Array, NodePath) onready var nonHiddenObjectBodiesToIgnore
+>>>>>>> Stashed changes
 
 var hiddenObjectsInViewCheck: Array = []
 
@@ -25,8 +33,13 @@ func setupNonHiddenObjectBodiesToIgnoreArray():
 	nonHiddenObjectBodiesToIgnore = finalArray
 
 func setupViewCheckSignals():
+<<<<<<< Updated upstream
 	viewCheck.body_entered.connect(onBodyEnteredViewCheck)
 	viewCheck.body_exited.connect(onBodyExitedViewCheck)
+=======
+	viewCheck.connect("body_entered", Callable(self, "onBodyEnteredViewCheck"))
+	viewCheck.connect("body_exited", Callable(self, "onBodyExitedViewCheck"))
+>>>>>>> Stashed changes
 
 #Adding Objects found in Area2D
 func onBodyEnteredViewCheck(body: Node):
@@ -81,12 +94,17 @@ func isPointsWithinViewCheckInLineOfSight(space_state, hiddenObject: HiddenObjec
 
 #Porting Note: Now uses a PhysicsPointQueryParamters2D for everything except max targets.
 func isPointWithinViewCheck(space_state, point: Vector2) -> bool:
+<<<<<<< Updated upstream
 	var intersectparams = PhysicsPointQueryParameters2D.new()
 	intersectparams.collide_with_areas = true
 	intersectparams.collide_with_bodies = false
 	intersectparams.collision_mask = LightViewCheckAreaLayer
 	intersectparams.position = point
 	var result: Array = space_state.intersect_point(intersectparams, 32)
+=======
+	var result: Array = space_state.intersect_point(point, 32, [], LightViewCheckAreaLayer, false, true)
+	
+>>>>>>> Stashed changes
 	if result.is_empty():
 		return false
 	

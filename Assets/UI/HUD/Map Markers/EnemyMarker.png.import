@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://ctfvj6we6huiq"
+=======
+uid="uid://csglrcpcbxyge"
+>>>>>>> Stashed changes
 path="res://.godot/imported/EnemyMarker.png-5206abfddcf7d22c21e3184fa9306011.ctex"
 metadata={
 "vram_texture": false

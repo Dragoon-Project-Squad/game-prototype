@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bvm7jiuvgap0h"]
+=======
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://doox077p5xny"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Shader" id="4"]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.5.1.stable's CanvasItemMaterial.

@@ -1,5 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://n1gy62ci4ma1"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://Scripts/Enemy/V2/EnemyPomudachi.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b4k5wpt15e5mm" path="res://Assets/Enemy/pomudachi-Sheet.png" id="2"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3"]
@@ -9,6 +10,18 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="8"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Attacks/PoolCreator.gd" id="9"]
 [ext_resource type="PackedScene" uid="uid://bp3csr51pc3a1" path="res://Scenes/Enemy/Attacks/jar.tscn" id="10"]
+=======
+[ext_resource path="res://Scripts/Enemy/V2/Pomudachi/EnemyPomudachiController.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Enemy/pomudachi-Sheet.png" type="Texture2D" id=2]
+[ext_resource path="res://Scripts/Enemy/Movement/Chase.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemy/Attacks/JarCreator.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemy/V2/Pomudachi/EnemyPomudachiMain.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Enemy/Attacks/pool.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Enemy/Movement/Kite.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemy/Movement/Roam.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Enemy/Attacks/PoolCreator.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Enemy/Attacks/jar.tscn" type="PackedScene" id=10]
+>>>>>>> Stashed changes
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 30.0
@@ -23,8 +36,13 @@ tracks/0/path = NodePath("Main:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
+=======
+"times": PackedFloat32Array( 0, 0.1, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+>>>>>>> Stashed changes
 "update": 1,
 "values": [1, 2, 3]
 }
@@ -35,12 +53,21 @@ tracks/1/path = NodePath("../../Actions/Jar Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"createAttack"
 }]
+=======
+"times": PackedFloat32Array( 0.4 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "createAttack"
+} ]
+>>>>>>> Stashed changes
 }
 
 [sub_resource type="Animation" id="6"]
@@ -53,8 +80,13 @@ tracks/0/path = NodePath("Main:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+=======
+"times": PackedFloat32Array( 0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+>>>>>>> Stashed changes
 "update": 1,
 "values": [4, 5, 6, 5, 6, 5, 6, 5, 6, 4]
 }
@@ -65,12 +97,21 @@ tracks/1/path = NodePath("../../Actions/Pool Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"createAttack"
 }]
+=======
+"times": PackedFloat32Array( 0.5 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "createAttack"
+} ]
+>>>>>>> Stashed changes
 }
 
 [sub_resource type="Animation" id="5"]
@@ -83,8 +124,13 @@ tracks/0/path = NodePath("Main:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+=======
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+>>>>>>> Stashed changes
 "update": 1,
 "values": [1]
 }
@@ -100,8 +146,13 @@ tracks/0/path = NodePath("Main:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+=======
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+>>>>>>> Stashed changes
 "update": 0,
 "values": [Vector2(0, 0)]
 }
@@ -115,8 +166,13 @@ tracks/0/path = NodePath("Main:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+=======
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+>>>>>>> Stashed changes
 "update": 0,
 "values": [1]
 }
@@ -127,12 +183,18 @@ tracks/1/path = NodePath("Main:frame_coords")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+<<<<<<< Updated upstream
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+=======
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+>>>>>>> Stashed changes
 "update": 0,
 "values": [Vector2(0, 0)]
 }
 
+<<<<<<< Updated upstream
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgtx8"]
 _data = {
 "Attack1": SubResource("2"),
@@ -143,6 +205,9 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hidden_sprites", "aggro", "deaggro", "enemy_body", "telegraph_sprite", "main_sprite", "animation_player") groups=["minimap_objects"]]
+=======
+[node name="Enemy" type="CharacterBody2D" groups=["minimap_objects"]]
+>>>>>>> Stashed changes
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1")
@@ -161,8 +226,13 @@ visibilityPolygon2DPath = NodePath("VisibilityPolygon")
 shape = SubResource("1")
 
 [node name="VisibilityPolygon" type="Polygon2D" parent="."]
+<<<<<<< Updated upstream
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+=======
+color = Color( 1, 1, 1, 0 )
+polygon = PackedVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+>>>>>>> Stashed changes
 
 [node name="Movement" type="Node2D" parent="."]
 
@@ -204,11 +274,21 @@ libraries = {
 [node name="VisionRange" type="Node2D" parent="."]
 
 [node name="AggroRange" type="RayCast2D" parent="VisionRange"]
+<<<<<<< Updated upstream
 target_position = Vector2(300, 0)
 collision_mask = 9
 
 [node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
 target_position = Vector2(500, 0)
+=======
+enabled = true
+target_position = Vector2( 300, 0 )
+collision_mask = 9
+
+[node name="DeaggroRange" type="RayCast2D" parent="VisionRange"]
+enabled = true
+target_position = Vector2( 500, 0 )
+>>>>>>> Stashed changes
 collision_mask = 9
 
 [node name="Sprites" type="Node2D" parent="."]

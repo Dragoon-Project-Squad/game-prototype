@@ -1,0 +1,9 @@
+res://default_env.tres
+res://Scenes/Test Files/Test.tscn
+res://Assets/Materials and Textures/HitFlashMat.tres
+res://Autoloads/GlobalSettings.gd
+res://Autoloads/PlayerData.gd
+res://Scenes/Menus/Inventory.tscn
+res://Autoloads/GameData.gd
+res://Scenes/Menus/Tooltip.tscn
+res://Scripts/Player/Player_Movement.gd

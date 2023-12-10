@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rilxkl63wjw"]
+
+[ext_resource type="Texture2D" uid="uid://c6ua08wina7vh" path="res://Assets/Materials and Textures/InventoryBG.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/UI/Inventory.gd" id="5"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 950.0
+offset_top = 130.0
+offset_right = 1114.0
+offset_bottom = 462.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1")
+expand_mode = 1
+
+[node name="SlotContainer" type="GridContainer" parent="Background"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2

@@ -1,6 +1,10 @@
 extends MarginContainer
 
+<<<<<<< Updated upstream
 @export var player : Node
+=======
+@export (NodePath) var player
+>>>>>>> Stashed changes
 @export var zoom = 1.5
 @export var scan_speed = 200
 @export var scan_cooldown = 1
@@ -41,7 +45,11 @@ func _process(delta):
 				pulse_line.position += Vector2(0,scan_speed * delta);
 	
 	for item in markers:
+<<<<<<< Updated upstream
 		var obj_pos = (item.position - player.position) * grid_scale + grid.size / 2
+=======
+		var obj_pos = (item.position - get_node(player).position) * grid_scale + grid.size / 2
+>>>>>>> Stashed changes
 		
 		if grid.get_rect().has_point(obj_pos + grid.position):
 			#markers[item].show()

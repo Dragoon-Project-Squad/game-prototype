@@ -2,7 +2,11 @@
 
 importer="font_data_dynamic"
 type="FontFile"
+<<<<<<< Updated upstream
 uid="uid://dihvke2mh14uj"
+=======
+uid="uid://owu4e81s6pdr"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Lato-Bold.ttf-6cc599f9a2db87435b757a101d99ce63.fontdata"
 
 [deps]

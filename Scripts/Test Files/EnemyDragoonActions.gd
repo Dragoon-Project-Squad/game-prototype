@@ -1,8 +1,14 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var main : Node
 @export var telegraph : Node
 @export var animation_player : Node
+=======
+@export (NodePath) onready var main = get_node(main)
+@export (NodePath) onready var telegraph = get_node(telegraph)
+@export (NodePath) onready var animation_player = get_node(animation_player)
+>>>>>>> Stashed changes
 
 
 
@@ -11,7 +17,11 @@ var action_ready = true
 var player_pos = null
 
 func _ready() -> void:
+<<<<<<< Updated upstream
 	animation_player.animation_finished.connect(animationFinished)
+=======
+	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
+>>>>>>> Stashed changes
 	animation_player.play("Idle")
 
 func _process(delta: float) -> void:

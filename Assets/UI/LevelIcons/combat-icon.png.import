@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://c270lt83pqq0c"
+=======
+uid="uid://dgx74rxuxuhvg"
+>>>>>>> Stashed changes
 path="res://.godot/imported/combat-icon.png-10247b1a8bab8630e7671a73d9f665bd.ctex"
 metadata={
 "vram_texture": false

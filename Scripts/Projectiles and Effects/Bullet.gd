@@ -1,9 +1,13 @@
 extends Node2D
 class_name Bullet
 
+<<<<<<< Updated upstream
 @export var hitbox : Node
 
 var damage: int # received from script when dynamically made
+=======
+@export (NodePath) onready var hitbox = get_node(hitbox)
+>>>>>>> Stashed changes
 
 func _ready():
 	setupHitboxSignals()
@@ -20,10 +24,17 @@ func movement():
 	rotation = velocity.angle()
 
 #Hitting Objects
+<<<<<<< Updated upstream
 @export var BULLET_KNOCKBACK := 50.0
 
 func setupHitboxSignals():
 	hitbox.body_entered.connect(onBodyEnteredHitbox)
+=======
+@export (float) var BULLET_KNOCKBACK := 50.0
+
+func setupHitboxSignals():
+	hitbox.connect("body_entered", Callable(self, "onBodyEnteredHitbox"))
+>>>>>>> Stashed changes
 
 func onBodyEnteredHitbox(body):
 	if body.has_method("onHitByBullet"):
@@ -34,7 +45,11 @@ func onBodyEnteredHitbox(body):
 	queue_free()
 
 #Particles
+<<<<<<< Updated upstream
 @export var particlesScene: PackedScene
+=======
+@export (PackedScene) var particlesScene: PackedScene
+>>>>>>> Stashed changes
 
 func activateParticles():
 	if particlesScene == null:

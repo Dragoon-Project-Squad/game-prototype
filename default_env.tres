@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_resource type="Environment" load_steps=2 format=3 uid="uid://0334cpbt4a55"]
+=======
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://kb7836xxim2c"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Sky" id="1"]
 

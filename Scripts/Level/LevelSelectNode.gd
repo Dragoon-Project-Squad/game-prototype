@@ -1,7 +1,12 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var sprite_node : Node
 @export var sprite_highlight_node : Node
+=======
+@export (NodePath) onready var sprite_node = get_node(sprite_node)
+@export (NodePath) onready var sprite_highlight_node = get_node(sprite_highlight_node)
+>>>>>>> Stashed changes
 
 #data to be saved between scenes
 var path_number = -1;

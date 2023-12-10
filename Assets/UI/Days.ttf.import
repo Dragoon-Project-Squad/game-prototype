@@ -2,7 +2,11 @@
 
 importer="font_data_dynamic"
 type="FontFile"
+<<<<<<< Updated upstream
 uid="uid://ckwyksfn3kvyq"
+=======
+uid="uid://dtk51sdd3q6xm"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Days.ttf-220365007fc9937ea950aaf830866569.fontdata"
 
 [deps]

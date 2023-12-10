@@ -1,5 +1,6 @@
 extends Control
 
+<<<<<<< Updated upstream
 @onready var options_menu = $OptionsMenu
 
 var is_paused = false: set = set_is_paused
@@ -13,6 +14,12 @@ func _ready() -> void:
 		cutscene_control = tree.get_nodes_in_group("CutsceneControl")[0]
 	else:
 		print("No Cutscene Controller Found")
+=======
+@onready var restart_btn = $CenterContainer/VBoxContainer/RestartBtn
+@onready var options_menu = $OptionsMenu
+
+var is_paused = false: set = set_is_paused
+>>>>>>> Stashed changes
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Escape"):
@@ -35,6 +42,7 @@ func _on_OptionsBtn_pressed():
 func _on_QuitBtn_pressed():
 	get_tree().quit()
 
+<<<<<<< Updated upstream
 func handlePauseEvent():
 	if cutscene_control:
 		cutscene_playing = cutscene_control.cutscene_playing
@@ -46,3 +54,14 @@ func handlePauseEvent():
 		visible = !cutscene_control.is_active
 	else:
 		self.is_paused = !is_paused
+=======
+
+func _on_RestartBtn_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Test Files/Test.tscn")
+	self.is_paused = false
+
+
+func _on_EndBtn_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu.tscn")
+	self.is_paused = false
+>>>>>>> Stashed changes

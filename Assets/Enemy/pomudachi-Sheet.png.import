@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://b4k5wpt15e5mm"
+=======
+uid="uid://cbc4ie38c17mr"
+>>>>>>> Stashed changes
 path="res://.godot/imported/pomudachi-Sheet.png-25622f284ddb1c28c90110a5f2eb27ca.ctex"
 metadata={
 "vram_texture": false

@@ -1,9 +1,16 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var animation_player : Node
 @export var hitbox : Node
 
 @export var pool: PackedScene
+=======
+@export (NodePath) onready var animation_player = get_node(animation_player)
+@export (NodePath) onready var hitbox = get_node(hitbox)
+
+@export (PackedScene) var pool: PackedScene
+>>>>>>> Stashed changes
 
 var projectile_speed = 350
 var target_pos = null

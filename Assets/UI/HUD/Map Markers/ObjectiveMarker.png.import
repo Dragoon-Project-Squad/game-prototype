@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://b24kjfey7ajs8"
+=======
+uid="uid://c1n0b4a0ogelk"
+>>>>>>> Stashed changes
 path="res://.godot/imported/ObjectiveMarker.png-32bbf6b8250fb22ce7c531695c6e6bbd.ctex"
 metadata={
 "vram_texture": false

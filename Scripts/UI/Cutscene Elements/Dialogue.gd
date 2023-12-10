@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+<<<<<<< Updated upstream
 @export var left_sprite : Node
 @export var left_toggle : Node
 @export var left_text : Node
@@ -11,6 +12,19 @@ extends CanvasLayer
 @export var right_text : Node
 @export var right_name : Node
 @export var right_main : Node
+=======
+@export (NodePath) onready var left_sprite = get_node(left_sprite)
+@export (NodePath) onready var left_toggle = get_node(left_toggle)
+@export (NodePath) onready var left_text = get_node(left_text)
+@export (NodePath) onready var left_name = get_node(left_name)
+@export (NodePath) onready var left_main = get_node(left_main)
+
+@export (NodePath) onready var right_sprite = get_node(right_sprite)
+@export (NodePath) onready var right_toggle = get_node(right_toggle)
+@export (NodePath) onready var right_text = get_node(right_text)
+@export (NodePath) onready var right_name = get_node(right_name)
+@export (NodePath) onready var right_main = get_node(right_main)
+>>>>>>> Stashed changes
 
 
 var current_text = ""

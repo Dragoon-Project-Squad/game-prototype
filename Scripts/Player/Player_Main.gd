@@ -1,5 +1,6 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var movement : Node
 @export var aesthetics : Node
 @export var camera : Node
@@ -7,6 +8,15 @@ extends Node2D
 @export var weapon : Node
 
 @export var minimap : Node
+=======
+@export (NodePath) onready var movement = get_node(movement)
+@export (NodePath) onready var aesthetics = get_node(aesthetics)
+@export (NodePath) onready var camera = get_node(camera)
+@export (NodePath) onready var lights = get_node(lights)
+@export (NodePath) onready var weapon = get_node(weapon)
+
+@export (NodePath) onready var minimap = get_node(minimap)
+>>>>>>> Stashed changes
 
 var blockPlayerActions = false
 var isMinimapShowing = false

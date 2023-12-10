@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://vtvus3x3hbqd"
+=======
+uid="uid://bukdsjg6wcc6u"
+>>>>>>> Stashed changes
 path="res://.godot/imported/enemy-eyes.png-3f6d54dfa1d5e2e0b37471747379fc1d.ctex"
 metadata={
 "vram_texture": false

@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://p5hyx0ytuaig"
+=======
+uid="uid://cauo3dt7d0xii"
+>>>>>>> Stashed changes
 path="res://.godot/imported/cross-icon.png-e7e3b12c84f67214a3f43feff6b6c88f.ctex"
 metadata={
 "vram_texture": false

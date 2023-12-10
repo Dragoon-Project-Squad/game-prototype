@@ -1,5 +1,6 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var muzzleFlash : Node
 @export var muzzleFlashCheckShape : Node
 @export var viewZone : Node
@@ -7,6 +8,15 @@ extends Node2D
 @export var viewConeCheckShape : Node
 @export var muzzleFlashRotate : Node
 @export var viewConeRotate : Node
+=======
+@export (NodePath) onready var muzzleFlash = get_node(muzzleFlash)
+@export (NodePath) onready var muzzleFlashCheckShape = get_node(muzzleFlashCheckShape)
+@export (NodePath) onready var viewZone = get_node(viewZone)
+@export (NodePath) onready var viewCone = get_node(viewCone)
+@export (NodePath) onready var viewConeCheckShape = get_node(viewConeCheckShape)
+@export (NodePath) onready var muzzleFlashRotate = get_node(muzzleFlashRotate)
+@export (NodePath) onready var viewConeRotate = get_node(viewConeRotate)
+>>>>>>> Stashed changes
 
 func _ready():
 	resizeViewCone()

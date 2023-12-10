@@ -1,10 +1,18 @@
 extends CanvasLayer
 
+<<<<<<< Updated upstream
 @export var left_sprite : Node
 @export var left_toggle : Node
 @export var left_text : Node
 @export var left_name : Node
 @export var left_main : Node
+=======
+@export (NodePath) onready var left_sprite = get_node(left_sprite)
+@export (NodePath) onready var left_toggle = get_node(left_toggle)
+@export (NodePath) onready var left_text = get_node(left_text)
+@export (NodePath) onready var left_name = get_node(left_name)
+@export (NodePath) onready var left_main = get_node(left_main)
+>>>>>>> Stashed changes
 
 var current_text = ""
 var current_textbox = null

@@ -2,14 +2,20 @@ extends EnemyBase
 
 var max_kite = 300
 
+<<<<<<< Updated upstream:Scripts/Enemy/V2/EnemyPomudachi.gd
 @onready var charSpriteStartPos: Vector2 = main_sprite.position
 @onready var charSpriteStartScale: Vector2 = main_sprite.scale
+=======
+@onready var charSpriteStartPos: Vector2 = main.position
+@onready var charSpriteStartScale: Vector2 = main.scale
+>>>>>>> Stashed changes:Scripts/Enemy/V2/Pomudachi/EnemyPomudachiController.gd
 var animationTime: float = 0.0
 
 #Move Bounce animation
 @export var MB_animationBasePeriod: float = 0.5
 @export var MB_animationJumpHeight: float = 10.0
 @export var MB_animationRotationAngle: float = 10.0
+<<<<<<< Updated upstream:Scripts/Enemy/V2/EnemyPomudachi.gd
 
 #minimap
 var minimap_icon = "enemy"
@@ -28,6 +34,8 @@ func updateTransparency():
 	hidden_sprites.modulate.a += changeInAlpha
 	hidden_sprites.modulate.a = clamp(hidden_sprites.modulate.a, 0.0, 1.0)
 
+=======
+>>>>>>> Stashed changes:Scripts/Enemy/V2/Pomudachi/EnemyPomudachiController.gd
 
 func moveBounce(isMove: bool):
 	var MB_animationPeriod = MB_animationBasePeriod

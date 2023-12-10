@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://5fxnnii5kbad"
+=======
+uid="uid://ilhpuuq1ko1e"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Autotiles-big.png-095bc8dda61b87b1c70e1fc9ea1418aa.ctex"
 metadata={
 "vram_texture": false

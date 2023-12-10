@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://3tkbeqbn4ug8"
+=======
+uid="uid://d1fxtjgggn3p6"
+>>>>>>> Stashed changes
 path="res://.godot/imported/selen-player.png-2f3cfda4cbcf2abfc73242ce6881bac9.ctex"
 metadata={
 "vram_texture": false

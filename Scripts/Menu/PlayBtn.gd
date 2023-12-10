@@ -1,8 +1,13 @@
 extends Node
 
 # getting variables via Inspector
+<<<<<<< Updated upstream
 @export var playBtn : Node # reference to actual button
 @export_file var scenePath # file path for scene to go to
+=======
+@export(NodePath) onready var playBtn = get_node(playBtn) # reference to actual button
+@export(String, FILE) onready var scenePath # file path for scene to go to
+>>>>>>> Stashed changes
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

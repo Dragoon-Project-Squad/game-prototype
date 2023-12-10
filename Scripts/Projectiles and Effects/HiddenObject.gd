@@ -8,8 +8,13 @@ func _process(_delta):
 	updateTransparency()
 
 #For Smooth transition from invisible to visible
+<<<<<<< Updated upstream
 @export var TRANSPARENCY_CHANGE_RATE = 10
 @export var TRANSPARENCY_ON_LIT = 0.6
+=======
+@export (float) var TRANSPARENCY_CHANGE_RATE := 10
+@export (float) var TRANSPARENCY_ON_LIT := 0.6
+>>>>>>> Stashed changes
 
 func updateTransparency():
 	var changeInAlpha = -1 * TRANSPARENCY_CHANGE_RATE * get_process_delta_time()
@@ -38,7 +43,11 @@ func removeLightSource(node):
 	lightSources.erase(node)
 
 #Custom visibility check offsets
+<<<<<<< Updated upstream
 @export var visibilityPolygon2DPath: NodePath
+=======
+@export (NodePath) var visibilityPolygon2DPath: NodePath
+>>>>>>> Stashed changes
 var visibilityPolygon2D: Polygon2D = null
 var visibilityVertices: PackedVector2Array: get = getVisibilityVertices
 

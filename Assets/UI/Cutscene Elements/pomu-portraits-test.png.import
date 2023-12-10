@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://kdnao5yptlfh"
+=======
+uid="uid://cei23vqca7l8d"
+>>>>>>> Stashed changes
 path="res://.godot/imported/pomu-portraits-test.png-f0cf6bd024d3df61f7dc311541276a52.ctex"
 metadata={
 "vram_texture": false

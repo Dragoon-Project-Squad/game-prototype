@@ -1,6 +1,10 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var player : Node
+=======
+@export (NodePath) onready var player = get_node(player)
+>>>>>>> Stashed changes
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

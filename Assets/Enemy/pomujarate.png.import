@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://brq4bbxqcacfw"
+=======
+uid="uid://b1lahtxgqwjyx"
+>>>>>>> Stashed changes
 path="res://.godot/imported/pomujarate.png-03c9aea74530812ce384335c5ce0c945.ctex"
 metadata={
 "vram_texture": false

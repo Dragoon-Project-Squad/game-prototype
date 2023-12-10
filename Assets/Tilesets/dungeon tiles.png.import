@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://csef88ha2ow7s"
+=======
+uid="uid://8054v7dvn1f1"
+>>>>>>> Stashed changes
 path="res://.godot/imported/dungeon tiles.png-db571a194bbf4337347b5897b7dbde2d.ctex"
 metadata={
 "vram_texture": false

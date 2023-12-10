@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://cyivv8esnvohq"
+=======
+uid="uid://dhawyhxfx4kcf"
+>>>>>>> Stashed changes
 path="res://.godot/imported/encircle-icon.png-678cc5930b609020aab341b11226a7dc.ctex"
 metadata={
 "vram_texture": false

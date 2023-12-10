@@ -1,6 +1,10 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var viewCone : Area2D
+=======
+@export (NodePath) onready var viewCone = get_node(viewCone)
+>>>>>>> Stashed changes
 
 func _ready():
 	setupViewConeSignals()
@@ -15,8 +19,13 @@ func _process(_delta):
 var targetWithinViewCone = null
 
 func setupViewConeSignals():
+<<<<<<< Updated upstream
 	viewCone.body_entered.connect(onBodyEnteredViewCone)
 	viewCone.body_exited.connect(onBodyExitedViewCone)
+=======
+	viewCone.connect("body_entered", Callable(self, "onBodyEnteredViewCone"))
+	viewCone.connect("body_exited", Callable(self, "onBodyExitedViewCone"))
+>>>>>>> Stashed changes
 
 func onBodyEnteredViewCone(body):
 	if targetWithinViewCone == null:

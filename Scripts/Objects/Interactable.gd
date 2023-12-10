@@ -1,7 +1,11 @@
 extends HiddenObject
 class_name Interactable
 
+<<<<<<< Updated upstream
 @export var highlight : Node
+=======
+@export (NodePath) onready var highlight = get_node(highlight)
+>>>>>>> Stashed changes
 
 var is_in_range = false
 

@@ -19,18 +19,32 @@ var level_navigation: NavigationAgent2D = null
 var player = null
 
 #vision
+<<<<<<< Updated upstream
 @export var aggro : RayCast2D
 @export var deaggro : RayCast2D
+=======
+@export (NodePath) onready var aggro = get_node(aggro)
+@export (NodePath) onready var deaggro = get_node(deaggro)
+>>>>>>> Stashed changes
 var player_spotted = false
 var last_seen = null
 
 #kinematic body
+<<<<<<< Updated upstream
 @export var enemy_body : CharacterBody2D
 
 #visuals
 @export var telegraph_sprite : Sprite2D
 @export var main_sprite : Sprite2D
 @export var animation_player : AnimationPlayer
+=======
+@export (NodePath) onready var enemy_body = get_node(enemy_body)
+
+#visuals
+@export (NodePath) onready var telegraph = get_node(telegraph)
+@export (NodePath) onready var main = get_node(main)
+@export (NodePath) onready var animation_player = get_node(animation_player)
+>>>>>>> Stashed changes
 
 #attack flags
 var current_attack_instance = null
@@ -39,8 +53,13 @@ var attack_player_pos = null
 var action_cooldown = 0
 
 #export arrays
+<<<<<<< Updated upstream
 @export var move_options : Array
 @export var action_options : Array
+=======
+@export (Array, NodePath) onready var move_options
+@export (Array, NodePath) onready var action_options
+>>>>>>> Stashed changes
 var next_attack = null
 
 #damage highlight
@@ -49,11 +68,18 @@ var damageHighlightTimer: Timer = null
 @export var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
 
 func _ready():
+<<<<<<< Updated upstream
 	# sets up timer for damage highlight
 	setupHighlightTimers()
 	selectNextAction()	
 	animation_player.animation_finished.connect(animationFinished)
 	animation_player.play("Idle")	
+=======
+	selectNextAction()
+	animation_player.connect("animation_finished", Callable(self, "animationFinished"))
+	animation_player.play("Idle")
+	
+>>>>>>> Stashed changes
 	var tree = get_tree()
 	if tree.has_group("LevelNavigation"):
 		level_navigation = tree.get_nodes_in_group("LevelNavigation")[0]

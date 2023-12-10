@@ -12,7 +12,11 @@ offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
+<<<<<<< Updated upstream
 color = Color(0.341176, 0.313726, 0.580392, 1)
+=======
+color = Color( 0.341176, 0.313726, 0.580392, 1 )
+>>>>>>> Stashed changes
 
 [node name="MainSprite" type="Sprite2D" parent="."]
 

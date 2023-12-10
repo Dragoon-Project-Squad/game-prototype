@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://dlgvgpy1kuvas"
+=======
+uid="uid://dlng6scm4ssq3"
+>>>>>>> Stashed changes
 path="res://.godot/imported/scavenge-icon.png-b4872b58b44ac616c164568fb636e1cb.ctex"
 metadata={
 "vram_texture": false

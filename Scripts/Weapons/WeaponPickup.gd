@@ -1,5 +1,9 @@
 extends HiddenObject
+<<<<<<< Updated upstream
 @export var weaponID: String
+=======
+@export var weaponResource: Resource
+>>>>>>> Stashed changes
 
 func _ready():
 	setup()

@@ -1,5 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dfvbf3g3nk1ef"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://Scripts/Player/Player_Movement.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Aesthetics.gd" id="2"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Lights.gd" id="3"]
@@ -12,6 +13,21 @@
 [ext_resource type="PackedScene" path="res://Scenes/Player/Minimap.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://17lu1nefvrlf" path="res://Scenes/Player/Weapons/Pistol.tscn" id="12_m62st"]
 [ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="13"]
+=======
+[ext_resource path="res://Scripts/Player/Player_Movement.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player/Player_Aesthetics.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/Player_Lights.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Player/Player_Camera.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Materials and Textures/Lights.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Materials and Textures/Lights2.png" type="Texture2D" id=7]
+[ext_resource path="res://Scripts/Player/CustomLight.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player/Player_Weapon.gd" type="Script" id=9]
+[ext_resource path="res://Resources/WeaponTypes/Pistol.tres" type="Resource" id=10]
+[ext_resource path="res://Scripts/Player/Player_Main.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Player/Minimap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Player/selen-player.png" type="Texture2D" id=13]
+>>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(15, 21)
@@ -46,13 +62,23 @@ MOVE_FRICT = 1500.0
 position = Vector2(0, 11)
 shape = SubResource("1")
 
+<<<<<<< Updated upstream
 [node name="Camera3D" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("camera")]
 script = ExtResource("4")
+=======
+[node name="Camera3D" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 4 )
+>>>>>>> Stashed changes
 camera = NodePath("Camera2D")
 PERCENT_REMAPPING_CURVE = SubResource("2")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerKinematic/Camera3D"]
+<<<<<<< Updated upstream
 zoom = Vector2(0.8, 0.8)
+=======
+current = true
+zoom = Vector2( 0.8, 0.8 )
+>>>>>>> Stashed changes
 
 [node name="Lights" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("muzzleFlash", "muzzleFlashCheckShape", "viewZone", "viewCone", "viewConeCheckShape", "muzzleFlashRotate", "viewConeRotate")]
 script = ExtResource("3")
@@ -64,7 +90,12 @@ viewConeCheckShape = NodePath("ViewConeRotate/ViewConeCheck/CollisionShape2D")
 muzzleFlashRotate = NodePath("MuzzleFlashRotate")
 viewConeRotate = NodePath("ViewConeRotate")
 
+<<<<<<< Updated upstream
 [node name="Viewzone" type="PointLight2D" parent="PlayerKinematic/Lights" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
+=======
+[node name="Viewzone" type="PointLight2D" parent="PlayerKinematic/Lights"]
+texture = ExtResource( 7 )
+>>>>>>> Stashed changes
 range_z_max = 9
 shadow_enabled = true
 texture = ExtResource("7")
@@ -88,11 +119,21 @@ collision_layer = 64
 collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate/MuzzleFlashCheck"]
+<<<<<<< Updated upstream
 polygon = PackedVector2Array(0, 0, 256, 128, 256, -128)
 
 [node name="MuzzleFlash" type="PointLight2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
 position = Vector2(30, 0)
 scale = Vector2(0.1, 0.6)
+=======
+polygon = PackedVector2Array( 0, 0, 256, 128, 256, -128 )
+
+[node name="MuzzleFlash" type="PointLight2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.1, 0.6 )
+texture = ExtResource( 6 )
+offset = Vector2( 256, 0 )
+>>>>>>> Stashed changes
 range_z_max = 9
 shadow_enabled = true
 texture = ExtResource("6")
@@ -110,10 +151,19 @@ collision_layer = 64
 collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerKinematic/Lights/ViewConeRotate/ViewConeCheck"]
+<<<<<<< Updated upstream
 polygon = PackedVector2Array(0, 0, 1, 1, 1, -1)
 
 [node name="Viewcone" type="PointLight2D" parent="PlayerKinematic/Lights/ViewConeRotate" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
 color = Color(1, 1, 1, 0.207843)
+=======
+polygon = PackedVector2Array( 0, 0, 1, 1, 1, -1 )
+
+[node name="Viewcone" type="PointLight2D" parent="PlayerKinematic/Lights/ViewConeRotate"]
+texture = ExtResource( 6 )
+offset = Vector2( 256, 0 )
+color = Color( 1, 1, 1, 0.207843 )
+>>>>>>> Stashed changes
 range_z_max = 9
 shadow_enabled = true
 texture = ExtResource("6")
@@ -123,8 +173,13 @@ viewCheck = NodePath("../ViewConeCheck")
 viewCheckShape = NodePath("../ViewConeCheck/CollisionShape2D")
 nonHiddenObjectBodiesToIgnore = [NodePath("../../..")]
 
+<<<<<<< Updated upstream
 [node name="Aesthetics" type="Node2D" parent="PlayerKinematic" node_paths=PackedStringArray("charSprite")]
 script = ExtResource("2")
+=======
+[node name="Aesthetics" type="Node2D" parent="PlayerKinematic"]
+script = ExtResource( 2 )
+>>>>>>> Stashed changes
 charSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerKinematic/Aesthetics"]
@@ -132,11 +187,27 @@ light_mask = 2
 scale = Vector2(2, 2)
 texture = ExtResource("13")
 
+<<<<<<< Updated upstream
 [node name="EquippedWeapon" type="Node2D" parent="PlayerKinematic"]
 light_mask = 2
 script = ExtResource("9")
 
 [node name="Pistol" parent="PlayerKinematic/EquippedWeapon" instance=ExtResource("12_m62st")]
+=======
+[node name="Weapon" type="Node2D" parent="PlayerKinematic"]
+visible = false
+script = ExtResource( 9 )
+bulletSpawnNode = NodePath("SpawnNode")
+weaponSprite = NodePath("Sprite2D")
+startingWeaponResource = ExtResource( 10 )
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerKinematic/Weapon"]
+modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
+scale = Vector2( 1.2, 0.4 )
+texture = ExtResource( 5 )
+
+[node name="SpawnNode" type="Node" parent="PlayerKinematic/Weapon"]
+>>>>>>> Stashed changes
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
@@ -151,6 +222,11 @@ offset_left = -336.0
 offset_top = -334.0
 offset_right = 304.0
 offset_bottom = 306.0
+<<<<<<< Updated upstream
 scale = Vector2(0.5, 0.5)
 
 [node name="DamageHighlightTimer" type="Timer" parent="."]
+=======
+scale = Vector2( 0.5, 0.5 )
+player = NodePath("../../PlayerKinematic")
+>>>>>>> Stashed changes

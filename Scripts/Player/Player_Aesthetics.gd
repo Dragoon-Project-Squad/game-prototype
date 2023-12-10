@@ -1,6 +1,10 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var charSprite : Node
+=======
+@export (NodePath) onready var charSprite = get_node(charSprite)
+>>>>>>> Stashed changes
 @onready var charSpriteStartPos: Vector2 = charSprite.position
 @onready var charSpriteStartScale: Vector2 = charSprite.scale
 var animationTime: float = 0.0

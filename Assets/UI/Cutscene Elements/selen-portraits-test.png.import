@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://cr7wshl208xn4"
+=======
+uid="uid://c7654wn5r4a2g"
+>>>>>>> Stashed changes
 path="res://.godot/imported/selen-portraits-test.png-644727f91fd34ee5a474bf00ad46a8ff.ctex"
 metadata={
 "vram_texture": false

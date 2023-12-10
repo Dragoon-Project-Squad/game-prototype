@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://c5s82my373h3h"
+=======
+uid="uid://rqnv0gop0c6q"
+>>>>>>> Stashed changes
 path="res://.godot/imported/boss-icon.png-2a755610f55596d203b31b9f1f04eb2d.ctex"
 metadata={
 "vram_texture": false

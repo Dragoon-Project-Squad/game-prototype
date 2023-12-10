@@ -1,8 +1,13 @@
 extends Node2D
 
 #Enemy Behaviours
+<<<<<<< Updated upstream
 @export var PATROL_MAX_SPEED := 200.0
 @export var PATROL_ACCEL := 400.0
+=======
+@export (float) var PATROL_MAX_SPEED := 200.0
+@export (float) var PATROL_ACCEL := 400.0
+>>>>>>> Stashed changes
 
 @onready var START_POS = global_position
 
