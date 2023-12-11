@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d121l6fj4ba75"]
+[gd_scene load_steps=5 format=3 uid="uid://d121l6fj4ba75"]
 
 [ext_resource type="FontFile" uid="uid://dihvke2mh14uj" path="res://Assets/Fonts/Lato-Bold.ttf" id="1"]
 [ext_resource type="Script" path="res://Scripts/Menu/OptionsMenu.gd" id="2"]
-
-[sub_resource type="Theme" id="Theme_rcnhe"]
-default_font = ExtResource("1")
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("1")])
@@ -46,7 +43,6 @@ offset_right = 421.0
 offset_bottom = 271.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_rcnhe")
 tab_alignment = 1
 clip_tabs = false
 

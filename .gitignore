@@ -1,6 +1,9 @@
 # Import cache
 .import/
 
+# VS Code settings
+.vscode/
+
 # Binaries
 bin/
 build/
