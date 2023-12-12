@@ -1,4 +1,45 @@
-[gd_scene format=3 uid="uid://djyex0m25ya4d"]
+[gd_scene load_steps=9 format=3 uid="uid://djyex0m25ya4d"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[ext_resource type="Texture2D" uid="uid://3tkbeqbn4ug8" path="res://Assets/Player/selen-player.png" id="1_6av20"]
+[ext_resource type="Script" path="res://Scripts/Player/Revised_Player.gd" id="1_7cack"]
+[ext_resource type="PackedScene" uid="uid://qlwclx8fuhl0" path="res://Scenes/Components/HealthComponent.tscn" id="3_mhasu"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStateMachine.gd" id="4_6xg5b"]
+[ext_resource type="PackedScene" uid="uid://b2m01brrpu25g" path="res://Scenes/Components/PlayerMovementComponent.tscn" id="4_acwh5"]
+[ext_resource type="PackedScene" uid="uid://df8xd5k6vijpw" path="res://Scenes/Components/HitboxComponent.tscn" id="5_dibqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhfyl"]
+size = Vector2(24, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjxgh"]
+radius = 29.0
+
+[node name="Player_Selen" type="CharacterBody2D"]
 collision_mask = 186
+script = ExtResource("1_7cack")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_6av20")
+
+[node name="EnvironmentCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_bhfyl")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_mhasu")]
+position = Vector2(0, 3)
+
+[node name="PlayerMovementComponent" parent="." instance=ExtResource("4_acwh5")]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_dibqs")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_mjxgh")
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("4_6xg5b")
+
+[node name="Node2D" type="Node2D" parent="PlayerStateMachine"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
