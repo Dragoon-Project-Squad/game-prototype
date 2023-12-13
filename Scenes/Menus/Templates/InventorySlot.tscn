@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Materials and Textures/inventorySlot.png" type="Texture2D" id=1]
+[ext_resource path="res://Scenes/Menus/Templates/InventorySlot.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Lato-Bold.ttf" type="FontFile" id=3]
+
+[sub_resource type="FontFile" id=1]
+font_data = ExtResource( 3 )
+
+[node name="Slot1" type="TextureRect"]
+offset_right = 80.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 80, 80 )
+texture = ExtResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+expand = true
+script = ExtResource( 2 )
+
+[node name="Stack" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -21.0
+offset_right = -6.0
+offset_bottom = -6.0
+theme_override_fonts/font = SubResource( 1 )
+align = 2
+
+[connection signal="mouse_entered" from="Icon" to="Icon" method="_on_Icon_mouse_entered"]
+[connection signal="mouse_exited" from="Icon" to="Icon" method="_on_Icon_mouse_exited"]
