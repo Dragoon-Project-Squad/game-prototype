@@ -25,7 +25,7 @@ func _ready():
 func _process(delta):
 	if !player:
 		return
-	
+
 	if pulse_line:
 		if on_cooldown:
 			if cooldown_timer < scan_cooldown:
@@ -39,20 +39,20 @@ func _process(delta):
 				on_cooldown = true
 			else:
 				pulse_line.position += Vector2(0,scan_speed * delta);
-	
+
 	for item in markers:
 		var obj_pos = (item.position - player.position) * grid_scale + grid.size / 2
-		
+
 		if grid.get_rect().has_point(obj_pos + grid.position):
 			#markers[item].show()
 			markers[item].is_in_frame = true
 		else:
 			#markers[item].hide()
 			markers[item].is_in_frame = false
-		
+
 		obj_pos.x = clamp(obj_pos.x, 0, grid.size.x)
 		obj_pos.y = clamp(obj_pos.y, 0, grid.size.y)
-		
+
 		markers[item].position = obj_pos
 
 func getMapObjects():

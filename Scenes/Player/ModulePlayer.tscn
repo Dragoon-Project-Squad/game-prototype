@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/CustomLight.gd" id="8"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Weapon.gd" id="9"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Main.gd" id="11"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/Minimap.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bsoe42l3gh7hf" path="res://Scenes/Player/Minimap.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://17lu1nefvrlf" path="res://Scenes/Player/Weapons/Pistol.tscn" id="12_m62st"]
 [ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="13"]
 
@@ -141,12 +141,6 @@ script = ExtResource("9")
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
 [node name="Minimap" parent="PlayerUI" instance=ExtResource("12")]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -336.0
 offset_top = -334.0
 offset_right = 304.0
