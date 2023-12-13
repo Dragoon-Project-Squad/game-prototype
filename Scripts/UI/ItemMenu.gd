@@ -9,6 +9,7 @@ var isInventoryShowing = false
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Tab"):
+		print("_unhandled_input fired")
 		if(isInventoryShowing):
 			equipment.hide()
 			inventory.hide()

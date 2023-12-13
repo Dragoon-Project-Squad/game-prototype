@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwbxongbvi3eb"]
+[gd_scene load_steps=16 format=3 uid="uid://dwbxongbvi3eb"]
 
 [ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
+[ext_resource type="Script" path="res://Scripts/UI/ItemMenu.gd" id="2_7djav"]
 [ext_resource type="PackedScene" uid="uid://dgq20amenquxv" path="res://Scenes/Enemy/V1/Enemy.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Menus/Equipment.tscn" id="3_u0pmr"]
 [ext_resource type="PackedScene" uid="uid://drngepjbjbg31" path="res://Scenes/Scene Objects/WeaponPickup.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://ixb58wtajkeh" path="res://Scenes/Enemy/EnemyBase.tscn" id="4_1o61d"]
+[ext_resource type="PackedScene" uid="uid://0rilxkl63wjw" path="res://Scenes/Menus/Inventory.tscn" id="4_k7g4q"]
 [ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Scenes/Menus/CutsceneMaster.tscn" id="9"]
@@ -23,10 +26,23 @@ polygon = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
 layer = 30
 
 [node name="PauseMenu" parent="Menus" instance=ExtResource("8")]
+visible = true
 layout_mode = 3
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control" type="Control" parent="Menus"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_7djav")
+
+[node name="Equipment" parent="Menus/Control" instance=ExtResource("3_u0pmr")]
+anchors_preset = 0
+
+[node name="Inventory" parent="Menus/Control" instance=ExtResource("4_k7g4q")]
 
 [node name="CutsceneMaster" parent="." groups=["CutsceneControl"] instance=ExtResource("9")]
 

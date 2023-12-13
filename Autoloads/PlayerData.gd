@@ -17,9 +17,9 @@ func _ready():
 	#inv_data = inv_data_json.result
 	pass
 	
-func readJSON(json_file_path):
+func readJSON(aJSONFilePath):
 	var file = FileAccess.open(json_file_path, FileAccess.READ)
 	var content = file.get_as_text()
 	var json = JSON.new()
-	var finish = json.parse_string(content)
+	var finish = JSON.parse_string(content)
 	return finish

@@ -112,7 +112,7 @@ func _drop_data(_pos, data):
 			get_node("../Stack").set_text("")
 
 func _on_Icon_mouse_entered():
-	var tool_tip_instance = tool_tip.instance()
+	var tool_tip_instance = tool_tip.instantiate()
 	tool_tip_instance.origin = "Inventory"
 	tool_tip_instance.slot = get_parent().get_name()
 	

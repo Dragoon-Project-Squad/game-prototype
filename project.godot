@@ -22,6 +22,8 @@ MaterialReferences="*res://Autoloads/MaterialReferences.gd"
 LevelSelectData="*res://Autoloads/LevelSelectData.gd"
 DataLibrary="*res://Autoloads/DataLibrary.gd"
 GlobalSettings="*res://Autoloads/GlobalSettings.gd"
+GameData="*res://Autoloads/GameData.gd"
+PlayerData="*res://Autoloads/PlayerData.gd"
 
 [display]
 
