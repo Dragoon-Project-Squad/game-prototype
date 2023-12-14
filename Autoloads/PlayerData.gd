@@ -8,7 +8,8 @@ var equipment_data = {"PrimWeapon1": 10003,
 	"SecWeapon": 10001}
 
 func _ready():
-	var inv_data_file = FileAccess.get_file_as_string(json_file_path)
+	#var inv_data_file = FileAccess.get_file_as_string(json_file_path)
+	var inv_data_file = JSON.stringify(equipment_data)
 	var json = JSON.new()
 	var error = json.parse(inv_data_file)
 	if error == OK:

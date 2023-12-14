@@ -14,6 +14,4 @@ func _ready():
 			print("Unexpected data type for json data: ", typeof(item_data))
 	else: 
 		print("Something went wrong.")
-	print (json.data)
-	print("Nothing, I'm just here to stall.")
 	pass
