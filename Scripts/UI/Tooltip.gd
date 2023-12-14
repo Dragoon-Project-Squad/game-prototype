@@ -16,6 +16,9 @@ func _ready():
 			valid = true
 	
 	if valid:
+		print (GameData.item_data)
+		print (typeof(GameData.item_data))
+		print (GameData.item_data[item_id]["Name"])
 		get_node("NinePatch/MarginContainer/VBoxContainer/ItemName").set_text(GameData.item_data[item_id]["Name"])
 		var item_stat = 1
 		for i in range(GameData.item_stats.size()):

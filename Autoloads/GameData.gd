@@ -1,22 +1,19 @@
 extends Node
 
 var item_data = {}
-var json_file_path = "res://Data/ItemData.json"
+var file = "res://Data/ItemData.json"
 var item_stats = ["Description", "Attack", "Healing"]
 
 func _ready():
-	var item_data_file = FileAccess.open("res://Data/ItemData.json",FileAccess.WRITE)
-	item_data_file.open("res://Data/ItemData.json", FileAccess.READ)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(item_data_file.get_as_text())
-	var item_data_json = test_json_conv.get_data()
-	item_data_file.close()
-	item_data = item_data_json.result
-	pass
-	
-func readJSON(ajsonFilePath):
-	var file = FileAccess.open(json_file_path, FileAccess.READ)
-	var content = file.get_as_text()
+	var item_data_string = FileAccess.get_file_as_string(file)
 	var json = JSON.new()
-	var finish = JSON.parse_string(content)
-	return finish
+	var error = json.parse(item_data_string, true)
+	if error == OK:
+		item_data = json.data
+		if typeof(item_data) != TYPE_DICTIONARY:
+			print("Unexpected data type for json data: ", typeof(item_data))
+	else: 
+		print("Something went wrong.")
+	print (json.data)
+	print("Nothing, I'm just here to stall.")
+	pass

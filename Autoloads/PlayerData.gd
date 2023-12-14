@@ -8,7 +8,15 @@ var equipment_data = {"PrimWeapon1": 10003,
 	"SecWeapon": 10001}
 
 func _ready():
-	#var inv_data_file = FileAccess.open("user://inv_data_file.json",FileAccess.WRITE)
+	var inv_data_file = FileAccess.get_file_as_string(json_file_path)
+	var json = JSON.new()
+	var error = json.parse(inv_data_file)
+	if error == OK:
+		var inv_data = json.data
+		if typeof(inv_data) != TYPE_DICTIONARY:
+			print("Unexpected data type for json data: ", typeof(inv_data))
+	else: 
+		print("Something went wrong.")
 	#inv_data_file.open("user://inv_data_file.json", FileAccess.READ)
 	#var test_json_conv = JSON.new()
 	#test_json_conv.parse(inv_data_file.get_as_text())
@@ -16,10 +24,3 @@ func _ready():
 	#inv_data_file.close()
 	#inv_data = inv_data_json.result
 	pass
-	
-func readJSON(aJSONFilePath):
-	var file = FileAccess.open(json_file_path, FileAccess.READ)
-	var content = file.get_as_text()
-	var json = JSON.new()
-	var finish = JSON.parse_string(content)
-	return finish
