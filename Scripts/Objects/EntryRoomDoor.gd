@@ -8,13 +8,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if isNearDoor:
+	if is_near_door:
 		if Input.is_action_just_pressed("Interact"):
 			emit_signal("entry_door_opened")
 			#TODO: (AUDIO) Play Door sounds here
 			get_node("DoorArea/DoorCollision").queue_free()
 			#Set Door Sprite to the open door, hardcoded
-			doorTiles.set_cell(0, Vector2.ZERO, 1, Vector2i.ZERO)
+			door_tiles.set_cell(0, Vector2.ZERO, 1, Vector2i.ZERO)
 			#Enable this if the door isn't refreshing 
 			#doorTiles.update_dirty_quadrants()
 		#else:
