@@ -13,12 +13,14 @@ func _ready():
 	#var rndX = rng.randi_range(0, screen_size.x)
 	#var rndY = rng.randi_range(0, screen_size.y)
 	#self.position = Vector2(rndX, rndY)
-	
-func _on_KeyArea_key_acquired():
-	emit_signal("key_acquired")
-	print("Key acquired...")
-	#Play a key pickup sound here.
-
 
 func _on_Node2D_key_randomPos():
 	#randomKeyPlacement()
+	pass
+
+func _on_key_area_key_acquired():
+	emit_signal("key_acquired")
+	print("Key acquired...")
+	queue_free()
+	#TODO: Play a key pickup sound here.
+	#TODO: 

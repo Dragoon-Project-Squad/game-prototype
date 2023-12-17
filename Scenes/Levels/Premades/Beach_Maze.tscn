@@ -12,9 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://68ubt4odqo12" path="res://Scenes/Enemy/EnemyProwler.tscn" id="11_m2w1u"]
 [ext_resource type="PackedScene" uid="uid://cexf48ofi8h3j" path="res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn" id="14"]
 
-[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("exit_door")]
+[node name="LevelRoot" type="Node2D"]
 script = ExtResource("3")
-exit_door = NodePath("Objects/ExitDoor")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_pugut")
@@ -43,9 +42,6 @@ position = Vector2(-704, -392)
 
 [node name="Key" parent="Objects" instance=ExtResource("6")]
 position = Vector2(16, 2408)
-TRANSPARENCY_CHANGE_RATE = null
-TRANSPARENCY_ON_LIT = null
-visibilityPolygon2DPath = null
 
 [node name="Torch" parent="." instance=ExtResource("9")]
 position = Vector2(-2920, 80)

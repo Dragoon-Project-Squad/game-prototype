@@ -26,3 +26,6 @@ script = ExtResource("2")
 
 [node name="KeyCollision" type="CollisionShape2D" parent="KeyArea"]
 shape = SubResource("2")
+
+[connection signal="body_entered" from="KeyArea" to="KeyArea" method="_on_body_entered"]
+[connection signal="key_acquired" from="KeyArea" to="." method="_on_key_area_key_acquired"]

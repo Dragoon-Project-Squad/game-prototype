@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cexf48ofi8h3j"]
 
-[ext_resource type="TileSet" path="res://Assets/Tilesets/dungeondoor.tres" id="1"]
+[ext_resource type="TileSet" uid="uid://b6kng60y45k60" path="res://Assets/Tilesets/dungeondoor.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/Objects/ExitRoomDoor.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(161, 32.25)
+size = Vector2(320, 62.0313)
 
 [node name="ExitDoor" type="Node2D"]
 script = ExtResource("2")
@@ -19,13 +19,13 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0)
 position = Vector2(0, 192)
 
 [node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2(160, 80)
+position = Vector2(160, 95.0156)
 shape = SubResource("1")
 
 [node name="DoorAreaExitSide" type="Area2D" parent="."]
 
 [node name="DoorCollisionTop" type="CollisionShape2D" parent="DoorAreaExitSide"]
-position = Vector2(160, -8)
+position = Vector2(160, -16)
 shape = SubResource("1")
 
 [connection signal="body_entered" from="DoorArea" to="." method="_on_DoorArea_body_entered"]
