@@ -14,6 +14,7 @@ config/name="SelenHorrorGungeon"
 run/main_scene="res://Scenes/Test Files/Test.tscn"
 config/features=PackedStringArray("4.1")
 run/max_fps=120
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]
@@ -27,7 +28,7 @@ GlobalSettings="*res://Autoloads/GlobalSettings.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bf1a6ugt7fpcy" path="res://Assets/Menu/titleTemp.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Menu/PlayBtn.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://c7tjf5udpxabh" path="res://Assets/Menu/label_continue.png" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/Menus/MovingBackground.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://1ae4lv2tf5uv" path="res://Scenes/Menus/MovingBackground.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://cce6ab2pnmloi" path="res://Assets/Menu/label_new_game.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://njsp401cvmlm" path="res://Assets/Menu/label_options.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://bh7wxnofj7hec" path="res://Scenes/Menus/FpsLabel.tscn" id="7"]

@@ -57,6 +57,7 @@ layout_mode = 1
 
 [node name="FpsLabel" parent="." instance=ExtResource("3_7jqo7")]
 visible = true
+layout_mode = 0
 offset_left = 16.0
 offset_top = 9.0
 offset_right = 70.0
