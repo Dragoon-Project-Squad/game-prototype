@@ -1,5 +1,5 @@
 extends HiddenObject
-@export var weaponResource: Resource
+@export var weaponID: String
 
 func _ready():
 	setup()
@@ -11,6 +11,6 @@ func setup():
 
 func on_area2d_area_entered(body):
 	if body.is_in_group("Player"):
-		body.get_parent().weapon.setNewWeapon(weaponResource)
+		body.get_parent().weapon.setEquippedWeapon(weaponID)
 		
 		queue_free()
