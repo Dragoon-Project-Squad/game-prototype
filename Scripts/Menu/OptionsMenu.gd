@@ -26,6 +26,9 @@ extends Control
 @onready var mouse_sens_amount = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensAmount
 @onready var mouse_slider = $SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensSlider
 
+# Control settings
+@onready var input_list = $SettingsTab/Controls/MarginContainer/Inputs/ScrollContainer/VBoxContainer
+@onready var change_popup = $ChangeKey
 
 # Testing resolution list
 var resolutions: Dictionary = {
@@ -41,7 +44,12 @@ var resolutions: Dictionary = {
 	"800x600":Vector2i(800,600)
 	}
 
+var inputs: Array = []
+var input_dict: Dictionary = {}
+
 func _ready() -> void:
+	change_popup.visible = false
+	add_inputs()
 	add_resolutions()
 	display_options.selected = game_data.fullscreen_mode
 	max_fps_slider.value = game_data.max_fps
@@ -49,6 +57,88 @@ func _ready() -> void:
 	music_slider.value = game_data.music_vol
 	sfx_slider.value = game_data.sfx_vol
 	mouse_slider.value = game_data.mouse_sens
+
+func add_inputs():
+	InputMap.load_from_project_settings()
+	var filteredInputs = []
+
+	for action in InputMap.get_actions():
+		if action.left(2) != "ui":
+			var inputEvents = InputMap.action_get_events(action)
+
+			var inputEventsProcessed = []
+			for inputEvent in inputEvents:
+				var processedEvent = null
+				if inputEvent is InputEventMouseButton or inputEvent is InputEventJoypadButton:
+					processedEvent = inputEvent.button_index
+				elif inputEvent is InputEventKey:
+					processedEvent = OS.get_keycode_string(inputEvent.keycode)
+				elif inputEvent is InputEventJoypadMotion:
+					processedEvent = inputEvent.axis
+				inputEventsProcessed.append(processedEvent)
+#				print(processedEvent)
+			input_dict[action] = inputEventsProcessed
+	create_controls()
+
+# Without using some plugin or defining custom control nodes this is going to look messy
+# There's a lot to configure and it needs to be done right!
+func create_controls():
+	for key in input_dict.keys():
+		var action = Label.new()
+		action.text = str(key)
+		action.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		action.size_flags_vertical += SIZE_FILL
+		action.size_flags_horizontal += SIZE_EXPAND
+
+		var hbox = HBoxContainer.new()
+		var vbox = VBoxContainer.new()
+		vbox.size_flags_horizontal += SIZE_EXPAND
+
+		for value in input_dict[key]:
+			var input = Button.new()
+			input.text = str(value)
+			input.pressed.connect(_on_button_pressed)
+			vbox.add_child(input)
+
+		var add_input = Button.new()
+		add_input.text = "+"
+		add_input.pressed.connect(_on_button_pressed)
+		vbox.add_child(add_input)
+		hbox.add_child(action)
+		hbox.add_child(vbox)
+		input_list.add_child(hbox)
+
+func _on_button_pressed():
+	change_popup.visible = true
+	change_popup.anchors_preset = PRESET_CENTER
+	if Input.is_key_pressed(KEY_ESCAPE):
+		change_popup.visible = false
+
+
+func _input(event: InputEvent) -> void:
+	if change_popup.visible == true:
+		if event is InputEventKey:
+			if event.is_released():
+				print(event)
+
+
+func change_input(value):
+	var change_text = change_popup.get_child(0)
+	change_popup.visible = true
+
+	if value.id is Input:
+		change_text.text = "Set % to " % value
+	if Input.is_key_pressed(KEY_ESCAPE):
+		change_popup.visible = false
+	elif value is InputEventKey:
+		InputMap.add_action(value)
+		print()
+	else:
+		return Input
+
+func unmap_input(value):
+	InputMap.erase_action(value)
+
 
 func add_resolutions():
 	var CurrentResolution = get_viewport().get_size()

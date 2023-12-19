@@ -47,14 +47,17 @@ tab_alignment = 1
 clip_tabs = false
 
 [node name="Video" type="TabBar" parent="SettingsTab"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsTab/Video"]
-layout_mode = 0
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 25.0
 offset_top = 25.0
-offset_right = 825.0
-offset_bottom = 211.0
+offset_right = 25.0
+offset_bottom = -3.0
 
 [node name="VideoSettings" type="GridContainer" parent="SettingsTab/Video/MarginContainer"]
 layout_mode = 2
@@ -94,7 +97,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 alignment = 1
 expand_icon = true
-selected = 0
 
 [node name="VsyncLabel" type="Label" parent="SettingsTab/Video/MarginContainer/VideoSettings"]
 layout_mode = 2
@@ -238,6 +240,74 @@ max_value = 3.0
 step = 0.01
 value = 0.1
 
+[node name="Controls" type="TabBar" parent="SettingsTab"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsTab/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Inputs" type="GridContainer" parent="SettingsTab/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsTab/Controls/MarginContainer/Inputs"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Control"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Input"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsTab/Controls/MarginContainer/Inputs"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsTab/Controls/MarginContainer/Inputs/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsTab/Controls/MarginContainer/Inputs"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
+layout_mode = 2
+text = "Assign input"
+
+[node name="VSeparator" type="VSeparator" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
+layout_mode = 2
+text = "Restore defaults"
+
 [node name="CloseBtn" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -249,6 +319,34 @@ offset_right = -225.0
 offset_bottom = 112.0
 grow_horizontal = 0
 text = "X"
+
+[node name="ChangeKey" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.0
+offset_top = 425.0
+offset_right = -195.0
+offset_bottom = 625.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChangeKeyLbl" type="RichTextLabel" parent="ChangeKey"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Set KEY to X
+Press escape to cancel"
 
 [connection signal="item_selected" from="SettingsTab/Video/MarginContainer/VideoSettings/ScreenModeBtn" to="." method="_on_DisplayOptionBtn_item_selected"]
 [connection signal="item_selected" from="SettingsTab/Video/MarginContainer/VideoSettings/ResBtn" to="." method="_on_res_btn_item_selected"]
