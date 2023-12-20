@@ -7,6 +7,8 @@ class_name GenericLevelScript
 func _ready() -> void:
 	if exit_door:
 		exit_door.leaving_level.connect(finish_level)
+	else:
+		print("Door data not found! Can't connect signal.")
 
 func finish_level():
 	print("level finished, changing to select scene")
