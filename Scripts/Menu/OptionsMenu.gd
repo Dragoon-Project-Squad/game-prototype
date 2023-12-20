@@ -31,6 +31,7 @@ extends Control
 @onready var change_popup = $ChangeKey
 var action_name: String = ""
 var input_index: int = 0
+var current_button: Button = null
 
 # Testing resolution list
 var resolutions: Dictionary = {
@@ -85,42 +86,40 @@ func add_inputs():
 # Without using some plugin or defining custom control nodes this is going to look messy
 # There's a lot to configure and it needs to be done right!
 func create_controls():
+	var counter = 0
 	for key in input_dict.keys():
-
 		var action = Label.new()
 		action.text = str(key)
 		action.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		action.size_flags_vertical += SIZE_FILL
 		action.size_flags_horizontal += SIZE_EXPAND
-
 		var hbox = HBoxContainer.new()
 		var vbox = VBoxContainer.new()
 		vbox.size_flags_horizontal += SIZE_EXPAND
 
 		for value in input_dict[key]:
-			print(input_dict[key].find(value))
 			var input = Button.new()
 			input.text = str(value)
-#			print(value)
-			input.pressed.connect(_on_button_pressed.bind(input, action, input_dict[key]))
+			input.pressed.connect(_on_button_pressed.bind(input, action, counter))
+			counter += 1
 			vbox.add_child(input)
 
 		var add_input = Button.new()
 		add_input.text = "+"
-		add_input.pressed.connect(_on_button_pressed.bind(add_input, action))
+		add_input.pressed.connect(_on_button_pressed.bind(add_input, action, counter+1))
+		counter = 0
 		vbox.add_child(add_input)
 		hbox.add_child(action)
 		hbox.add_child(vbox)
 		input_list.add_child(hbox)
 
-func _on_button_pressed(value, action):
-	print(str(value.text) +  " " + str(action.text))
+func _on_button_pressed(value, action, counter):
 	change_popup.visible = true
 	change_popup.anchors_preset = PRESET_CENTER
 	change_popup.get_child(0).text = "%s is currently set to %s \n Please enter new input" % [value.text, action.text]
 	action_name = str(action)
-	input_index = action
-	print(input_index)
+	input_index = counter
+	current_button = value
 	change_input(value, action)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -129,9 +128,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			accept_event()
 			change_popup.get_child(0).text = change_popup.get_child(0).text + "\n New input: " + str(event.as_text_keycode())
 			InputHelper.replace_keyboard_input_at_index(action_name, input_index, event, true)
-
+			update_labels(OS.get_keycode_string(event.keycode))
 		if Input.is_key_pressed(KEY_ESCAPE):
 			change_popup.visible = false
+
+func update_labels(event) -> void:
+	var inputs: Array = InputHelper.get_keyboard_inputs_for_action(action_name)
+	print(inputs)
+	current_button.text = event
+
 
 
 func change_input(value, action):
