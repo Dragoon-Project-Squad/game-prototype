@@ -29,6 +29,8 @@ extends Control
 # Control settings
 @onready var input_list = $SettingsTab/Controls/MarginContainer/Inputs/ScrollContainer/VBoxContainer
 @onready var change_popup = $ChangeKey
+var action_name: String = ""
+var input_index: int = 0
 
 # Testing resolution list
 var resolutions: Dictionary = {
@@ -84,6 +86,7 @@ func add_inputs():
 # There's a lot to configure and it needs to be done right!
 func create_controls():
 	for key in input_dict.keys():
+
 		var action = Label.new()
 		action.text = str(key)
 		action.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -95,50 +98,53 @@ func create_controls():
 		vbox.size_flags_horizontal += SIZE_EXPAND
 
 		for value in input_dict[key]:
+			print(input_dict[key].find(value))
 			var input = Button.new()
 			input.text = str(value)
-			input.pressed.connect(_on_button_pressed)
+#			print(value)
+			input.pressed.connect(_on_button_pressed.bind(input, action, input_dict[key]))
 			vbox.add_child(input)
 
 		var add_input = Button.new()
 		add_input.text = "+"
-		add_input.pressed.connect(_on_button_pressed)
+		add_input.pressed.connect(_on_button_pressed.bind(add_input, action))
 		vbox.add_child(add_input)
 		hbox.add_child(action)
 		hbox.add_child(vbox)
 		input_list.add_child(hbox)
 
-func _on_button_pressed():
+func _on_button_pressed(value, action):
+	print(str(value.text) +  " " + str(action.text))
 	change_popup.visible = true
 	change_popup.anchors_preset = PRESET_CENTER
-	if Input.is_key_pressed(KEY_ESCAPE):
-		change_popup.visible = false
+	change_popup.get_child(0).text = "%s is currently set to %s \n Please enter new input" % [value.text, action.text]
+	action_name = str(action)
+	input_index = action
+	print(input_index)
+	change_input(value, action)
 
-
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if change_popup.visible == true:
-		if event is InputEventKey:
-			if event.is_released():
-				print(event)
+		if (event is InputEventKey or event is InputEventMouseButton) and event.is_pressed():
+			accept_event()
+			change_popup.get_child(0).text = change_popup.get_child(0).text + "\n New input: " + str(event.as_text_keycode())
+			InputHelper.replace_keyboard_input_at_index(action_name, input_index, event, true)
+
+		if Input.is_key_pressed(KEY_ESCAPE):
+			change_popup.visible = false
 
 
-func change_input(value):
+func change_input(value, action):
 	var change_text = change_popup.get_child(0)
-	change_popup.visible = true
-
-	if value.id is Input:
-		change_text.text = "Set % to " % value
-	if Input.is_key_pressed(KEY_ESCAPE):
-		change_popup.visible = false
-	elif value is InputEventKey:
-		InputMap.add_action(value)
-		print()
-	else:
-		return Input
-
-func unmap_input(value):
-	InputMap.erase_action(value)
-
+	while change_popup.visible == true:
+		if Input.is_key_pressed(KEY_ESCAPE):
+			change_popup.visible = false
+		elif action_name == null:
+			InputMap.action_erase_event(action, value)
+			InputMap.action_add_event(action, value)
+			print()
+		else:
+			return Input
 
 func add_resolutions():
 	var CurrentResolution = get_viewport().get_size()
@@ -198,3 +204,7 @@ func _on_close_btn_pressed() -> void:
 func _on_res_btn_item_selected(index: int) -> void:
 	GlobalSettings.update_resolution(resolutions.values()[index])
 	DisplayServer.window_set_size(resolutions.values()[index])
+
+
+func _on_restore_defaults_pressed() -> void:
+	InputHelper.reset_all_actions()

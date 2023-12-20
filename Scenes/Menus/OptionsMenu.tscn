@@ -295,7 +295,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
+[node name="AssignInput" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
 layout_mode = 2
 text = "Assign input"
 
@@ -304,7 +304,7 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
+[node name="RestoreDefaults" type="Button" parent="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2"]
 layout_mode = 2
 text = "Restore defaults"
 
@@ -357,4 +357,5 @@ Press escape to cancel"
 [connection signal="value_changed" from="SettingsTab/Audio/MarginContainer2/AudioSettings/MusicVolSlider" to="." method="_on_MusicVolSlider_value_changed"]
 [connection signal="value_changed" from="SettingsTab/Audio/MarginContainer2/AudioSettings/SfxVolSlider" to="." method="_on_SfxVolSlider_value_changed"]
 [connection signal="value_changed" from="SettingsTab/Gameplay/MarginContainer3/GameplaySettings/MouseSensOption/MouseSensSlider" to="." method="_on_MouseSensSlider_value_changed"]
+[connection signal="pressed" from="SettingsTab/Controls/MarginContainer/Inputs/HBoxContainer2/RestoreDefaults" to="." method="_on_restore_defaults_pressed"]
 [connection signal="pressed" from="CloseBtn" to="." method="_on_close_btn_pressed"]

@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Escape"):
+
 		handlePauseEvent()
 
 
@@ -33,7 +34,8 @@ func _on_OptionsBtn_pressed():
 
 
 func _on_QuitBtn_pressed():
-	get_tree().quit()
+	pass
+#	get_tree().quit()
 
 func handlePauseEvent():
 	if cutscene_control:
