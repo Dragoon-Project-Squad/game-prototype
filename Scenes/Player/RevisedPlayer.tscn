@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://df8xd5k6vijpw" path="res://Scenes/Components/HitboxComponent.tscn" id="5_dibqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhfyl"]
-size = Vector2(24, 42)
+size = Vector2(38, 41)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mjxgh"]
-radius = 29.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykae0"]
+size = Vector2(42, 55)
 
 [node name="Player_Selen" type="CharacterBody2D"]
 collision_mask = 186
@@ -23,19 +23,25 @@ texture = ExtResource("1_6av20")
 
 [node name="EnvironmentCollision" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(0, 11)
+position = Vector2(-1, 11.5)
 shape = SubResource("RectangleShape2D_bhfyl")
+debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_mhasu")]
-position = Vector2(0, 3)
+[node name="Health" parent="." instance=ExtResource("3_mhasu")]
 
-[node name="PlayerMovementComponent" parent="." instance=ExtResource("4_acwh5")]
+[node name="PlayerMovement" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_acwh5")]
+player = NodePath("..")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("5_dibqs")]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_dibqs")]
+collision_layer = 0
+collision_mask = 4
+health = NodePath("../Health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_mjxgh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_ykae0")
+debug_color = Color(0.964706, 0.0156863, 0, 0.447059)
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("4_6xg5b")
@@ -43,3 +49,5 @@ script = ExtResource("4_6xg5b")
 [node name="Node2D" type="Node2D" parent="PlayerStateMachine"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FlashlightMechanic" type="Node2D" parent="."]
