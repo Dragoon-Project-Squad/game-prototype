@@ -71,7 +71,7 @@ _data = {
 "Shoot": SubResource("5")
 }
 
-[node name="ModulePlayer" type="Node2D" node_paths=PackedStringArray("movement", "aesthetics", "camera", "lights", "weapon", "minimap", "damageHighlightTimer") groups=["Player"]]
+[node name="ModulePlayer" type="Node2D" node_paths=PackedStringArray("movement", "aesthetics", "camera", "lights", "weapon", "minimap") groups=["Player"]]
 script = ExtResource("11")
 movement = NodePath("PlayerKinematic")
 aesthetics = NodePath("PlayerKinematic/Aesthetics")
@@ -79,8 +79,6 @@ camera = NodePath("PlayerKinematic/Camera3D")
 lights = NodePath("PlayerKinematic/Lights")
 weapon = NodePath("PlayerKinematic/Weapon")
 minimap = NodePath("PlayerUI/Minimap")
-damageHighlightColor = Color(1, 0, 0, 0.470588)
-damageHighlightTimer = NodePath("DamageHighlightTimer")
 
 [node name="PlayerKinematic" type="CharacterBody2D" parent="." groups=["Player"]]
 z_index = 1

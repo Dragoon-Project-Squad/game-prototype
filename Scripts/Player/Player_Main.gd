@@ -18,14 +18,15 @@ signal door_stuck
 
 var interact_list = []
 
-@export var health: int = 10000 # integer to track hp, maybe change to bits for optimization later on
+@export var health: int = 10 # integer to track hp, maybe change to bits for optimization later on
 
-@export var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
-@export var damageHighlightColor: Color = Color("#78ff0000") # decides what color the damage highlight is
-@export var damageHighlightTimer: Node # ref to timer
+var damageHighlightLength: int = 20 #centiseconds, how long highlight lasts
+var damageHighlightColor: Color = Color("#ef0028") # decides what color the damage highlight is
+var damageHighlightTimer = null # ref to timer 
 
 func _ready():
 	# sets up timer for damage highlight
+	damageHighlightTimer = get_node("DamageHighlightTimer") # assign to lower number of exports
 	damageHighlightTimer.connect("timeout", Callable(self, "_endHighlight")) # connect _endHighlight() to the timer's "timeout" signal
 	
 	# connects signal to function
@@ -100,6 +101,10 @@ func shooting():
 func GotHurt(damage: int):
 	# updates player's health value
 	health -= damage
+	
+	# checks if player health is under zero
+	if health < 0:
+		get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu.tscn") # temporary, sends player to start screen
 	
 	# highlights the player
 	aesthetics.changeColor(damageHighlightColor) # changes highlight/modulate value
