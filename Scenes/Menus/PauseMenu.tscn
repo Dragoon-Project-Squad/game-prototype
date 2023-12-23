@@ -78,6 +78,7 @@ text = "Quit Game"
 [node name="OptionsMenu" parent="." instance=ExtResource("3")]
 visible = false
 layout_mode = 1
+mouse_filter = 2
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsBtn" to="." method="_on_OptionsBtn_pressed"]

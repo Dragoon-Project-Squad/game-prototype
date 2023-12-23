@@ -147,6 +147,18 @@ func get_label_for_input(input: InputEvent) -> String:
 				return "Mouse Middle Button"
 			MOUSE_BUTTON_RIGHT:
 				return "Mouse Right Button"
+			MOUSE_BUTTON_WHEEL_UP:
+				return "Mouse Wheel Up"
+			MOUSE_BUTTON_WHEEL_DOWN:
+				return "Mouse Wheel Down"
+			MOUSE_BUTTON_WHEEL_LEFT:
+				return "Mouse Wheel Left"
+			MOUSE_BUTTON_WHEEL_RIGHT:
+				return "Mouse Wheel Right"
+			MOUSE_BUTTON_XBUTTON1:
+				return "Mouse Button 4"
+			MOUSE_BUTTON_XBUTTON2:
+				return "Mouse Button 5"
 		return "Mouse Button %d" % input
 
 	return input.as_text()
