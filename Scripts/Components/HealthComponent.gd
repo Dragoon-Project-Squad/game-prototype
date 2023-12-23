@@ -9,6 +9,9 @@ func _ready():
 	currentHealth = MAX_HEALTH
 	
 func heal(amount: int):
+	# Might do what you're doing faster unless you've got other features to implement
+	# currentHealth = min(currentHealth+amount, MAX_HEALTH) # adds healing w/ a limit
+	
 	# Checks if the heal will go under the max HP
 	if currentHealth < MAX_HEALTH and (currentHealth+amount) < MAX_HEALTH:
 		currentHealth += amount
