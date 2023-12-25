@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
 [ext_resource type="TileSet" uid="uid://jbwfgof7uod2" path="res://Assets/Tilesets/TEST_TILES.tres" id="2_pugut"]
 [ext_resource type="Script" path="res://Scripts/Level/GenericLevelScript.gd" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/Scene Objects/Door/BeachEntryRoomDoor.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dvu6dpco6lffs" path="res://Scenes/Scene Objects/Door/BeachEntryRoomDoor.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://ne8llq5e6hwq" path="res://Scenes/Enemy/EnemyDragoon.tscn" id="8_bwhv4"]
 [ext_resource type="PackedScene" uid="uid://dr76fpaui4m5r" path="res://Scenes/Scene Objects/Torch.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://n1gy62ci4ma1" path="res://Scenes/Enemy/EnemyPomudachi.tscn" id="9_na1g3"]

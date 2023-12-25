@@ -1,5 +1,5 @@
 extends Node
-class_name Walker
+class_name DGOldWalker
 
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
