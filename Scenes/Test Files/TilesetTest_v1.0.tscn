@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dync252qcix7w"]
+
+[ext_resource type="TileSet" uid="uid://kbueyr0xoe5k" path="res://Assets/Tilesets/deco_dungeon.tres" id="1_ejxp2"]
+[ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2_v63bd"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_ejxp2")
+format = 2
+layer_0/tile_data = PackedInt32Array(8, 262144, 12, -6, 262144, 12)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ModulePlayer" parent="." instance=ExtResource("2_v63bd")]
