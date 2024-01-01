@@ -21,9 +21,9 @@ func _process(_delta):
 		#else:
 			#The door won't do anything.
 	
-func _on_DoorArea_body_entered(_body):
-	super._on_DoorArea_body_entered(_body)
+func _on_door_area_body_entered(_body):
+	super._on_door_area_body_entered(_body)
 
 
-func _on_DoorArea_body_exited(_body):
-	super._on_DoorArea_body_exited(_body)
+func _on_door_area_body_exited(_body):
+	super._on_door_area_body_exited(_body)

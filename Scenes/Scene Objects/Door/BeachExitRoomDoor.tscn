@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c725ka21r4ut"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/ExitRoomDoor.gd" id="1_pjfsf"]
+[ext_resource type="Texture2D" uid="uid://cxwhlmrmo8d6o" path="res://Assets/Other Objects/BeachDoor.png" id="2_72eg2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(256, 63.0156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq7ks"]
+size = Vector2(256, 256)
+
+[node name="ExitDoor" type="Node2D"]
+script = ExtResource("1_pjfsf")
+
+[node name="DoorArea" type="Area2D" parent="."]
+position = Vector2(0, 192)
+
+[node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
+position = Vector2(128, 96.4922)
+shape = SubResource("1")
+
+[node name="DoorAreaExitSide" type="Area2D" parent="."]
+
+[node name="DoorCollisionTop" type="CollisionShape2D" parent="DoorAreaExitSide"]
+position = Vector2(128, -16)
+shape = SubResource("1")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+texture = ExtResource("2_72eg2")
+vframes = 2
+
+[node name="BlockCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockCollision"]
+position = Vector2(128, 128)
+shape = SubResource("RectangleShape2D_vq7ks")
+debug_color = Color(2.06962e-06, 0.647802, 0.200601, 0.42)
+
+[connection signal="body_entered" from="DoorArea" to="." method="_on_door_area_body_entered"]
+[connection signal="body_exited" from="DoorArea" to="." method="_on_door_area_body_exited"]
+[connection signal="body_entered" from="DoorAreaExitSide" to="." method="_on_DoorAreaTop_body_entered"]
+[connection signal="body_exited" from="DoorAreaExitSide" to="." method="_on_DoorAreaTop_body_exited"]

@@ -9,7 +9,7 @@
 [ext_resource type="TileSet" uid="uid://jbwfgof7uod2" path="res://Assets/Tilesets/TEST_TILES.tres" id="6_05top"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="7_iygwn"]
 [ext_resource type="PackedScene" uid="uid://dvu6dpco6lffs" path="res://Scenes/Scene Objects/Door/BeachEntryRoomDoor.tscn" id="9_5ixol"]
-[ext_resource type="PackedScene" uid="uid://cexf48ofi8h3j" path="res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn" id="10_e61f2"]
+[ext_resource type="PackedScene" uid="uid://c725ka21r4ut" path="res://Scenes/Scene Objects/Door/BeachExitRoomDoor.tscn" id="10_uy2bv"]
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="11_oh710"]
 
 [sub_resource type="Resource" id="Resource_7gyqg"]
@@ -70,6 +70,7 @@ constrain_world_size = false
 modifiers = Array[Resource("res://addons/gaea/modifiers/2D/modifier_2d.gd")]([SubResource("Resource_fkwod"), SubResource("Resource_gpgv0")])
 
 [node name="LevelRoot" type="Node2D"]
+position = Vector2(0, -8)
 script = ExtResource("1_p6622")
 
 [node name="WalkerGenerator" type="Node" parent="."]
@@ -100,10 +101,10 @@ generator = NodePath("../WalkerGenerator")
 position = Vector2(0, 8)
 
 [node name="EntryDoor" parent="Objects" instance=ExtResource("9_5ixol")]
-position = Vector2(2920, 2520)
+position = Vector2(1664, 2424)
 
-[node name="ExitDoor" parent="Objects" instance=ExtResource("10_e61f2")]
-position = Vector2(1728, -392)
+[node name="ExitDoor" parent="Objects" instance=ExtResource("10_uy2bv")]
+position = Vector2(1728, -456)
 
 [node name="ModulePlayer" parent="Objects" instance=ExtResource("11_oh710")]
-position = Vector2(3088, 3248)
+position = Vector2(1776, 2872)

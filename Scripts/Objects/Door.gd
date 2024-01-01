@@ -45,11 +45,11 @@ func close_door():
 		print("Door Collision data not found!")
 	#TODO: (Audio) Door close sound
 	
-func _on_DoorArea_body_entered(_body):
+func _on_door_area_body_entered(_body):
 	if _body.is_in_group("Player"):
 		self.is_near_door = true
 
 
-func _on_DoorArea_body_exited(_body):
+func _on_door_area_body_exited(_body):
 	if _body.is_in_group("Player"):
 		self.is_near_door = false
