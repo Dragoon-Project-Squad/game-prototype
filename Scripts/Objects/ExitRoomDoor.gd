@@ -26,12 +26,12 @@ func _process(_delta):
 		#Run level clear stuff
 		super.close_door()
 		leaving_level.emit()
-	
-		
-func _on_DoorAreaTop_body_entered(_body):
-	if _body.is_in_group("Player"):
+
+func _on_door_area_exit_side_body_entered(body):
+	if body.is_in_group("Player"):
 		can_exit = true
 
-func _on_DoorAreaTop_body_exited(_body):
-	if _body.is_in_group("Player"):
+
+func _on_door_area_exit_side_body_exited(body):
+	if body.is_in_group("Player"):
 		can_exit = false

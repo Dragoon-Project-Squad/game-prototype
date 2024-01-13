@@ -14,4 +14,3 @@ func finish_level():
 	print("level finished, changing to select scene")
 	#TODO: Tell Level Select we finished the level
 	get_tree().change_scene_to_file("res://Scenes/Menus/LevelSelect.tscn")
-

@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cl828glp7afbj"]
 
-[ext_resource type="PackedScene" uid="uid://cc81jlgq5fxqw" path="res://Scenes/Scene Objects/Door/DungeonEntryRoomDoor.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dfvbf3g3nk1ef" path="res://Scenes/Player/ModulePlayer.tscn" id="2"]
 [ext_resource type="TileSet" uid="uid://jbwfgof7uod2" path="res://Assets/Tilesets/TEST_TILES.tres" id="2_8toce"]
 [ext_resource type="Script" path="res://Scripts/Level/LockedExitLevelScript.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://dvu6dpco6lffs" path="res://Scenes/Scene Objects/Door/BeachEntryRoomDoor.tscn" id="4_u8i5a"]
 [ext_resource type="PackedScene" uid="uid://cvj1rfaukcq0s" path="res://Scenes/Scene Objects/Key.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c725ka21r4ut" path="res://Scenes/Scene Objects/Door/BeachExitRoomDoor.tscn" id="6_ohtog"]
 [ext_resource type="PackedScene" uid="uid://dr76fpaui4m5r" path="res://Scenes/Scene Objects/Torch.tscn" id="9"]
-[ext_resource type="PackedScene" uid="uid://cexf48ofi8h3j" path="res://Scenes/Scene Objects/Door/DungeonExitRoomDoor.tscn" id="14"]
 
 [node name="LevelRoot" type="Node2D"]
 script = ExtResource("4")
@@ -26,17 +26,17 @@ layer_1/tile_data = PackedInt32Array(-262128, 393217, 0, -262129, 65537, 0, -262
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="EntryDoor" parent="Objects" instance=ExtResource("1")]
-position = Vector2(384, -256)
+[node name="EntryDoor2" parent="Objects" instance=ExtResource("4_u8i5a")]
+position = Vector2(384, -248)
 
-[node name="ExitDoor" parent="Objects" instance=ExtResource("14")]
+[node name="ExitDoor2" parent="Objects" instance=ExtResource("6_ohtog")]
 position = Vector2(384, -768)
 
 [node name="Key" parent="Objects" instance=ExtResource("6")]
 position = Vector2(1568, 706)
 
 [node name="ModulePlayer" parent="Objects" instance=ExtResource("2")]
-position = Vector2(552, 296)
+position = Vector2(528, 328)
 
 [node name="Torch" parent="." instance=ExtResource("9")]
 position = Vector2(296, -456)
@@ -44,5 +44,3 @@ position = Vector2(296, -456)
 [node name="Node" type="Node" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Node"]
-
-[connection signal="leaving_level" from="Objects/ExitDoor" to="." method="_on_ExitDoor_leaving_level"]
