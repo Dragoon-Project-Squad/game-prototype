@@ -1,0 +1,89 @@
+name: Bug Report
+description: Report a bug in the game
+labels: ["Type: Bug", "NEW ISSUE"]
+body:
+- type: markdown
+  attributes:
+    value: |
+      ## Is there an existing issue for this?
+      Please search using the search bar on the issues page to see if an issue already exists for the bug you encountered. If there is, please add to that issue instead of making a new issue. You can also react with 👍 to prioritize and issue.
+- type: dropdown
+  attributes:
+    label: Version
+    description: What version of Godot was this error encountered on?
+    multiple: false
+    options:
+      - Godot 4.2.X
+      - Godot 4.1.2
+      - Godot 4.0.X
+      - Godot 3.5.2
+      - Self-Compiled (please specify branch)
+      - Other (please specify elsewhere)
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: OS
+    description: What OS are you on?
+    multiple: false
+    options:
+      - Windows
+      - Mac
+      - Linux
+      - Android
+  validations:
+    required: true
+- type: dropdown
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: This bug affects
+    description: In order to help understand the issue, we would like to know if this is a player-facing bug, or a dev-facing bug
+    multiple: false
+    options:
+      - 'Dev capability as a Dev'
+      - 'Gameplay as a Player'
+  validations:
+    required: true        
+- type: textarea
+  attributes:
+    label: Description
+    id: description
+    description: |
+      Describe your issue(s) here. What is the issue?
+      Please keep this as concise as possible, preferably a single line describing the issue. 
+      For example: "When I press X button in menu Y, the component Z becomes unclickable"
+- type: textarea
+  attributes:
+    label: Log File
+    description: |
+      Have any interesting tidbits from the Godot console? See anything with breakpoints?
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    description: Please describe the steps to reproduce this issue.
+    placeholder: |
+      1. [First Step]
+      2. [Second Step]
+      3. [And so on...]
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: |
+      What should be happening? If you don't know, leave what you think should happen
+- type: textarea
+  attributes:
+    label: Actual Behavior
+    description: |
+      What is actually happening?
+- type: textarea
+  attributes:
+    label: Reproduction frequency
+    description: |
+      How often are you reliably able to reproduce this issue?
+- type: textarea
+  attributes:
+    label: Additional Information
+    description: |
+       Any additional information, configuration, or data that might be necessary to reproduce the issue.

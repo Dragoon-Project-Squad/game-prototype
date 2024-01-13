@@ -84,17 +84,18 @@ func pMovement():
 	else:
 		movement.basicMovement(direction)
 		aesthetics.moveBounce(direction != Vector2(0,0))
-		aesthetics.spriteFlip(sign(((get_global_mouse_position() - global_position).normalized()).x))
+		aesthetics.spriteFlip(sign(((get_global_mouse_position() - movement.global_position).normalized()).x))
 
 #Shooting
 func shooting():
-	if Input.is_action_pressed("Shoot") or weapon.isBulletBuffered:
-		var isBulletShot = weapon.attemptShootBullet()
-		
-		if isBulletShot:
-			camera.addShake(weapon.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
-			movement.addImpulse(weapon.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.shootDirection, weapon.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
-			lights.triggerMuzzleFlash(min(weapon.weaponResource.BULLET_CD_PERIOD / 2, weapon.weaponResource.BULLET_MUZZLE_FLASH_DUR))
+	if weapon.equipped:
+		if Input.is_action_pressed("Shoot") or weapon.equipped.isBulletBuffered:
+			var isBulletShot = weapon.equipped.attemptAttack()
+			
+			if isBulletShot:
+				camera.addShake(weapon.equipped.weaponResource.BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT)
+				movement.addImpulse(weapon.equipped.weaponResource.BULLET_SELF_KNOCKBACK_IMPULSE * - weapon.equipped.shootDirection, weapon.equipped.weaponResource.BULLET_SELF_KNOCKBACK_SPEED_LIMIT)
+				lights.triggerMuzzleFlash(min(weapon.equipped.weaponResource.BULLET_CD_PERIOD / 2, weapon.equipped.weaponResource.BULLET_MUZZLE_FLASH_DUR))
 			
 # Called when damaged
 func GotHurt(damage: int):
