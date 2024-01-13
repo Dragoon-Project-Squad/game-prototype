@@ -22,7 +22,7 @@ signal generation_finished
 ## it will be kept.
 @export var generate_on_ready: bool = true
 
-var grid : GaeaGrid
+var grid : GaeaGrid : get = get_grid
 
 
 func _ready() -> void:
@@ -45,10 +45,9 @@ func erase() -> void:
 		grid.clear()
 		grid_updated.emit()
 
-#Will not function on Godot 4.1 and must be removed for Addon to function
-#Source: https://github.com/BenjaTK/Gaea/releases/tag/v0.6.3
-#func get_grid() -> GaeaGrid:
-#	return grid
+
+func get_grid() -> GaeaGrid:
+	return grid
 
 ### Modifiers ###
 
