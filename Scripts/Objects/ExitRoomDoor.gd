@@ -2,40 +2,36 @@ extends DragoonGameDoor
 
 signal exit_door_used(oldval, newval)
 signal leaving_level
-var canExit = false
+var can_exit = false
 
 func _ready():
 	pass
 
 func _process(_delta):
-	if self.isNearDoor:
+	if self.is_near_door:
 		if Input.is_action_just_pressed("Interact"):
-			if (isOpen):
-				emit_signal("exit_door_used", 0, 1)
-				isOpen = true
-				#TODO: (AUDIO) Play Door Open sounds here
-				#Set Door Sprite to the open door, hardcoded
-				doorTiles.set_cell(0, Vector2.ZERO, 1, Vector2i.ZERO)
+			print("Door checked.")
+			if (!is_open):
+				print("Opening door...")
+				exit_door_used.emit(0,1)
+				open_door()
 			else:
-				emit_signal("exit_door_used", 1, 0)
-				isOpen = false
-				#TODO: (AUDIO) Play Door Closed sounds here
-				#Set Door Sprite to the closed door, hardcoded
-				doorTiles.set_cell(0, Vector2.ZERO, 0, Vector2i.ZERO)
-			#Enable this if the door isn't refreshing 
-			#doorTiles.update_dirty_quadrants()
+				print("Closing door...")
+				exit_door_used.emit(1,0)
+				#emit_signal("exit_door_used", 1, 0)
+				close_door()
 		#else:
 			#The door won't do anything.
-	if (canExit && Input.is_action_just_pressed("Interact") && isOpen):
+	if (can_exit && Input.is_action_just_pressed("Interact") && is_open):
 		#Run level clear stuff
-		isOpen = false
-		doorTiles.set_cell(0, Vector2.ZERO, 0, Vector2i.ZERO)
-		emit_signal("leaving_level")
-		
-func _on_DoorAreaTop_body_entered(_body):
-	if _body.is_in_group("Player"):
-		canExit = true
+		super.close_door()
+		leaving_level.emit()
 
-func _on_DoorAreaTop_body_exited(_body):
-	if _body.is_in_group("Player"):
-		canExit = false
+func _on_door_area_exit_side_body_entered(body):
+	if body.is_in_group("Player"):
+		can_exit = true
+
+
+func _on_door_area_exit_side_body_exited(body):
+	if body.is_in_group("Player"):
+		can_exit = false

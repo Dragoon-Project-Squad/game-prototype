@@ -1,36 +1,42 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://br72jwcmnmlng"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="1"]
-[ext_resource type="TileSet" path="res://Assets/Tilesets/dungeondoor.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://clywwevm1rk5w" path="res://Assets/Other Objects/DungeonDoor.png" id="2_gxlum"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2h48"]
+size = Vector2(256, 63.0156)
 
-[sub_resource type="RectangleShape2D" id=1]
-size = Vector2( 160, 32 )
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8det"]
+size = Vector2(256, 63.0156)
 
-[sub_resource type="RectangleShape2D" id=2]
-size = Vector2( 160, 32 )
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rk5m2"]
+size = Vector2(256, 248)
 
 [node name="NormalDoor" type="Node2D"]
-script = ExtResource( 1 )
-
-[node name="DoorSprite" type="TileMap" parent="."]
-scale = Vector2( 4, 4 )
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 8
-collision_mask = 0
-format = 1
-tile_data = PackedInt32Array( 0, 0, 0 )
+script = ExtResource("1")
 
 [node name="DoorArea" type="Area2D" parent="."]
 
-[node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2( 160, 288 )
-shape = SubResource( 1 )
-
 [node name="DoorCollisionTop" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2( 160, -32 )
-shape = SubResource( 2 )
+position = Vector2(128, -16)
+shape = SubResource("RectangleShape2D_j2h48")
 
-[connection signal="body_entered" from="DoorArea" to="." method="_on_DoorArea_body_entered"]
-[connection signal="body_exited" from="DoorArea" to="." method="_on_DoorArea_body_exited"]
+[node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
+position = Vector2(128, 288)
+shape = SubResource("RectangleShape2D_t8det")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+texture = ExtResource("2_gxlum")
+vframes = 2
+
+[node name="BlockCollision" type="StaticBody2D" parent="."]
+position = Vector2(32, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockCollision"]
+position = Vector2(96, 140)
+shape = SubResource("RectangleShape2D_rk5m2")
+debug_color = Color(2.06962e-06, 0.647802, 0.200601, 0.42)
+
+[connection signal="body_entered" from="DoorArea" to="." method="_on_door_area_body_entered"]
+[connection signal="body_exited" from="DoorArea" to="." method="_on_door_area_body_exited"]
