@@ -1,12 +1,12 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cd52e1bewf7jg"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c86w3aaq4g04h"]
 
 [ext_resource type="Texture2D" uid="uid://cymwlorqoger5" path="res://Assets/Tilesets/walltile_dungeon.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwg3j8rasue40" path="res://Assets/Tilesets/walltile_dungeon_deco.png" id="2"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlxr0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g4ugp"]
 texture = ExtResource("1")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkpc7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_djub2"]
 texture = ExtResource("1")
 margins = Vector2i(2176, 1024)
 0:0/next_alternative_id = 8
@@ -6730,7 +6730,7 @@ margins = Vector2i(2176, 1024)
 19:15/7/flip_v = true
 19:15/7/transpose = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1t5d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88iwk"]
 texture = ExtResource("2")
 margins = Vector2i(48, 80)
 texture_region_size = Vector2i(96, 128)
@@ -6757,6 +6757,7 @@ texture_region_size = Vector2i(96, 128)
 0:0/7/transpose = true
 
 [resource]
-sources/0 = SubResource("TileSetAtlasSource_tlxr0")
-sources/1 = SubResource("TileSetAtlasSource_lkpc7")
-sources/2 = SubResource("TileSetAtlasSource_o1t5d")
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_g4ugp")
+sources/1 = SubResource("TileSetAtlasSource_djub2")
+sources/2 = SubResource("TileSetAtlasSource_88iwk")

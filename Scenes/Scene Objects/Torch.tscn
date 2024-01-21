@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnl4lijrd8yoo"]
+[gd_scene load_steps=5 format=3 uid="uid://dr76fpaui4m5r"]
 
 [ext_resource type="Texture2D" uid="uid://bagqaqtv658oc" path="res://Assets/Materials and Textures/Lights2.png" id="2"]
 [ext_resource type="Script" path="res://Scripts/Player/CustomLight.gd" id="3"]

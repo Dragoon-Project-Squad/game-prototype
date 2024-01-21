@@ -1,25 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://41x5xt2w4ws5"]
+[gd_scene load_steps=5 format=3 uid="uid://cexf48ofi8h3j"]
 
-[ext_resource type="TileSet" uid="uid://cnau5r1pwhgmq" path="res://Assets/Tilesets/dungeondoor.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/Objects/ExitRoomDoor.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://clywwevm1rk5w" path="res://Assets/Other Objects/DungeonDoor.png" id="3_78nh5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(161, 32.25)
+size = Vector2(256, 63.0156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq7ks"]
+size = Vector2(256, 248)
 
 [node name="ExitDoor" type="Node2D"]
 script = ExtResource("2")
-
-[node name="DoorSprite" type="TileMap" parent="."]
-tile_set = ExtResource("1")
-cell_quadrant_size = 64
-format = 2
-layer_0/tile_data = PackedInt32Array(0, 1835011, 4, 65536, 1835011, 5, 131072, 1835011, 6, 196608, 1835011, 7, 1, 1900547, 4, 65537, 1900547, 5, 131073, 1900547, 6, 196609, 1900547, 7, 2, 1966083, 4, 65538, 1966083, 5, 131074, 1966083, 6, 196610, 1966083, 7, 3, 2031619, 4, 65539, 2031619, 5, 131075, 2031619, 6, 196611, 2031619, 7)
 
 [node name="DoorArea" type="Area2D" parent="."]
 position = Vector2(0, 192)
 
 [node name="DoorCollisionBottom" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2(128, 80)
+position = Vector2(128, 96.4922)
 shape = SubResource("1")
 
 [node name="DoorAreaExitSide" type="Area2D" parent="."]
@@ -27,6 +24,18 @@ shape = SubResource("1")
 [node name="DoorCollisionTop" type="CollisionShape2D" parent="DoorAreaExitSide"]
 position = Vector2(128, -16)
 shape = SubResource("1")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+texture = ExtResource("3_78nh5")
+vframes = 2
+
+[node name="BlockCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockCollision"]
+position = Vector2(128, 132)
+shape = SubResource("RectangleShape2D_vq7ks")
+debug_color = Color(2.06962e-06, 0.647802, 0.200601, 0.42)
 
 [connection signal="body_entered" from="DoorArea" to="." method="_on_DoorArea_body_entered"]
 [connection signal="body_exited" from="DoorArea" to="." method="_on_DoorArea_body_exited"]
