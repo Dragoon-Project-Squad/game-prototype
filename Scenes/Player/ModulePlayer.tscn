@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfvbf3g3nk1ef"]
+[gd_scene load_steps=17 format=3 uid="uid://dfvbf3g3nk1ef"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Movement.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Aesthetics.gd" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Player_Weapon.gd" id="9"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Main.gd" id="11"]
 [ext_resource type="PackedScene" path="res://Scenes/Player/Minimap.tscn" id="12"]
+[ext_resource type="AudioStream" uid="uid://c5v6tjmqpxfjm" path="res://Assets/Audio/SFX/Weapons/PistolShot.mp3" id="12_0xgq7"]
 [ext_resource type="PackedScene" uid="uid://17lu1nefvrlf" path="res://Scenes/Player/Weapons/Pistol.tscn" id="12_m62st"]
 [ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="13"]
 
@@ -137,6 +138,7 @@ light_mask = 2
 script = ExtResource("9")
 
 [node name="Pistol" parent="PlayerKinematic/EquippedWeapon" instance=ExtResource("12_m62st")]
+stream = ExtResource("12_0xgq7")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
@@ -154,3 +156,5 @@ offset_bottom = 306.0
 scale = Vector2(0.5, 0.5)
 
 [node name="DamageHighlightTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

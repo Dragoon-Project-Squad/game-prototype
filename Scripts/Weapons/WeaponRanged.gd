@@ -5,6 +5,8 @@ extends Node2D
 @export var weaponOrigin : Node
 @export var animationPlayer : Node
 
+@export var stream: AudioStream
+
 @export var weaponOriginStartScale: Vector2 
 
 func _ready():
@@ -53,6 +55,7 @@ func attemptAttack() -> bool:
 func shootBullet():
 	animationPlayer.stop()
 	animationPlayer.play("Shoot")
+	AudioManager.play_sound(stream)
 	
 	for i in range(weaponResource.BULLET_NUM_PER_SHOT):
 		var bulletInstance = weaponResource.bulletScene.instantiate()

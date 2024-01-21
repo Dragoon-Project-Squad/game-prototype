@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+AudioManager="*res://Autoloads/AudioManager.gd"
 MaterialReferences="*res://Autoloads/MaterialReferences.gd"
 LevelSelectData="*res://Autoloads/LevelSelectData.gd"
 DataLibrary="*res://Autoloads/DataLibrary.gd"
