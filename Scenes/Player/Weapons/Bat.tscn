@@ -3,25 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://bevsh8tpx6ao0" path="res://Assets/Player/Weapons/melee_tier_1_attack_animation_test-Sheet.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Weapons/WeaponMelee.gd" id="2"]
 [ext_resource type="Resource" uid="uid://c2hra3l10t28i" path="res://Resources/WeaponTypes/Pistol.tres" id="3"]
-[ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="4"]
 
-[sub_resource type="Animation" id="1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Origin/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca57i"]
+size = Vector2(81, 50)
 
 [sub_resource type="Animation" id="2"]
-resource_name = "Swing"
+resource_name = "Attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,29 +28,44 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enableHitbox"
+}, {
+"args": [],
+"method": &"disableHitbox"
+}]
+}
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5555"]
 _data = {
-"RESET": SubResource("1"),
-"Swing": SubResource("2")
+"Attack": SubResource("2"),
+"RESET": SubResource("1")
 }
 
-[node name="Bat" type="Node2D"]
+[node name="Bat" type="Node2D" node_paths=PackedStringArray("weaponHitbox", "weaponOrigin", "animationPlayer")]
 script = ExtResource("2")
-bulletSpawnNode = NodePath("SpawnNode")
+weaponHitbox = NodePath("Hitbox")
 weaponOrigin = NodePath("Origin")
 animationPlayer = NodePath("AnimationPlayer")
 weaponResource = ExtResource("3")
-
-[node name="PositionReference" type="Sprite2D" parent="."]
-visible = false
-light_mask = 2
-scale = Vector2(2, 2)
-texture = ExtResource("4")
 
 [node name="Origin" type="Node2D" parent="."]
 
@@ -74,7 +76,13 @@ scale = Vector2(2, 2)
 texture = ExtResource("1")
 hframes = 6
 
-[node name="SpawnNode" type="Node" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(28.5, 8)
+shape = SubResource("RectangleShape2D_ca57i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,11 +1,10 @@
 extends Node2D
+class_name WeaponRanged
 
 @export var bulletSpawnNode : Node
 
 @export var weaponOrigin : Node
 @export var animationPlayer : Node
-
-@export var weaponOriginStartScale: Vector2 
 
 func _ready():
 	initWeapon(weaponResource)
@@ -18,7 +17,6 @@ func pointToMouse():
 	shootDirection = (get_global_mouse_position() - global_position).normalized()
 	
 	weaponOrigin.rotation = lerp_angle(weaponOrigin.rotation, shootDirection.angle(), WEAPON_ROTATE_LERP_CONSTANT)
-	#weaponOrigin.scale.y = sign(shootDirection.x) * weaponOriginStartScale.y
 	if sign(shootDirection.x) < 0:
 		weaponOrigin.get_child(0).flip_v = true
 	else:

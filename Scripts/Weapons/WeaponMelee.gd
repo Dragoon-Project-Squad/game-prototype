@@ -1,6 +1,8 @@
 extends Node2D
+class_name WeaponMelee
 
-@export var bulletSpawnNode : Node
+@export var weaponHitbox : Area2D
+var hitboxActive : bool = false
 
 @export var weaponOrigin : Node
 @export var animationPlayer : Node
@@ -9,6 +11,12 @@ extends Node2D
 
 func _ready():
 	initWeapon(weaponResource)
+	weaponHitbox.body_entered.connect(bodyEnteredHitbox)
+	weaponHitbox.monitoring = false
+
+func _process(_delta):
+	if Input.is_action_pressed("Shoot") or isAttackBuffered:
+		var isBulletShot = attemptAttack()
 
 #Aesthetics
 @export var WEAPON_ROTATE_LERP_CONSTANT := 0.1
@@ -16,36 +24,48 @@ var shootDirection: Vector2
 
 func pointToMouse():
 	shootDirection = (get_global_mouse_position() - global_position).normalized()
-	weaponOrigin.scale.x = sign(shootDirection.x) * weaponOriginStartScale.x
+	
+	weaponOrigin.rotation = lerp_angle(weaponOrigin.rotation, shootDirection.angle(), WEAPON_ROTATE_LERP_CONSTANT)
+	if sign(shootDirection.x) < 0:
+		weaponOrigin.get_child(0).flip_v = true
+	else:
+		weaponOrigin.get_child(0).flip_v = false
 
 #Shooting
 @export var weaponResource: Resource
 
-var isBulletBuffered := false
-var timeLastShootBullet: float
-const BULLET_BUFFER_PERIOD := 0.2
+var isAttackBuffered := false
+var timeLastAttacked: float
+const ATTACK_BUFFER_PERIOD := 0.2
 
 
 func initWeapon(_weaponResource: WeaponResource):
-	timeLastShootBullet = -_weaponResource.BULLET_CD_PERIOD 
+	timeLastAttacked = -_weaponResource.BULLET_CD_PERIOD 
 
 #Returns if bullet shoot successful
 func attemptAttack() -> bool:
 	var currentTime = Time.get_ticks_usec() / 1000000.0
 	
-	if currentTime - timeLastShootBullet > weaponResource.BULLET_CD_PERIOD - BULLET_BUFFER_PERIOD:
-		isBulletBuffered = true
+	if currentTime - timeLastAttacked > weaponResource.BULLET_CD_PERIOD - ATTACK_BUFFER_PERIOD:
+		isAttackBuffered = true
 	
-	if currentTime - timeLastShootBullet < weaponResource.BULLET_CD_PERIOD:
+	if currentTime - timeLastAttacked < weaponResource.BULLET_CD_PERIOD:
 		return false
 	
-	timeLastShootBullet = currentTime
-	isBulletBuffered = false
+	timeLastAttacked = currentTime
+	isAttackBuffered = false
 	startAttack()
 	return true
 
 func startAttack():
 	animationPlayer.stop()
-	animationPlayer.play("Swing")
+	animationPlayer.play("Attack")
 	
+func bodyEnteredHitbox(body: Node) -> void:
+	print(body)
 
+func enableHitbox():
+	weaponHitbox.monitoring = true
+
+func disableHitbox():
+	weaponHitbox.monitoring = false

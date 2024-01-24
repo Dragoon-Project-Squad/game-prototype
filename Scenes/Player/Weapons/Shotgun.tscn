@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw50rs0pmmu2r"]
+[gd_scene load_steps=7 format=3 uid="uid://dw50rs0pmmu2r"]
 
 [ext_resource type="Texture2D" uid="uid://cmh0cvdkf1kv1" path="res://Assets/Player/Weapons/Shotgun_tier_1_fire_animation-Sheet.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/Weapons/WeaponRanged.gd" id="2"]
-[ext_resource type="Resource" path="res://Resources/WeaponTypes/Shotgun.tres" id="3"]
-[ext_resource type="Texture2D" uid="uid://bg6dt3u6p65rr" path="res://Assets/Player/selen-player-no-arms.png" id="4"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Shotgun.gd" id="1_4qiec"]
+[ext_resource type="Resource" uid="uid://bg74whdb33v0" path="res://Resources/WeaponTypes/Shotgun.tres" id="3"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -54,17 +53,11 @@ _data = {
 }
 
 [node name="Shotgun" type="Node2D" node_paths=PackedStringArray("bulletSpawnNode", "weaponOrigin", "animationPlayer")]
-script = ExtResource("2")
+script = ExtResource("1_4qiec")
 bulletSpawnNode = NodePath("SpawnNode")
 weaponOrigin = NodePath("Origin")
 animationPlayer = NodePath("AnimationPlayer")
 weaponResource = ExtResource("3")
-
-[node name="PositionReference" type="Sprite2D" parent="."]
-visible = false
-light_mask = 2
-scale = Vector2(2, 2)
-texture = ExtResource("4")
 
 [node name="Origin" type="Node2D" parent="."]
 

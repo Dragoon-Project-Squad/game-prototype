@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://2v2mlkp7fcjg"
+
+[deps]
+
+files=["res://Resources/WeaponData/weapons.bullet.translation", "res://Resources/WeaponData/weapons.bullets.translation", "res://Resources/WeaponData/weapons.camera.translation", "res://Resources/WeaponData/weapons.self.translation", "res://Resources/WeaponData/weapons.spread.translation", "res://Resources/WeaponData/weapons.spread.translation", "res://Resources/WeaponData/weapons.bullets.translation", "res://Resources/WeaponData/weapons.bullet.translation", "res://Resources/WeaponData/weapons.firing.translation"]
+
+source_file="res://Resources/WeaponData/weapons.csv"
+dest_files=["res://Resources/WeaponData/weapons.bullet.translation", "res://Resources/WeaponData/weapons.bullets.translation", "res://Resources/WeaponData/weapons.camera.translation", "res://Resources/WeaponData/weapons.self.translation", "res://Resources/WeaponData/weapons.spread.translation", "res://Resources/WeaponData/weapons.spread.translation", "res://Resources/WeaponData/weapons.bullets.translation", "res://Resources/WeaponData/weapons.bullet.translation", "res://Resources/WeaponData/weapons.firing.translation"]
+
+[params]
+
+compress=true
+delimiter=0
