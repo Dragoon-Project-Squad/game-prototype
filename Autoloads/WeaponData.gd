@@ -1,6 +1,7 @@
 extends Node
 
 var weapons = []
+var weapon_ids = []
 
 func _ready():
 	load_csv("res://Resources/WeaponData/weapons.csv")
@@ -10,28 +11,26 @@ func load_csv(filepath):
 	var line = file.get_line()
 	line = file.get_line() #first line is for headers, this skips to second line
 	
-	var existing_ids = []
+	
 	while line != "":
 		var values = line.split(",")
 		var weapon = {
-			"weapon_id" : values[0],
-			"bullet_velocity" : values[1],
-			"bullets_per_second" : values[2],
-			"camera_shake_increment": values[3],
-			"self_knockback_impulse": values[4],
-			"spread_angle": values[5],
-			"spread_variance": values[6],
-			"bullets_per_trigger": values[7],
-			"bullet_damage": values[8],
-			"firing_mode": values[9]
+			"weapon_id" : convert_value(values[0]),
+			"bullet_velocity" : convert_value(values[1]),
+			"bullets_per_second" : convert_value(values[2]),
+			"camera_shake_increment": convert_value(values[3]),
+			"self_knockback_impulse": convert_value(values[4]),
+			"spread_angle": convert_value(values[5]),
+			"spread_variance": convert_value(values[6]),
+			"bullets_per_trigger": convert_value(values[7]),
+			"bullet_damage": convert_value(values[8]),
+			"firing_mode": convert_value(values[9])
 		}
-		if !existing_ids.has(weapon.weapon_id):
-			existing_ids.append(weapon.weapon_id)
+		if !weapon_ids.has(weapon.weapon_id):
+			weapon_ids.append(weapon.weapon_id)
 			weapons.append(weapon)
 		line = file.get_line()
 	file.close()
-	print(existing_ids)
-	print(weapons)
 
 func convert_value(value):
 	# Try converting to integer
@@ -46,4 +45,4 @@ func convert_value(value):
 	elif value.to_lower() == "false":
 		return false
 	# Fallback to string
-	return var_to_str(value)
+	return value

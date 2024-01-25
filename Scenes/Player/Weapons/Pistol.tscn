@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://17lu1nefvrlf"]
 
 [ext_resource type="Texture2D" uid="uid://cwfei23exjk1u" path="res://Assets/Player/Weapons/pistol_tier_1_fire_animation_test-Sheet.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/Weapons/Pistol.gd" id="1_bim5w"]
-[ext_resource type="Resource" uid="uid://c2hra3l10t28i" path="res://Resources/WeaponTypes/Pistol.tres" id="3"]
+[ext_resource type="Script" path="res://Scripts/Weapons/WeaponRanged.gd" id="1_om62t"]
+[ext_resource type="PackedScene" uid="uid://bj05y41rb22y1" path="res://Scenes/Scene Objects/GenericBullet.tscn" id="2_r2b7j"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -52,11 +52,12 @@ _data = {
 }
 
 [node name="Pistol" type="Node2D" node_paths=PackedStringArray("bulletSpawnNode", "weaponOrigin", "animationPlayer")]
-script = ExtResource("1_bim5w")
+script = ExtResource("1_om62t")
 bulletSpawnNode = NodePath("SpawnNode")
 weaponOrigin = NodePath("Origin")
 animationPlayer = NodePath("AnimationPlayer")
-weaponResource = ExtResource("3")
+weaponId = "pistol_T1"
+bulletScene = ExtResource("2_r2b7j")
 
 [node name="Origin" type="Node2D" parent="."]
 light_mask = 2

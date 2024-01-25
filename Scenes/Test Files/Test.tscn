@@ -51,7 +51,7 @@ damageHighlightColor = Color(0.470588, 1, 0, 0)
 
 [node name="WeaponPickup" parent="World" instance=ExtResource("4")]
 position = Vector2(788, 122)
-weaponID = "Bat"
+weaponID = "Shotgun"
 
 [node name="ModulePlayer" parent="World" instance=ExtResource("2")]
 position = Vector2(48, -106)
