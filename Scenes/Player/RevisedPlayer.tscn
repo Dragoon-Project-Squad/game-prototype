@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djyex0m25ya4d"]
+[gd_scene load_steps=15 format=3 uid="uid://djyex0m25ya4d"]
 
 [ext_resource type="Texture2D" uid="uid://3tkbeqbn4ug8" path="res://Assets/Player/selen-player.png" id="1_6av20"]
 [ext_resource type="Script" path="res://Scripts/Player/Revised_Player.gd" id="1_7cack"]
@@ -6,24 +6,27 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStateMachine.gd" id="4_6xg5b"]
 [ext_resource type="PackedScene" uid="uid://b2m01brrpu25g" path="res://Scenes/Components/PlayerMovementComponent.tscn" id="4_acwh5"]
 [ext_resource type="PackedScene" uid="uid://df8xd5k6vijpw" path="res://Scenes/Components/HitboxComponent.tscn" id="5_dibqs"]
+[ext_resource type="Script" path="res://Scripts/Components/FlashlightMechanicComponent.gd" id="7_jiv7g"]
+[ext_resource type="Texture2D" uid="uid://bagqaqtv658oc" path="res://Assets/Materials and Textures/Lights2.png" id="8_aiuc1"]
+[ext_resource type="Script" path="res://Scripts/Player/CustomLight.gd" id="8_j5iop"]
+[ext_resource type="Texture2D" uid="uid://boyd45kijsfum" path="res://Assets/Materials and Textures/Lights.png" id="9_2l8xq"]
+[ext_resource type="Texture2D" uid="uid://bg43rw48xl1mn" path="res://icon.png" id="10_u820h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhfyl"]
-size = Vector2(38, 41)
+size = Vector2(50, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykae0"]
 size = Vector2(42, 55)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6hi5"]
+radius = 256.0
 
 [node name="Player_Selen" type="CharacterBody2D"]
 collision_mask = 186
 script = ExtResource("1_7cack")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_6av20")
-
 [node name="EnvironmentCollision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1, 11.5)
+position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_bhfyl")
 debug_color = Color(0, 0, 0, 0.419608)
 
@@ -33,11 +36,11 @@ debug_color = Color(0, 0, 0, 0.419608)
 player = NodePath("..")
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_dibqs")]
-collision_mask = 4
+collision_layer = 4
+collision_mask = 128
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_ykae0")
 debug_color = Color(0.964706, 0.0156863, 0, 0.447059)
@@ -50,3 +53,42 @@ script = ExtResource("4_6xg5b")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FlashlightMechanic" type="Node2D" parent="."]
+script = ExtResource("7_jiv7g")
+
+[node name="ViewPlayerArea" type="PointLight2D" parent="FlashlightMechanic" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
+range_z_max = 9
+shadow_enabled = true
+texture = ExtResource("8_aiuc1")
+script = ExtResource("8_j5iop")
+viewCheck = NodePath("ViewPlayerAreaCheck")
+viewCheckShape = NodePath("ViewPlayerAreaCheck/CollisionShape2D")
+nonHiddenObjectBodiesToIgnore = [NodePath("../..")]
+
+[node name="ViewPlayerAreaCheck" type="Area2D" parent="FlashlightMechanic/ViewPlayerArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlashlightMechanic/ViewPlayerArea/ViewPlayerAreaCheck"]
+shape = SubResource("CircleShape2D_c6hi5")
+
+[node name="ViewCone" type="PointLight2D" parent="FlashlightMechanic" node_paths=PackedStringArray("viewCheck", "viewCheckShape")]
+color = Color(1, 1, 1, 0)
+range_z_max = 9
+shadow_enabled = true
+texture = ExtResource("9_2l8xq")
+offset = Vector2(256, 0)
+script = ExtResource("8_j5iop")
+viewCheck = NodePath("ViewConeCheck")
+viewCheckShape = NodePath("ViewConeCheck/CollisionPolygon2D")
+nonHiddenObjectBodiesToIgnore = [NodePath("../..")]
+
+[node name="ViewConeCheck" type="Area2D" parent="FlashlightMechanic/ViewCone"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashlightMechanic/ViewCone/ViewConeCheck"]
+polygon = PackedVector2Array(0, 0, 1, 1, 1, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="FlashlightMechanic/ViewCone"]
+position = Vector2(175, 0)
+texture = ExtResource("10_u820h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_6av20")

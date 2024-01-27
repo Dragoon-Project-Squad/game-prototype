@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Roam.gd" id="2_81eao"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Movement/Chase.gd" id="3_3l4ow"]
 [ext_resource type="Script" path="res://Scripts/Enemy/Attacks/SlashCreator.gd" id="4_a6adx"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemy/Attacks/slash.tscn" id="5_ov4in"]
+[ext_resource type="PackedScene" uid="uid://ckljq6gd1us14" path="res://Scenes/Enemy/Attacks/slash.tscn" id="5_ov4in"]
 [ext_resource type="Texture2D" uid="uid://vtvus3x3hbqd" path="res://Assets/Enemy/enemy-eyes.png" id="6_6l6f3"]
 [ext_resource type="Texture2D" uid="uid://crq0hwqxmplwk" path="res://Assets/Enemy/EnemyDragoon-Sheet.png" id="7_pqcxn"]
 

@@ -127,6 +127,7 @@ collision_mask = 38
 shape = SubResource("3")
 
 [node name="MuzzleFlashRotate" type="Node2D" parent="PlayerKinematic/Lights"]
+visible = false
 
 [node name="MuzzleFlashCheck" type="Area2D" parent="PlayerKinematic/Lights/MuzzleFlashRotate"]
 position = Vector2(30, 0)
