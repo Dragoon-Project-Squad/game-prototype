@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://bg74whdb33v0"]
 
-[ext_resource path="res://Scripts/Weapons/WeaponResource.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Scene Objects/GenericBullet.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://Scripts/Weapons/WeaponResource.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bj05y41rb22y1" path="res://Scenes/Scene Objects/GenericBullet.tscn" id="2"]
 
 [resource]
-script = ExtResource( 1 )
-bulletScene = ExtResource( 2 )
+script = ExtResource("1")
+bulletScene = ExtResource("2")
 BULLET_INITIAL_SPEED = 750.0
 BULLETS_PER_SECOND = 0.8
 BULLET_FIRE_CAM_SHAKE_TRAUMA_INCREMENT = 0.3
