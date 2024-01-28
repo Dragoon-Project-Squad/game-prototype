@@ -34,9 +34,6 @@ body:
   validations:
     required: true
 - type: dropdown
-  validations:
-    required: true
-- type: dropdown
   attributes:
     label: This bug affects
     description: In order to help understand the issue, we would like to know if this is a player-facing bug, or a dev-facing bug

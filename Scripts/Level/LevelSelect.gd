@@ -48,7 +48,7 @@ func _process(delta):
 					LevelSelectData.combat_pool = DataLibrary.getCurrentCombatPool(LevelSelectData.area_id)
 				LevelSelectData.combat_pool.shuffle()
 				var random_room = LevelSelectData.combat_pool.pop_front()
-				get_tree().change_scene_to_file("res://Scenes/Levels/" + random_room + ".tscn")
+				get_tree().change_scene_to_file("res://Scenes/Levels/Premades/" + random_room + ".tscn")
 			elif(next_node.content == "shop"):
 				get_tree().change_scene_to_file("res://Scenes/Levels/Shop.tscn")
 			elif(next_node.content == "scavenge"):
@@ -56,7 +56,7 @@ func _process(delta):
 					LevelSelectData.scavenge_pool = DataLibrary.getCurrentScavangePool(LevelSelectData.area_id)
 				LevelSelectData.scavenge_pool.shuffle()
 				var random_room = LevelSelectData.scavenge_pool.pop_front()
-				get_tree().change_scene_to_file("res://Scenes/Levels/" + random_room + ".tscn")
+				get_tree().change_scene_to_file("res://Scenes/Levels/Premades/" + random_room + ".tscn")
 			else:
 				print("could not find next scene")
 				get_tree().change_scene_to_file("res://Scenes/Test Files/RandomWorld.tscn")

@@ -14,7 +14,7 @@ func _ready():
 	generate_level()
 	
 func generate_level():
-	var walker = Walker.new(Vector2(25, 25), borders, 6, 9) # start pos, borders, min room size, max room size
+	var walker = DGOldWalker.new(Vector2(25, 25), borders, 6, 9) # start pos, borders, min room size, max room size
 	var map = walker.walk(500) #number of steps
 	walker.place_room(map.front())
 	

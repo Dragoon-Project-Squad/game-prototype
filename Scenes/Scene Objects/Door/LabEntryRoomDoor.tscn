@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://2bxhjf8ipjw3"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/EntryRoomDoor.gd" id="1_3fn0r"]
+[ext_resource type="Texture2D" uid="uid://btrsb0o5oaem7" path="res://Assets/Other Objects/LabDoor.png" id="2_ro1ph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vvho"]
+size = Vector2(256, 64.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuhc5"]
+size = Vector2(256, 256)
+
+[node name="EntryDoor" type="Node2D"]
+script = ExtResource("1_3fn0r")
+
+[node name="DoorArea" type="Area2D" parent="."]
+
+[node name="Interaction" type="CollisionShape2D" parent="DoorArea"]
+position = Vector2(128, 256)
+shape = SubResource("RectangleShape2D_0vvho")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+texture = ExtResource("2_ro1ph")
+vframes = 2
+
+[node name="BlockCollision" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockCollision"]
+position = Vector2(128, 128)
+shape = SubResource("RectangleShape2D_wuhc5")
+debug_color = Color(2.06962e-06, 0.647802, 0.200601, 0.42)
+
+[connection signal="body_entered" from="DoorArea" to="." method="_on_door_area_body_entered"]
+[connection signal="body_exited" from="DoorArea" to="." method="_on_door_area_body_exited"]

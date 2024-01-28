@@ -9,6 +9,8 @@ class_name WeaponRanged
 var weaponData = null
 var bulletCD = null
 
+@export var stream: AudioStream
+
 @export var bulletScene: PackedScene
 
 #Shooting
@@ -61,6 +63,7 @@ func attemptAttack() -> bool:
 func shootBullet():
 	animationPlayer.stop()
 	animationPlayer.play("Shoot")
+	AudioManager.play_sound(stream)
 	
 	for i in range(weaponData.bullets_per_trigger):
 		var bulletInstance = bulletScene.instantiate()

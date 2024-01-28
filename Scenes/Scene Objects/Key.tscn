@@ -1,33 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cvj1rfaukcq0s"]
 
-[ext_resource path="res://Scripts/Objects/Key.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Objects/KeyPickupArea.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Objects/KeyPickupArea.gd" id="2"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 
-[sub_resource type="RectangleShape2D" id=2]
-size = Vector2( 40, 40 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(40, 40)
 
-[node name="Key" type="RigidBody2D"]
-collision_layer = 32
-collision_mask = 32
-mode = 1
-script = ExtResource( 1 )
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1")
+
+[node name="LightCollission" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
 
 [node name="TempSprite" type="ColorRect" parent="."]
 offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color( 0.796078, 0.109804, 0.913725, 0.521569 )
-
-[node name="LightCollission" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+color = Color(0.796078, 0.109804, 0.913725, 0.521569)
 
 [node name="KeyArea" type="Area2D" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="KeyCollision" type="CollisionShape2D" parent="KeyArea"]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
-[connection signal="key_acquired" from="KeyArea" to="." method="_on_KeyArea_key_acquired"]
+[connection signal="body_entered" from="KeyArea" to="KeyArea" method="_on_body_entered"]
+[connection signal="key_acquired" from="KeyArea" to="." method="_on_key_area_key_acquired"]
