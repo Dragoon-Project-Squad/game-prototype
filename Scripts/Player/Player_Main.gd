@@ -39,7 +39,7 @@ func _process(_delta):
 	
 	if(!blockPlayerActions):
 		pMovement()
-		shooting()
+		#shooting()
 		tab()
 		interact()
 

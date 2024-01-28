@@ -1,0 +1,4 @@
+weapon_id,bullet_velocity,bullets_per_second,camera_shake_increment,self_knockback_impulse,spread_angle,spread_variance,bullets_per_trigger,bullet_damage,firing_mode
+pistol_T1,750,2.0,0.3,0.6,5,1,1,5,auto
+shotgun_T1,750,0.8,0.3,0.6,40,1,10,2,single
+bat_T1,,2.0,,,,,,,single
