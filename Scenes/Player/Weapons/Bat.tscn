@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://lqoo20axgav5"]
+[gd_scene load_steps=7 format=3 uid="uid://lqoo20axgav5"]
 
 [ext_resource type="Texture2D" uid="uid://bevsh8tpx6ao0" path="res://Assets/Player/Weapons/melee_tier_1_attack_animation_test-Sheet.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Weapons/WeaponMelee.gd" id="2"]
-[ext_resource type="Resource" uid="uid://c2hra3l10t28i" path="res://Resources/WeaponTypes/Pistol.tres" id="3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ca57i"]
 size = Vector2(81, 50)
@@ -65,7 +64,7 @@ script = ExtResource("2")
 weaponHitbox = NodePath("Hitbox")
 weaponOrigin = NodePath("Origin")
 animationPlayer = NodePath("AnimationPlayer")
-weaponResource = ExtResource("3")
+weaponId = "bat_T1"
 
 [node name="Origin" type="Node2D" parent="."]
 
