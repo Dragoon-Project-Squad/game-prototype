@@ -1,6 +1,112 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://44b3jnyn1qw7"]
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://44b3jnyn1qw7"]
 
+[ext_resource type="Texture2D" uid="uid://ca5w2fvet0t0d" path="res://Assets/UI/menu_atlas.png" id="1_cwrui"]
 [ext_resource type="FontFile" uid="uid://dihvke2mh14uj" path="res://Assets/Fonts/Lato-Bold.ttf" id="1_yi07a"]
+[ext_resource type="Texture2D" uid="uid://cdh5lkn8y08vl" path="res://Assets/UI/menu_atlas_trans.png" id="2_6kgyl"]
+[ext_resource type="Texture2D" uid="uid://b4nc7j8g2lhd1" path="res://Assets/UI/menu_atlassed.tres" id="3_b7pmp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w63ci"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(6, 113, 166, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82d6u"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(6, 97, 166, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2gyu"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(6, 80, 166, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lryc1"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(6, 113, 166, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn5cm"]
+atlas = ExtResource("2_6kgyl")
+region = Rect2(180, 210, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghaqk"]
+atlas = ExtResource("1_cwrui")
+region = Rect2(205, 182, 24, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2mu45"]
+texture = ExtResource("2_6kgyl")
+region_rect = Rect2(204, 182, 14, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckct7"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(355, 80, 75, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dr3uf"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(355, 80, 25, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fbxyq"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(404, 80, 26, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sg8ec"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(355, 80, 25, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4sdq0"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(380, 80, 25, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oufc3"]
+texture = ExtResource("1_cwrui")
+region_rect = Rect2(352, 93, 166, 46)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3x77s"]
+texture = ExtResource("1_cwrui")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+region_rect = Rect2(405, 80, 25, 13)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lmhj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q7dp6"]
+texture = ExtResource("1_cwrui")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+region_rect = Rect2(355, 80, 25, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hclyr"]
+texture = ExtResource("1_cwrui")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 2
+region_rect = Rect2(181, 114, 166, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyl2n"]
+atlas = ExtResource("2_6kgyl")
+region = Rect2(180, 210, 8, 8)
 
 [resource]
 default_font = ExtResource("1_yi07a")
+Button/styles/disabled = SubResource("StyleBoxTexture_w63ci")
+Button/styles/hover = SubResource("StyleBoxTexture_82d6u")
+Button/styles/normal = SubResource("StyleBoxTexture_x2gyu")
+Button/styles/pressed = SubResource("StyleBoxTexture_lryc1")
+HSlider/icons/grabber = SubResource("AtlasTexture_kn5cm")
+HSlider/icons/tick = SubResource("AtlasTexture_ghaqk")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_2mu45")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_2mu45")
+HSlider/styles/slider = SubResource("StyleBoxTexture_2mu45")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_ckct7")
+OptionButton/icons/arrow = ExtResource("3_b7pmp")
+TabBar/styles/button_highlight = SubResource("StyleBoxTexture_dr3uf")
+TabBar/styles/button_pressed = SubResource("StyleBoxTexture_dr3uf")
+TabBar/styles/tab_disabled = SubResource("StyleBoxTexture_fbxyq")
+TabBar/styles/tab_focus = SubResource("StyleBoxTexture_dr3uf")
+TabBar/styles/tab_hovered = SubResource("StyleBoxTexture_dr3uf")
+TabBar/styles/tab_selected = SubResource("StyleBoxTexture_sg8ec")
+TabBar/styles/tab_unselected = SubResource("StyleBoxTexture_4sdq0")
+TabContainer/styles/panel = SubResource("StyleBoxTexture_oufc3")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_3x77s")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_2lmhj")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_q7dp6")
+TextEdit/styles/normal = SubResource("StyleBoxTexture_hclyr")
+VSlider/icons/grabber = SubResource("AtlasTexture_fyl2n")
